@@ -1,0 +1,618 @@
+---
+/**
+ * EmailSignup Component
+ *
+ * @description Accessible email signup form with validation and loading states
+ * Integrates with Mailjet API and maintains WCAG 2.2 AA compliance
+ */
+
+import { Icon } from 'astro-icon/components'
+import { getTranslationsFromUrl } from '@utils/useTranslation.js'
+
+interface Props {
+  /**
+   * Form variant: 'hero', 'section', or 'footer'
+   */
+  variant?: 'hero' | 'section' | 'footer'
+  /**
+   * Show field labels visually
+   */
+  showLabels?: boolean
+  /**
+   * Custom placeholder text
+   */
+  placeholder?: string
+  /**
+   * Custom button text
+   */
+  buttonText?: string
+  /**
+   * Additional CSS classes
+   */
+  class?: string
+  /**
+   * Form title/heading
+   */
+  title?: string
+  /**
+   * Form description
+   */
+  description?: string
+}
+
+const {
+  variant = 'section',
+  showLabels = true,
+  placeholder,
+  buttonText,
+  class: className,
+  title,
+  description,
+} = Astro.props
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  const keys = key.split('.')
+  let current = translations
+  for (const k of keys) {
+    current = current?.[k]
+  }
+  return current || fallback
+}
+
+// Generate unique IDs for accessibility
+const formId = `email-signup-${variant}`
+const emailId = `${formId}-email`
+const submitId = `${formId}-submit`
+const errorId = `${formId}-error`
+const successId = `${formId}-success`
+---
+
+<div class:list={[className, 'email-signup', `variant-${variant}`]} data-component="email-signup">
+  {
+    (title || description) && (
+      <div class="signup-header">
+        {title && <h3 class="signup-title">{title}</h3>}
+        {description && <p class="signup-description">{description}</p>}
+      </div>
+    )
+  }
+
+  <form
+    id={formId}
+    class="signup-form"
+    novalidate
+    data-form="email-signup"
+    aria-describedby={description ? `${formId}-desc` : undefined}
+  >
+    <!-- Honeypot for spam protection -->
+    <input type="text" name="website" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true" />
+
+    <div class="form-group">
+      {
+        showLabels && (
+          <label for={emailId} class="email-label">
+            {t('signup.emailPlaceholder', 'Email address')}
+            <span class="required" aria-label="required">
+              *
+            </span>
+          </label>
+        )
+      }
+
+      <div class="input-group">
+        <Icon name="lucide:mail" class="input-icon" aria-hidden="true" />
+        <input
+          type="email"
+          id={emailId}
+          name="email"
+          class="email-input"
+          placeholder={placeholder || t('signup.emailPlaceholder', 'Enter your email address')}
+          aria-label={!showLabels ? placeholder || t('signup.emailPlaceholder', 'Enter your email address') : undefined}
+          aria-describedby={`${errorId} ${successId}`}
+          aria-invalid="false"
+          autocomplete="email"
+          required
+        />
+
+        <button type="submit" id={submitId} class="submit-button" disabled={false} aria-describedby={errorId}>
+          <span class="button-text">
+            {buttonText || t('signup.submitButton', 'Get Early Access')}
+          </span>
+          <span class="button-loading" aria-hidden="true">
+            <Icon name="lucide:loader-2" class="spinner" />
+            {t('signup.loadingButton', 'Joining...')}
+          </span>
+          <Icon name="lucide:arrow-right" class="button-icon" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+
+    <!-- Error message -->
+    <div id={errorId} class="message error-message" role="alert" aria-live="polite" aria-atomic="true">
+      <Icon name="lucide:alert-circle" />
+      <span class="message-text"></span>
+    </div>
+
+    <!-- Success message -->
+    <div id={successId} class="message success-message" role="status" aria-live="polite" aria-atomic="true">
+      <Icon name="lucide:check-circle" />
+      <span class="message-text"></span>
+    </div>
+
+    <!-- Privacy notice -->
+    <p class="privacy-notice">
+      <Icon name="lucide:shield-check" />
+      {t('signup.privacy', "We'll send you a personal note when doors open. No spam, ever.")}
+    </p>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const signupForms = document.querySelectorAll('[data-form="email-signup"]')
+
+    signupForms.forEach((form) => {
+      const emailInput = form.querySelector('.email-input')
+      const submitButton = form.querySelector('.submit-button')
+      const errorMessage = form.querySelector('.error-message')
+      const successMessage = form.querySelector('.success-message')
+      const buttonText = submitButton.querySelector('.button-text')
+      const buttonLoading = submitButton.querySelector('.button-loading')
+
+      if (!emailInput || !submitButton || !errorMessage || !successMessage) return
+
+      // Form state management
+      let isSubmitting = false
+
+      const showMessage = (element, message, isError = false) => {
+        const messageText = element.querySelector('.message-text')
+        if (messageText) {
+          messageText.textContent = message
+          element.style.display = 'flex'
+          element.setAttribute('aria-hidden', 'false')
+
+          // Update input aria-invalid for errors
+          if (isError) {
+            emailInput.setAttribute('aria-invalid', 'true')
+            emailInput.focus()
+          } else {
+            emailInput.setAttribute('aria-invalid', 'false')
+          }
+        }
+      }
+
+      const hideMessage = (element) => {
+        element.style.display = 'none'
+        element.setAttribute('aria-hidden', 'true')
+      }
+
+      const hideAllMessages = () => {
+        hideMessage(errorMessage)
+        hideMessage(successMessage)
+      }
+
+      const setLoading = (loading) => {
+        isSubmitting = loading
+        submitButton.disabled = loading
+        submitButton.setAttribute('aria-busy', loading.toString())
+
+        if (loading) {
+          buttonText.style.display = 'none'
+          buttonLoading.style.display = 'flex'
+          buttonLoading.setAttribute('aria-hidden', 'false')
+        } else {
+          buttonText.style.display = 'block'
+          buttonLoading.style.display = 'none'
+          buttonLoading.setAttribute('aria-hidden', 'true')
+        }
+      }
+
+      // Email validation
+      const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(email)
+      }
+
+      const getValidationMessage = (email) => {
+        if (!email.trim()) {
+          return 'Email address is required'
+        }
+        if (!validateEmail(email)) {
+          return 'Please enter a valid email address'
+        }
+        if (email.length > 254) {
+          return 'Email address is too long'
+        }
+        return null
+      }
+
+      // Real-time validation
+      emailInput.addEventListener('input', () => {
+        hideAllMessages()
+        emailInput.setAttribute('aria-invalid', 'false')
+      })
+
+      emailInput.addEventListener('blur', () => {
+        const email = emailInput.value
+        const validationMessage = getValidationMessage(email)
+
+        if (validationMessage && email.trim()) {
+          showMessage(errorMessage, validationMessage, true)
+        }
+      })
+
+      // Form submission
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        if (isSubmitting) return
+
+        const email = emailInput.value.trim()
+        const honeypot = form.querySelector('.honeypot')?.value
+
+        // Check honeypot (spam protection)
+        if (honeypot) {
+          console.warn('Spam attempt detected')
+          return
+        }
+
+        // Validate email
+        const validationMessage = getValidationMessage(email)
+        if (validationMessage) {
+          showMessage(errorMessage, validationMessage, true)
+          return
+        }
+
+        hideAllMessages()
+        setLoading(true)
+
+        try {
+          // Submit to API endpoint
+          const response = await fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email,
+              source: 'website',
+              timestamp: Date.now(),
+            }),
+          })
+
+          const result = await response.json()
+
+          if (response.ok && result.success) {
+            // Success
+            showMessage(successMessage, result.message || "Welcome! We'll be in touch soon with your early access.")
+
+            // Reset form
+            emailInput.value = ''
+
+            // Track conversion (if analytics available)
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'signup', {
+                event_category: 'engagement',
+                event_label: 'email_signup',
+              })
+            }
+
+            // Optional: redirect after delay
+            setTimeout(() => {
+              // Could redirect to thank you page
+            }, 3000)
+          } else {
+            // Server error
+            showMessage(
+              errorMessage,
+              result.message || 'Something went wrong. Please try again or email us directly.',
+              true
+            )
+          }
+        } catch (error) {
+          console.error('Signup error:', error)
+          showMessage(errorMessage, 'Network error. Please check your connection and try again.', true)
+        } finally {
+          setLoading(false)
+        }
+      })
+
+      // Keyboard shortcuts
+      form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.ctrlKey) {
+          form.dispatchEvent(new Event('submit'))
+        }
+      })
+    })
+  })
+</script>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+  @use '../assets/scss/base/mixins' as *;
+
+  .email-signup {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .signup-header {
+    margin-bottom: var(--space-m);
+    text-align: center;
+
+    .signup-title {
+      margin-bottom: var(--space-xs);
+      color: var(--foreground-color);
+      font-weight: 600;
+      font-size: var(--font-size-3);
+    }
+
+    .signup-description {
+      color: var(--color-neutral-600);
+      font-size: var(--font-size-1);
+      line-height: 1.5;
+    }
+  }
+
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .email-label {
+    color: var(--foreground-color);
+    font-weight: 500;
+    font-size: var(--font-size-0);
+
+    .required {
+      margin-left: var(--space-4xs);
+      color: var(--color-primary-400);
+    }
+  }
+
+  .input-group {
+    display: flex;
+    position: relative;
+    gap: 0;
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      left: var(--space-s);
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      color: var(--color-neutral-500);
+    }
+  }
+
+  .email-input {
+    flex: 1;
+    transition: all var(--animation-speed-fast) var(--cubic-bezier);
+    border: 2px solid var(--border-color-subtle);
+    border-radius: var(--radius-s) 0 0 var(--radius-s);
+    background-color: var(--background-color);
+    padding: var(--space-s) var(--space-s) var(--space-s) calc(var(--space-s) + 24px + var(--space-xs));
+    color: var(--foreground-color);
+    font-size: var(--font-size-0);
+
+    &:focus {
+      @include outline;
+      outline-offset: -2px;
+      border-color: var(--link-color);
+    }
+
+    &[aria-invalid='true'] {
+      border-color: var(--color-primary-400);
+    }
+
+    &::placeholder {
+      color: var(--color-neutral-500);
+    }
+  }
+
+  .submit-button {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2xs);
+    transition: all var(--animation-speed-fast) var(--cubic-bezier);
+    cursor: pointer;
+    border: 2px solid var(--color-neutral-900);
+    border-left: none;
+    border-radius: 0 var(--radius-s) var(--radius-s) 0;
+    background-color: var(--color-neutral-900);
+    padding: var(--space-s) var(--space-m);
+    min-width: 140px;
+    color: var(--color-neutral-100);
+    font-weight: 600;
+    font-size: var(--font-size-0);
+    white-space: nowrap;
+
+    &:where(:hover, :focus-visible) {
+      transform: translateY(-1px);
+      border-color: var(--color-neutral-800);
+      background-color: var(--color-neutral-800);
+    }
+
+    &:disabled {
+      transform: none;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      @include outline;
+      outline-offset: 2px;
+    }
+
+    .button-loading {
+      display: none;
+      align-items: center;
+      gap: var(--space-2xs);
+
+      .spinner {
+        animation: spin 1s linear infinite;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .button-icon {
+      transition: transform var(--animation-speed-fast) var(--cubic-bezier);
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover .button-icon {
+      transform: translateX(2px);
+    }
+  }
+
+  .message {
+    display: none;
+    align-items: center;
+    gap: var(--space-2xs);
+    border-radius: var(--radius-s);
+    padding: var(--space-xs) var(--space-s);
+    font-weight: 500;
+    font-size: var(--font-size--1);
+
+    svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    &.error-message {
+      border: 1px solid light-dark(#fecaca, #991b1b);
+      background-color: light-dark(#fef2f2, #7f1d1d);
+      color: light-dark(#991b1b, #fecaca);
+
+      svg {
+        color: light-dark(#dc2626, #fca5a5);
+      }
+    }
+
+    &.success-message {
+      border: 1px solid light-dark(#bbf7d0, #166534);
+      background-color: light-dark(#f0fdf4, #14532d);
+      color: light-dark(#166534, #bbf7d0);
+
+      svg {
+        color: light-dark(#16a34a, #86efac);
+      }
+    }
+  }
+
+  .privacy-notice {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    margin-top: var(--space-xs);
+    color: var(--color-neutral-600);
+    font-size: var(--font-size--1);
+    text-align: center;
+
+    svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      color: var(--color-secondary-400);
+    }
+  }
+
+  // Variant styles
+  .variant-hero {
+    .input-group {
+      @include breakpoint(s) {
+        flex-direction: row;
+      }
+    }
+
+    .email-input {
+      @include breakpoint(s) {
+        min-width: 300px;
+      }
+    }
+
+    .submit-button {
+      @include breakpoint(s) {
+        min-width: 160px;
+      }
+    }
+  }
+
+  .variant-footer {
+    .signup-header {
+      text-align: left;
+    }
+
+    .input-group {
+      flex-direction: column;
+      gap: var(--space-xs);
+
+      .email-input {
+        border-radius: var(--radius-s);
+        padding-left: calc(var(--space-s) + 24px + var(--space-xs));
+      }
+
+      .submit-button {
+        justify-content: center;
+        border: 2px solid var(--color-neutral-900);
+        border-radius: var(--radius-s);
+      }
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  // Dark mode adjustments
+  :global(.darkmode) {
+    .email-input {
+      border-color: var(--color-neutral-600);
+      background-color: var(--color-neutral-800);
+
+      &:focus {
+        border-color: var(--link-color);
+      }
+    }
+
+    .submit-button {
+      border-color: var(--color-neutral-100);
+      background-color: var(--color-neutral-100);
+      color: var(--color-neutral-900);
+
+      &:hover {
+        border-color: var(--color-neutral-200);
+        background-color: var(--color-neutral-200);
+      }
+    }
+  }
+</style>

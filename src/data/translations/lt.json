@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "siteName": "Withinly",
+    "tagline": "Suprask savo vidinį pasaulį",
+    "defaultTitle": "Withinly - Tavo santykiai atspindi tavo vidinį pasaulį",
+    "defaultDescription": "Padedame suprasti emocinius šablonus ir santykius su gilumu, niuansais ir dirbtinio intelekto palydovu, kuris tikrai supranta žmogaus patirtį.",
+    "keywords": "psichologija, santykiai, savimonė, emocinė inteligencija, dirbtinio intelekto terapija, asmeninis augimas"
+  },
+  "navigation": {
+    "home": "Pradžia",
+    "howItWorks": "Kaip tai veikia",
+    "pricing": "Kainodara",
+    "earlyAccess": "Ankstyvas priėjimas",
+    "privacy": "Privatumas",
+    "contact": "Kontaktai",
+    "joinEarlyAccess": "Prisijungti prie ankstyvojo priėjimo",
+    "menuLabel": "Pagrindinis meniu",
+    "skipToMain": "Pereiti prie pagrindinio turinio",
+    "toggleDarkMode": "Perjungti tamsų režimą",
+    "switchLanguage": "Perjungti į anglų kalbą",
+    "currentLanguage": "Lietuvių"
+  },
+  "hero": {
+    "headline": "Tavo santykiai atspindi tavo vidinį pasaulį.",
+    "subheadline": "Padedame suprasti abu — su gilumu, niuansais ir dirbtinio intelekto palydovu, kuris tikrai supranta žmogaus patirtį.",
+    "ctaPrimary": "Prisijungti prie ankstyvojo priėjimo",
+    "ctaSecondary": "Pažiūrėti, kaip tai veikia",
+    "tagline": "Tikras augimas reikalauja drąsos. Esame čia, kad tau padėtume."
+  },
+  "hook": {
+    "headline": "Visi nešamės šablonus, kurių negalime pavadinti.",
+    "description": "Kodėl tam tikri žmonės jaučiasi kaip namai. Kodėl konfliktas verčia mus bėgti ar kovoti. Kodėl meilė kartais atrodo baisi. Kodėl atstumiam tai, ko labiausiai reikia.",
+    "value": "Withinly padeda suprasti šiuos šablonus — ne per bendrus patarimus ar greitus sprendimus, bet per gilų apmąstymą ir nuolatinį dialogą su dirbtinio intelekto konsultantu, išmoktu tave matyti, o ne kategorizuoti.",
+    "quote": "Čia ne apie etiketes. Čia apie tai, kad pagaliau suprasti savo istoriją."
+  },
+  "howItWorks": {
+    "headline": "Kelionė į save, tavo tempu",
+    "step1": {
+      "title": "Pradėk su švelniu atskleidumu",
+      "description": "Trumpi, apgalvoti vertinimai, atskleidžiantys, kaip užmezgi ryšius, myli ir bendrauji. Nėra teisingų atsakymų — tik nuoširdus apmąstymas."
+    },
+    "step2": {
+      "title": "Gauk pirmas įžvalgas",
+      "description": "Asmeninis ataskaita, kuri skaitosi kaip laiškas nuo to, kas tikrai tave mato. Nemokamos versijos vartotojai gauna esmę; nariai atrakina visą gilumą."
+    },
+    "step3": {
+      "title": "Pradėk pokalbį",
+      "description": "Sutik savo dirbtinio intelekto konsultantą — išmokytą psichologinės išminties, bet kalbantį kaip patikimas draugas. Jie prisimena tavo kelionę ir padeda sujungti taškus."
+    },
+    "step4": {
+      "title": "Eik giliau, kai esi pasiruošęs",
+      "description": "Atrakink specializuotas ataskaitas apie konfliktų šablonus, santykių dinamiką, šeimos atgarsus ir daugiau. Kiekviena atskleidžia kitą supratimo sluoksnį."
+    }
+  },
+  "different": {
+    "headline": "Tikras apmąstymas, ne greiti sprendimai",
+    "dontOffer": {
+      "title": "Mes nesiūlome:",
+      "items": ["5 minučių asmenybės tipų", "Santykių triukų", "Bendrų patarimų", "Toksiško pozityvumo"]
+    },
+    "doOffer": {
+      "title": "Mes siūlome:",
+      "items": [
+        "Niuansuotą tavo šablonų supratimą",
+        "Palydovą, kuris prisimena tavo augimą",
+        "Įžvalgas, kurios keičiasi kartu su tavimi",
+        "Erdvę visoms tavo emocijoms"
+      ]
+    },
+    "tagline": "Nes tikras augimas nėra apie tai, kad taptum kuo nors kitu. Tai apie tai, kad suprastum, kas jau esi."
+  },
+  "trust": {
+    "headline": "Tavo vidinis pasaulis nusipelno apsaugos",
+    "description": "Tai šventa erdvė. Tavo mintys, šablonai ir atsiskleidimas lieka tarp tavęs ir tavo dirbtinio intelekto konsultanto.",
+    "features": [
+      {
+        "title": "Visiškas privatumas",
+        "description": "Mums nereikia tavo tikrojo vardo"
+      },
+      {
+        "title": "Tavo duomenys lieka tavi",
+        "description": "Niekada neparduodami, niekada nesidalijami"
+      },
+      {
+        "title": "Ištrink bet kada",
+        "description": "Pasiimk savo įžvalgas ir eik, jokių klausimų"
+      },
+      {
+        "title": "Etiškas dirbtinis intelektas",
+        "description": "Išmokytas palaikyti, ne diagnozuoti ar taisyti"
+      }
+    ],
+    "tagline": "Mes tikime, kad gijimas vyksta saugumoje. Tai neginčytina."
+  },
+  "testimonials": {
+    "headline": "Ankstyvojo priėjimo atsiliepimai",
+    "items": [
+      {
+        "quote": "Metų metus lankau terapiją. Tai davė man įžvalgų, kurias dabar tyrinėjame kartu su mano terapeutu.",
+        "author": "Ankstyvasis narys"
+      },
+      {
+        "quote": "Ataskaita apie mano santykių šablonus privertė mane verkti. Gerais ašaromis. Atpažinimo ašaromis.",
+        "author": "Beta testuotojas"
+      },
+      {
+        "quote": "Tai tarsi turėti išmintingą draugą, kuris prisimena kiekvieną pokalbį ir padeda matyti gijas.",
+        "author": "Premium narys"
+      }
+    ]
+  },
+  "pricing": {
+    "headline": "Sąžiningas mainų už tikrą vertę",
+    "free": {
+      "title": "Nemokama visam laikui",
+      "features": [
+        "Pagrindiniai vertinimai",
+        "Esminių įžvalgų ataskaita",
+        "Ribotos dirbtinio intelekto konsultacijos",
+        "Galimybių išbandymas"
+      ]
+    },
+    "premium": {
+      "title": "Pilna narystė",
+      "price": "12 €/mėn",
+      "features": [
+        "Visos dabartinės ir būsimos ataskaitos",
+        "Neribotose dirbtinio intelekto konsultacijos su pilna atmintimi",
+        "Specializuoti gilūs tyrimai (konfliktai, šeimos šablonai, artimo blokai)",
+        "Asmeninės praktikos",
+        "Ankstesnis priėjimas prie naujų funkcijų"
+      ]
+    },
+    "tagline": "Atšauk bet kada. Tai tavo kelionė, tavo tempas."
+  },
+  "earlyAccess": {
+    "headline": "Būk tarp pirmųjų tyrinėtojų",
+    "description": "Atidarome duris atrinktai grupei, kuri supranta, kad tikras savęs pažinimas reikalauja drąsos. Prisijunk prie mūsų ankstyvojo priėjimo sąrašo ir mes asmeniškai susisieksime, kai paleidžiame Withinly.",
+    "cta": "Rezervuok savo vietą",
+    "benefits": {
+      "title": "Kaip ankstyvas narys, gausi:",
+      "items": [
+        "Pirmasis priėjimas, kai paleidžiame",
+        "Įkūrėjo narių kainodara (užfiksuota visam laikui)",
+        "Tiesioginis indėlis į funkcijas",
+        "Asmeninį sveikinimą iš mūsų komandos"
+      ]
+    },
+    "urgency": "Ribojame ankstyvąjį priėjimą, kad užtikrintume kokybę. Vietos užpildymo."
+  },
+  "signup": {
+    "headline": "Pasiruošęs suprasti savo šablonus?",
+    "description": "Prisijunk prie laukimo sąrašo ir būk pirmas sužinoti, kai atsidarysimet.",
+    "emailPlaceholder": "Įvesk savo el. pašto adresą",
+    "submitButton": "Gauti ankstyvąjį priėjimą",
+    "loadingButton": "Prisijungiama...",
+    "privacy": "Atsiųsime tau asmeninę žinutę, kai atsidarysiме. Jokių šlamšto, niekada.",
+    "successMessage": "Sveikiname! Netrukus susisieksime dėl tavo ankstyvojo priėjimo.",
+    "errorMessage": "Kažkas nepavyko. Bandyk dar kartą arba rašyk mums tiesiogiai."
+  },
+  "closing": {
+    "headline": "Augimas sunkus. Tau nereikia to daryti vienam.",
+    "description": "Nesvarbu, ar esi smalsus, ar pasiruošęs nardyti giliai, esame pagerbti, kad esi čia. Tai kažko prasmingo pradžia.",
+    "contact": "Klausimai prieš prisijungiant? Susisiek su tikru žmogumi hello@withinly.com",
+    "languages": "Paleidžiama netrukus anglų ir lietuvių kalbomis • Ateina daugiau kalbų"
+  },
+  "footer": {
+    "tagline": "Withinly: Kur psichologija sutinka poeziją, o dirbtinis intelektas — žmogaus širdį.",
+    "copyright": "© 2025 Withinly. Visos teisės saugomos.",
+    "privacy": "Privatumo politika",
+    "contact": "Kontaktai"
+  },
+  "validation": {
+    "emailRequired": "El. pašto adresas yra privalomas",
+    "emailInvalid": "Įvesk galiojantį el. pašto adresą",
+    "emailTooLong": "El. pašto adresas per ilgas",
+    "submitError": "Nepavyko pateikti. Bandyk dar kartą.",
+    "networkError": "Tinklo klaida. Patikrink ryšį ir bandyk dar kartą."
+  },
+  "accessibility": {
+    "openModal": "Atidaryti modalą",
+    "closeModal": "Uždaryti modalą",
+    "nextSlide": "Kitas atsiliepimas",
+    "prevSlide": "Ankstesnis atsiliepimas",
+    "pauseSlider": "Pristabdyti atsiliepimų slankiklį",
+    "playSlider": "Paleisti atsiliepimų slankiklį",
+    "loadingContent": "Kraunamas turinys",
+    "errorContent": "Klaida kraunant turinį"
+  }
+}

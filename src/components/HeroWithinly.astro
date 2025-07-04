@@ -1,0 +1,447 @@
+---
+/**
+ * HeroWithinly Component
+ *
+ * @description Hero section specifically designed for Withinly marketing page
+ * Includes email signup integration and maintains WCAG 2.2 AA compliance
+ */
+
+import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+import EmailSignup from './EmailSignup.astro'
+import { getTranslationsFromUrl } from '@utils/useTranslation.js'
+
+interface Props {
+  /**
+   * Hero image source
+   */
+  imageSrc?: string
+  /**
+   * Show email signup form in hero
+   */
+  showSignup?: boolean
+  /**
+   * Additional CSS classes
+   */
+  class?: string
+}
+
+const { imageSrc = '/hero-withinly.webp', showSignup = true, class: className } = Astro.props
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  return translations[key] || fallback
+}
+---
+
+<section class:list={[className, 'hero-withinly']} aria-labelledby="hero-headline">
+  <div class="container">
+    <div class="hero-content">
+      <!-- Main content area -->
+      <div class="hero-text">
+        <h1 id="hero-headline" class="hero-headline">
+          <span class="headline-main">{t('hero.headline')}</span>
+        </h1>
+
+        <p class="hero-subheadline">
+          {t('hero.subheadline')}
+        </p>
+
+        <!-- Call-to-action buttons -->
+        <div class="hero-actions">
+          {
+            showSignup ? (
+              <div class="inline-signup">
+                <EmailSignup
+                  variant="hero"
+                  showLabels={false}
+                  placeholder={t('signup.emailPlaceholder')}
+                  buttonText={t('hero.ctaPrimary')}
+                />
+              </div>
+            ) : (
+              <div class="action-buttons">
+                <a href="#early-access" class="button button-primary has-icon">
+                  <Icon name="lucide:mail" />
+                  {t('hero.ctaPrimary')}
+                </a>
+                <a href="#how-it-works" class="button button-secondary has-icon">
+                  <Icon name="lucide:play-circle" />
+                  {t('hero.ctaSecondary')}
+                </a>
+              </div>
+            )
+          }
+        </div>
+
+        <!-- Trust tagline -->
+        <p class="hero-tagline">
+          <em>{t('hero.tagline')}</em>
+        </p>
+      </div>
+
+      <!-- Hero image/visual -->
+      <div class="hero-visual">
+        <div class="hero-image-container">
+          <Image src={imageSrc} alt="" width={600} height={400} loading="eager" class="hero-image" decoding="async" />
+
+          <!-- Decorative elements -->
+          <div class="visual-decoration" aria-hidden="true">
+            <div class="floating-element element-1">
+              <Icon name="lucide:heart" />
+            </div>
+            <div class="floating-element element-2">
+              <Icon name="lucide:brain" />
+            </div>
+            <div class="floating-element element-3">
+              <Icon name="lucide:sparkles" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust indicators -->
+    <div class="trust-indicators" aria-label="Trust and privacy indicators">
+      <div class="trust-item">
+        <Icon name="lucide:shield-check" />
+        <span>{t('trust.features.0.title') || 'Complete Privacy'}</span>
+      </div>
+      <div class="trust-item">
+        <Icon name="lucide:heart-handshake" />
+        <span>{t('trust.features.3.title') || 'Ethical AI'}</span>
+      </div>
+      <div class="trust-item">
+        <Icon name="lucide:clock" />
+        <span>24/7 Available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+  @use '../assets/scss/base/mixins' as *;
+
+  .hero-withinly {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      light-dark(var(--color-primary-100), var(--color-primary-500)) 0%,
+      light-dark(var(--color-secondary-100), var(--color-secondary-400)) 100%
+    );
+    padding-block: var(--space-3xl) var(--space-2xl);
+    overflow: hidden;
+
+    // Subtle pattern overlay
+    &::before {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      content: '';
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--space-2xl);
+    min-height: 70vh;
+
+    @include breakpoint(l) {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+    }
+  }
+
+  .hero-text {
+    text-align: center;
+
+    @include breakpoint(l) {
+      text-align: left;
+    }
+  }
+
+  .hero-headline {
+    margin-bottom: var(--space-m);
+    color: var(--color-neutral-900);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+
+    .headline-main {
+      display: block;
+      background: linear-gradient(
+        135deg,
+        var(--color-neutral-900) 0%,
+        var(--color-primary-400) 50%,
+        var(--color-secondary-400) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-wrap: balance;
+    }
+  }
+
+  .hero-subheadline {
+    margin-bottom: var(--space-l);
+    max-width: 90%;
+    color: var(--color-neutral-800);
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    line-height: 1.4;
+    text-wrap: pretty;
+
+    @include breakpoint(l) {
+      max-width: 100%;
+    }
+  }
+
+  .hero-actions {
+    margin-bottom: var(--space-l);
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s);
+
+    @include breakpoint(s) {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    @include breakpoint(l) {
+      justify-content: flex-start;
+    }
+
+    .button {
+      padding: var(--space-s) var(--space-m);
+      min-width: 200px;
+      font-weight: 600;
+      font-size: var(--font-size-1);
+
+      &.button-primary {
+        border: 2px solid var(--color-neutral-900);
+        background-color: var(--color-neutral-900);
+        color: var(--color-neutral-100);
+
+        &:where(:hover, :focus-visible) {
+          transform: translateY(-1px);
+          border-color: var(--color-neutral-800);
+          background-color: var(--color-neutral-800);
+        }
+      }
+
+      &.button-secondary {
+        border: 2px solid var(--color-neutral-700);
+        background-color: transparent;
+        color: var(--color-neutral-900);
+
+        &:where(:hover, :focus-visible) {
+          transform: translateY(-1px);
+          background-color: var(--color-neutral-900);
+          color: var(--color-neutral-100);
+        }
+      }
+
+      &.has-icon {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2xs);
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+
+  .inline-signup {
+    margin: 0 auto;
+    max-width: 400px;
+
+    @include breakpoint(l) {
+      margin: 0;
+    }
+  }
+
+  .hero-tagline {
+    color: var(--color-neutral-700);
+    font-style: italic;
+    font-size: var(--font-size-1);
+    text-align: center;
+
+    @include breakpoint(l) {
+      text-align: left;
+    }
+  }
+
+  .hero-visual {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .hero-image {
+    box-shadow: var(--elevation-4);
+    border-radius: var(--radius-l);
+    background-color: var(--color-neutral-200);
+    width: 100%;
+    height: auto;
+  }
+
+  .visual-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    .floating-element {
+      display: flex;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--elevation-2);
+      border-radius: 50%;
+      background-color: var(--color-neutral-100);
+      width: 40px;
+      height: 40px;
+      color: var(--color-primary-400);
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      &.element-1 {
+        top: 10%;
+        right: 15%;
+        animation-delay: 0s;
+      }
+
+      &.element-2 {
+        bottom: 20%;
+        left: 10%;
+        animation-delay: 1s;
+      }
+
+      &.element-3 {
+        top: 50%;
+        right: -10%;
+        animation-delay: 2s;
+      }
+    }
+  }
+
+  .trust-indicators {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s);
+    margin-top: var(--space-2xl);
+    border-top: 1px solid var(--color-neutral-300);
+    padding-top: var(--space-xl);
+
+    @include breakpoint(s) {
+      flex-direction: row;
+      justify-content: center;
+      gap: var(--space-xl);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      color: var(--color-neutral-700);
+      font-weight: 500;
+      font-size: var(--font-size--1);
+
+      svg {
+        width: 18px;
+        height: 18px;
+        color: var(--color-secondary-400);
+      }
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  // Dark mode adjustments
+  :global(.darkmode) .hero-withinly {
+    background: linear-gradient(135deg, var(--color-primary-400) 0%, var(--color-secondary-300) 100%);
+
+    .hero-headline {
+      color: var(--color-neutral-100);
+
+      .headline-main {
+        background: linear-gradient(
+          135deg,
+          var(--color-neutral-100) 0%,
+          var(--color-primary-200) 50%,
+          var(--color-secondary-200) 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .hero-subheadline {
+      color: var(--color-neutral-200);
+    }
+
+    .hero-tagline {
+      color: var(--color-neutral-300);
+    }
+
+    .trust-indicators {
+      border-color: var(--color-neutral-600);
+
+      .trust-item {
+        color: var(--color-neutral-300);
+      }
+    }
+  }
+
+  // Accessibility improvements
+  @media (prefers-reduced-motion: reduce) {
+    .floating-element {
+      animation: none !important;
+    }
+  }
+
+  // Focus management
+  .button:focus-visible {
+    @include outline;
+    outline-offset: 2px;
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+/**
+ * T (Translation) Component
+ *
+ * @description Provides inline translation functionality for Astro components
+ * Maintains accessibility by preserving proper HTML structure and attributes
+ */
+
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+
+interface Props {
+  /**
+   * Translation key path (dot notation)
+   */
+  key: string
+  /**
+   * Variables to interpolate in translation
+   */
+  variables?: Record<string, string | number>
+  /**
+   * Fallback text if translation missing
+   */
+  fallback?: string
+  /**
+   * HTML tag to wrap translation (default: span)
+   * Set to false or null to return raw text without wrapper
+   */
+  tag?: string | false | null
+  /**
+   * Additional CSS classes
+   */
+  class?: string
+  /**
+   * Additional HTML attributes
+   */
+  [key: string]: any
+}
+
+const { key: translationKey, variables = {}, fallback = '', tag = 'span', class: className, ...attrs } = Astro.props
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+
+// Get the translated text
+const translatedText = getTranslation(translations, translationKey, variables, fallback)
+
+// Prepare attributes
+const attributes = {
+  ...attrs,
+  ...(className && { class: className }),
+}
+
+// If tag is explicitly set to false or null, return raw text
+if (tag === false || tag === null) {
+  // For raw text, we can't use the dynamic tag approach
+  // Instead, we'll return the text directly
+}
+---
+
+{
+  tag === false || tag === null ? (
+    translatedText
+  ) : (
+    <Fragment>
+      {tag === 'span' && <span {...attributes}>{translatedText}</span>}
+      {tag === 'p' && <p {...attributes}>{translatedText}</p>}
+      {tag === 'h1' && <h1 {...attributes}>{translatedText}</h1>}
+      {tag === 'h2' && <h2 {...attributes}>{translatedText}</h2>}
+      {tag === 'h3' && <h3 {...attributes}>{translatedText}</h3>}
+      {tag === 'h4' && <h4 {...attributes}>{translatedText}</h4>}
+      {tag === 'h5' && <h5 {...attributes}>{translatedText}</h5>}
+      {tag === 'h6' && <h6 {...attributes}>{translatedText}</h6>}
+      {tag === 'div' && <div {...attributes}>{translatedText}</div>}
+      {tag === 'button' && <button {...attributes}>{translatedText}</button>}
+      {tag === 'a' && <a {...attributes}>{translatedText}</a>}
+      {tag === 'label' && <label {...attributes}>{translatedText}</label>}
+      {tag === 'strong' && <strong {...attributes}>{translatedText}</strong>}
+      {tag === 'em' && <em {...attributes}>{translatedText}</em>}
+      {tag === 'small' && <small {...attributes}>{translatedText}</small>}
+      {![
+        'span',
+        'p',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'div',
+        'button',
+        'a',
+        'label',
+        'strong',
+        'em',
+        'small',
+      ].includes(tag) && (
+        <span {...attributes} title={`Unknown tag: ${tag}`}>
+          {translatedText}
+        </span>
+      )}
+    </Fragment>
+  )
+}
+
+<style>
+  /* Ensure translations inherit proper styling */
+  :global(.translation) {
+    /* Base styles if needed */
+  }
+</style>

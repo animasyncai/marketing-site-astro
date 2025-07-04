@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "siteName": "Withinly",
+    "tagline": "Understand your inner world",
+    "defaultTitle": "Withinly - Your relationships mirror your inner world",
+    "defaultDescription": "We help you understand your emotional patterns and relationships with depth, nuance, and an AI companion who truly gets the human experience.",
+    "keywords": "psychology, relationships, self-awareness, emotional intelligence, AI therapy, personal growth"
+  },
+  "navigation": {
+    "home": "Home",
+    "howItWorks": "How It Works",
+    "pricing": "Pricing",
+    "earlyAccess": "Early Access",
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "joinEarlyAccess": "Join Early Access",
+    "menuLabel": "Main navigation",
+    "skipToMain": "Skip to main content",
+    "toggleDarkMode": "Toggle dark mode",
+    "switchLanguage": "Switch to Lithuanian",
+    "currentLanguage": "English"
+  },
+  "hero": {
+    "headline": "Your relationships mirror your inner world.",
+    "subheadline": "We help you understand both — with depth, nuance, and an AI companion who truly gets the human experience.",
+    "ctaPrimary": "Join Early Access",
+    "ctaSecondary": "See How It Works",
+    "tagline": "Real growth takes courage. We're here to hold space for it."
+  },
+  "hook": {
+    "headline": "We all carry patterns we can't quite name.",
+    "description": "Why certain people feel like home. Why conflict makes us run or fight. Why love sometimes feels scary. Why we push away what we need most.",
+    "value": "Withinly helps you understand these patterns — not through generic advice or quick fixes, but through deep reflection and an ongoing dialogue with an AI trained to see you, not categorize you.",
+    "quote": "This isn't about labels. It's about finally making sense of your story."
+  },
+  "howItWorks": {
+    "headline": "A journey inward, at your own pace",
+    "step1": {
+      "title": "Start with gentle discovery",
+      "description": "Short, thoughtful assessments that reveal how you connect, love, and relate. No right answers — just honest reflection."
+    },
+    "step2": {
+      "title": "Receive your first insights",
+      "description": "A personal report that reads like a letter from someone who truly sees you. Free users get the essence; members unlock the full depth."
+    },
+    "step3": {
+      "title": "Begin the conversation",
+      "description": "Meet your AI consultant — trained in psychological wisdom but speaks like a trusted friend. They remember your journey and help you connect the dots."
+    },
+    "step4": {
+      "title": "Go deeper when you're ready",
+      "description": "Unlock specialized reports on conflict patterns, relationship dynamics, family echoes, and more. Each one reveals another layer of understanding."
+    }
+  },
+  "different": {
+    "headline": "Real reflection, not quick fixes",
+    "dontOffer": {
+      "title": "We don't offer:",
+      "items": ["5-minute personality types", "Relationship hacks", "Generic advice", "Toxic positivity"]
+    },
+    "doOffer": {
+      "title": "We do offer:",
+      "items": [
+        "Nuanced understanding of your patterns",
+        "A companion who remembers your growth",
+        "Insights that evolve with you",
+        "Space for all your emotions"
+      ]
+    },
+    "tagline": "Because real growth isn't about becoming someone else. It's about understanding who you already are."
+  },
+  "trust": {
+    "headline": "Your inner world deserves protection",
+    "description": "This is sacred space. Your thoughts, patterns, and revelations stay between you and your AI consultant.",
+    "features": [
+      {
+        "title": "Complete privacy",
+        "description": "We don't need your real name"
+      },
+      {
+        "title": "Your data stays yours",
+        "description": "Never sold, never shared"
+      },
+      {
+        "title": "Delete anytime",
+        "description": "Take your insights and go, no questions"
+      },
+      {
+        "title": "Ethical AI",
+        "description": "Trained to support, not diagnose or fix"
+      }
+    ],
+    "tagline": "We believe healing happens in safety. That's non-negotiable."
+  },
+  "testimonials": {
+    "headline": "Early Access Testimonials",
+    "items": [
+      {
+        "quote": "I've been in therapy for years. This gave me insights my therapist and I are now exploring together.",
+        "author": "Early member"
+      },
+      {
+        "quote": "The report about my relationship patterns made me sob. Good tears. Recognition tears.",
+        "author": "Beta tester"
+      },
+      {
+        "quote": "It's like having a wise friend who remembers every conversation and helps me see the threads.",
+        "author": "Premium member"
+      }
+    ]
+  },
+  "pricing": {
+    "headline": "Fair exchange for real value",
+    "free": {
+      "title": "Free Forever",
+      "features": [
+        "Core assessments",
+        "Essential insights report",
+        "Limited AI consultation",
+        "Taste of what's possible"
+      ]
+    },
+    "premium": {
+      "title": "Full Membership",
+      "price": "$12/month",
+      "features": [
+        "All current & future reports",
+        "Unlimited AI consultation with full memory",
+        "Specialized deep-dives (conflict, family patterns, intimacy blocks)",
+        "Personalized practices",
+        "Early access to new features"
+      ]
+    },
+    "tagline": "Cancel anytime. This is your journey, your pace."
+  },
+  "earlyAccess": {
+    "headline": "Be among the first to explore",
+    "description": "We're opening doors to a select group who understand that real self-discovery takes courage. Join our early access list and we'll personally reach out when Withinly launches.",
+    "cta": "Reserve Your Spot",
+    "benefits": {
+      "title": "As an early member, you'll receive:",
+      "items": [
+        "First access when we launch",
+        "Founding member pricing (locked forever)",
+        "Direct input on features",
+        "A personal welcome from our team"
+      ]
+    },
+    "urgency": "We're limiting early access to ensure quality. Spots are filling."
+  },
+  "signup": {
+    "headline": "Ready to understand your patterns?",
+    "description": "Join the waitlist and be first to know when we open.",
+    "emailPlaceholder": "Enter your email address",
+    "submitButton": "Get Early Access",
+    "loadingButton": "Joining...",
+    "privacy": "We'll send you a personal note when doors open. No spam, ever.",
+    "successMessage": "Welcome! We'll be in touch soon with your early access.",
+    "errorMessage": "Something went wrong. Please try again or email us directly."
+  },
+  "closing": {
+    "headline": "Growth is hard. You don't have to do it alone.",
+    "description": "Whether you're curious or ready to dive deep, we're honored that you're here. This is the beginning of something meaningful.",
+    "contact": "Questions before joining? Reach a real human at hello@withinly.com",
+    "languages": "Launching soon in English and Lithuanian • More languages coming"
+  },
+  "footer": {
+    "tagline": "Withinly: Where psychology meets poetry, and AI meets the human heart.",
+    "copyright": "© 2025 Withinly. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "contact": "Contact"
+  },
+  "validation": {
+    "emailRequired": "Email address is required",
+    "emailInvalid": "Please enter a valid email address",
+    "emailTooLong": "Email address is too long",
+    "submitError": "Failed to submit. Please try again.",
+    "networkError": "Network error. Please check your connection and try again."
+  },
+  "accessibility": {
+    "openModal": "Open modal",
+    "closeModal": "Close modal",
+    "nextSlide": "Next testimonial",
+    "prevSlide": "Previous testimonial",
+    "pauseSlider": "Pause testimonial slider",
+    "playSlider": "Play testimonial slider",
+    "loadingContent": "Loading content",
+    "errorContent": "Error loading content"
+  }
+}
