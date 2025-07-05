@@ -1,22 +1,16 @@
 ---
 /**
- * FeatureComparison Component
+ * FeatureComparison Component - Refined
  *
- * @description Accessible pricing/feature comparison table
- * Displays Free vs Premium features with proper table markup
+ * @description Clean pricing comparison using Tailwind utilities
  */
 
 import { Icon } from 'astro-icon/components'
+import Button from './Button.astro'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 interface Props {
-  /**
-   * Additional CSS classes
-   */
   class?: string
-  /**
-   * Show pricing information
-   */
   showPricing?: boolean
 }
 
@@ -31,435 +25,89 @@ const t = (key: string, fallback = '') => {
 // Get features from translations
 const freeFeatures = translations.pricing?.free?.features || []
 const premiumFeatures = translations.pricing?.premium?.features || []
-
-// Define features for comparison using translation data
-const features = [
-  {
-    category: 'Core Features',
-    items: [
-      { name: freeFeatures[0] || 'Core assessments', free: true, premium: true },
-      { name: freeFeatures[1] || 'Essential insights report', free: true, premium: true },
-      { name: freeFeatures[2] || 'Limited AI consultation', free: 'Limited', premium: 'Unlimited' },
-      { name: 'Full memory retention', free: false, premium: true },
-    ],
-  },
-  {
-    category: 'Advanced Features',
-    items: [
-      { name: premiumFeatures[0] || 'All current & future reports', free: false, premium: true },
-      { name: premiumFeatures[1] || 'Unlimited AI consultation with full memory', free: false, premium: true },
-      { name: premiumFeatures[2] || 'Specialized deep-dives', free: false, premium: true },
-      { name: premiumFeatures[3] || 'Personalized practices', free: false, premium: true },
-    ],
-  },
-  {
-    category: 'Support & Access',
-    items: [
-      { name: premiumFeatures[4] || 'Early access to new features', free: false, premium: true },
-      { name: 'Priority support', free: false, premium: true },
-      { name: 'Data export', free: false, premium: true },
-      { name: 'Multiple reports generation', free: false, premium: true },
-    ],
-  },
-]
 ---
 
-<section class:list={[className, 'feature-comparison']} aria-labelledby="pricing-headline">
-  <div class="container">
-    <div class="comparison-header">
-      <h2 id="pricing-headline">{t('pricing.headline')}</h2>
-      <p class="comparison-description">Choose the plan that fits your journey of self-discovery</p>
+<section id="pricing" class:list={[className, 'bg-gray-50 py-20']}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+        {t('pricing.headline')}
+      </h2>
+      <p class="text-xl text-gray-600">Choose the plan that fits your journey of self-discovery</p>
     </div>
 
-    <div class="comparison-wrapper">
-      <!-- Plan headers -->
-      <div class="plans-header">
-        <div class="plan-card free-plan">
-          <div class="plan-header">
-            <h3 class="plan-title">{t('pricing.free.title')}</h3>
-            {
-              showPricing && (
-                <div class="plan-price">
-                  <span class="price">$0</span>
-                  <span class="period">forever</span>
-                </div>
-              )
-            }
-          </div>
-          <p class="plan-description">Perfect for exploring your patterns</p>
-          <a href="#early-access" class="plan-cta button color-secondary">
-            {t('hero.ctaPrimary')}
-          </a>
-        </div>
-
-        <div class="plan-card premium-plan featured">
-          <div class="featured-badge" aria-label="Most popular plan">
-            <Icon name="lucide:star" />
-            <span>Most Popular</span>
-          </div>
-          <div class="plan-header">
-            <h3 class="plan-title">{t('pricing.premium.title')}</h3>
-            {
-              showPricing && (
-                <div class="plan-price">
-                  <span class="price">{t('pricing.premium.price')}</span>
-                  <span class="period">monthly</span>
-                </div>
-              )
-            }
-          </div>
-          <p class="plan-description">Complete access to your inner world</p>
-          <a href="#early-access" class="plan-cta button"> Start Premium </a>
-        </div>
-      </div>
-
-      <!-- Feature comparison table -->
-      <div class="features-table" role="table" aria-label="Feature comparison">
-        <div class="table-header" role="row">
-          <div class="feature-column" role="columnheader">
-            <span class="sr-only">Feature name</span>
-          </div>
-          <div class="plan-column" role="columnheader">
-            <span>Free</span>
-          </div>
-          <div class="plan-column" role="columnheader">
-            <span>Premium</span>
-          </div>
-        </div>
-
-        {
-          features.map((category) => (
-            <div class="feature-category">
-              <div class="category-header" role="row">
-                <div class="category-title" role="cell">
-                  <h4>{category.category}</h4>
-                </div>
-                <div class="category-spacer" role="cell" />
-                <div class="category-spacer" role="cell" />
+    <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+      <!-- Free Plan -->
+      <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+        <div class="mb-6 text-center">
+          <h3 class="mb-2 text-2xl font-bold text-gray-900">{t('pricing.free.title')}</h3>
+          {
+            showPricing && (
+              <div>
+                <div class="mb-1 text-4xl font-bold text-gray-900">$0</div>
+                <div class="text-gray-500">forever</div>
               </div>
-
-              {category.items.map((feature) => (
-                <div class="feature-row" role="row">
-                  <div class="feature-name" role="cell">
-                    <span>{feature.name}</span>
-                  </div>
-                  <div class="feature-value free" role="cell">
-                    {typeof feature.free === 'boolean' ? (
-                      feature.free ? (
-                        <Icon name="lucide:check" class="check-icon" aria-label="Included" />
-                      ) : (
-                        <Icon name="lucide:x" class="x-icon" aria-label="Not included" />
-                      )
-                    ) : (
-                      <span class="limited-text">{feature.free}</span>
-                    )}
-                  </div>
-                  <div class="feature-value premium" role="cell">
-                    {typeof feature.premium === 'boolean' ? (
-                      feature.premium ? (
-                        <Icon name="lucide:check" class="check-icon" aria-label="Included" />
-                      ) : (
-                        <Icon name="lucide:x" class="x-icon" aria-label="Not included" />
-                      )
-                    ) : (
-                      <span class="unlimited-text">{feature.premium}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ))
-        }
+            )
+          }
+        </div>
+        <ul class="mb-8 space-y-4">
+          {
+            freeFeatures.map((feature) => (
+              <li class="flex items-start gap-3">
+                <Icon name="lucide:check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
+                <span class="text-gray-600">{feature}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <Button href="#early-access" variant="secondary" size="lg" fullWidth> Get Started Free </Button>
       </div>
 
-      <!-- Bottom CTAs -->
-      <div class="bottom-ctas">
-        <div class="cta-card">
-          <a href="#early-access" class="plan-cta button color-secondary"> Try Free Plan </a>
+      <!-- Premium Plan -->
+      <div
+        class="relative transform rounded-2xl bg-purple-600 p-8 text-white shadow-lg transition-transform hover:scale-105"
+      >
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+          <div class="flex items-center gap-1 rounded-full bg-yellow-400 px-4 py-1 text-sm font-medium text-yellow-900">
+            <Icon name="lucide:star" class="h-3 w-3" />
+            Most Popular
+          </div>
         </div>
-        <div class="cta-card featured">
-          <a href="#early-access" class="plan-cta button"> Get Premium Access </a>
+        <div class="mb-6 text-center">
+          <h3 class="mb-2 text-2xl font-bold">{t('pricing.premium.title')}</h3>
+          {
+            showPricing && (
+              <div>
+                <div class="mb-1 text-4xl font-bold">{t('pricing.premium.price')}</div>
+                <div class="text-purple-200">monthly</div>
+              </div>
+            )
+          }
         </div>
+        <ul class="mb-8 space-y-4">
+          {
+            premiumFeatures.map((feature) => (
+              <li class="flex items-start gap-3">
+                <Icon name="lucide:check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-purple-200" />
+                <span class="text-purple-100">{feature}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <Button
+          href="#early-access"
+          variant="secondary"
+          size="lg"
+          fullWidth
+          class="border-white bg-white text-purple-600 hover:bg-gray-50"
+        >
+          Start Premium
+        </Button>
       </div>
     </div>
 
-    <p class="comparison-note">
+    <p class="mt-8 text-center text-gray-500 italic">
       {t('pricing.tagline')}
     </p>
   </div>
 </section>
-
-<style lang="scss">
-  @use '../assets/scss/base/breakpoint' as *;
-  @use '../assets/scss/base/mixins' as *;
-
-  .feature-comparison {
-    padding-block: var(--space-3xl);
-  }
-
-  .comparison-header {
-    margin-bottom: var(--space-2xl);
-    text-align: center;
-
-    h2 {
-      margin-bottom: var(--space-m);
-      color: var(--foreground-color);
-    }
-
-    .comparison-description {
-      margin: 0 auto;
-      max-width: 600px;
-      color: var(--color-neutral-600);
-      font-size: var(--font-size-1);
-    }
-  }
-
-  .comparison-wrapper {
-    margin: 0 auto;
-    max-width: 900px;
-  }
-
-  .plans-header {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-l);
-    margin-bottom: var(--space-xl);
-
-    @include breakpoint(m) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .plan-card {
-    position: relative;
-    border: 2px solid var(--border-color-subtle);
-    border-radius: var(--radius-l);
-    background-color: var(--background-color);
-    padding: var(--space-l);
-    text-align: center;
-
-    &.featured {
-      border-color: var(--link-color);
-      background: linear-gradient(
-        135deg,
-        light-dark(var(--color-primary-50), var(--color-primary-900)) 0%,
-        light-dark(var(--color-secondary-50), var(--color-secondary-900)) 100%
-      );
-    }
-  }
-
-  .featured-badge {
-    display: flex;
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    align-items: center;
-    gap: var(--space-3xs);
-    transform: translateX(-50%);
-    border-radius: var(--radius-s);
-    background-color: var(--link-color);
-    padding: var(--space-2xs) var(--space-s);
-    color: var(--background-color);
-    font-weight: 600;
-    font-size: var(--font-size--1);
-
-    svg {
-      width: 14px;
-      height: 14px;
-    }
-  }
-
-  .plan-header {
-    margin-bottom: var(--space-m);
-  }
-
-  .plan-title {
-    margin-bottom: var(--space-xs);
-    color: var(--foreground-color);
-    font-weight: 600;
-    font-size: var(--font-size-3);
-  }
-
-  .plan-price {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: var(--space-3xs);
-
-    .price {
-      color: var(--link-color);
-      font-weight: 700;
-      font-size: var(--font-size-4);
-    }
-
-    .period {
-      color: var(--color-neutral-600);
-      font-size: var(--font-size-0);
-    }
-  }
-
-  .plan-description {
-    margin-bottom: var(--space-l);
-    color: var(--color-neutral-600);
-    font-size: var(--font-size-0);
-  }
-
-  .plan-cta {
-    padding: var(--space-s) var(--space-m);
-    width: 100%;
-    font-weight: 600;
-  }
-
-  .features-table {
-    margin-bottom: var(--space-xl);
-    border: 1px solid var(--border-color-subtle);
-    border-radius: var(--radius-l);
-    background-color: var(--background-color);
-    overflow: hidden;
-  }
-
-  .table-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    border-bottom: 1px solid var(--border-color-subtle);
-    background-color: var(--color-neutral-100);
-    padding: var(--space-m);
-    font-weight: 600;
-
-    .plan-column {
-      color: var(--foreground-color);
-      text-align: center;
-    }
-  }
-
-  .feature-category {
-    &:not(:last-child) {
-      border-bottom: 1px solid var(--border-color-subtle);
-    }
-  }
-
-  .category-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    background-color: light-dark(var(--color-neutral-50), var(--color-neutral-800));
-    padding: var(--space-s) var(--space-m);
-
-    .category-title h4 {
-      margin: 0;
-      color: var(--foreground-color);
-      font-weight: 600;
-      font-size: var(--font-size-1);
-    }
-  }
-
-  .feature-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    border-bottom: 1px solid light-dark(var(--color-neutral-100), var(--color-neutral-800));
-    padding: var(--space-s) var(--space-m);
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    &:hover {
-      background-color: light-dark(var(--color-neutral-25), var(--color-neutral-850));
-    }
-  }
-
-  .feature-name {
-    display: flex;
-    align-items: center;
-    color: var(--foreground-color);
-    font-size: var(--font-size-0);
-  }
-
-  .feature-value {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .check-icon {
-      width: 20px;
-      height: 20px;
-      color: var(--color-secondary-400);
-    }
-
-    .x-icon {
-      width: 20px;
-      height: 20px;
-      color: var(--color-neutral-400);
-    }
-
-    .limited-text {
-      color: var(--color-neutral-600);
-      font-weight: 500;
-      font-size: var(--font-size--1);
-    }
-
-    .unlimited-text {
-      color: var(--color-secondary-400);
-      font-weight: 600;
-      font-size: var(--font-size--1);
-    }
-  }
-
-  .bottom-ctas {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-l);
-    margin-bottom: var(--space-l);
-
-    @include breakpoint(m) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .cta-card {
-      border-radius: var(--radius-l);
-      background-color: light-dark(var(--color-neutral-50), var(--color-neutral-800));
-      padding: var(--space-m);
-
-      &.featured {
-        background: linear-gradient(
-          135deg,
-          light-dark(var(--color-primary-50), var(--color-primary-900)) 0%,
-          light-dark(var(--color-secondary-50), var(--color-secondary-900)) 100%
-        );
-      }
-    }
-  }
-
-  .comparison-note {
-    color: var(--color-neutral-600);
-    font-style: italic;
-    font-size: var(--font-size-0);
-    text-align: center;
-  }
-
-  // Dark mode adjustments
-  :global(.darkmode) {
-    .table-header {
-      background-color: var(--color-neutral-800);
-    }
-
-    .category-header {
-      background-color: var(--color-neutral-700);
-    }
-
-    .feature-row:hover {
-      background-color: var(--color-neutral-750);
-    }
-  }
-
-  // Accessibility improvements
-  @media (prefers-reduced-motion: reduce) {
-    .feature-row {
-      transition: none;
-    }
-  }
-
-  .button:focus-visible {
-    @include outline;
-    outline-offset: 2px;
-  }
-</style>

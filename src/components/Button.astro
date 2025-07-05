@@ -1,0 +1,113 @@
+---
+/**
+ * Button Component
+ *
+ * @description Clean, consistent button component with proper sizing and variants
+ */
+
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  /**
+   * Button variant
+   */
+  variant?: 'primary' | 'secondary' | 'ghost' | 'link'
+  /**
+   * Button size
+   */
+  size?: 'sm' | 'md' | 'lg'
+  /**
+   * Button type for forms
+   */
+  type?: 'button' | 'submit' | 'reset'
+  /**
+   * Disabled state
+   */
+  disabled?: boolean
+  /**
+   * Icon name (optional)
+   */
+  icon?: string
+  /**
+   * Icon position
+   */
+  iconPosition?: 'left' | 'right'
+  /**
+   * Full width button
+   */
+  fullWidth?: boolean
+  /**
+   * Loading state
+   */
+  loading?: boolean
+  /**
+   * HTML attributes
+   */
+  [key: string]: any
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  disabled = false,
+  icon,
+  iconPosition = 'left',
+  fullWidth = false,
+  loading = false,
+  class: className,
+  ...attrs
+} = Astro.props
+
+// Build CSS classes using Tailwind utilities
+const baseClasses = [
+  // Layout
+  'inline-flex items-center justify-center gap-2',
+  'font-medium transition-all duration-150',
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2',
+  'disabled:opacity-50 disabled:cursor-not-allowed',
+
+  // Full width
+  fullWidth && 'w-full',
+
+  // Loading state
+  loading && 'cursor-wait',
+].filter(Boolean)
+
+// Size-specific classes
+const sizeClasses = {
+  sm: 'h-8 px-3 text-sm rounded-md',
+  md: 'h-10 px-4 text-sm rounded-lg',
+  lg: 'h-12 px-6 text-base rounded-lg',
+}
+
+// Variant-specific classes
+const variantClasses = {
+  primary: 'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800 shadow-sm',
+  secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-300 border border-gray-300',
+  ghost: 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200',
+  link: 'text-purple-600 hover:text-purple-700 underline-offset-4 hover:underline',
+}
+
+const allClasses = [...baseClasses, sizeClasses[size], variantClasses[variant], className].filter(Boolean).join(' ')
+---
+
+<button type={type} disabled={disabled || loading} class={allClasses} {...attrs}>
+  {loading && <Icon name="lucide:loader-2" class="h-4 w-4 animate-spin" />}
+
+  {!loading && icon && iconPosition === 'left' && <Icon name={icon} class="h-4 w-4" />}
+
+  <slot />
+
+  {!loading && icon && iconPosition === 'right' && <Icon name={icon} class="h-4 w-4" />}
+</button>
+
+<style>
+  /* Custom focus ring for better accessibility */
+  button:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--background-color),
+      0 0 0 4px var(--accent-color);
+  }
+</style>

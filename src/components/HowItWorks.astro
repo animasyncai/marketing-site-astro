@@ -1,0 +1,70 @@
+---
+/**
+ * HowItWorks Component - Refined
+ *
+ * @description Clean, step-by-step process explanation using Tailwind utilities
+ */
+
+import { Icon } from 'astro-icon/components'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  return getTranslation(translations, key, {}, fallback)
+}
+
+// Step configuration
+const steps = [
+  { step: '01', key: 'step1', icon: 'lucide:search' },
+  { step: '02', key: 'step2', icon: 'lucide:file-text' },
+  { step: '03', key: 'step3', icon: 'lucide:message-circle' },
+  { step: '04', key: 'step4', icon: 'lucide:layers' },
+]
+---
+
+<section id="how-it-works" class:list={[className, 'bg-gray-50 py-20']}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+        {t('howItWorks.headline')}
+      </h2>
+      <p class="mx-auto max-w-3xl text-xl text-gray-600">
+        A gentle journey of self-discovery that adapts to your pace and comfort level
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map(({ step, key, icon }) => (
+          <div class="group text-center">
+            <div class="relative mb-6">
+              <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 transition-colors group-hover:bg-purple-200">
+                <Icon name={icon} class="h-8 w-8 text-purple-600" />
+              </div>
+              <div class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-xs font-bold text-white">
+                {step}
+              </div>
+            </div>
+            <h3 class="mb-3 text-lg font-semibold text-gray-900">{t(`howItWorks.${key}.title`)}</h3>
+            <p class="leading-relaxed text-gray-600">{t(`howItWorks.${key}.description`)}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Connector lines for desktop -->
+    <div class="pointer-events-none relative -mt-32 hidden lg:block">
+      <div
+        class="absolute top-8 right-1/4 left-1/4 h-0.5 bg-gradient-to-r from-purple-200 via-purple-300 to-purple-200"
+      >
+      </div>
+    </div>
+  </div>
+</section>

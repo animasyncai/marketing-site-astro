@@ -1,18 +1,15 @@
 ---
 /**
- * DifferentiatorSection Component
+ * DifferentiatorSection Component - Refined
  *
- * @description Shows what Withinly offers vs what it doesn't
- * Uses translations for both positive and negative points
+ * @description Clean comparison of what we offer vs what we don't
  */
 
 import { Icon } from 'astro-icon/components'
+import Button from './Button.astro'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 interface Props {
-  /**
-   * Additional CSS classes
-   */
   class?: string
 }
 
@@ -29,44 +26,46 @@ const dontOfferItems = translations.different?.dontOffer?.items || []
 const doOfferItems = translations.different?.doOffer?.items || []
 ---
 
-<section class:list={[className, 'differentiator-section']} aria-labelledby="different-headline">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="different-headline">{t('different.headline')}</h2>
-      <p class="section-description">We believe in depth over quick fixes, understanding over categorization</p>
+<section class:list={[className, 'bg-white py-20']}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+        {t('different.headline')}
+      </h2>
+      <p class="text-xl text-gray-600">We believe in depth over quick fixes, understanding over categorization</p>
     </div>
 
-    <div class="comparison-grid">
-      <!-- What we DON'T offer -->
-      <div class="comparison-column dont-offer">
-        <div class="column-header">
-          <Icon name="lucide:x-circle" class="header-icon" />
-          <h3 class="column-title">{t('different.dontOffer.title')}</h3>
+    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+      <!-- Don't offer -->
+      <div class="rounded-2xl border border-red-200 bg-red-50 p-8 transition-shadow hover:shadow-md">
+        <div class="mb-6 flex items-center gap-3">
+          <Icon name="lucide:x-circle" class="h-6 w-6 text-red-500" />
+          <h3 class="text-xl font-semibold text-red-900">{t('different.dontOffer.title')}</h3>
         </div>
-        <ul class="comparison-list" role="list">
+        <ul class="space-y-3">
           {
             dontOfferItems.map((item) => (
-              <li class="comparison-item">
-                <Icon name="lucide:x" class="item-icon" aria-hidden="true" />
-                <span class="item-text">{item}</span>
+              <li class="flex items-center gap-3 text-red-700">
+                <Icon name="lucide:x" class="h-4 w-4 flex-shrink-0" />
+                <span>{item}</span>
               </li>
             ))
           }
         </ul>
       </div>
 
-      <!-- What we DO offer -->
-      <div class="comparison-column do-offer">
-        <div class="column-header">
-          <Icon name="lucide:check-circle" class="header-icon" />
-          <h3 class="column-title">{t('different.doOffer.title')}</h3>
+      <!-- Do offer -->
+      <div class="rounded-2xl border border-green-200 bg-green-50 p-8 transition-shadow hover:shadow-md">
+        <div class="mb-6 flex items-center gap-3">
+          <Icon name="lucide:check-circle" class="h-6 w-6 text-green-500" />
+          <h3 class="text-xl font-semibold text-green-900">{t('different.doOffer.title')}</h3>
         </div>
-        <ul class="comparison-list" role="list">
+        <ul class="space-y-3">
           {
             doOfferItems.map((item) => (
-              <li class="comparison-item">
-                <Icon name="lucide:check" class="item-icon" aria-hidden="true" />
-                <span class="item-text">{item}</span>
+              <li class="flex items-center gap-3 text-green-700">
+                <Icon name="lucide:check" class="h-4 w-4 flex-shrink-0" />
+                <span>{item}</span>
               </li>
             ))
           }
@@ -74,231 +73,11 @@ const doOfferItems = translations.different?.doOffer?.items || []
       </div>
     </div>
 
-    <div class="section-footer">
-      <blockquote class="differentiator-quote">
-        <p>{t('different.tagline')}</p>
+    <div class="mt-12 text-center">
+      <blockquote class="mx-auto mb-8 max-w-3xl text-xl text-gray-600 italic">
+        {t('different.tagline')}
       </blockquote>
-
-      <div class="section-cta">
-        <a href="#early-access" class="button has-icon">
-          <Icon name="lucide:heart" />
-          Start Your Journey
-        </a>
-      </div>
+      <Button href="#early-access" variant="primary" size="lg" icon="lucide:heart"> Start Your Journey </Button>
     </div>
   </div>
 </section>
-
-<style lang="scss">
-  @use '../assets/scss/base/breakpoint' as *;
-  @use '../assets/scss/base/mixins' as *;
-
-  .differentiator-section {
-    background-color: light-dark(var(--color-neutral-25), var(--color-neutral-900));
-    padding-block: var(--space-3xl);
-  }
-
-  .section-header {
-    margin-bottom: var(--space-3xl);
-    text-align: center;
-
-    h2 {
-      margin-bottom: var(--space-m);
-      color: var(--foreground-color);
-    }
-
-    .section-description {
-      margin: 0 auto;
-      max-width: 600px;
-      color: var(--color-neutral-600);
-      font-style: italic;
-      font-size: var(--font-size-1);
-    }
-  }
-
-  .comparison-grid {
-    display: grid;
-    gap: var(--space-2xl);
-    margin: 0 auto var(--space-3xl);
-    max-width: 1000px;
-
-    @include breakpoint(l) {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-3xl);
-    }
-  }
-
-  .comparison-column {
-    transition: all var(--animation-speed-fast) var(--cubic-bezier);
-    border: 2px solid transparent;
-    border-radius: var(--radius-l);
-    background-color: var(--background-color);
-    padding: var(--space-2xl);
-
-    &.dont-offer {
-      border-color: light-dark(#fecaca, #7f1d1d);
-      background: linear-gradient(135deg, light-dark(#fef2f2, #7f1d1d) 0%, light-dark(#fff, #991b1b) 100%);
-
-      .column-title {
-        color: light-dark(#991b1b, #fecaca);
-      }
-
-      .header-icon {
-        color: light-dark(#dc2626, #fca5a5);
-      }
-    }
-
-    &.do-offer {
-      border-color: light-dark(#bbf7d0, #14532d);
-      background: linear-gradient(135deg, light-dark(#f0fdf4, #14532d) 0%, light-dark(#fff, #166534) 100%);
-
-      .column-title {
-        color: light-dark(#166534, #bbf7d0);
-      }
-
-      .header-icon {
-        color: light-dark(#16a34a, #86efac);
-      }
-    }
-  }
-
-  .column-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-s);
-    margin-bottom: var(--space-l);
-    text-align: center;
-
-    @include breakpoint(s) {
-      justify-content: flex-start;
-      text-align: left;
-    }
-  }
-
-  .header-icon {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-  }
-
-  .column-title {
-    margin: 0;
-    font-weight: 700;
-    font-size: var(--font-size-2);
-  }
-
-  .comparison-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .comparison-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-s);
-  }
-
-  .item-icon {
-    flex-shrink: 0;
-    margin-top: 2px;
-    width: 20px;
-    height: 20px;
-
-    .dont-offer & {
-      color: light-dark(#dc2626, #fca5a5);
-    }
-
-    .do-offer & {
-      color: light-dark(#16a34a, #86efac);
-    }
-  }
-
-  .item-text {
-    color: var(--foreground-color);
-    font-size: var(--font-size-1);
-    line-height: 1.6;
-  }
-
-  .section-footer {
-    text-align: center;
-  }
-
-  .differentiator-quote {
-    margin-bottom: var(--space-2xl);
-    margin-inline: auto;
-    max-width: 700px;
-    color: var(--foreground-color);
-    font-style: italic;
-    font-weight: 500;
-    font-size: var(--font-size-2);
-    line-height: 1.6;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .section-cta {
-    .button {
-      padding: var(--space-s) var(--space-l);
-      font-weight: 600;
-      font-size: var(--font-size-1);
-
-      &.has-icon {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-xs);
-
-        svg {
-          transition: transform var(--animation-speed-fast) var(--cubic-bezier);
-          width: 20px;
-          height: 20px;
-        }
-
-        &:hover svg {
-          transform: scale(1.1);
-        }
-      }
-    }
-  }
-
-  // Dark mode adjustments
-  :global(.darkmode) {
-    .comparison-column {
-      &.dont-offer {
-        border-color: #991b1b;
-        background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
-      }
-
-      &.do-offer {
-        border-color: #166534;
-        background: linear-gradient(135deg, #14532d 0%, #166534 100%);
-      }
-    }
-  }
-
-  // Accessibility improvements
-  @media (prefers-reduced-motion: reduce) {
-    .comparison-column {
-      transition: none;
-    }
-
-    .button svg {
-      transition: none;
-    }
-
-    .button:hover svg {
-      transform: none;
-    }
-  }
-
-  .button:focus-visible {
-    @include outline;
-    outline-offset: 2px;
-  }
-</style>

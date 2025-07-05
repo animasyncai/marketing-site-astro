@@ -1,13 +1,6 @@
 ---
-/**
- * Footer Component - Updated for Withinly
- *
- * @description Clean, focused footer that matches the Withinly brand
- * Uses Tailwind for layout and minimal SCSS for complex styling
- */
-
 import Logo from './Logo.astro'
-import EmailSignup from './EmailSignup.astro'
+import Button from './Button.astro'
 import LanguagePicker from './LanguagePicker.astro'
 import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
@@ -21,51 +14,36 @@ const t = (key: string, fallback = '') => {
 const currentYear = new Date().getFullYear()
 ---
 
-<footer class="bg-neutral-900 text-neutral-100">
-  <!-- Main footer content -->
-  <div class="container py-16">
-    <div class="grid grid-cols-1 gap-12 lg:grid-cols-4">
+<footer class="bg-gray-900 text-white">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-4">
       <!-- Brand section -->
-      <div class="space-y-6 lg:col-span-2">
-        <Logo />
-        <p class="max-w-md text-lg leading-relaxed text-neutral-300">
+      <div class="lg:col-span-2">
+        <div class="mb-6">
+          <Logo size="lg" />
+        </div>
+        <p class="mb-6 max-w-md text-lg leading-relaxed text-gray-300">
           {t('footer.tagline')}
         </p>
-
-        <!-- Newsletter signup -->
-        <div class="max-w-md">
-          <EmailSignup
-            variant="footer"
-            title="Stay Updated"
-            description="Get notified when we launch"
-            showLabels={false}
-            placeholder={t('signup.emailPlaceholder')}
-            buttonText="Subscribe"
-          />
-        </div>
+        <Button href="#early-access" variant="primary" size="md" icon="lucide:mail"> Join Early Access </Button>
       </div>
 
       <!-- Quick links -->
-      <div class="space-y-4">
-        <h3 class="text-lg font-semibold text-neutral-100">Quick Links</h3>
+      <div>
+        <h3 class="mb-4 text-lg font-semibold">Quick Links</h3>
         <ul class="space-y-3">
           <li>
-            <a href="#how-it-works" class="text-neutral-300 transition-colors hover:text-neutral-100">
+            <a href="#how-it-works" class="text-gray-300 transition-colors hover:text-white">
               {t('navigation.howItWorks')}
             </a>
           </li>
           <li>
-            <a href="#pricing" class="text-neutral-300 transition-colors hover:text-neutral-100">
+            <a href="#pricing" class="text-gray-300 transition-colors hover:text-white">
               {t('navigation.pricing')}
             </a>
           </li>
           <li>
-            <a href="#early-access" class="text-neutral-300 transition-colors hover:text-neutral-100">
-              {t('navigation.earlyAccess')}
-            </a>
-          </li>
-          <li>
-            <a href="/privacy" class="text-neutral-300 transition-colors hover:text-neutral-100">
+            <a href="/privacy" class="text-gray-300 transition-colors hover:text-white">
               {t('footer.privacy')}
             </a>
           </li>
@@ -73,70 +51,46 @@ const currentYear = new Date().getFullYear()
       </div>
 
       <!-- Contact & Language -->
-      <div class="space-y-6">
+      <div>
+        <h3 class="mb-4 text-lg font-semibold">Connect</h3>
         <div class="space-y-4">
-          <h3 class="text-lg font-semibold text-neutral-100">Contact</h3>
-          <div class="space-y-2">
-            <a
-              href="mailto:hello@withinly.com"
-              class="flex items-center gap-2 text-neutral-300 transition-colors hover:text-neutral-100"
-            >
-              <Icon name="lucide:mail" class="h-4 w-4" />
-              hello@withinly.com
-            </a>
-          </div>
-        </div>
+          <a
+            href="mailto:hello@withinly.com"
+            class="flex items-center gap-2 text-gray-300 transition-colors hover:text-white"
+          >
+            <Icon name="lucide:mail" class="h-4 w-4" />
+            hello@withinly.com
+          </a>
 
-        <!-- Language picker -->
-        <div class="space-y-4">
-          <h3 class="text-lg font-semibold text-neutral-100">Language</h3>
-          <LanguagePicker variant="dropdown" />
+          <div>
+            <span class="mb-2 block text-sm text-gray-400">Language</span>
+            <LanguagePicker variant="dropdown" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bottom bar -->
-  <div class="border-t border-neutral-800">
-    <div class="container py-6">
-      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <!-- Copyright -->
-        <p class="text-sm text-neutral-400">
-          {t('footer.copyright')}
-        </p>
+    <!-- Bottom bar -->
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 sm:flex-row">
+      <p class="text-sm text-gray-400">
+        © {currentYear} Withinly. All rights reserved.
+      </p>
 
-        <!-- Trust badges -->
-        <div class="flex items-center gap-6">
-          <div class="flex items-center gap-2 text-sm text-neutral-400">
-            <Icon name="lucide:shield-check" class="h-4 w-4" />
-            <span>GDPR Compliant</span>
-          </div>
-          <div class="flex items-center gap-2 text-sm text-neutral-400">
-            <Icon name="lucide:lock" class="h-4 w-4" />
-            <span>Secure</span>
-          </div>
-          <div class="flex items-center gap-2 text-sm text-neutral-400">
-            <Icon name="lucide:heart" class="h-4 w-4" />
-            <span>Made with Care</span>
-          </div>
+      <!-- Trust badges -->
+      <div class="flex items-center gap-6 text-sm text-gray-400">
+        <div class="flex items-center gap-1">
+          <Icon name="lucide:shield-check" class="h-4 w-4" />
+          <span>GDPR Compliant</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <Icon name="lucide:lock" class="h-4 w-4" />
+          <span>Secure</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <Icon name="lucide:heart" class="h-4 w-4" />
+          <span>Made with Care</span>
         </div>
       </div>
     </div>
   </div>
 </footer>
-
-<style lang="scss">
-  // Only using SCSS for the complex gradient styling that's hard in Tailwind
-  footer {
-    background: linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 100%);
-
-    // Logo styling for dark footer
-    :global(.logo-link) {
-      color: var(--color-neutral-100);
-
-      &:hover {
-        color: var(--color-neutral-200);
-      }
-    }
-  }
-</style>

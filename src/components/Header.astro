@@ -1,7 +1,7 @@
 ---
-import Navigation from '../components/Navigation.astro'
-import LanguagePicker from '../components/LanguagePicker.astro'
-import { DarkMode, SkipLink } from 'accessible-astro-components'
+import Logo from './Logo.astro'
+import Button from './Button.astro'
+import LanguagePicker from './LanguagePicker.astro'
 import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
@@ -12,78 +12,136 @@ const t = (key: string, fallback = '') => {
 }
 ---
 
-<header>
-  <SkipLink />
-  <Navigation>
-    <li class="menu-item">
-      <a href="/">{t('navigation.home')}</a>
-    </li>
-    <li class="menu-item">
-      <a href="#how-it-works">{t('navigation.howItWorks')}</a>
-    </li>
-    <li class="menu-item">
-      <a href="#pricing">{t('navigation.pricing')}</a>
-    </li>
-    <li class="menu-item has-dropdown">
-      <button aria-haspopup="true" aria-expanded="false">
-        More
-        <Icon name="lucide:chevron-down" size="32" />
-      </button>
-      <ul class="dropdown-menu">
-        <li class="submenu-item">
-          <a href="/accessibility-statement">{t('navigation.privacy')}</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/accessible-components">Components</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/color-contrast-checker">Color Checker</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/404-page">404 page</a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item highlight">
-      <a href="#early-access">{t('navigation.joinEarlyAccess')}</a>
-    </li>
-    <li class="menu-item type-icon">
-      <LanguagePicker variant="toggle" />
-    </li>
-    <li class="menu-item type-icon animate-rotate">
-      <DarkMode>
-        <Icon name="lucide:moon" slot="light" />
-        <Icon name="lucide:sun" slot="dark" />
-      </DarkMode>
-    </li>
-  </Navigation>
+<header class="sticky top-0 z-50 border-b border-gray-200/80 bg-white/95 backdrop-blur-sm">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <Logo variant="header" />
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden items-center space-x-8 md:flex" aria-label="Main navigation">
+        <a href="#how-it-works" class="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900">
+          {t('navigation.howItWorks')}
+        </a>
+        <a href="#pricing" class="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900">
+          {t('navigation.pricing')}
+        </a>
+        <a href="/privacy" class="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900">
+          {t('navigation.privacy')}
+        </a>
+      </nav>
+
+      <!-- Right side actions -->
+      <div class="flex items-center space-x-3">
+        <!-- Language picker -->
+        <div class="hidden sm:block">
+          <LanguagePicker variant="toggle" />
+        </div>
+
+        <!-- Main CTA Button -->
+        <Button href="#early-access" size="sm" variant="primary" class="hidden sm:inline-flex">
+          {t('navigation.joinEarlyAccess')}
+        </Button>
+
+        <!-- Mobile menu button -->
+        <button
+          type="button"
+          class="rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 md:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          data-mobile-menu-toggle
+        >
+          <span class="sr-only">Open menu</span>
+          <Icon name="lucide:menu" class="h-5 w-5" data-menu-icon />
+          <Icon name="lucide:x" class="hidden h-5 w-5" data-close-icon />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="hidden border-t border-gray-200 bg-white/95 backdrop-blur-sm md:hidden" id="mobile-menu" data-mobile-menu>
+    <div class="space-y-4 px-4 py-6">
+      <nav class="space-y-4" aria-label="Mobile navigation">
+        <a href="#how-it-works" class="block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900">
+          {t('navigation.howItWorks')}
+        </a>
+        <a href="#pricing" class="block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900">
+          {t('navigation.pricing')}
+        </a>
+        <a href="/privacy" class="block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900">
+          {t('navigation.privacy')}
+        </a>
+      </nav>
+
+      <div class="space-y-4 border-t border-gray-200 pt-4">
+        <!-- Language picker for mobile -->
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-gray-600">Language</span>
+          <LanguagePicker variant="toggle" />
+        </div>
+
+        <!-- Mobile CTA -->
+        <Button href="#early-access" size="md" variant="primary" fullWidth icon="lucide:arrow-right">
+          {t('navigation.joinEarlyAccess')}
+        </Button>
+      </div>
+    </div>
+  </div>
 </header>
 
-<style lang="scss" is:global>
-  header {
-    .type-icon {
-      display: block;
-      margin-inline: -7px;
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]')
+    const mobileMenu = document.querySelector('[data-mobile-menu]')
+    const menuIcon = document.querySelector('[data-menu-icon]')
+    const closeIcon = document.querySelector('[data-close-icon]')
 
-      svg {
-        inline-size: 30px;
-        block-size: 30px;
+    if (!mobileMenuToggle || !mobileMenu || !menuIcon || !closeIcon) return
+
+    mobileMenuToggle.addEventListener('click', () => {
+      const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true'
+
+      mobileMenuToggle.setAttribute('aria-expanded', (!isExpanded).toString())
+
+      if (isExpanded) {
+        mobileMenu.classList.add('hidden')
+        menuIcon.classList.remove('hidden')
+        closeIcon.classList.add('hidden')
+      } else {
+        mobileMenu.classList.remove('hidden')
+        menuIcon.classList.add('hidden')
+        closeIcon.classList.remove('hidden')
       }
+    })
 
-      // Special styling for language picker
-      .language-toggle {
-        margin-inline: 0;
-      }
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a')
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden')
+        mobileMenuToggle.setAttribute('aria-expanded', 'false')
+        menuIcon.classList.remove('hidden')
+        closeIcon.classList.add('hidden')
+      })
+    })
 
-      .language-toggle-link {
-        transition: background-color var(--animation-speed-fast) var(--cubic-bezier);
-        border-radius: var(--radius-s);
-        padding: var(--space-3xs);
-
-        &:hover {
-          background-color: var(--border-color-subtle);
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        const target = document.querySelector(this.getAttribute('href'))
+        if (target) {
+          const headerHeight = 64 // Account for sticky header
+          const targetPosition = target.offsetTop - headerHeight
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
+          })
         }
-      }
-    }
-  }
-</style>
+      })
+    })
+  })
+</script>

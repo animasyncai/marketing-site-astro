@@ -1,30 +1,20 @@
 ---
 /**
- * TestimonialSlider Component
+ * TestimonialSlider Component - Refined
  *
- * @description Accessible testimonial carousel with manual navigation
- * Works without JavaScript and respects reduced motion preferences
+ * @description Clean testimonial display with optional auto-advance
  */
 
 import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 interface Props {
-  /**
-   * Additional CSS classes
-   */
   class?: string
-  /**
-   * Auto-advance slides (respects prefers-reduced-motion)
-   */
   autoPlay?: boolean
-  /**
-   * Auto-advance interval in milliseconds
-   */
   interval?: number
 }
 
-const { class: className, autoPlay = true, interval = 6000 } = Astro.props
+const { class: className, autoPlay = false, interval = 6000 } = Astro.props
 
 // Get translations for current language
 const translations = await getTranslationsFromUrl(Astro.url.pathname)
@@ -34,166 +24,148 @@ const t = (key: string, fallback = '') => {
 
 // Get testimonials from translations
 const testimonials = translations.testimonials?.items || []
-
-// Generate unique IDs for accessibility
-const sliderId = 'testimonial-slider'
-const slidePrefix = `${sliderId}-slide`
 ---
 
-<section class:list={[className, 'testimonial-slider']} aria-labelledby="testimonials-headline">
-  <div class="container">
-    <div class="slider-header">
-      <h2 id="testimonials-headline">
+<section class:list={[className, "py-20 bg-white"]}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
         {t('testimonials.headline')}
       </h2>
-      <p class="slider-description">Hear from people who are already exploring their inner patterns</p>
+      <p class="text-xl text-gray-600">
+        Hear from people who are already exploring their inner patterns
+      </p>
     </div>
 
-    <div
-      class="slider-container"
-      data-component="testimonial-slider"
-      data-auto-play={autoPlay}
-      data-interval={interval}
-      role="region"
-      aria-label="Customer testimonials"
-    >
-      <!-- Slider controls -->
-      <div class="slider-controls">
-        <button class="slider-btn prev-btn" aria-label={t('accessibility.prevSlide')} data-action="prev">
-          <Icon name="lucide:chevron-left" />
-        </button>
-
-        <div class="slider-status" aria-live="polite" aria-atomic="true">
-          <span class="current-slide">1</span>
-          <span class="separator">/</span>
-          <span class="total-slides">{testimonials.length}</span>
+    {autoPlay ? (
+      <!-- Auto-advancing slider for larger testimonial sets -->
+      <div 
+        class="relative max-w-4xl mx-auto"
+        data-component="testimonial-slider"
+        data-auto-play={autoPlay}
+        data-interval={interval}
+      >
+        <!-- Slider controls -->
+        <div class="flex justify-between items-center mb-8">
+          <button 
+            class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-100"
+            aria-label="Previous testimonial"
+            data-action="prev"
+          >
+            <Icon name="lucide:chevron-left" class="w-6 h-6" />
+          </button>
+          
+          <div class="text-sm text-gray-500">
+            <span data-current>1</span> / <span data-total>{testimonials.length}</span>
+          </div>
+          
+          <button 
+            class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-100"
+            aria-label="Next testimonial"
+            data-action="next"
+          >
+            <Icon name="lucide:chevron-right" class="w-6 h-6" />
+          </button>
         </div>
 
-        <button class="slider-btn next-btn" aria-label={t('accessibility.nextSlide')} data-action="next">
-          <Icon name="lucide:chevron-right" />
-        </button>
-      </div>
-
-      <!-- Play/Pause button for auto-play -->
-      {
-        autoPlay && (
-          <button class="play-pause-btn" aria-label={t('accessibility.pauseSlider')} data-action="toggle-play">
-            <Icon name="lucide:pause" class="pause-icon" />
-            <Icon name="lucide:play" class="play-icon" />
-          </button>
-        )
-      }
-
-      <!-- Testimonial slides -->
-      <div class="slider-track" role="group" aria-label="Testimonials">
-        {
-          testimonials.map((testimonial, index) => (
-            <div
-              class={`slide ${index === 0 ? 'active' : ''}`}
-              id={`${slidePrefix}-${index}`}
-              role="tabpanel"
-              aria-label={`Testimonial ${index + 1} of ${testimonials.length}`}
-              tabindex={index === 0 ? '0' : '-1'}
-            >
-              <blockquote class="testimonial">
-                <div class="quote-content">
-                  <Icon name="lucide:quote" class="quote-icon" aria-hidden="true" />
-                  <p class="quote-text">{testimonial.quote}</p>
-                </div>
-                <footer class="quote-footer">
-                  <cite class="quote-author">— {testimonial.author}</cite>
-                </footer>
-              </blockquote>
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Slide indicators -->
-      <div class="slider-indicators" role="tablist" aria-label="Select testimonial">
-        {
-          testimonials.map((_, index) => (
-            <button
-              class={`indicator ${index === 0 ? 'active' : ''}`}
-              role="tab"
-              aria-selected={index === 0 ? 'true' : 'false'}
-              aria-controls={`${slidePrefix}-${index}`}
-              aria-label={`Go to testimonial ${index + 1}`}
+        <!-- Testimonial content -->
+        <div class="relative overflow-hidden min-h-[200px]">
+          {testimonials.map((testimonial, index) => (
+            <div 
+              class={`absolute inset-0 transition-all duration-500 ${index === 0 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}
               data-slide={index}
             >
-              <span class="sr-only">Testimonial {index + 1}</span>
-            </button>
-          ))
-        }
+              <div class="bg-gray-50 rounded-2xl p-8 text-center">
+                <Icon name="lucide:quote" class="w-8 h-8 text-purple-300 mx-auto mb-4" />
+                <blockquote class="text-xl text-gray-700 mb-6 italic leading-relaxed">
+                  "{testimonial.quote}"
+                </blockquote>
+                <cite class="text-lg font-medium text-gray-900">
+                  — {testimonial.author}
+                </cite>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Indicators -->
+        <div class="flex justify-center gap-2 mt-6">
+          {testimonials.map((_, index) => (
+            <button
+              class={`w-2 h-2 rounded-full transition-colors ${index === 0 ? 'bg-purple-600' : 'bg-gray-300'}`}
+              aria-label={`Go to testimonial ${index + 1}`}
+              data-indicator={index}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    ) : (
+      <!-- Simple grid for static display -->
+      <div class="grid md:grid-cols-3 gap-8">
+        {testimonials.map(testimonial => (
+          <div class="bg-gray-50 rounded-2xl p-6 hover:shadow-md transition-shadow">
+            <Icon name="lucide:quote" class="w-6 h-6 text-purple-300 mb-4" />
+            <blockquote class="text-gray-700 mb-4 italic leading-relaxed">
+              "{testimonial.quote}"
+            </blockquote>
+            <cite class="text-sm font-medium text-gray-900">
+              — {testimonial.author}
+            </cite>
+          </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const sliders = document.querySelectorAll('[data-component="testimonial-slider"]')
+{autoPlay && (
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const slider = document.querySelector('[data-component="testimonial-slider"]')
+      if (!slider) return
 
-    sliders.forEach((slider) => {
-      const slides = slider.querySelectorAll('.slide')
-      const indicators = slider.querySelectorAll('.indicator')
-      const prevBtn = slider.querySelector('[data-action="prev"]') as HTMLButtonElement
-      const nextBtn = slider.querySelector('[data-action="next"]') as HTMLButtonElement
-      const playPauseBtn = slider.querySelector('[data-action="toggle-play"]') as HTMLButtonElement
-      const currentSlideSpan = slider.querySelector('.current-slide') as HTMLElement
-
-      if (!slides.length) return
+      const slides = slider.querySelectorAll('[data-slide]')
+      const indicators = slider.querySelectorAll('[data-indicator]')
+      const prevBtn = slider.querySelector('[data-action="prev"]')
+      const nextBtn = slider.querySelector('[data-action="next"]')
+      const currentSpan = slider.querySelector('[data-current]')
 
       let currentIndex = 0
-      let isPlaying = slider.getAttribute('data-auto-play') === 'true'
       let intervalId: number | null = null
       const interval = parseInt(slider.getAttribute('data-interval') || '6000')
 
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      if (prefersReducedMotion) {
-        isPlaying = false
-      }
+      const updateSlide = (newIndex: number) => {
+        // Hide current slide
+        slides[currentIndex]?.classList.add('opacity-0', 'translate-x-full')
+        slides[currentIndex]?.classList.remove('opacity-100', 'translate-x-0')
+        indicators[currentIndex]?.classList.remove('bg-purple-600')
+        indicators[currentIndex]?.classList.add('bg-gray-300')
 
-      const updateSlide = (newIndex: number, announce = true) => {
-        // Remove active states
-        slides[currentIndex]?.classList.remove('active')
-        indicators[currentIndex]?.classList.remove('active')
-        indicators[currentIndex]?.setAttribute('aria-selected', 'false')
-        slides[currentIndex]?.setAttribute('tabindex', '-1')
-
-        // Update current index
+        // Update index
         currentIndex = newIndex
 
-        // Add active states
-        slides[currentIndex]?.classList.add('active')
-        indicators[currentIndex]?.classList.add('active')
-        indicators[currentIndex]?.setAttribute('aria-selected', 'true')
-        slides[currentIndex]?.setAttribute('tabindex', '0')
+        // Show new slide
+        slides[currentIndex]?.classList.remove('opacity-0', 'translate-x-full')
+        slides[currentIndex]?.classList.add('opacity-100', 'translate-x-0')
+        indicators[currentIndex]?.classList.add('bg-purple-600')
+        indicators[currentIndex]?.classList.remove('bg-gray-300')
 
-        // Update status
-        if (currentSlideSpan) {
-          currentSlideSpan.textContent = (currentIndex + 1).toString()
-        }
-
-        // Focus management for accessibility
-        if (announce) {
-          slides[currentIndex]?.focus()
-        }
+        // Update counter
+        if (currentSpan) currentSpan.textContent = (currentIndex + 1).toString()
       }
 
       const nextSlide = () => {
         const newIndex = (currentIndex + 1) % slides.length
-        updateSlide(newIndex, false)
+        updateSlide(newIndex)
       }
 
       const prevSlide = () => {
         const newIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1
-        updateSlide(newIndex, false)
+        updateSlide(newIndex)
       }
 
       const startAutoPlay = () => {
-        if (!isPlaying || prefersReducedMotion) return
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
         intervalId = window.setInterval(nextSlide, interval)
       }
 
@@ -204,348 +176,34 @@ const slidePrefix = `${sliderId}-slide`
         }
       }
 
-      const togglePlayPause = () => {
-        isPlaying = !isPlaying
-
-        if (isPlaying) {
-          startAutoPlay()
-          playPauseBtn?.setAttribute('aria-label', 'Pause testimonial slider')
-          playPauseBtn?.classList.remove('paused')
-        } else {
-          stopAutoPlay()
-          playPauseBtn?.setAttribute('aria-label', 'Play testimonial slider')
-          playPauseBtn?.classList.add('paused')
-        }
-      }
-
       // Event listeners
       prevBtn?.addEventListener('click', () => {
         stopAutoPlay()
         prevSlide()
-        if (isPlaying) startAutoPlay()
+        startAutoPlay()
       })
 
       nextBtn?.addEventListener('click', () => {
         stopAutoPlay()
         nextSlide()
-        if (isPlaying) startAutoPlay()
+        startAutoPlay()
       })
-
-      playPauseBtn?.addEventListener('click', togglePlayPause)
 
       // Indicator clicks
       indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
           stopAutoPlay()
-          updateSlide(index, true)
-          if (isPlaying) startAutoPlay()
+          updateSlide(index)
+          startAutoPlay()
         })
       })
 
-      // Keyboard navigation
-      slider.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault()
-          stopAutoPlay()
-          prevSlide()
-          if (isPlaying) startAutoPlay()
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault()
-          stopAutoPlay()
-          nextSlide()
-          if (isPlaying) startAutoPlay()
-        } else if (e.key === ' ' && playPauseBtn) {
-          e.preventDefault()
-          togglePlayPause()
-        }
-      })
-
-      // Pause on hover/focus
+      // Pause on hover
       slider.addEventListener('mouseenter', stopAutoPlay)
-      slider.addEventListener('mouseleave', () => {
-        if (isPlaying) startAutoPlay()
-      })
+      slider.addEventListener('mouseleave', startAutoPlay)
 
-      slider.addEventListener('focusin', stopAutoPlay)
-      slider.addEventListener('focusout', () => {
-        if (isPlaying) startAutoPlay()
-      })
-
-      // Start auto-play if enabled
-      if (isPlaying && !prefersReducedMotion) {
-        startAutoPlay()
-      }
-
-      // Update initial play/pause button state
-      if (playPauseBtn && !isPlaying) {
-        playPauseBtn.classList.add('paused')
-      }
+      // Start auto-play
+      startAutoPlay()
     })
-  })
-</script>
-
-<style lang="scss">
-  @use '../assets/scss/base/breakpoint' as *;
-  @use '../assets/scss/base/mixins' as *;
-
-  .testimonial-slider {
-    background: linear-gradient(
-      135deg,
-      light-dark(var(--color-neutral-50), var(--color-neutral-900)) 0%,
-      light-dark(var(--color-primary-50), var(--color-primary-900)) 100%
-    );
-    padding-block: var(--space-3xl);
-  }
-
-  .slider-header {
-    margin-bottom: var(--space-2xl);
-    text-align: center;
-
-    h2 {
-      margin-bottom: var(--space-m);
-      color: var(--foreground-color);
-    }
-
-    .slider-description {
-      margin: 0 auto;
-      max-width: 600px;
-      color: var(--color-neutral-600);
-      font-size: var(--font-size-1);
-    }
-  }
-
-  .slider-container {
-    position: relative;
-    margin: 0 auto;
-    max-width: 800px;
-  }
-
-  .slider-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--space-l);
-  }
-
-  .slider-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all var(--animation-speed-fast) var(--cubic-bezier);
-    cursor: pointer;
-    border: 2px solid var(--border-color-subtle);
-    border-radius: 50%;
-    background-color: var(--background-color);
-    width: 48px;
-    height: 48px;
-    color: var(--foreground-color);
-
-    &:where(:hover, :focus-visible) {
-      border-color: var(--link-color);
-      background-color: var(--link-color);
-      color: var(--background-color);
-    }
-
-    &:focus-visible {
-      @include outline;
-      outline-offset: 2px;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .slider-status {
-    color: var(--foreground-color);
-    font-weight: 600;
-    font-size: var(--font-size-1);
-
-    .separator {
-      margin: 0 var(--space-3xs);
-      color: var(--color-neutral-500);
-    }
-  }
-
-  .play-pause-btn {
-    position: absolute;
-    top: var(--space-s);
-    right: var(--space-s);
-    transition: all var(--animation-speed-fast) var(--cubic-bezier);
-    cursor: pointer;
-    border: 1px solid var(--border-color-subtle);
-    border-radius: 50%;
-    background-color: var(--background-color);
-    width: 40px;
-    height: 40px;
-    color: var(--foreground-color);
-
-    &:where(:hover, :focus-visible) {
-      background-color: var(--link-color);
-      color: var(--background-color);
-    }
-
-    &:focus-visible {
-      @include outline;
-      outline-offset: 2px;
-    }
-
-    .play-icon {
-      display: none;
-    }
-
-    &.paused {
-      .pause-icon {
-        display: none;
-      }
-
-      .play-icon {
-        display: block;
-      }
-    }
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-
-  .slider-track {
-    position: relative;
-    margin-bottom: var(--space-xl);
-    min-height: 200px;
-  }
-
-  .slide {
-    position: absolute;
-    transform: translateX(20px);
-    opacity: 0;
-    transition: all var(--animation-speed-medium) var(--cubic-bezier);
-    inset: 0;
-    pointer-events: none;
-
-    &.active {
-      transform: translateX(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    &:focus {
-      @include outline;
-      outline-offset: 4px;
-      border-radius: var(--radius-l);
-    }
-  }
-
-  .testimonial {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-l);
-    box-shadow: var(--elevation-1);
-    border: 2px solid var(--border-color-subtle);
-    border-radius: var(--radius-l);
-    background-color: var(--background-color);
-    padding: var(--space-2xl);
-    text-align: center;
-  }
-
-  .quote-content {
-    position: relative;
-  }
-
-  .quote-icon {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.3;
-    width: 40px;
-    height: 40px;
-    color: var(--link-color);
-  }
-
-  .quote-text {
-    margin: 0;
-    color: var(--foreground-color);
-    font-style: italic;
-    font-size: var(--font-size-2);
-    line-height: 1.6;
-  }
-
-  .quote-footer {
-    border-top: 1px solid var(--border-color-subtle);
-    padding-top: var(--space-l);
-  }
-
-  .quote-author {
-    color: var(--color-neutral-600);
-    font-style: normal;
-    font-weight: 600;
-    font-size: var(--font-size-1);
-  }
-
-  .slider-indicators {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-s);
-  }
-
-  .indicator {
-    transition: all var(--animation-speed-fast) var(--cubic-bezier);
-    cursor: pointer;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--color-neutral-300);
-    width: 12px;
-    height: 12px;
-
-    &:where(:hover, :focus-visible) {
-      transform: scale(1.2);
-      background-color: var(--link-color);
-    }
-
-    &.active {
-      background-color: var(--link-color);
-    }
-
-    &:focus-visible {
-      @include outline;
-      outline-offset: 2px;
-    }
-  }
-
-  // Dark mode adjustments
-  :global(.darkmode) {
-    .testimonial {
-      border-color: var(--color-neutral-700);
-      background-color: var(--color-neutral-800);
-    }
-
-    .quote-footer {
-      border-color: var(--color-neutral-700);
-    }
-
-    .slider-btn,
-    .play-pause-btn {
-      border-color: var(--color-neutral-600);
-      background-color: var(--color-neutral-800);
-    }
-  }
-
-  // Accessibility improvements
-  @media (prefers-reduced-motion: reduce) {
-    .slide {
-      transform: none;
-      transition: opacity var(--animation-speed-fast) ease;
-
-      &.active {
-        transform: none;
-      }
-    }
-
-    .indicator:hover {
-      transform: none;
-    }
-  }
-</style>
+  </script>
+)}

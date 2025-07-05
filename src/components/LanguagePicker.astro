@@ -1,35 +1,20 @@
 ---
-/**
- * LanguagePicker Component
- *
- * @description Accessible language switcher that maintains current page context
- * Follows WCAG 2.2 AA guidelines with proper ARIA labels and keyboard navigation
- */
-
 import { Icon } from 'astro-icon/components'
 import { 
   SUPPORTED_LANGUAGES, 
   getLanguageFromUrl, 
   getLocalizedPath
 } from '../utils/i18n.js'
-import { getTranslationsFromUrl } from '../utils/useTranslation.js'
 
 interface Props {
-  /**
-   * Additional classes to apply to the LanguagePicker
-   */
   class?: string
-  /**
-   * Display style: 'dropdown' or 'toggle'
-   */
   variant?: 'dropdown' | 'toggle'
 }
 
-const { class: className, variant = 'dropdown' } = Astro.props
+const { class: className, variant = 'toggle' } = Astro.props
 
-// Get current language and translations
+// Get current language
 const currentLanguage = getLanguageFromUrl(Astro.url.pathname)
-const translations = await getTranslationsFromUrl(Astro.url.pathname)
 const currentLangData = SUPPORTED_LANGUAGES[currentLanguage]
 
 // Get the clean path for language switching
@@ -40,178 +25,98 @@ const languageOptions = Object.values(SUPPORTED_LANGUAGES).map(lang => ({
   ...lang,
   url: getLocalizedPath(cleanPath, lang.code),
   isCurrent: lang.code === currentLanguage,
-  ariaLabel: lang.code === 'en' 
-    ? `Switch to ${lang.name}` 
-    : `Perjungti į ${lang.name}`
 }))
 ---
 
 {variant === 'toggle' ? (
-  <!-- Simple toggle for two languages -->
-  <div class:list={[className, 'language-toggle']}>
+  <!-- Simple clean toggle -->
+  <div class:list={[className, "flex items-center"]}>
     {languageOptions
       .filter(lang => !lang.isCurrent)
       .map(lang => (
         <a 
           href={lang.url}
-          class="language-toggle-link"
-          aria-label={lang.ariaLabel}
-          title={lang.ariaLabel}
-          hreflang={lang.locale}
+          class="flex items-center gap-1.5 px-2 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+          aria-label={`Switch to ${lang.name}`}
           data-language={lang.code}
         >
-          <Icon name="lucide:globe" />
-          <span class="language-name">{lang.name}</span>
+          <Icon name="lucide:globe" class="w-4 h-4" />
+          <span>{lang.name}</span>
         </a>
       ))
     }
   </div>
 ) : (
-  <!-- Dropdown for multiple languages or detailed view -->
-  <div class:list={[className, 'language-picker']} data-component="language-picker">
+  <!-- Dropdown version -->
+  <div class:list={[className, "relative"]} data-component="language-picker">
     <button 
-      class="language-picker-trigger"
+      class="flex items-center gap-1.5 px-2 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
       aria-haspopup="true"
       aria-expanded="false"
-      aria-label={translations?.navigation?.switchLanguage || 'Switch language'}
       data-trigger="language-picker"
     >
-      <Icon name="lucide:globe" />
-      <span class="current-language">
-        {currentLangData?.name || 'EN'}
-      </span>
-      <Icon name="lucide:chevron-down" class="chevron" />
+      <Icon name="lucide:globe" class="w-4 h-4" />
+      <span>{currentLangData?.name || 'EN'}</span>
+      <Icon name="lucide:chevron-down" class="w-3 h-3 transition-transform" />
     </button>
     
-    <ul class="language-picker-menu" role="menu" aria-label="Language options">
+    <div class="absolute top-full right-0 mt-1 py-1 bg-white border border-gray-200 rounded-lg shadow-lg min-w-[120px] hidden" data-menu>
       {languageOptions.map(lang => (
-        <li role="none">
-          {lang.isCurrent ? (
-            <span 
-              class="language-option current" 
-              role="menuitem"
-              aria-current="true"
-              aria-label={`${lang.name} (current language)`}
-            >
-              <Icon name="lucide:check" />
-              <span class="language-name">{lang.name}</span>
-            </span>
-          ) : (
-            <a 
-              href={lang.url}
-              class="language-option"
-              role="menuitem"
-              aria-label={lang.ariaLabel}
-              hreflang={lang.locale}
-              data-language={lang.code}
-            >
-              <span class="language-name">{lang.name}</span>
-              <Icon name="lucide:external-link" class="external-icon" />
-            </a>
-          )}
-        </li>
+        lang.isCurrent ? (
+          <div class="px-3 py-2 text-sm text-gray-900 bg-gray-50 flex items-center gap-2">
+            <Icon name="lucide:check" class="w-3 h-3" />
+            {lang.name}
+          </div>
+        ) : (
+          <a 
+            href={lang.url}
+            class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+            data-language={lang.code}
+          >
+            {lang.name}
+          </a>
+        )
       ))}
-    </ul>
+    </div>
   </div>
 )}
 
 <script>
-  // Client-side functionality for language picker
   document.addEventListener('astro:page-load', () => {
-    const languagePickers = document.querySelectorAll('[data-component="language-picker"]')
+    const pickers = document.querySelectorAll('[data-component="language-picker"]')
     
-    languagePickers.forEach(picker => {
+    pickers.forEach(picker => {
       const trigger = picker.querySelector('[data-trigger="language-picker"]') as HTMLButtonElement
-      const menu = picker.querySelector('.language-picker-menu') as HTMLElement
+      const menu = picker.querySelector('[data-menu]') as HTMLElement
       
       if (!trigger || !menu) return
       
-      // Toggle dropdown
-      const toggleDropdown = (open?: boolean) => {
-        const isOpen = open !== undefined ? open : trigger.getAttribute('aria-expanded') === 'false'
-        
-        trigger.setAttribute('aria-expanded', isOpen.toString())
-        
-        if (isOpen) {
-          trigger.classList.add('open')
-          menu.style.display = 'block'
-          // Focus first menu item
-          const firstItem = menu.querySelector('[role="menuitem"]') as HTMLElement
-          if (firstItem) firstItem.focus()
-        } else {
-          trigger.classList.remove('open')
-          menu.style.display = 'none'
-        }
-      }
-      
-      // Close dropdown
-      const closeDropdown = () => toggleDropdown(false)
-      
-      // Event listeners
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault()
-        toggleDropdown()
-      })
-      
-      // Keyboard navigation
-      picker.addEventListener('keydown', (e: Event) => {
-        const keyEvent = e as KeyboardEvent
+      trigger.addEventListener('click', () => {
         const isOpen = trigger.getAttribute('aria-expanded') === 'true'
-        
-        if (keyEvent.key === 'Escape') {
-          closeDropdown()
-          trigger.focus()
-        }
-        
-        if (keyEvent.key === 'ArrowDown' && !isOpen) {
-          keyEvent.preventDefault()
-          toggleDropdown(true)
-        }
+        trigger.setAttribute('aria-expanded', (!isOpen).toString())
         
         if (isOpen) {
-          const menuItems = Array.from(menu.querySelectorAll('[role="menuitem"]')) as HTMLElement[]
-          const currentIndex = menuItems.findIndex(item => item === document.activeElement)
-          
-          if (keyEvent.key === 'ArrowDown') {
-            keyEvent.preventDefault()
-            const nextIndex = (currentIndex + 1) % menuItems.length
-            menuItems[nextIndex]?.focus()
-          }
-          
-          if (keyEvent.key === 'ArrowUp') {
-            keyEvent.preventDefault()
-            const prevIndex = currentIndex <= 0 ? menuItems.length - 1 : currentIndex - 1
-            menuItems[prevIndex]?.focus()
-          }
-          
-          if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
-            const activeItem = document.activeElement as HTMLAnchorElement
-            if (activeItem && activeItem.href) {
-              keyEvent.preventDefault()
-              // Persist language choice before navigation
-              if (typeof localStorage !== 'undefined') {
-                const targetLang = activeItem.getAttribute('data-language')
-                if (targetLang) {
-                  localStorage.setItem('withinly-language', targetLang)
-                }
-              }
-              window.location.href = activeItem.href
-            }
-          }
+          menu.classList.add('hidden')
+          trigger.querySelector('svg:last-child')?.classList.remove('rotate-180')
+        } else {
+          menu.classList.remove('hidden')
+          trigger.querySelector('svg:last-child')?.classList.add('rotate-180')
         }
       })
       
       // Close on outside click
-      document.addEventListener('click', (e: MouseEvent) => {
+      document.addEventListener('click', (e) => {
         if (!picker.contains(e.target as Node)) {
-          closeDropdown()
+          menu.classList.add('hidden')
+          trigger.setAttribute('aria-expanded', 'false')
+          trigger.querySelector('svg:last-child')?.classList.remove('rotate-180')
         }
       })
       
-      // Handle language link clicks to persist preference
+      // Handle language persistence
       const languageLinks = picker.querySelectorAll('a[data-language]')
       languageLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', () => {
           const targetLang = link.getAttribute('data-language')
           if (targetLang && typeof localStorage !== 'undefined') {
             localStorage.setItem('withinly-language', targetLang)
@@ -221,160 +126,3 @@ const languageOptions = Object.values(SUPPORTED_LANGUAGES).map(lang => ({
     })
   })
 </script>
-
-<style lang="scss">
-  @use '../assets/scss/base/mixins' as *;
-
-  .language-toggle {
-    display: flex;
-    align-items: center;
-  }
-
-  .language-toggle-link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3xs);
-    transition: color var(--animation-speed-fast) var(--cubic-bezier);
-    color: var(--foreground-color);
-    text-decoration: none;
-
-    &:where(:hover, :focus-visible) {
-      color: var(--link-hover-color);
-      text-decoration: underline;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .language-name {
-      font-size: var(--font-size--1);
-    }
-  }
-
-  .language-picker {
-    position: relative;
-    display: inline-block;
-  }
-
-  .language-picker-trigger {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3xs);
-    transition: all var(--animation-speed-fast) var(--cubic-bezier);
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    padding: var(--space-3xs) var(--space-2xs);
-    color: var(--foreground-color);
-
-    &:where(:hover, :focus-visible) {
-      color: var(--link-hover-color);
-      background-color: var(--border-color-subtle);
-      border-radius: var(--radius-s);
-    }
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .chevron {
-      transition: transform var(--animation-speed-fast) var(--cubic-bezier);
-    }
-
-    &.open .chevron {
-      transform: rotate(180deg);
-    }
-
-    .current-language {
-      font-size: var(--font-size--1);
-      font-weight: 500;
-    }
-  }
-
-  .language-picker-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    z-index: 100;
-    box-shadow: var(--elevation-4);
-    border: 2px solid var(--border-color-subtle);
-    border-radius: var(--radius-l);
-    background-color: var(--background-color);
-    padding: var(--space-xs);
-    min-width: 160px;
-    list-style: none;
-    margin: 0;
-
-    @media (prefers-reduced-motion: no-preference) {
-      animation: slideIn var(--animation-speed-fast) var(--cubic-bezier);
-    }
-  }
-
-  .language-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2xs);
-    transition: background-color var(--animation-speed-fast) var(--cubic-bezier);
-    border-radius: var(--radius-s);
-    padding: var(--space-2xs) var(--space-xs);
-    width: 100%;
-    color: var(--foreground-color);
-    text-decoration: none;
-
-    &:where(:hover, :focus) {
-      background-color: var(--border-color-subtle);
-      outline: none;
-    }
-
-    &.current {
-      background-color: var(--link-color);
-      color: var(--background-color);
-      font-weight: 500;
-
-      svg {
-        width: 16px;
-        height: 16px;
-      }
-    }
-
-    .language-name {
-      font-size: var(--font-size--1);
-    }
-
-    .external-icon {
-      width: 14px;
-      height: 14px;
-      opacity: 0.6;
-    }
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  // Focus management
-  .language-picker-trigger:focus,
-  .language-option:focus {
-    @include outline;
-  }
-
-  // Dark mode adjustments
-  :global(.darkmode) {
-    .language-picker-menu {
-      border-color: var(--border-color-subtle);
-      background-color: var(--background-color);
-    }
-  }
-</style>
