@@ -9,6 +9,7 @@
   "navigation": {
     "home": "Home",
     "howItWorks": "How It Works",
+    "features": "Features",
     "pricing": "Pricing",
     "earlyAccess": "Early Access",
     "privacy": "Privacy",
@@ -18,14 +19,21 @@
     "skipToMain": "Skip to main content",
     "toggleDarkMode": "Toggle dark mode",
     "switchLanguage": "Switch to Lithuanian",
-    "currentLanguage": "English"
+    "currentLanguage": "English",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "headline": "Your relationships mirror your inner world.",
     "subheadline": "We help you understand both — with depth, nuance, and an AI companion who truly gets the human experience.",
     "ctaPrimary": "Join Early Access",
     "ctaSecondary": "See How It Works",
-    "tagline": "Real growth takes courage. We're here to hold space for it."
+    "tagline": "Real growth takes courage. We're here to hold space for it.",
+    "trustSignals": {
+      "privacy": "Complete Privacy",
+      "instant": "Instant Insights",
+      "humanCentered": "Human-Centered AI"
+    }
   },
   "hook": {
     "headline": "We all carry patterns we can't quite name.",
@@ -107,6 +115,11 @@
   },
   "testimonials": {
     "headline": "Early Access Testimonials",
+    "slideIndicator": "of",
+    "nextSlide": "Next testimonial",
+    "prevSlide": "Previous testimonial",
+    "pauseSlider": "Pause testimonial slider",
+    "playSlider": "Play testimonial slider",
     "items": [
       {
         "quote": "I've been in therapy for years. This gave me insights my therapist and I are now exploring together.",
@@ -124,8 +137,10 @@
   },
   "pricing": {
     "headline": "Fair exchange for real value",
+    "subheadline": "Choose the plan that fits your journey of self-discovery",
     "free": {
       "title": "Free Forever",
+      "period": "forever",
       "features": [
         "Core assessments",
         "Essential insights report",
@@ -136,6 +151,7 @@
     "premium": {
       "title": "Full Membership",
       "price": "$12/month",
+      "period": "monthly",
       "features": [
         "All current & future reports",
         "Unlimited AI consultation with full memory",
@@ -173,13 +189,16 @@
   },
   "closing": {
     "headline": "Growth is hard. You don't have to do it alone.",
-    "description": "Whether you're curious or ready to dive deep, we're honored that you're here. This is the beginning of something meaningful."
+    "description": "Whether you're curious or ready to dive deep, we're honored that you're here. This is the beginning of something meaningful.",
+    "contact": "Questions before joining? Reach a real human at hello@withinly.com",
+    "languages": "Launching soon in English and Lithuanian • More languages coming"
   },
   "footer": {
     "tagline": "Where psychology meets poetry, and AI meets the human heart.",
     "copyright": "© 2025 Withinly. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "contact": "Contact"
   },
   "validation": {
     "emailRequired": "Email address is required",

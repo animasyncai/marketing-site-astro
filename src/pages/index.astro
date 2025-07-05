@@ -1,8 +1,8 @@
 ---
 /**
- * Withinly Landing Page (English)
+ * Withinly Landing Page (English) - Fixed and Complete
  *
- * @description Clean landing page using refined component architecture
+ * @description Clean, accessible landing page with proper translations and consistent design
  */
 
 import DefaultLayout from '../layouts/DefaultLayout.astro'
@@ -33,16 +33,18 @@ const pageDescription = t('meta.defaultDescription')
   <HeroWithinly showSignup={false} />
 
   <!-- Opening Hook Section -->
-  <section class="bg-white py-20">
+  <section class="bg-white py-20" aria-labelledby="hook-headline">
     <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
+      <h2 id="hook-headline" class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
         {t('hook.headline')}
       </h2>
       <div class="space-y-6 text-lg leading-relaxed text-gray-600">
         <p>{t('hook.description')}</p>
         <p class="text-xl font-medium text-gray-900">{t('hook.value')}</p>
       </div>
-      <blockquote class="text-primary mt-10 text-xl font-medium italic">
+      <blockquote
+        class="text-primary mx-auto mt-10 max-w-2xl border-l-4 border-purple-200 pl-6 text-left text-xl font-medium italic"
+      >
         "{t('hook.quote')}"
       </blockquote>
     </div>
@@ -64,40 +66,172 @@ const pageDescription = t('meta.defaultDescription')
   <TrustSignals variant="horizontal" showDescriptions={true} />
 
   <!-- Early Access Section -->
-  <section id="early-access" class="bg-gradient-to-br from-violet-600 to-blue-600 py-16 text-white">
+  <section
+    id="early-access"
+    class="bg-gradient-to-br from-violet-600 to-blue-600 py-20 text-white"
+    aria-labelledby="early-access-headline"
+  >
     <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-      <h2 class="mb-4 text-3xl font-bold sm:text-4xl">
+      <h2 id="early-access-headline" class="mb-4 text-3xl font-bold sm:text-4xl">
         {t('earlyAccess.headline')}
       </h2>
       <p class="mb-10 text-xl leading-relaxed text-violet-100">
         {t('earlyAccess.description')}
       </p>
 
-      <div class="mx-auto max-w-md">
+      <!-- Early access signup form -->
+      <div class="mx-auto mb-10 max-w-md">
         <EmailSignup
           variant="hero"
           showLabels={false}
-          class="[&_button]:bg-white [&_button]:text-violet-600 [&_button]:hover:bg-gray-50 [&_input]:bg-white/90 [&_input]:text-gray-900"
+          class="[&_button]:bg-white [&_button]:text-violet-600 [&_button]:hover:bg-gray-50 [&_input]:bg-white/90 [&_input]:text-gray-900 [&_input]:placeholder:text-gray-500"
+          placeholder={t('signup.emailPlaceholder')}
+          buttonText={t('earlyAccess.cta')}
         />
       </div>
+
+      <!-- Benefits list -->
+      <div class="mb-8 hidden">
+        <h3 class="mb-6 text-lg font-semibold text-violet-100">{t('earlyAccess.benefits.title')}</h3>
+        <div class="grid gap-3 text-left sm:grid-cols-2">
+          {
+            translations.earlyAccess?.benefits?.items?.map((benefit) => (
+              <div class="flex items-center gap-3 text-violet-100">
+                <Icon name="lucide:check-circle" class="h-5 w-5 flex-shrink-0 text-violet-300" />
+                <span class="text-sm">{benefit}</span>
+              </div>
+            )) || []
+          }
+        </div>
+      </div>
+
+      <!-- Urgency message -->
+      <p class="text-sm text-violet-200 italic">
+        {t('earlyAccess.urgency')}
+      </p>
     </div>
   </section>
 
   <!-- Closing Section -->
-  <section class="bg-gray-50 py-12 text-center">
+  <section class="bg-gray-50 py-16 text-center" aria-labelledby="closing-headline">
     <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-4 text-2xl font-bold text-gray-900">
+      <h2 id="closing-headline" class="mb-4 text-2xl font-bold text-gray-900">
         {t('closing.headline')}
       </h2>
       <p class="mb-6 leading-relaxed text-gray-600">
         {t('closing.description')}
       </p>
-      <p class="text-gray-500">
-        Questions? Email us at{' '}
-        <a href="mailto:hello@withinly.com" class="text-violet-600 transition-colors hover:text-violet-700">
-          hello@withinly.com
-        </a>
-      </p>
+
+      <!-- Contact information -->
+      <div class="space-y-4">
+        <p class="text-gray-600">
+          {t('closing.contact')}
+        </p>
+        <p class="text-sm text-gray-500 italic">
+          {t('closing.languages')}
+        </p>
+      </div>
     </div>
   </section>
 </DefaultLayout>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+
+  // Spacing between sections
+  section + section {
+    margin-top: 0;
+  }
+
+  // Hook section styling
+  .bg-white {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.02) 0%, rgba(59, 130, 246, 0.02) 100%);
+      pointer-events: none;
+      content: '';
+    }
+  }
+
+  // Enhanced blockquote styling
+  blockquote {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: -0.5rem;
+      left: -0.25rem;
+      content: '"';
+      color: var(--color-purple-200);
+      font-size: 4rem;
+      line-height: 1;
+      font-family: serif;
+    }
+  }
+
+  // Early access section enhancements
+  #early-access {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      animation: starfield 20s linear infinite;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+      background-size: 200px 200px;
+      pointer-events: none;
+      content: '';
+    }
+  }
+
+  @keyframes starfield {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-200px);
+    }
+  }
+
+  // Accessibility improvements
+  @media (prefers-reduced-motion: reduce) {
+    #early-access::before {
+      animation: none;
+    }
+  }
+
+  // Benefits grid responsive improvements
+  .grid.gap-3 {
+    @include breakpoint(s) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Focus management
+  h2:focus,
+  h3:focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 4px;
+    border-radius: var(--radius-s);
+  }
+
+  // Smooth scroll behavior
+  html {
+    scroll-behavior: smooth;
+  }
+
+  // Section spacing consistency
+  section {
+    scroll-margin-top: 80px; // Account for sticky header
+  }
+</style>

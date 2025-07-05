@@ -9,6 +9,7 @@
   "navigation": {
     "home": "Pradžia",
     "howItWorks": "Kaip tai veikia",
+    "features": "Funkcijos",
     "pricing": "Kainodara",
     "earlyAccess": "Ankstyvas priėjimas",
     "privacy": "Privatumas",
@@ -18,14 +19,21 @@
     "skipToMain": "Pereiti prie pagrindinio turinio",
     "toggleDarkMode": "Perjungti tamsų režimą",
     "switchLanguage": "Perjungti į anglų kalbą",
-    "currentLanguage": "Lietuvių"
+    "currentLanguage": "Lietuvių",
+    "openMenu": "Atidaryti meniu",
+    "closeMenu": "Uždaryti meniu"
   },
   "hero": {
     "headline": "Tavo santykiai atspindi tavo vidinį pasaulį.",
     "subheadline": "Padedame suprasti abu — su gilumu, niuansais ir dirbtinio intelekto palydovu, kuris tikrai supranta žmogaus patirtį.",
     "ctaPrimary": "Prisijungti prie ankstyvojo priėjimo",
     "ctaSecondary": "Pažiūrėti, kaip tai veikia",
-    "tagline": "Tikras augimas reikalauja drąsos. Esame čia, kad tau padėtume."
+    "tagline": "Tikras augimas reikalauja drąsos. Esame čia, kad tau padėtume.",
+    "trustSignals": {
+      "privacy": "Visiškas privatumas",
+      "instant": "Akimirksniu gauti įžvalgos",
+      "humanCentered": "Žmogui orientuotas dirbtinis intelektas"
+    }
   },
   "hook": {
     "headline": "Visi nešamės šablonus, kurių negalime pavadinti.",
@@ -47,7 +55,7 @@
     },
     "step2": {
       "title": "Gauk pirmas įžvalgas",
-      "description": "Asmeninis ataskaita, kuri skaitosi kaip laiškas nuo to, kas tikrai tave mato. Nemokamos versijos vartotojai gauna esmę; nariai atrakina visą gilumą.",
+      "description": "Asmeninė ataskaita, kuri skaitosi kaip laiškas nuo to, kas tikrai tave mato. Nemokamos versijos vartotojai gauna esmę; nariai atrakina visą gilumą.",
       "emotion": "Atpažinimas"
     },
     "step3": {
@@ -107,6 +115,11 @@
   },
   "testimonials": {
     "headline": "Ankstyvojo priėjimo atsiliepimai",
+    "slideIndicator": "iš",
+    "nextSlide": "Kitas atsiliepimas",
+    "prevSlide": "Ankstesnis atsiliepimas",
+    "pauseSlider": "Pristabdyti atsiliepimų slankiklį",
+    "playSlider": "Paleisti atsiliepimų slankiklį",
     "items": [
       {
         "quote": "Metų metus lankau terapiją. Tai davė man įžvalgų, kurias dabar tyrinėjame kartu su mano terapeutu.",
@@ -124,8 +137,10 @@
   },
   "pricing": {
     "headline": "Sąžiningas mainų už tikrą vertę",
+    "subheadline": "Pasirink planą, kuris tinka tavo savęs pažinimo kelionei",
     "free": {
       "title": "Nemokama visam laikui",
+      "period": "visam laikui",
       "features": [
         "Pagrindiniai vertinimai",
         "Esminių įžvalgų ataskaita",
@@ -136,6 +151,7 @@
     "premium": {
       "title": "Pilna narystė",
       "price": "12 €/mėn",
+      "period": "per mėnesį",
       "features": [
         "Visos dabartinės ir būsimos ataskaitos",
         "Neribotose dirbtinio intelekto konsultacijos su pilna atmintimi",
@@ -181,6 +197,7 @@
     "tagline": "Withinly: Kur psichologija sutinka poeziją, o dirbtinis intelektas — žmogaus širdį.",
     "copyright": "© 2025 Withinly. Visos teisės saugomos.",
     "privacy": "Privatumo politika",
+    "terms": "Naudojimo sąlygos",
     "contact": "Kontaktai"
   },
   "validation": {

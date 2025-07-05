@@ -1,9 +1,8 @@
 ---
 /**
- * Withinly Landing Page (Lithuanian)
+ * Withinly Landing Page (Lithuanian) - Fixed and Complete
  *
- * @description Lithuanian version of the main landing page
- * Uses Lithuanian translations and maintains same structure
+ * @description Clean, accessible landing page with proper Lithuanian translations
  */
 
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
@@ -14,6 +13,8 @@ import FeatureComparison from '../../components/FeatureComparison.astro'
 import TestimonialSlider from '../../components/TestimonialSlider.astro'
 import TrustSignals from '../../components/TrustSignals.astro'
 import EmailSignup from '../../components/EmailSignup.astro'
+import Button from '../../components/Button.astro'
+import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../../utils/useTranslation.js'
 
 // Get translations for current language (Lithuanian)
@@ -29,25 +30,23 @@ const pageDescription = t('meta.defaultDescription')
 
 <DefaultLayout title={pageTitle} description={pageDescription}>
   <!-- Hero Section -->
-  <HeroWithinly showSignup={true} />
+  <HeroWithinly showSignup={false} />
 
   <!-- Opening Hook Section -->
-  <section class="hook-section" aria-labelledby="hook-headline">
-    <div class="container">
-      <div class="hook-content">
-        <h2 id="hook-headline" class="hook-headline">
-          {t('hook.headline')}
-        </h2>
-        <div class="hook-description">
-          <p>{t('hook.description')}</p>
-        </div>
-        <div class="hook-value">
-          <p>{t('hook.value')}</p>
-        </div>
-        <blockquote class="hook-quote">
-          <p>"{t('hook.quote')}"</p>
-        </blockquote>
+  <section class="bg-white py-20" aria-labelledby="hook-headline">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 id="hook-headline" class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
+        {t('hook.headline')}
+      </h2>
+      <div class="space-y-6 text-lg leading-relaxed text-gray-600">
+        <p>{t('hook.description')}</p>
+        <p class="text-xl font-medium text-gray-900">{t('hook.value')}</p>
       </div>
+      <blockquote
+        class="mx-auto mt-10 max-w-2xl border-l-4 border-purple-200 pl-6 text-left text-xl font-medium text-purple-600 italic"
+      >
+        "{t('hook.quote')}"
+      </blockquote>
     </div>
   </section>
 
@@ -58,77 +57,77 @@ const pageDescription = t('meta.defaultDescription')
   <DifferentiatorSection />
 
   <!-- Pricing/Features Comparison -->
-  <FeatureComparison showPricing={true} />
+  <FeatureComparison showPricing={false} />
 
   <!-- Testimonials -->
-  <TestimonialSlider autoPlay={true} />
+  <TestimonialSlider autoPlay={false} />
 
   <!-- Trust & Safety -->
-  <TrustSignals variant="grid" showDescriptions={true} />
+  <TrustSignals variant="horizontal" showDescriptions={true} />
 
   <!-- Early Access Section -->
-  <section id="early-access" class="early-access-section" aria-labelledby="early-access-headline">
-    <div class="container">
-      <div class="early-access-content">
-        <h2 id="early-access-headline" class="early-access-headline">
-          {t('earlyAccess.headline')}
-        </h2>
-        <p class="early-access-description">
-          {t('earlyAccess.description')}
-        </p>
+  <section
+    id="early-access"
+    class="bg-gradient-to-br from-violet-600 to-blue-600 py-20 text-white"
+    aria-labelledby="early-access-headline"
+  >
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 id="early-access-headline" class="mb-4 text-3xl font-bold sm:text-4xl">
+        {t('earlyAccess.headline')}
+      </h2>
+      <p class="mb-10 text-xl leading-relaxed text-violet-100">
+        {t('earlyAccess.description')}
+      </p>
 
-        <div class="early-access-signup">
-          <EmailSignup
-            variant="section"
-            title={t('signup.headline')}
-            description={t('signup.description')}
-            showLabels={true}
-          />
-        </div>
-
-        <div class="early-access-benefits">
-          <h3>{t('earlyAccess.benefits.title')}</h3>
-          <ul class="benefits-list">
-            {
-              translations.earlyAccess?.benefits?.items?.map((benefit) => (
-                <li class="benefit-item">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path
-                      d="M7 10l2 2 4-4"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                  {benefit}
-                </li>
-              )) || []
-            }
-          </ul>
-        </div>
-
-        <p class="early-access-urgency">
-          {t('earlyAccess.urgency')}
-        </p>
+      <!-- Early access signup form -->
+      <div class="mx-auto mb-10 max-w-md">
+        <EmailSignup
+          variant="hero"
+          showLabels={false}
+          class="[&_button]:bg-white [&_button]:text-violet-600 [&_button]:hover:bg-gray-50 [&_input]:bg-white/90 [&_input]:text-gray-900 [&_input]:placeholder:text-gray-500"
+          placeholder={t('signup.emailPlaceholder')}
+          buttonText={t('earlyAccess.cta')}
+        />
       </div>
+
+      <!-- Benefits list -->
+      <div class="mb-8">
+        <h3 class="mb-6 text-lg font-semibold text-violet-100">{t('earlyAccess.benefits.title')}</h3>
+        <div class="grid gap-3 text-left sm:grid-cols-2">
+          {
+            translations.earlyAccess?.benefits?.items?.map((benefit) => (
+              <div class="flex items-center gap-3 text-violet-100">
+                <Icon name="lucide:check-circle" class="h-5 w-5 flex-shrink-0 text-violet-300" />
+                <span class="text-sm">{benefit}</span>
+              </div>
+            )) || []
+          }
+        </div>
+      </div>
+
+      <!-- Urgency message -->
+      <p class="text-sm text-violet-200 italic">
+        {t('earlyAccess.urgency')}
+      </p>
     </div>
   </section>
 
   <!-- Closing Section -->
-  <section class="closing-section" aria-labelledby="closing-headline">
-    <div class="container">
-      <div class="closing-content">
-        <h2 id="closing-headline" class="closing-headline">
-          {t('closing.headline')}
-        </h2>
-        <p class="closing-description">
-          {t('closing.description')}
-        </p>
-        <p class="closing-contact">
+  <section class="bg-gray-50 py-16 text-center" aria-labelledby="closing-headline">
+    <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+      <h2 id="closing-headline" class="mb-4 text-2xl font-bold text-gray-900">
+        {t('closing.headline')}
+      </h2>
+      <p class="mb-6 leading-relaxed text-gray-600">
+        {t('closing.description')}
+      </p>
+
+      <!-- Contact information -->
+      <div class="space-y-4">
+        <p class="text-gray-600">
           {t('closing.contact')}
         </p>
-        <p class="closing-languages">
+        <p class="text-sm text-gray-500 italic">
           {t('closing.languages')}
         </p>
       </div>
@@ -138,206 +137,119 @@ const pageDescription = t('meta.defaultDescription')
 
 <style lang="scss">
   @use '../../assets/scss/base/breakpoint' as *;
-  @use '../../assets/scss/base/mixins' as *;
-
-  // Hook Section
-  .hook-section {
-    background-color: light-dark(var(--color-neutral-50), var(--color-neutral-850));
-    padding-block: var(--space-3xl);
-  }
-
-  .hook-content {
-    margin: 0 auto;
-    max-width: 800px;
-    text-align: center;
-  }
-
-  .hook-headline {
-    margin-bottom: var(--space-l);
-    color: var(--foreground-color);
-    font-weight: 600;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.2;
-  }
-
-  .hook-description {
-    margin-bottom: var(--space-l);
-
-    p {
-      color: var(--color-neutral-600);
-      font-size: var(--font-size-1);
-      line-height: 1.6;
-    }
-  }
-
-  .hook-value {
-    margin-bottom: var(--space-xl);
-
-    p {
-      color: var(--foreground-color);
-      font-weight: 500;
-      font-size: var(--font-size-2);
-      line-height: 1.5;
-    }
-  }
-
-  .hook-quote {
-    border-left: 4px solid var(--link-color);
-    padding-left: var(--space-l);
-    font-style: italic;
-
-    p {
-      margin: 0;
-      color: var(--link-color);
-      font-weight: 500;
-      font-size: var(--font-size-2);
-    }
-  }
-
-  // Early Access Section
-  .early-access-section {
-    background: linear-gradient(
-      135deg,
-      light-dark(var(--color-primary-50), var(--color-primary-900)) 0%,
-      light-dark(var(--color-secondary-50), var(--color-secondary-900)) 100%
-    );
-    padding-block: var(--space-4xl);
-  }
-
-  .early-access-content {
-    margin: 0 auto;
-    max-width: 700px;
-    text-align: center;
-  }
-
-  .early-access-headline {
-    margin-bottom: var(--space-l);
-    color: var(--foreground-color);
-    font-weight: 700;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 1.1;
-  }
-
-  .early-access-description {
-    margin-bottom: var(--space-2xl);
-    color: var(--color-neutral-600);
-    font-size: var(--font-size-1);
-    line-height: 1.6;
-  }
-
-  .early-access-signup {
-    display: flex;
-    justify-content: center;
-    margin-bottom: var(--space-2xl);
-  }
-
-  .early-access-benefits {
-    margin-bottom: var(--space-xl);
-    text-align: left;
-
-    h3 {
-      margin-bottom: var(--space-m);
-      color: var(--foreground-color);
-      font-weight: 600;
-      font-size: var(--font-size-2);
-      text-align: center;
-    }
-  }
-
-  .benefits-list {
-    display: grid;
-    gap: var(--space-s);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .benefit-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-s);
-    color: var(--foreground-color);
-    font-size: var(--font-size-1);
-
-    svg {
-      flex-shrink: 0;
-      color: var(--color-secondary-400);
-    }
-  }
-
-  .early-access-urgency {
-    color: var(--color-neutral-600);
-    font-style: italic;
-    font-size: var(--font-size-0);
-  }
-
-  // Closing Section
-  .closing-section {
-    background-color: light-dark(var(--color-neutral-100), var(--color-neutral-800));
-    padding-block: var(--space-3xl);
-  }
-
-  .closing-content {
-    margin: 0 auto;
-    max-width: 600px;
-    text-align: center;
-  }
-
-  .closing-headline {
-    margin-bottom: var(--space-l);
-    color: var(--foreground-color);
-    font-weight: 600;
-    font-size: var(--font-size-4);
-  }
-
-  .closing-description {
-    margin-bottom: var(--space-l);
-    color: var(--color-neutral-600);
-    font-size: var(--font-size-1);
-    line-height: 1.6;
-  }
-
-  .closing-contact {
-    margin-bottom: var(--space-m);
-    color: var(--foreground-color);
-    font-size: var(--font-size-1);
-
-    a {
-      color: var(--link-color);
-      text-decoration: underline;
-
-      &:hover {
-        color: var(--link-hover-color);
-      }
-    }
-  }
-
-  .closing-languages {
-    color: var(--color-neutral-500);
-    font-style: italic;
-    font-size: var(--font-size-0);
-  }
 
   // Spacing between sections
   section + section {
     margin-top: 0;
   }
 
-  // Dark mode adjustments
-  :global(.darkmode) {
-    .hook-section {
-      background-color: var(--color-neutral-900);
-    }
+  // Hook section styling
+  .bg-white {
+    position: relative;
 
-    .closing-section {
-      background-color: var(--color-neutral-850);
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.02) 0%, rgba(59, 130, 246, 0.02) 100%);
+      pointer-events: none;
+      content: '';
+    }
+  }
+
+  // Enhanced blockquote styling
+  blockquote {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: -0.5rem;
+      left: -0.25rem;
+      content: '"';
+      color: var(--color-purple-200);
+      font-size: 4rem;
+      line-height: 1;
+      font-family: serif;
+    }
+  }
+
+  // Early access section enhancements
+  #early-access {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      animation: starfield 20s linear infinite;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+      background-size: 200px 200px;
+      pointer-events: none;
+      content: '';
+    }
+  }
+
+  @keyframes starfield {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-200px);
     }
   }
 
   // Accessibility improvements
-  .benefit-item:focus-within {
-    @include outline;
-    outline-offset: 2px;
+  @media (prefers-reduced-motion: reduce) {
+    #early-access::before {
+      animation: none;
+    }
+  }
+
+  // Benefits grid responsive improvements
+  .grid.gap-3 {
+    @include breakpoint(s) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Focus management
+  h2:focus,
+  h3:focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 4px;
     border-radius: var(--radius-s);
+  }
+
+  // Smooth scroll behavior
+  html {
+    scroll-behavior: smooth;
+  }
+
+  // Section spacing consistency
+  section {
+    scroll-margin-top: 80px; // Account for sticky header
+  }
+
+  // Lithuanian-specific typography adjustments
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    // Slightly tighter letter spacing for Lithuanian
+    letter-spacing: -0.01em;
+  }
+
+  // Longer text adjustments for Lithuanian
+  .text-lg,
+  .text-xl {
+    line-height: 1.7; // Slightly more generous line height
   }
 </style>

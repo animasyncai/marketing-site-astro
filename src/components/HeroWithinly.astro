@@ -22,8 +22,8 @@ const t = (key: string, fallback = '') => {
   <!-- Background decoration -->
   <div class="bg-grid-gray-100/50 absolute inset-0 bg-[size:2rem_2rem] opacity-50" aria-hidden="true"></div>
   <div class="absolute top-0 left-1/2 h-full w-full max-w-4xl -translate-x-1/2">
-    <div class="absolute top-20 left-10 h-32 w-32 rounded-full bg-purple-200/30 blur-3xl"></div>
-    <div class="absolute right-10 bottom-20 h-40 w-40 rounded-full bg-blue-200/30 blur-3xl"></div>
+    <div class="absolute top-20 left-10 h-32 w-32 rounded-full bg-purple-200/30 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute right-10 bottom-20 h-40 w-40 rounded-full bg-blue-200/30 blur-3xl" aria-hidden="true"></div>
   </div>
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -32,18 +32,13 @@ const t = (key: string, fallback = '') => {
         <!-- Main headline -->
         <h1 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           <span class="text-gray-900">
-            {t('hero.headline', 'Your relationships mirror your inner world.')}
+            {t('hero.headline')}
           </span>
         </h1>
 
         <!-- Subheadline -->
         <p class="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-gray-600 sm:text-xl">
-          {
-            t(
-              'hero.subheadline',
-              'We help you understand both — with depth, nuance, and an AI companion who truly gets the human experience.'
-            )
-          }
+          {t('hero.subheadline')}
         </p>
 
         <!-- Action area -->
@@ -53,17 +48,17 @@ const t = (key: string, fallback = '') => {
               <EmailSignup
                 variant="hero"
                 showLabels={false}
-                placeholder={t('signup.emailPlaceholder', 'Enter your email address')}
-                buttonText={t('hero.ctaPrimary', 'Join Early Access')}
+                placeholder={t('signup.emailPlaceholder')}
+                buttonText={t('hero.ctaPrimary')}
               />
             </div>
           ) : (
             <div class="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href="#early-access" size="lg" variant="primary" icon="lucide:mail">
-                {t('hero.ctaPrimary', 'Join Early Access')}
+                {t('hero.ctaPrimary')}
               </Button>
               <Button href="#how-it-works" size="lg" variant="secondary" icon="lucide:play">
-                {t('hero.ctaSecondary', 'See How It Works')}
+                {t('hero.ctaSecondary')}
               </Button>
             </div>
           )
@@ -73,21 +68,21 @@ const t = (key: string, fallback = '') => {
         <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
           <div class="flex items-center gap-2">
             <Icon name="lucide:shield-check" class="h-4 w-4 text-green-500" />
-            <span>Complete Privacy</span>
+            <span>{t('hero.trustSignals.privacy')}</span>
           </div>
           <div class="flex items-center gap-2">
             <Icon name="lucide:zap" class="h-4 w-4 text-yellow-500" />
-            <span>Instant Insights</span>
+            <span>{t('hero.trustSignals.instant')}</span>
           </div>
           <div class="flex items-center gap-2">
             <Icon name="lucide:heart" class="h-4 w-4 text-red-500" />
-            <span>Human-Centered AI</span>
+            <span>{t('hero.trustSignals.humanCentered')}</span>
           </div>
         </div>
 
         <!-- Tagline -->
         <p class="mx-auto mt-8 max-w-md text-sm text-gray-500 italic">
-          {t('hero.tagline', "Real growth takes courage. We're here to hold space for it.")}
+          {t('hero.tagline')}
         </p>
       </div>
     </div>

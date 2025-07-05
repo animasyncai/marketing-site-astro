@@ -2,112 +2,143 @@
   color-scheme: light;
   interpolate-size: allow-keywords;
 
-  // Withinly brand colors (inspired by your app's purple/blue palette)
-  --brand-primary: #6b5cf6; // Purple from your app
+  // Withinly brand colors (purple/blue palette)
+  --brand-primary: #6b5cf6; // Primary purple from Withinly
   --brand-secondary: #3b82f6; // Complementary blue
   --brand-neutral: #64748b; // Refined gray
+  --brand-accent: #a855f7; // Lighter purple accent
 
-  // Simplified color palette - focus on light mode
-  --color-primary-50: #f8fafc;
-  --color-primary-100: #f1f5f9;
-  --color-primary-200: #e2e8f0;
-  --color-primary-300: #cbd5e1;
-  --color-primary-400: #94a3b8;
-  --color-primary-500: #64748b;
-  --color-primary-600: #475569;
-  --color-primary-700: #334155;
-  --color-primary-800: #1e293b;
-  --color-primary-900: #0f172a;
+  // Primary color scale (purple-based)
+  --color-primary-50: #faf5ff;
+  --color-primary-100: #f3e8ff;
+  --color-primary-200: #e9d5ff;
+  --color-primary-300: #d8b4fe;
+  --color-primary-400: #c084fc;
+  --color-primary-500: #a855f7;
+  --color-primary-600: #9333ea;
+  --color-primary-700: #7c3aed;
+  --color-primary-800: #6b46c1;
+  --color-primary-900: #553c9a;
 
-  --color-accent-50: #faf5ff;
-  --color-accent-100: #f3e8ff;
-  --color-accent-200: #e9d5ff;
-  --color-accent-300: #d8b4fe;
-  --color-accent-400: #c084fc;
-  --color-accent-500: #a855f7;
-  --color-accent-600: #9333ea;
-  --color-accent-700: #7c3aed;
-  --color-accent-800: #6b46c1;
-  --color-accent-900: #553c9a;
+  // Secondary color scale (blue-based)
+  --color-secondary-50: #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
 
-  // Core color system
-  --foreground-color: var(--color-primary-900);
-  --background-color: #ffffff;
-  --muted-color: var(--color-primary-500);
-  --subtle-color: var(--color-primary-300);
-  --border-color: var(--color-primary-200);
-  --accent-color: var(--color-accent-600);
-  --accent-hover: var(--color-accent-700);
+  // Neutral color scale (gray-based)
+  --color-neutral-25: #fcfcfd;
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-850: #0f172a;
+  --color-neutral-900: #0a0f1a;
 
-  // color scheme
-  --foreground-color: light-dark(var(--color-neutral-800), var(--color-neutral-100));
-  --background-color: light-dark(var(--color-neutral-100), var(--color-neutral-900));
-  --icon-color: light-dark(var(--color-neutral-800), var(--color-neutral-100));
-  --link-color: light-dark(var(--color-primary-400), var(--color-secondary-100));
-  --link-hover-color: light-dark(var(--color-primary-300), var(--color-secondary-200));
-  --border-color: light-dark(var(--color-neutral-900), var(--color-neutral-100));
-  --border-color-subtle: light-dark(var(--color-neutral-300), var(--color-neutral-800));
-  --text-decoration-color: light-dark(var(--color-neutral-700), var(--color-neutral-100));
-  --text-decoration-color-hover: light-dark(var(--color-neutral-100), var(--color-neutral-200));
+  // Success, warning, error colors
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
 
-  // theme settings
-  --radius-small: 3px;
-  --radius-large: 6px;
-  --gap-default: 2rem;
-  --font-measure: 70ch;
-  --font-family-default: 'Atkinson Hyperlegible', sans-serif;
-  --font-family-special: 'Atkinson Hyperlegible', sans-serif;
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
 
-  // font families
-  --font-heading: var(--font-family-special);
-  --font-body: var(--font-family-default);
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
 
-  // Refined typography scale (smaller, more elegant)
-  --font-size-xs: 0.75rem; // 12px
-  --font-size-sm: 0.875rem; // 14px
-  --font-size-base: 1rem; // 16px
-  --font-size-lg: 1.125rem; // 18px
-  --font-size-xl: 1.25rem; // 20px
-  --font-size-2xl: 1.5rem; // 24px
-  --font-size-3xl: 1.875rem; // 30px
-  --font-size-4xl: 2.25rem; // 36px
-  --font-size-5xl: 3rem; // 48px
+  // Core color system using Withinly brand
+  --foreground-color: light-dark(var(--color-neutral-900), var(--color-neutral-100));
+  --background-color: light-dark(var(--color-neutral-25), var(--color-neutral-900));
+  --muted-color: light-dark(var(--color-neutral-600), var(--color-neutral-400));
+  --subtle-color: light-dark(var(--color-neutral-300), var(--color-neutral-700));
+  --border-color: light-dark(var(--color-neutral-200), var(--color-neutral-800));
+  --border-color-subtle: light-dark(var(--color-neutral-300), var(--color-neutral-700));
+
+  // Withinly brand-specific colors
+  --link-color: light-dark(var(--color-brand-primary), var(--color-primary-400));
+  --link-hover-color: light-dark(var(--color-primary-700), var(--color-primary-300));
+  --accent-color: var(--brand-primary);
+  --accent-hover: light-dark(var(--color-primary-700), var(--color-primary-300));
+
+  // Button colors using brand palette
+  --button-primary-bg: var(--color-primary-600);
+  --button-primary-hover: var(--color-primary-700);
+  --button-primary-text: white;
+  --button-secondary-bg: light-dark(var(--color-neutral-100), var(--color-neutral-800));
+  --button-secondary-hover: light-dark(var(--color-neutral-200), var(--color-neutral-700));
+  --button-secondary-text: light-dark(var(--color-neutral-900), var(--color-neutral-100));
+
+  // Typography using Withinly brand
+  --font-heading: 'Inter', 'Atkinson Hyperlegible', sans-serif;
+  --font-body: 'Inter', 'Atkinson Hyperlegible', sans-serif;
+
+  // Refined typography scale
+  --font-size--2: 0.625rem; // 10px
+  --font-size--1: 0.75rem; // 12px
+  --font-size-0: 0.875rem; // 14px
+  --font-size-1: 1rem; // 16px (base)
+  --font-size-2: 1.125rem; // 18px
+  --font-size-3: 1.25rem; // 20px
+  --font-size-4: 1.5rem; // 24px
+  --font-size-5: 1.875rem; // 30px
+  --font-size-6: 2.25rem; // 36px
+  --font-size-7: 3rem; // 48px
+  --font-size-8: 3.75rem; // 60px
 
   // Consistent spacing scale
-  --space-1: 0.25rem; // 4px
-  --space-2: 0.5rem; // 8px
-  --space-3: 0.75rem; // 12px
-  --space-4: 1rem; // 16px
-  --space-5: 1.25rem; // 20px
-  --space-6: 1.5rem; // 24px
-  --space-8: 2rem; // 32px
-  --space-10: 2.5rem; // 40px
-  --space-12: 3rem; // 48px
-  --space-16: 4rem; // 64px
-  --space-20: 5rem; // 80px
-  --space-24: 6rem; // 96px
+  --space-3xs: 0.125rem; // 2px
+  --space-2xs: 0.25rem; // 4px
+  --space-xs: 0.5rem; // 8px
+  --space-s: 0.75rem; // 12px
+  --space-m: 1rem; // 16px
+  --space-l: 1.5rem; // 24px
+  --space-xl: 2rem; // 32px
+  --space-2xl: 2.5rem; // 40px
+  --space-3xl: 3rem; // 48px
+  --space-4xl: 4rem; // 64px
 
-  // grid
-  // https://utopia.fyi/grid/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75%7C0.5%7C0.25,1.5%7C2%7C3%7C4%7C6,s-l&g=s,l,xl,12
+  // Spacing variations
+  --space-s-l: clamp(0.75rem, 2vw, 1.5rem);
+  --space-m-xl: clamp(1rem, 3vw, 2rem);
+  --space-l-2xl: clamp(1.5rem, 4vw, 2.5rem);
+
+  // Grid system
   --grid-max-width: 90rem;
-  --grid-gutter: var(--space-s-l, clamp(1.125rem, 0.6467rem + 2.3913vw, 2.5rem));
+  --grid-gutter: var(--space-s-l);
   --grid-columns: 12;
 
-  // border radius
-  --radius-xs: 0.125rem;
-  --radius-s: 0.25rem;
-  --radius-m: 0.5rem;
-  --radius-l: 0.75rem;
-  --radius-h: 1rem;
+  // Border radius using consistent scale
+  --radius-xs: 0.125rem; // 2px
+  --radius-s: 0.25rem; // 4px
+  --radius-m: 0.5rem; // 8px
+  --radius-l: 0.75rem; // 12px
+  --radius-xl: 1rem; // 16px
+  --radius-2xl: 1.5rem; // 24px
 
-  // elevations
-  --elevation-1: 0 1px 3px rgba(0 0 0 / 0.12);
-  --elevation-2: 0 3px 6px rgba(0 0 0 / 0.15);
-  --elevation-3: 0 10px 20px rgba(0 0 0 / 0.15);
-  --elevation-4: 0 15px 25px rgba(0 0 0 / 0.15);
-  --elevation-5: 0 20px 40px rgba(0 0 0 / 0.5);
+  // Shadows with Withinly brand colors
+  --elevation-1: 0 1px 3px rgba(107, 92, 246, 0.1);
+  --elevation-2: 0 4px 6px rgba(107, 92, 246, 0.1);
+  --elevation-3: 0 10px 15px rgba(107, 92, 246, 0.1);
+  --elevation-4: 0 20px 25px rgba(107, 92, 246, 0.1);
+  --elevation-5: 0 25px 50px rgba(107, 92, 246, 0.25);
 
-  // z-index
+  // Z-index scale
   --z-index--1: -1;
   --z-index-0: 0;
   --z-index-1: 10;
@@ -115,40 +146,54 @@
   --z-index-3: 30;
   --z-index-4: 40;
   --z-index-5: 50;
-  --z-index-6: 60;
-  --z-index-7: 70;
-  --z-index-8: 80;
-  --z-index-9: 90;
-  --z-index-10: 100;
 
-  // aspects
+  // Aspect ratios
   --ratio-square: 1;
   --ratio-landscape: 4/3;
   --ratio-portrait: 3/4;
   --ratio-widescreen: 16/9;
   --ratio-ultrawide: 18/5;
 
-  // animations
-  --cubic-bezier: cubic-bezier(0.1, 0.1, 0, 1);
-  --animation-speed-slow: 0.4s;
+  // Animations with Withinly feel
+  --cubic-bezier: cubic-bezier(0.4, 0.0, 0.2, 1); // Smoother easing
+  --animation-speed-slow: 0.5s;
   --animation-speed-medium: 0.3s;
-  --animation-speed-fast: 0.2s;
+  --animation-speed-fast: 0.15s;
   --animation-speed-instant: 0.1s;
 
-  // misc
-  --line-clamp: 3;
-  --target-size-min: 24px;
-  --target-size-max: 44px;
-  --backdrop-color: hsl(0deg 100% 0% / 0.75);
-  --backdrop-blur: blur(3px);
+  // Interactive elements
+  --target-size-min: 44px;
+  --target-size-max: 48px;
+  --backdrop-color: rgba(15, 23, 42, 0.8);
+  --backdrop-blur: blur(8px);
 
-  // kbd
-  --kbd-color-text: light-dark(var(--color-gray-200), var(--color-gray-800));
-  --kbd-color-border: light-dark(var(--color-gray-700), var(--color-gray-300));
-  --kbd-color-background: light-dark(var(--color-gray-1000), var(--color-gray-200));
+  // Focus ring using brand colors
+  --focus-ring-color: var(--color-primary-500);
+  --focus-ring-offset: 2px;
+  --focus-ring-width: 2px;
+
+  // Text decoration colors
+  --text-decoration-color: light-dark(var(--color-primary-600), var(--color-primary-400));
+  --text-decoration-hover-color: light-dark(var(--color-primary-700), var(--color-primary-300));
 }
 
-// dark color scheme overrides
+// Dark color scheme overrides
 .darkmode {
   color-scheme: dark;
+
+  // Adjust shadows for dark mode
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --elevation-2: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --elevation-3: 0 10px 15px rgba(0, 0, 0, 0.3);
+  --elevation-4: 0 20px 25px rgba(0, 0, 0, 0.3);
+  --elevation-5: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

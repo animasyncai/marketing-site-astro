@@ -1,8 +1,8 @@
 ---
 /**
- * FeatureComparison Component - Refined
+ * FeatureComparison Component - Fixed with proper translations
  *
- * @description Clean pricing comparison using Tailwind utilities
+ * @description Clean pricing comparison using Tailwind utilities with full i18n support
  */
 
 import { Icon } from 'astro-icon/components'
@@ -33,7 +33,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
       <h2 class="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
         {t('pricing.headline')}
       </h2>
-      <p class="text-xl text-gray-600">Choose the plan that fits your journey of self-discovery</p>
+      <p class="text-xl text-gray-600">{t('pricing.subheadline')}</p>
     </div>
 
     <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
@@ -45,7 +45,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
             showPricing && (
               <div>
                 <div class="mb-1 text-4xl font-bold text-gray-900">$0</div>
-                <div class="text-gray-500">forever</div>
+                <div class="text-gray-500">{t('pricing.free.period')}</div>
               </div>
             )
           }
@@ -60,7 +60,9 @@ const premiumFeatures = translations.pricing?.premium?.features || []
             ))
           }
         </ul>
-        <Button href="#early-access" variant="secondary" size="lg" fullWidth> Join Waitlist </Button>
+        <Button href="#early-access" variant="secondary" size="lg" fullWidth>
+          {t('pricing.free.cta', 'Join Waitlist')}
+        </Button>
       </div>
 
       <!-- Premium Plan -->
@@ -70,7 +72,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
         <div class="absolute -top-4 left-1/2 -translate-x-1/2">
           <div class="bg-primary flex items-center gap-1 rounded-full px-4 py-1 text-sm font-medium text-white">
             <Icon name="lucide:sparkles" class="h-3 w-3" />
-            Early Access
+            {t('pricing.premium.badge', 'Early Access')}
           </div>
         </div>
         <div class="mb-6 text-center">
@@ -79,7 +81,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
             showPricing && (
               <div>
                 <div class="text-primary mb-1 text-4xl font-bold">{t('pricing.premium.price')}</div>
-                <div class="text-gray-600">when launched</div>
+                <div class="text-gray-600">{t('pricing.premium.period')}</div>
               </div>
             )
           }
@@ -94,7 +96,9 @@ const premiumFeatures = translations.pricing?.premium?.features || []
             ))
           }
         </ul>
-        <Button href="#early-access" variant="primary" size="lg" fullWidth class=""> Get Early Access </Button>
+        <Button href="#early-access" variant="primary" size="lg" fullWidth>
+          {t('pricing.premium.cta', 'Get Early Access')}
+        </Button>
       </div>
     </div>
 

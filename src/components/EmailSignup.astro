@@ -54,8 +54,8 @@ const successId = `${formId}-success`
       {
         showLabels && (
           <label for={emailId} class="block text-sm font-medium text-gray-700">
-            {t('signup.emailPlaceholder', 'Email address')}
-            <span class="text-red-500" aria-label="required">
+            {t('signup.emailPlaceholder')}
+            <span class="text-red-500" aria-label={t('validation.required', 'required')}>
               *
             </span>
           </label>
@@ -70,7 +70,7 @@ const successId = `${formId}-success`
             id={emailId}
             name="email"
             class="h-11 w-full rounded-lg border border-gray-300 pr-4 pl-10 text-gray-900 placeholder-gray-500 transition-colors focus:border-transparent focus:ring-2 focus:ring-purple-500"
-            placeholder={placeholder || t('signup.emailPlaceholder', 'Enter your email address')}
+            placeholder={placeholder || t('signup.emailPlaceholder')}
             aria-describedby={`${errorId} ${successId}`}
             required
           />
@@ -82,11 +82,11 @@ const successId = `${formId}-success`
           disabled={false}
         >
           <span class="button-text">
-            {buttonText || t('signup.submitButton', 'Get Early Access')}
+            {buttonText || t('signup.submitButton')}
           </span>
           <span class="button-loading hidden items-center gap-2">
             <Icon name="lucide:loader-2" class="h-4 w-4 animate-spin" />
-            {t('signup.loadingButton', 'Joining...')}
+            {t('signup.loadingButton')}
           </span>
         </button>
       </div>
@@ -112,10 +112,23 @@ const successId = `${formId}-success`
     </div>
 
     <!-- Privacy notice -->
-    <p class="flex items-center justify-center gap-1 text-center text-xs text-gray-500">
+    <p class="flex items-center justify-center gap-1 text-center text-xs text-gray-200">
       <Icon name="lucide:shield-check" class="h-3 w-3" />
-      {t('signup.privacy', "We'll send you a personal note when doors open. No spam, ever.")}
+      {t('signup.privacy')}
     </p>
+
+    <!-- Translation data for JavaScript -->
+    <script type="application/json" data-translations>
+      {JSON.stringify({
+        emailRequired: t('validation.emailRequired'),
+        emailInvalid: t('validation.emailInvalid'),
+        emailTooLong: t('validation.emailTooLong'),
+        submitError: t('validation.submitError'),
+        networkError: t('validation.networkError'),
+        successMessage: t('signup.successMessage'),
+        loadingButton: t('signup.loadingButton')
+      })}
+    </script>
   </form>
 </div>
 
@@ -130,6 +143,10 @@ const successId = `${formId}-success`
       const successMessage = form.querySelector('[role="status"]') as HTMLElement
       const buttonText = submitButton?.querySelector('.button-text') as HTMLElement
       const buttonLoading = submitButton?.querySelector('.button-loading') as HTMLElement
+      
+      // Get translations from JSON script tag
+      const translationsScript = form.querySelector('script[data-translations]') as HTMLScriptElement
+      const translations = translationsScript ? JSON.parse(translationsScript.textContent || '{}') : {}
 
       if (!emailInput || !submitButton || !errorMessage || !successMessage) return
 
@@ -167,16 +184,16 @@ const successId = `${formId}-success`
         }
       }
 
-      // Email validation
+      // Email validation using translated messages
       const validateEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         return emailRegex.test(email)
       }
 
       const getValidationMessage = (email: string) => {
-        if (!email.trim()) return 'Email address is required'
-        if (!validateEmail(email)) return 'Please enter a valid email address'
-        if (email.length > 254) return 'Email address is too long'
+        if (!email.trim()) return translations.emailRequired || 'Email address is required'
+        if (!validateEmail(email)) return translations.emailInvalid || 'Please enter a valid email address'
+        if (email.length > 254) return translations.emailTooLong || 'Email address is too long'
         return null
       }
 
@@ -220,7 +237,7 @@ const successId = `${formId}-success`
           const result = await response.json()
 
           if (response.ok && result.success) {
-            showMessage(successMessage, result.message || "Welcome! We'll be in touch soon.")
+            showMessage(successMessage, result.message || translations.successMessage || "Welcome! We'll be in touch soon.")
             emailInput.value = ''
 
             // Track conversion
@@ -231,10 +248,10 @@ const successId = `${formId}-success`
               })
             }
           } else {
-            showMessage(errorMessage, result.message || 'Something went wrong. Please try again.')
+            showMessage(errorMessage, result.message || translations.submitError || 'Something went wrong. Please try again.')
           }
         } catch (error) {
-          showMessage(errorMessage, 'Network error. Please check your connection and try again.')
+          showMessage(errorMessage, translations.networkError || 'Network error. Please check your connection and try again.')
         } finally {
           setLoading(false)
         }

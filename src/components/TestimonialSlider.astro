@@ -1,8 +1,8 @@
 ---
 /**
- * TestimonialSlider Component - Refined
+ * TestimonialSlider Component - Fixed with proper translations
  *
- * @description Clean testimonial display with optional auto-advance
+ * @description Clean testimonial display with optional auto-advance and full i18n support
  */
 
 import { Icon } from 'astro-icon/components'
@@ -33,7 +33,7 @@ const testimonials = translations.testimonials?.items || []
         {t('testimonials.headline')}
       </h2>
       <p class="text-xl text-gray-600">
-        Hear from people who are already exploring their inner patterns
+        {t('testimonials.subheadline', 'Hear from people who are already exploring their inner patterns')}
       </p>
     </div>
 
@@ -49,22 +49,34 @@ const testimonials = translations.testimonials?.items || []
         <div class="flex justify-between items-center mb-8">
           <button 
             class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-100"
-            aria-label="Previous testimonial"
+            aria-label={t('testimonials.prevSlide')}
             data-action="prev"
           >
             <Icon name="lucide:chevron-left" class="w-6 h-6" />
           </button>
           
           <div class="text-sm text-gray-500">
-            <span data-current>1</span> / <span data-total>{testimonials.length}</span>
+            <span data-current>1</span> {t('testimonials.slideIndicator')} <span data-total>{testimonials.length}</span>
           </div>
           
           <button 
             class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-100"
-            aria-label="Next testimonial"
+            aria-label={t('testimonials.nextSlide')}
             data-action="next"
           >
             <Icon name="lucide:chevron-right" class="w-6 h-6" />
+          </button>
+        </div>
+
+        <!-- Play/Pause control -->
+        <div class="text-center mb-6">
+          <button 
+            class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            data-action="toggle-play"
+            aria-pressed="true"
+          >
+            <span class="play-text hidden">{t('testimonials.playSlider')}</span>
+            <span class="pause-text">{t('testimonials.pauseSlider')}</span>
           </button>
         </div>
 
@@ -93,7 +105,7 @@ const testimonials = translations.testimonials?.items || []
           {testimonials.map((_, index) => (
             <button
               class={`w-2 h-2 rounded-full transition-colors ${index === 0 ? 'bg-purple-600' : 'bg-gray-300'}`}
-              aria-label={`Go to testimonial ${index + 1}`}
+              aria-label={t('testimonials.goToSlide', `Go to testimonial ${index + 1}`)}
               data-indicator={index}
             />
           ))}
@@ -128,10 +140,14 @@ const testimonials = translations.testimonials?.items || []
       const indicators = slider.querySelectorAll('[data-indicator]')
       const prevBtn = slider.querySelector('[data-action="prev"]')
       const nextBtn = slider.querySelector('[data-action="next"]')
+      const toggleBtn = slider.querySelector('[data-action="toggle-play"]')
       const currentSpan = slider.querySelector('[data-current]')
+      const playText = slider.querySelector('.play-text')
+      const pauseText = slider.querySelector('.pause-text')
 
       let currentIndex = 0
       let intervalId: number | null = null
+      let isPlaying = true
       const interval = parseInt(slider.getAttribute('data-interval') || '6000')
 
       const updateSlide = (newIndex: number) => {
@@ -166,6 +182,7 @@ const testimonials = translations.testimonials?.items || []
 
       const startAutoPlay = () => {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+        if (!isPlaying) return
         intervalId = window.setInterval(nextSlide, interval)
       }
 
@@ -173,6 +190,21 @@ const testimonials = translations.testimonials?.items || []
         if (intervalId) {
           clearInterval(intervalId)
           intervalId = null
+        }
+      }
+
+      const toggleAutoPlay = () => {
+        isPlaying = !isPlaying
+        toggleBtn?.setAttribute('aria-pressed', isPlaying.toString())
+        
+        if (isPlaying) {
+          playText?.classList.add('hidden')
+          pauseText?.classList.remove('hidden')
+          startAutoPlay()
+        } else {
+          playText?.classList.remove('hidden')
+          pauseText?.classList.add('hidden')
+          stopAutoPlay()
         }
       }
 
@@ -189,6 +221,8 @@ const testimonials = translations.testimonials?.items || []
         startAutoPlay()
       })
 
+      toggleBtn?.addEventListener('click', toggleAutoPlay)
+
       // Indicator clicks
       indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
@@ -201,6 +235,10 @@ const testimonials = translations.testimonials?.items || []
       // Pause on hover
       slider.addEventListener('mouseenter', stopAutoPlay)
       slider.addEventListener('mouseleave', startAutoPlay)
+
+      // Pause on focus
+      slider.addEventListener('focusin', stopAutoPlay)
+      slider.addEventListener('focusout', startAutoPlay)
 
       // Start auto-play
       startAutoPlay()
