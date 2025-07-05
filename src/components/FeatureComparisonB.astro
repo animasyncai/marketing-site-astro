@@ -60,26 +60,26 @@ const premiumFeatures = translations.pricing?.premium?.features || []
             ))
           }
         </ul>
-        <Button href="#early-access" variant="secondary" size="lg" fullWidth> Join Waitlist </Button>
+        <Button href="#early-access" variant="secondary" size="lg" fullWidth> Get Started Free </Button>
       </div>
 
       <!-- Premium Plan -->
       <div
-        class="relative transform rounded-2xl border-2 border-violet-200 bg-violet-50 p-8 shadow-lg transition-transform hover:scale-105"
+        class="relative transform rounded-2xl bg-purple-600 p-8 text-white shadow-lg transition-transform hover:scale-105"
       >
         <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-          <div class="bg-primary flex items-center gap-1 rounded-full px-4 py-1 text-sm font-medium text-white">
-            <Icon name="lucide:sparkles" class="h-3 w-3" />
-            Early Access
+          <div class="flex items-center gap-1 rounded-full bg-yellow-400 px-4 py-1 text-sm font-medium text-yellow-900">
+            <Icon name="lucide:star" class="h-3 w-3" />
+            Most Popular
           </div>
         </div>
         <div class="mb-6 text-center">
-          <h3 class="mb-2 text-2xl font-bold text-gray-900">{t('pricing.premium.title')}</h3>
+          <h3 class="mb-2 text-2xl font-bold">{t('pricing.premium.title')}</h3>
           {
             showPricing && (
               <div>
-                <div class="text-primary mb-1 text-4xl font-bold">{t('pricing.premium.price')}</div>
-                <div class="text-gray-600">when launched</div>
+                <div class="mb-1 text-4xl font-bold">{t('pricing.premium.price')}</div>
+                <div class="text-purple-200">monthly</div>
               </div>
             )
           }
@@ -88,13 +88,21 @@ const premiumFeatures = translations.pricing?.premium?.features || []
           {
             premiumFeatures.map((feature) => (
               <li class="flex items-start gap-3">
-                <Icon name="lucide:check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-violet-500" />
-                <span class="text-gray-700">{feature}</span>
+                <Icon name="lucide:check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-purple-200" />
+                <span class="text-purple-100">{feature}</span>
               </li>
             ))
           }
         </ul>
-        <Button href="#early-access" variant="primary" size="lg" fullWidth class=""> Get Early Access </Button>
+        <Button
+          href="#early-access"
+          variant="secondary"
+          size="lg"
+          fullWidth
+          class="border-white bg-white text-purple-600 hover:bg-gray-50"
+        >
+          Start Premium
+        </Button>
       </div>
     </div>
 

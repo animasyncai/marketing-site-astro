@@ -35,21 +35,34 @@
   },
   "howItWorks": {
     "headline": "A journey inward, at your own pace",
+    "subheadline": "Self-discovery isn't a destination—it's an unfolding. Each step reveals something new, and every insight builds on the last.",
+    "phase1": "Begin",
+    "phase2": "Reflect",
+    "phase3": "Connect",
+    "phase4": "Grow",
     "step1": {
       "title": "Start with gentle discovery",
-      "description": "Short, thoughtful assessments that reveal how you connect, love, and relate. No right answers — just honest reflection."
+      "description": "Short, thoughtful assessments that reveal how you connect, love, and relate. No right answers — just honest reflection.",
+      "emotion": "Curiosity"
     },
     "step2": {
       "title": "Receive your first insights",
-      "description": "A personal report that reads like a letter from someone who truly sees you. Free users get the essence; members unlock the full depth."
+      "description": "A personal report that reads like a letter from someone who truly sees you. Free users get the essence; members unlock the full depth.",
+      "emotion": "Recognition"
     },
     "step3": {
       "title": "Begin the conversation",
-      "description": "Meet your AI consultant — trained in psychological wisdom but speaks like a trusted friend. They remember your journey and help you connect the dots."
+      "description": "Meet your AI consultant — trained in psychological wisdom but speaks like a trusted friend. They remember your journey and help you connect the dots.",
+      "emotion": "Understanding"
     },
     "step4": {
       "title": "Go deeper when you're ready",
-      "description": "Unlock specialized reports on conflict patterns, relationship dynamics, family echoes, and more. Each one reveals another layer of understanding."
+      "description": "Unlock specialized reports on conflict patterns, relationship dynamics, family echoes, and more. Each one reveals another layer of understanding.",
+      "emotion": "Transformation"
+    },
+    "insight": {
+      "title": "Your journey is uniquely yours",
+      "description": "There's no timeline, no pressure, no \"right way\" to grow. Some days you'll want to dive deep, others you'll prefer gentle reflection. Withinly adapts to where you are."
     }
   },
   "different": {
@@ -160,15 +173,13 @@
   },
   "closing": {
     "headline": "Growth is hard. You don't have to do it alone.",
-    "description": "Whether you're curious or ready to dive deep, we're honored that you're here. This is the beginning of something meaningful.",
-    "contact": "Questions before joining? Reach a real human at hello@withinly.com",
-    "languages": "Launching soon in English and Lithuanian • More languages coming"
+    "description": "Whether you're curious or ready to dive deep, we're honored that you're here. This is the beginning of something meaningful."
   },
   "footer": {
-    "tagline": "Withinly: Where psychology meets poetry, and AI meets the human heart.",
+    "tagline": "Where psychology meets poetry, and AI meets the human heart.",
     "copyright": "© 2025 Withinly. All rights reserved.",
     "privacy": "Privacy Policy",
-    "contact": "Contact"
+    "terms": "Terms of Service"
   },
   "validation": {
     "emailRequired": "Email address is required",

@@ -1,6 +1,5 @@
 ---
 import Logo from './Logo.astro'
-import Button from './Button.astro'
 import LanguagePicker from './LanguagePicker.astro'
 import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
@@ -16,75 +15,37 @@ const currentYear = new Date().getFullYear()
 
 <footer class="bg-gray-900 text-white">
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-4">
+    <!-- Main footer content -->
+    <div class="flex flex-col items-center justify-between gap-8 lg:flex-row">
       <!-- Brand section -->
-      <div class="lg:col-span-2">
-        <div class="mb-6">
-          <Logo size="lg" />
+      <div class="text-center lg:text-left">
+        <div class="mb-4">
+          <Logo size="md" />
         </div>
-        <p class="mb-6 max-w-md text-lg leading-relaxed text-gray-300">
+        <p class="max-w-md leading-relaxed text-gray-300">
           {t('footer.tagline')}
         </p>
-        <Button href="#early-access" variant="primary" size="md" icon="lucide:mail"> Join Early Access </Button>
       </div>
 
-      <!-- Quick links -->
-      <div>
-        <h3 class="mb-4 text-lg font-semibold">Quick Links</h3>
-        <ul class="space-y-3">
-          <li>
-            <a href="#how-it-works" class="text-gray-300 transition-colors hover:text-white">
-              {t('navigation.howItWorks')}
-            </a>
-          </li>
-          <li>
-            <a href="#pricing" class="text-gray-300 transition-colors hover:text-white">
-              {t('navigation.pricing')}
-            </a>
-          </li>
-          <li>
-            <a href="/privacy" class="text-gray-300 transition-colors hover:text-white">
-              {t('footer.privacy')}
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Contact & Language -->
-      <div>
-        <h3 class="mb-4 text-lg font-semibold">Connect</h3>
-        <div class="space-y-4">
-          <a
-            href="mailto:hello@withinly.com"
-            class="flex items-center gap-2 text-gray-300 transition-colors hover:text-white"
-          >
-            <Icon name="lucide:mail" class="h-4 w-4" />
-            hello@withinly.com
-          </a>
-
-          <div>
-            <span class="mb-2 block text-sm text-gray-400">Language</span>
-            <LanguagePicker variant="dropdown" />
-          </div>
-        </div>
+      <!-- Legal & Language -->
+      <div class="flex flex-col items-center gap-6 text-sm sm:flex-row">
+        <a href="/privacy" class="text-gray-300 transition-colors hover:text-white"> Privacy Policy </a>
+        <a href="/terms" class="text-gray-300 transition-colors hover:text-white"> Terms of Service </a>
+        <LanguagePicker variant="toggle" />
       </div>
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 sm:flex-row">
-      <p class="text-sm text-gray-400">
-        © {currentYear} Withinly. All rights reserved.
-      </p>
+    <div
+      class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-6 text-sm text-gray-400 sm:flex-row"
+    >
+      <p>© {currentYear} Withinly. All rights reserved.</p>
 
-      <!-- Trust badges -->
-      <div class="flex items-center gap-6 text-sm text-gray-400">
+      <!-- Simple trust indicators -->
+      <div class="flex items-center gap-4">
         <div class="flex items-center gap-1">
           <Icon name="lucide:shield-check" class="h-4 w-4" />
-          <span>GDPR Compliant</span>
-        </div>
-        <div class="flex items-center gap-1">
-          <Icon name="lucide:lock" class="h-4 w-4" />
-          <span>Secure</span>
+          <span>Secure & Private</span>
         </div>
         <div class="flex items-center gap-1">
           <Icon name="lucide:heart" class="h-4 w-4" />

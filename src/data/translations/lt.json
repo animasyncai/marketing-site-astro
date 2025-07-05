@@ -35,21 +35,34 @@
   },
   "howItWorks": {
     "headline": "Kelionė į save, tavo tempu",
+    "subheadline": "Savęs pažinimas nėra tikslas — tai atsiskleidimas. Kiekvienas žingsnis atskleidžia kažką naujo, ir kiekviena įžvalga remiasi ant ankstesnės.",
+    "phase1": "Pradėk",
+    "phase2": "Apmąstyk",
+    "phase3": "Susisiek",
+    "phase4": "Augk",
     "step1": {
       "title": "Pradėk su švelniu atskleidumu",
-      "description": "Trumpi, apgalvoti vertinimai, atskleidžiantys, kaip užmezgi ryšius, myli ir bendrauji. Nėra teisingų atsakymų — tik nuoširdus apmąstymas."
+      "description": "Trumpi, apgalvoti vertinimai, atskleidžiantys, kaip užmezgi ryšius, myli ir bendrauji. Nėra teisingų atsakymų — tik nuoširdus apmąstymas.",
+      "emotion": "Smalsumas"
     },
     "step2": {
       "title": "Gauk pirmas įžvalgas",
-      "description": "Asmeninis ataskaita, kuri skaitosi kaip laiškas nuo to, kas tikrai tave mato. Nemokamos versijos vartotojai gauna esmę; nariai atrakina visą gilumą."
+      "description": "Asmeninis ataskaita, kuri skaitosi kaip laiškas nuo to, kas tikrai tave mato. Nemokamos versijos vartotojai gauna esmę; nariai atrakina visą gilumą.",
+      "emotion": "Atpažinimas"
     },
     "step3": {
       "title": "Pradėk pokalbį",
-      "description": "Sutik savo dirbtinio intelekto konsultantą — išmokytą psichologinės išminties, bet kalbantį kaip patikimas draugas. Jie prisimena tavo kelionę ir padeda sujungti taškus."
+      "description": "Sutik savo dirbtinio intelekto konsultantą — išmokytą psichologinės išminties, bet kalbantį kaip patikimas draugas. Jie prisimena tavo kelionę ir padeda sujungti taškus.",
+      "emotion": "Supratimas"
     },
     "step4": {
       "title": "Eik giliau, kai esi pasiruošęs",
-      "description": "Atrakink specializuotas ataskaitas apie konfliktų šablonus, santykių dinamiką, šeimos atgarsus ir daugiau. Kiekviena atskleidžia kitą supratimo sluoksnį."
+      "description": "Atrakink specializuotas ataskaitas apie konfliktų šablonus, santykių dinamiką, šeimos atgarsus ir daugiau. Kiekviena atskleidžia kitą supratimo sluoksnį.",
+      "emotion": "Transformacija"
+    },
+    "insight": {
+      "title": "Tavo kelionė yra unikali",
+      "description": "Nėra laiko rėmų, nėra spaudimo, nėra \"teisingo būdo\" augti. Kai kuriomis dienomis norėsi nardyti giliai, kitomis – mėgausi švelniu apmąstymu. Withinly prisitaiko prie to, kur esi."
     }
   },
   "different": {

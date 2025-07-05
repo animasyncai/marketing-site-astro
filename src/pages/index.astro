@@ -42,7 +42,7 @@ const pageDescription = t('meta.defaultDescription')
         <p>{t('hook.description')}</p>
         <p class="text-xl font-medium text-gray-900">{t('hook.value')}</p>
       </div>
-      <blockquote class="mt-10 text-xl font-medium text-purple-600 italic">
+      <blockquote class="text-primary mt-10 text-xl font-medium italic">
         "{t('hook.quote')}"
       </blockquote>
     </div>
@@ -55,7 +55,7 @@ const pageDescription = t('meta.defaultDescription')
   <DifferentiatorSection />
 
   <!-- Pricing/Features Comparison -->
-  <FeatureComparison showPricing={true} />
+  <FeatureComparison showPricing={false} />
 
   <!-- Testimonials -->
   <TestimonialSlider autoPlay={false} />
@@ -64,58 +64,39 @@ const pageDescription = t('meta.defaultDescription')
   <TrustSignals variant="horizontal" showDescriptions={true} />
 
   <!-- Early Access Section -->
-  <section id="early-access" class="bg-gradient-to-br from-purple-600 to-blue-600 py-20 text-white">
-    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-3xl font-bold sm:text-4xl">
+  <section id="early-access" class="bg-gradient-to-br from-violet-600 to-blue-600 py-16 text-white">
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="mb-4 text-3xl font-bold sm:text-4xl">
         {t('earlyAccess.headline')}
       </h2>
-      <p class="mb-12 text-xl leading-relaxed text-purple-100">
+      <p class="mb-10 text-xl leading-relaxed text-violet-100">
         {t('earlyAccess.description')}
       </p>
 
-      <div class="mx-auto mb-12 max-w-lg">
+      <div class="mx-auto max-w-md">
         <EmailSignup
           variant="hero"
-          title={t('signup.headline')}
-          description={t('signup.description')}
           showLabels={false}
-          class="text-gray-900"
+          class="[&_button]:bg-white [&_button]:text-violet-600 [&_button]:hover:bg-gray-50 [&_input]:bg-white/90 [&_input]:text-gray-900"
         />
       </div>
-
-      <div class="mx-auto mb-8 grid max-w-2xl gap-6 text-left sm:grid-cols-2">
-        {
-          translations.earlyAccess?.benefits?.items?.map((benefit) => (
-            <div class="flex items-center gap-3">
-              <Icon name="lucide:check" class="h-5 w-5 flex-shrink-0 text-purple-200" />
-              <span class="text-purple-100">{benefit}</span>
-            </div>
-          ))
-        }
-      </div>
-
-      <p class="text-sm text-purple-200 italic">
-        {t('earlyAccess.urgency')}
-      </p>
     </div>
   </section>
 
   <!-- Closing Section -->
-  <section class="bg-gray-900 py-16 text-white">
-    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-2xl font-bold sm:text-3xl">
+  <section class="bg-gray-50 py-12 text-center">
+    <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-4 text-2xl font-bold text-gray-900">
         {t('closing.headline')}
       </h2>
-      <p class="mb-6 text-lg leading-relaxed text-gray-300">
+      <p class="mb-6 leading-relaxed text-gray-600">
         {t('closing.description')}
       </p>
-      <p class="mb-4 text-gray-400">
-        <a href="mailto:hello@withinly.com" class="text-purple-400 transition-colors hover:text-purple-300">
-          {t('closing.contact')}
+      <p class="text-gray-500">
+        Questions? Email us at{' '}
+        <a href="mailto:hello@withinly.com" class="text-violet-600 transition-colors hover:text-violet-700">
+          hello@withinly.com
         </a>
-      </p>
-      <p class="text-sm text-gray-500">
-        {t('closing.languages')}
       </p>
     </div>
   </section>

@@ -1,8 +1,8 @@
 ---
 /**
- * HowItWorks Component - Refined
+ * HowItWorks Component - Reimagined for Withinly
  *
- * @description Clean, step-by-step process explanation using Tailwind utilities
+ * @description A more emotional, journey-focused approach that reflects the depth of self-discovery
  */
 
 import { Icon } from 'astro-icon/components'
@@ -20,51 +20,120 @@ const t = (key: string, fallback = '') => {
   return getTranslation(translations, key, {}, fallback)
 }
 
-// Step configuration
-const steps = [
-  { step: '01', key: 'step1', icon: 'lucide:search' },
-  { step: '02', key: 'step2', icon: 'lucide:file-text' },
-  { step: '03', key: 'step3', icon: 'lucide:message-circle' },
-  { step: '04', key: 'step4', icon: 'lucide:layers' },
+// Journey phases with more emotional resonance
+const journey = [
+  {
+    phase: t('howItWorks.phase1', 'Begin'),
+    title: t('howItWorks.step1.title'),
+    description: t('howItWorks.step1.description'),
+    icon: "lucide:compass",
+    emotion: t('howItWorks.step1.emotion', 'Curiosity'),
+    color: "from-blue-100 to-blue-200",
+    iconColor: "text-blue-600"
+  },
+  {
+    phase: t('howItWorks.phase2', 'Reflect'), 
+    title: t('howItWorks.step2.title'),
+    description: t('howItWorks.step2.description'),
+    icon: "lucide:heart",
+    emotion: t('howItWorks.step2.emotion', 'Recognition'), 
+    color: "from-purple-100 to-purple-200",
+    iconColor: "text-purple-600"
+  },
+  {
+    phase: t('howItWorks.phase3', 'Connect'),
+    title: t('howItWorks.step3.title'), 
+    description: t('howItWorks.step3.description'),
+    icon: "lucide:message-circle",
+    emotion: t('howItWorks.step3.emotion', 'Understanding'),
+    color: "from-green-100 to-green-200", 
+    iconColor: "text-green-600"
+  },
+      {
+    phase: t('howItWorks.phase4', 'Grow'),
+    title: t('howItWorks.step4.title'),
+    description: t('howItWorks.step4.description'),
+    icon: "lucide:heart",
+    emotion: t('howItWorks.step4.emotion', 'Transformation'),
+    color: "from-purple-100 to-purple-200",
+    iconColor: "text-purple-600"
+  }
 ]
 ---
 
-<section id="how-it-works" class:list={[className, 'bg-gray-50 py-20']}>
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-16 text-center">
-      <h2 class="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+<section id="how-it-works" class:list={[className, "py-24 bg-gradient-to-br from-gray-50 to-blue-50/30"]}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header with more emotional framing -->
+    <div class="text-center mb-20">
+      <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
         {t('howItWorks.headline')}
       </h2>
-      <p class="mx-auto max-w-3xl text-xl text-gray-600">
-        A gentle journey of self-discovery that adapts to your pace and comfort level
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        {t('howItWorks.subheadline', 'Self-discovery isn\'t a destination—it\'s an unfolding. Each step reveals something new, and every insight builds on the last.')}
       </p>
     </div>
 
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-      {
-        steps.map(({ step, key, icon }) => (
-          <div class="group text-center">
-            <div class="relative mb-6">
-              <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 transition-colors group-hover:bg-purple-200">
-                <Icon name={icon} class="h-8 w-8 text-purple-600" />
+    <!-- Journey visualization -->
+    <div class="relative">
+      
+      <!-- Connecting path for desktop -->
+      <div class="hidden lg:block absolute top-11 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-200 via-indigo-200 via-green-200 to-violet-200 opacity-60"></div>
+      
+      <!-- Journey steps -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        {journey.map((step, index) => (
+          <div class="group relative">
+            
+            <!-- Phase indicator -->
+            <div class="text-center mb-6">
+              <div class="inline-block mb-3">
+                <div class={`w-20 h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105`}>
+                  <Icon name={step.icon} class={`w-10 h-10 ${step.iconColor}`} />
+                </div>
               </div>
-              <div class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-xs font-bold text-white">
-                {step}
+              <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">
+                {step.phase}
               </div>
             </div>
-            <h3 class="mb-3 text-lg font-semibold text-gray-900">{t(`howItWorks.${key}.title`)}</h3>
-            <p class="leading-relaxed text-gray-600">{t(`howItWorks.${key}.description`)}</p>
-          </div>
-        ))
-      }
-    </div>
 
-    <!-- Connector lines for desktop -->
-    <div class="pointer-events-none relative -mt-32 hidden lg:block">
-      <div
-        class="absolute top-8 right-1/4 left-1/4 h-0.5 bg-gradient-to-r from-purple-200 via-purple-300 to-purple-200"
-      >
+            <!-- Content -->
+            <div class="text-center">
+              <h3 class="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                {step.title}
+              </h3>
+              <p class="text-gray-600 leading-relaxed mb-4">
+                {step.description}
+              </p>
+              
+              <!-- Emotional note -->
+              <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/70 rounded-full text-sm text-gray-500">
+                <Icon name="lucide:heart" class="w-3 h-3" />
+                <span class="italic">{step.emotion}</span>
+              </div>
+            </div>
+
+            <!-- Step connector for mobile -->
+            {index < journey.length - 1 && (
+              <div class="lg:hidden flex justify-center mt-8 mb-4">
+                <Icon name="lucide:chevron-down" class="w-5 h-5 text-gray-300" />
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
+
+    <!-- Bottom insight -->
+    <div class="text-center mt-20 bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50">
+      <Icon name="lucide:lightbulb" class="w-8 h-8 text-primary mx-auto mb-4" />
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">
+        {t('howItWorks.insight.title', 'Your journey is uniquely yours')}
+      </h3>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        {t('howItWorks.insight.description', 'There\'s no timeline, no pressure, no "right way" to grow. Some days you\'ll want to dive deep, others you\'ll prefer gentle reflection. Withinly adapts to where you are.')}
+      </p>
+    </div>
+
   </div>
 </section>
