@@ -7,7 +7,7 @@
  */
 
 import { Icon } from 'astro-icon/components'
-import { getTranslationsFromUrl } from '@utils/useTranslation.js'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 interface Props {
   /**
@@ -52,13 +52,10 @@ const {
 
 // Get translations for current language
 const translations = await getTranslationsFromUrl(Astro.url.pathname)
+
+// Helper function to get nested translation
 const t = (key: string, fallback = '') => {
-  const keys = key.split('.')
-  let current = translations
-  for (const k of keys) {
-    current = current?.[k]
-  }
-  return current || fallback
+  return getTranslation(translations, key, {}, fallback)
 }
 
 // Generate unique IDs for accessibility
@@ -154,20 +151,20 @@ const successId = `${formId}-success`
     const signupForms = document.querySelectorAll('[data-form="email-signup"]')
 
     signupForms.forEach((form) => {
-      const emailInput = form.querySelector('.email-input')
-      const submitButton = form.querySelector('.submit-button')
-      const errorMessage = form.querySelector('.error-message')
-      const successMessage = form.querySelector('.success-message')
-      const buttonText = submitButton.querySelector('.button-text')
-      const buttonLoading = submitButton.querySelector('.button-loading')
+      const emailInput = form.querySelector('.email-input') as HTMLInputElement
+      const submitButton = form.querySelector('.submit-button') as HTMLButtonElement
+      const errorMessage = form.querySelector('.error-message') as HTMLElement
+      const successMessage = form.querySelector('.success-message') as HTMLElement
+      const buttonText = submitButton?.querySelector('.button-text') as HTMLElement
+      const buttonLoading = submitButton?.querySelector('.button-loading') as HTMLElement
 
       if (!emailInput || !submitButton || !errorMessage || !successMessage) return
 
       // Form state management
       let isSubmitting = false
 
-      const showMessage = (element, message, isError = false) => {
-        const messageText = element.querySelector('.message-text')
+      const showMessage = (element: HTMLElement, message: string, isError = false) => {
+        const messageText = element.querySelector('.message-text') as HTMLElement
         if (messageText) {
           messageText.textContent = message
           element.style.display = 'flex'
@@ -183,7 +180,7 @@ const successId = `${formId}-success`
         }
       }
 
-      const hideMessage = (element) => {
+      const hideMessage = (element: HTMLElement) => {
         element.style.display = 'none'
         element.setAttribute('aria-hidden', 'true')
       }
@@ -193,7 +190,7 @@ const successId = `${formId}-success`
         hideMessage(successMessage)
       }
 
-      const setLoading = (loading) => {
+      const setLoading = (loading: boolean) => {
         isSubmitting = loading
         submitButton.disabled = loading
         submitButton.setAttribute('aria-busy', loading.toString())
@@ -210,12 +207,12 @@ const successId = `${formId}-success`
       }
 
       // Email validation
-      const validateEmail = (email) => {
+      const validateEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         return emailRegex.test(email)
       }
 
-      const getValidationMessage = (email) => {
+      const getValidationMessage = (email: string) => {
         if (!email.trim()) {
           return 'Email address is required'
         }
@@ -250,7 +247,7 @@ const successId = `${formId}-success`
         if (isSubmitting) return
 
         const email = emailInput.value.trim()
-        const honeypot = form.querySelector('.honeypot')?.value
+        const honeypot = (form.querySelector('.honeypot') as HTMLInputElement)?.value
 
         // Check honeypot (spam protection)
         if (honeypot) {
@@ -298,11 +295,6 @@ const successId = `${formId}-success`
                 event_label: 'email_signup',
               })
             }
-
-            // Optional: redirect after delay
-            setTimeout(() => {
-              // Could redirect to thank you page
-            }, 3000)
           } else {
             // Server error
             showMessage(

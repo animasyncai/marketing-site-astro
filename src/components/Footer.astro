@@ -1,88 +1,142 @@
 ---
-import CallToAction from './CallToAction.astro'
-import ExternalLink from './ExternalLink.astro'
-import Logo from './Logo.astro'
-
 /**
- * Footer Component
+ * Footer Component - Updated for Withinly
  *
- * @description A component that displays the footer of the website
+ * @description Clean, focused footer that matches the Withinly brand
+ * Uses Tailwind for layout and minimal SCSS for complex styling
  */
+
+import Logo from './Logo.astro'
+import EmailSignup from './EmailSignup.astro'
+import LanguagePicker from './LanguagePicker.astro'
+import { Icon } from 'astro-icon/components'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  return getTranslation(translations, key, {}, fallback)
+}
+
 const currentYear = new Date().getFullYear()
 ---
 
-<footer>
-  <CallToAction />
-  <section class="py-20">
-    <h2 class="sr-only">Footer</h2>
-    <div class="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-      <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold">Navigation</h3>
-        <ul class="flex flex-col gap-2">
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/portfolio">Portfolio</a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold">Theme features</h3>
-        <ul class="flex flex-col gap-2">
-          <li><a href="/accessibility-statement">Accessibility statement</a></li>
-          <li><a href="/accessible-components">Accessible components</a></li>
-          <li><a href="/color-contrast-checker">Color contrast checker</a></li>
-          <li><a href="/markdown-page">Markdown page</a></li>
-          <li><a href="/mdx-page">MDX page</a></li>
-          <li><a href="/404-page">404 page</a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold">Developer tools</h3>
-        <ul class="flex flex-col gap-2">
-          <li>
-            <ExternalLink href="https://www.w3.org/WAI/ARIA/apg/">ARIA Authoring Practices</ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://web.dev/articles/focus">Focus Management</ExternalLink>
-          </li>
-          <li>
-            <ExternalLink href="https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML"
-              >Semantic HTML Guide</ExternalLink
-            >
-          </li>
-          <li>
-            <ExternalLink href="https://www.tpgi.com/screen-reader-user-survey-results/"
-              >Screen Reader Survey</ExternalLink
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-4">
-        <Logo loading="lazy" />
-        <p class="leading-[1.75]">
-          Tip: always test for screen reader support. Press <kbd>⌘</kbd> + <kbd>F5</kbd> to start VoiceOver or <kbd
-            >Win</kbd
-          >
-          + <kbd>Ctrl</kbd> + <kbd>Enter</kbd> for Narrator.
+<footer class="bg-neutral-900 text-neutral-100">
+  <!-- Main footer content -->
+  <div class="container py-16">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-4">
+      <!-- Brand section -->
+      <div class="space-y-6 lg:col-span-2">
+        <Logo />
+        <p class="max-w-md text-lg leading-relaxed text-neutral-300">
+          {t('footer.tagline')}
         </p>
+
+        <!-- Newsletter signup -->
+        <div class="max-w-md">
+          <EmailSignup
+            variant="footer"
+            title="Stay Updated"
+            description="Get notified when we launch"
+            showLabels={false}
+            placeholder={t('signup.emailPlaceholder')}
+            buttonText="Subscribe"
+          />
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-neutral-100">Quick Links</h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="#how-it-works" class="text-neutral-300 transition-colors hover:text-neutral-100">
+              {t('navigation.howItWorks')}
+            </a>
+          </li>
+          <li>
+            <a href="#pricing" class="text-neutral-300 transition-colors hover:text-neutral-100">
+              {t('navigation.pricing')}
+            </a>
+          </li>
+          <li>
+            <a href="#early-access" class="text-neutral-300 transition-colors hover:text-neutral-100">
+              {t('navigation.earlyAccess')}
+            </a>
+          </li>
+          <li>
+            <a href="/privacy" class="text-neutral-300 transition-colors hover:text-neutral-100">
+              {t('footer.privacy')}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact & Language -->
+      <div class="space-y-6">
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-neutral-100">Contact</h3>
+          <div class="space-y-2">
+            <a
+              href="mailto:hello@withinly.com"
+              class="flex items-center gap-2 text-neutral-300 transition-colors hover:text-neutral-100"
+            >
+              <Icon name="lucide:mail" class="h-4 w-4" />
+              hello@withinly.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Language picker -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-neutral-100">Language</h3>
+          <LanguagePicker variant="dropdown" />
+        </div>
       </div>
     </div>
-  </section>
-  <section class="py-8">
-    <div class="container flex flex-col gap-4 md:flex-row md:justify-between">
-      <p>
-        &copy; {currentYear} - Starter Theme for <a href="https://astro.build/">Astro</a>.
-      </p>
-      <p>
-        Made with ❤️ by <a href="https://github.com/markteekman">Mark Teekman</a>. Part of <a
-          href="https://www.incluud.dev">Incluud</a
-        >.
-      </p>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-neutral-800">
+    <div class="container py-6">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <!-- Copyright -->
+        <p class="text-sm text-neutral-400">
+          {t('footer.copyright')}
+        </p>
+
+        <!-- Trust badges -->
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-2 text-sm text-neutral-400">
+            <Icon name="lucide:shield-check" class="h-4 w-4" />
+            <span>GDPR Compliant</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-neutral-400">
+            <Icon name="lucide:lock" class="h-4 w-4" />
+            <span>Secure</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-neutral-400">
+            <Icon name="lucide:heart" class="h-4 w-4" />
+            <span>Made with Care</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 </footer>
 
-<style>
-  section {
-    border-top: 1px solid var(--border-color-subtle);
+<style lang="scss">
+  // Only using SCSS for the complex gradient styling that's hard in Tailwind
+  footer {
+    background: linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 100%);
+
+    // Logo styling for dark footer
+    :global(.logo-link) {
+      color: var(--color-neutral-100);
+
+      &:hover {
+        color: var(--color-neutral-200);
+      }
+    }
   }
 </style>

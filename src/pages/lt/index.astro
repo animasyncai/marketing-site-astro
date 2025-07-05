@@ -1,22 +1,22 @@
 ---
 /**
- * Withinly Landing Page (English)
+ * Withinly Landing Page (Lithuanian)
  *
- * @description Main landing page showcasing all components
- * Uses translations and maintains accessibility throughout
+ * @description Lithuanian version of the main landing page
+ * Uses Lithuanian translations and maintains same structure
  */
 
-import DefaultLayout from '../layouts/DefaultLayout.astro'
-import HeroWithinly from '../components/HeroWithinly.astro'
-import HowItWorks from '../components/HowItWorks.astro'
-import DifferentiatorSection from '../components/DifferentiatorSection.astro'
-import FeatureComparison from '../components/FeatureComparison.astro'
-import TestimonialSlider from '../components/TestimonialSlider.astro'
-import TrustSignals from '../components/TrustSignals.astro'
-import EmailSignup from '../components/EmailSignup.astro'
-import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import HeroWithinly from '../../components/HeroWithinly.astro'
+import HowItWorks from '../../components/HowItWorks.astro'
+import DifferentiatorSection from '../../components/DifferentiatorSection.astro'
+import FeatureComparison from '../../components/FeatureComparison.astro'
+import TestimonialSlider from '../../components/TestimonialSlider.astro'
+import TrustSignals from '../../components/TrustSignals.astro'
+import EmailSignup from '../../components/EmailSignup.astro'
+import { getTranslationsFromUrl, getTranslation } from '../../utils/useTranslation.js'
 
-// Get translations for current language
+// Get translations for current language (Lithuanian)
 const translations = await getTranslationsFromUrl(Astro.url.pathname)
 const t = (key: string, fallback = '') => {
   return getTranslation(translations, key, {}, fallback)
@@ -29,7 +29,7 @@ const pageDescription = t('meta.defaultDescription')
 
 <DefaultLayout title={pageTitle} description={pageDescription}>
   <!-- Hero Section -->
-  <HeroWithinly showSignup={false} />
+  <HeroWithinly showSignup={true} />
 
   <!-- Opening Hook Section -->
   <section class="hook-section" aria-labelledby="hook-headline">
@@ -137,8 +137,8 @@ const pageDescription = t('meta.defaultDescription')
 </DefaultLayout>
 
 <style lang="scss">
-  @use '../assets/scss/base/breakpoint' as *;
-  @use '../assets/scss/base/mixins' as *;
+  @use '../../assets/scss/base/breakpoint' as *;
+  @use '../../assets/scss/base/mixins' as *;
 
   // Hook Section
   .hook-section {

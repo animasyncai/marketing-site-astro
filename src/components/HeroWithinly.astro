@@ -9,7 +9,7 @@
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
 import EmailSignup from './EmailSignup.astro'
-import { getTranslationsFromUrl } from '@utils/useTranslation.js'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 interface Props {
   /**
@@ -30,8 +30,10 @@ const { imageSrc = '/hero-withinly.webp', showSignup = true, class: className } 
 
 // Get translations for current language
 const translations = await getTranslationsFromUrl(Astro.url.pathname)
+
+// Helper function to get nested translation
 const t = (key: string, fallback = '') => {
-  return translations[key] || fallback
+  return getTranslation(translations, key, {}, fallback)
 }
 ---
 
@@ -41,11 +43,16 @@ const t = (key: string, fallback = '') => {
       <!-- Main content area -->
       <div class="hero-text">
         <h1 id="hero-headline" class="hero-headline">
-          <span class="headline-main">{t('hero.headline')}</span>
+          <span class="headline-main">{t('hero.headline', 'Your relationships mirror your inner world.')}</span>
         </h1>
 
         <p class="hero-subheadline">
-          {t('hero.subheadline')}
+          {
+            t(
+              'hero.subheadline',
+              'We help you understand both — with depth, nuance, and an AI companion who truly gets the human experience.'
+            )
+          }
         </p>
 
         <!-- Call-to-action buttons -->
@@ -56,19 +63,19 @@ const t = (key: string, fallback = '') => {
                 <EmailSignup
                   variant="hero"
                   showLabels={false}
-                  placeholder={t('signup.emailPlaceholder')}
-                  buttonText={t('hero.ctaPrimary')}
+                  placeholder={t('signup.emailPlaceholder', 'Enter your email address')}
+                  buttonText={t('hero.ctaPrimary', 'Join Early Access')}
                 />
               </div>
             ) : (
               <div class="action-buttons">
                 <a href="#early-access" class="button button-primary has-icon">
                   <Icon name="lucide:mail" />
-                  {t('hero.ctaPrimary')}
+                  {t('hero.ctaPrimary', 'Join Early Access')}
                 </a>
                 <a href="#how-it-works" class="button button-secondary has-icon">
                   <Icon name="lucide:play-circle" />
-                  {t('hero.ctaSecondary')}
+                  {t('hero.ctaSecondary', 'See How It Works')}
                 </a>
               </div>
             )
@@ -77,7 +84,7 @@ const t = (key: string, fallback = '') => {
 
         <!-- Trust tagline -->
         <p class="hero-tagline">
-          <em>{t('hero.tagline')}</em>
+          <em>{t('hero.tagline', "Real growth takes courage. We're here to hold space for it.")}</em>
         </p>
       </div>
 
@@ -106,11 +113,11 @@ const t = (key: string, fallback = '') => {
     <div class="trust-indicators" aria-label="Trust and privacy indicators">
       <div class="trust-item">
         <Icon name="lucide:shield-check" />
-        <span>{t('trust.features.0.title') || 'Complete Privacy'}</span>
+        <span>{t('trust.features.0.title', 'Complete Privacy')}</span>
       </div>
       <div class="trust-item">
         <Icon name="lucide:heart-handshake" />
-        <span>{t('trust.features.3.title') || 'Ethical AI'}</span>
+        <span>{t('trust.features.3.title', 'Ethical AI')}</span>
       </div>
       <div class="trust-item">
         <Icon name="lucide:clock" />

@@ -1,0 +1,330 @@
+---
+/**
+ * TrustSignals Component
+ *
+ * @description Displays privacy badges, guarantees, and trust indicators
+ * Uses translations for multilingual support
+ */
+
+import { Icon } from 'astro-icon/components'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+
+interface Props {
+  /**
+   * Additional CSS classes
+   */
+  class?: string
+  /**
+   * Display variant: 'horizontal', 'vertical', or 'grid'
+   */
+  variant?: 'horizontal' | 'vertical' | 'grid'
+  /**
+   * Show detailed descriptions
+   */
+  showDescriptions?: boolean
+}
+
+const { class: className, variant = 'horizontal', showDescriptions = true } = Astro.props
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  return getTranslation(translations, key, {}, fallback)
+}
+
+// Get trust features from translations
+const trustFeatures = translations.trust?.features || []
+---
+
+<section class:list={[className, 'trust-signals', `variant-${variant}`]} aria-labelledby="trust-headline">
+  <div class="container">
+    <div class="trust-header">
+      <h2 id="trust-headline">{t('trust.headline')}</h2>
+      <p class="trust-description">
+        {t('trust.description')}
+      </p>
+    </div>
+
+    <div class="trust-grid">
+      {
+        trustFeatures.map((feature, index) => {
+          // Map feature to appropriate icon
+          const iconMap = {
+            0: 'lucide:shield-check', // Complete privacy
+            1: 'lucide:lock', // Your data stays yours
+            2: 'lucide:trash-2', // Delete anytime
+            3: 'lucide:heart-handshake', // Ethical AI
+          }
+
+          return (
+            <div class="trust-item">
+              <div class="trust-icon">
+                <Icon name={iconMap[index] || 'lucide:check-circle'} />
+              </div>
+              <div class="trust-content">
+                <h3 class="trust-title">{feature.title}</h3>
+                {showDescriptions && <p class="trust-description-item">{feature.description}</p>}
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+
+    <div class="trust-footer">
+      <p class="trust-tagline">
+        <Icon name="lucide:shield" />
+        {t('trust.tagline')}
+      </p>
+    </div>
+
+    <!-- Additional trust indicators -->
+    <div class="additional-signals">
+      <div class="signal-item">
+        <Icon name="lucide:globe-lock" />
+        <span>GDPR Compliant</span>
+      </div>
+      <div class="signal-item">
+        <Icon name="lucide:server" />
+        <span>Secure Hosting</span>
+      </div>
+      <div class="signal-item">
+        <Icon name="lucide:mail-check" />
+        <span>No Spam Policy</span>
+      </div>
+      <div class="signal-item">
+        <Icon name="lucide:users" />
+        <span>Human Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+  @use '../assets/scss/base/mixins' as *;
+
+  .trust-signals {
+    background-color: light-dark(var(--color-neutral-50), var(--color-neutral-800));
+    padding-block: var(--space-2xl);
+  }
+
+  .trust-header {
+    margin-bottom: var(--space-2xl);
+    text-align: center;
+
+    h2 {
+      margin-bottom: var(--space-m);
+      color: var(--foreground-color);
+    }
+
+    .trust-description {
+      margin: 0 auto;
+      max-width: 600px;
+      color: var(--color-neutral-600);
+      font-size: var(--font-size-1);
+      line-height: 1.6;
+    }
+  }
+
+  .trust-grid {
+    display: grid;
+    gap: var(--space-l);
+    margin-bottom: var(--space-2xl);
+
+    // Variant layouts
+    &.variant-horizontal {
+      grid-template-columns: 1fr;
+
+      @include breakpoint(s) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include breakpoint(l) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    &.variant-vertical {
+      grid-template-columns: 1fr;
+      margin-inline: auto;
+      max-width: 600px;
+    }
+
+    &.variant-grid {
+      grid-template-columns: 1fr;
+
+      @include breakpoint(m) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  .variant-horizontal .trust-grid {
+    grid-template-columns: 1fr;
+
+    @include breakpoint(s) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint(l) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .variant-vertical .trust-grid {
+    grid-template-columns: 1fr;
+    margin-inline: auto;
+    max-width: 600px;
+  }
+
+  .variant-grid .trust-grid {
+    grid-template-columns: 1fr;
+
+    @include breakpoint(m) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-s);
+    transition: all var(--animation-speed-fast) var(--cubic-bezier);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-l);
+    background-color: var(--background-color);
+    padding: var(--space-l);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--elevation-2);
+      border-color: var(--link-color);
+    }
+
+    .variant-horizontal & {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .trust-icon {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-secondary-100) 100%);
+    width: 48px;
+    height: 48px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-primary-400);
+    }
+  }
+
+  .trust-content {
+    flex: 1;
+  }
+
+  .trust-title {
+    margin-bottom: var(--space-xs);
+    color: var(--foreground-color);
+    font-weight: 600;
+    font-size: var(--font-size-1);
+  }
+
+  .trust-description-item {
+    color: var(--color-neutral-600);
+    font-size: var(--font-size-0);
+    line-height: 1.5;
+  }
+
+  .trust-footer {
+    margin-bottom: var(--space-xl);
+    text-align: center;
+
+    .trust-tagline {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-2xs);
+      color: var(--foreground-color);
+      font-weight: 600;
+      font-size: var(--font-size-1);
+
+      svg {
+        width: 20px;
+        height: 20px;
+        color: var(--color-secondary-400);
+      }
+    }
+  }
+
+  .additional-signals {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-l);
+    border-top: 1px solid var(--border-color-subtle);
+    padding-top: var(--space-xl);
+
+    @include breakpoint(s) {
+      gap: var(--space-2xl);
+    }
+  }
+
+  .signal-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    color: var(--color-neutral-600);
+    font-weight: 500;
+    font-size: var(--font-size--1);
+
+    svg {
+      width: 16px;
+      height: 16px;
+      color: var(--color-secondary-400);
+    }
+  }
+
+  // Dark mode adjustments
+  :global(.darkmode) {
+    .trust-signals {
+      background-color: var(--color-neutral-900);
+    }
+
+    .trust-item {
+      border-color: var(--color-neutral-700);
+      background-color: var(--color-neutral-800);
+
+      &:hover {
+        background-color: var(--color-neutral-750);
+      }
+    }
+
+    .trust-icon {
+      background: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-secondary-900) 100%);
+    }
+  }
+
+  // Accessibility improvements
+  @media (prefers-reduced-motion: reduce) {
+    .trust-item {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+  .trust-item:focus-within {
+    @include outline;
+    outline-offset: 2px;
+  }
+</style>

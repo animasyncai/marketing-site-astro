@@ -17,25 +17,21 @@ export default defineConfig({
   // Internationalization configuration
   i18n: {
     defaultLocale: 'en',
-    locales: [
-      'en', // English (default)
-      'lt' // Lithuanian
-    ],
+    locales: ['en', 'lt'],
     routing: {
       prefixDefaultLocale: false,
-      redirectToDefaultLocale: true
+      redirectToDefaultLocale: false // Changed from true to false
     },
     fallback: {
-      lt: 'en' // Fallback Lithuanian to English if content missing
+      lt: 'en'
     }
   },
 
-  // Configure redirects for language handling
-  redirects: {
-    // Redirect old URLs to proper language structure if needed
-    '/home': '/',
-    '/lt/home': '/lt/',
-  },
+  // Remove redirects - these conflict with i18n routing
+  // redirects: {
+  //   '/home': '/',
+  //   '/lt/home': '/lt/',
+  // },
 
   integrations: [
     mdx(),
@@ -93,9 +89,6 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto'
   },
-
-  // Security headers for production (if needed in deployment)
-  // These would be configured at the deployment level (Vercel, Netlify, etc.)
 
   // Output configuration
   output: 'static',

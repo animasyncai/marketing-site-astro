@@ -1,47 +1,43 @@
 ---
 import Navigation from '../components/Navigation.astro'
+import LanguagePicker from '../components/LanguagePicker.astro'
 import { DarkMode, SkipLink } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
-/**
- * Header Component
- *
- * @description A component that displays the header of the website
- */
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  return getTranslation(translations, key, {}, fallback)
+}
 ---
 
 <header>
   <SkipLink />
   <Navigation>
     <li class="menu-item">
-      <a href="/">Home</a>
+      <a href="/">{t('navigation.home')}</a>
     </li>
     <li class="menu-item">
-      <a href="/blog/">Blog</a>
+      <a href="#how-it-works">{t('navigation.howItWorks')}</a>
     </li>
     <li class="menu-item">
-      <a href="/portfolio/">Portfolio</a>
+      <a href="#pricing">{t('navigation.pricing')}</a>
     </li>
     <li class="menu-item has-dropdown">
       <button aria-haspopup="true" aria-expanded="false">
-        Theme features
+        More
         <Icon name="lucide:chevron-down" size="32" />
       </button>
       <ul class="dropdown-menu">
         <li class="submenu-item">
-          <a href="/accessibility-statement">Accessibility statement</a>
+          <a href="/accessibility-statement">{t('navigation.privacy')}</a>
         </li>
         <li class="submenu-item">
-          <a href="/accessible-components">Accessible components</a>
+          <a href="/accessible-components">Components</a>
         </li>
         <li class="submenu-item">
-          <a href="/color-contrast-checker">Color contrast checker</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/markdown-page/">Markdown page</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/mdx-page/">MDX page</a>
+          <a href="/color-contrast-checker">Color Checker</a>
         </li>
         <li class="submenu-item">
           <a href="/404-page">404 page</a>
@@ -49,13 +45,10 @@ import { Icon } from 'astro-icon/components'
       </ul>
     </li>
     <li class="menu-item highlight">
-      <a href="https://accessible-astro.incluud.dev/">Docs </a>
+      <a href="#early-access">{t('navigation.joinEarlyAccess')}</a>
     </li>
-    <li class="menu-item type-icon animate-rotate">
-      <a href="https://github.com/markteekman/accessible-astro-starter">
-        <Icon name="lucide:github" />
-        <span class="sr-only">Go to the GitHub page</span>
-      </a>
+    <li class="menu-item type-icon">
+      <LanguagePicker variant="toggle" />
     </li>
     <li class="menu-item type-icon animate-rotate">
       <DarkMode>
@@ -75,6 +68,21 @@ import { Icon } from 'astro-icon/components'
       svg {
         inline-size: 30px;
         block-size: 30px;
+      }
+
+      // Special styling for language picker
+      .language-toggle {
+        margin-inline: 0;
+      }
+
+      .language-toggle-link {
+        transition: background-color var(--animation-speed-fast) var(--cubic-bezier);
+        border-radius: var(--radius-s);
+        padding: var(--space-3xs);
+
+        &:hover {
+          background-color: var(--border-color-subtle);
+        }
       }
     }
   }
