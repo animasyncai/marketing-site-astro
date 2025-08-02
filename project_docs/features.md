@@ -1,5 +1,47 @@
 # Features Overview
 
+This section describes all features and their working principles in Withinly project.
+
+## Traits
+Traits are used to understand users emotional and psichological picture. They consist of short questionairres which are then evaluated and used to genenerate insights for the user, AI consultant and reports.
+
+Currently we have 4 traits:
+- Love language 
+- Attachment type
+- Mindfulness level
+- Self acceptance level
+
+While all of these are very distinct and our questionairres identify primary values, like for example primaryLoveLanguage: touch - we avoid any labels. It's in the nature of our product to encompass these things into story telling and avoiding labeling people as they tend to fixate.
+
+Each trait produces short user facing report and thing we call 'psychologistNotes' which is then used by the AI consultant to enable it to go deeper and more personal into reflection together with the user. The generation of this information and evaluation of queastionairres is done by a prompt. 
+
+We might add more traits as we go and expand our report base or functionality.
+
+### Love language
+Main goal of the trait is to identify primary and secondary love languages and their lovers archetype. 
+
+Main prompt: `/traits/love-language.md`
+Example output: `/traits/love-language-example.md`
+
+### Attachment type
+Main goal of the trait is to identify primary and secondary love languages and their lovers archetype. 
+
+Main prompt: `/traits/attachment-type.md`
+Example output: `/traits/attachment-type-example.md`
+
+### Mindfulness level
+Main goal of the trait is to identify primary and secondary love languages and their lovers archetype. 
+
+Main prompt: `/traits/mindfulness-level.md`
+Example output: `/traits/mindfulness-level-example.md`
+
+### Self acceptance level
+Main goal of the trait is to identify primary and secondary love languages and their lovers archetype. 
+
+Main prompt: `/traits/self-acceptance.md`
+Example output: `/traits/self-acceptance-example.md`
+
+
 ## Reports
 - Trait-based reports (e.g., Attachment, Love Language, Mindfulness)
 - Deep synthesis reports (e.g., Inner Portrait, Relationship Report)
