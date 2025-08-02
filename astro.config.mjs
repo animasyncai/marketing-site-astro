@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx'
 import compress from 'astro-compress'
 import icon from 'astro-icon'
 import tailwindcss from '@tailwindcss/vite'
+import vercel from '@astrojs/vercel/serverless'
 import { fileURLToPath } from 'url'
 
 // https://astro.build/config
@@ -78,6 +79,14 @@ export default defineConfig({
 
   // Output configuration
   output: 'server',
+
+  // Adapter configuration for Vercel
+  adapter: vercel({
+    // Optional: Configure image optimization
+    imageService: true,
+    // Optional: Configure function settings
+    functionPerRoute: false,
+  }),
 
   // Markdown configuration with language support
   markdown: {
