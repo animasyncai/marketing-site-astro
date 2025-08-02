@@ -111,7 +111,7 @@ const skipLinkId = 'main-content'
           {t('navigation.features')}
         </a>
         <a
-          href="/privacy"
+          href="#privacy"
           class="mobile-nav-link block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900"
           data-mobile-nav-item
         >
@@ -213,9 +213,16 @@ const skipLinkId = 'main-content'
           const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href')
           const target = document.querySelector(href || '') as HTMLElement
           if (target) {
-            const headerHeight = header?.offsetHeight || 64
-            const targetPosition = target.offsetTop - headerHeight - 16 // Extra 16px spacing
+            // Get the current header height
+            const getHeaderHeight = () => {
+              const currentHeader = document.querySelector('header') as HTMLElement
+              return currentHeader?.offsetHeight || 64
+            }
+            
+            const headerHeight = getHeaderHeight()
+            const targetPosition = target.offsetTop - headerHeight - 24 // Extra 24px spacing for better visual separation
 
+            // Scroll to the target position with smooth behavior
             window.scrollTo({
               top: targetPosition,
               behavior: 'smooth',

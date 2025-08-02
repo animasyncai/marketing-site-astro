@@ -37,40 +37,40 @@
   },
   "hook": {
     "headline": "We all carry patterns we can't quite name.",
-    "description": "Why certain people feel like home. Why conflict makes us run or fight. Why love sometimes feels scary. Why we push away what we need most.",
-    "value": "Withinly helps you understand these patterns — not through generic advice or quick fixes, but through deep reflection and an ongoing dialogue with an AI trained to see you, not categorize you.",
-    "quote": "This isn't about labels. It's about finally making sense of your story."
+    "description": "Why some people feel like home. Why conflict makes us shut down—or fight for closeness. Why love can feel both safe and scary. Why we sometimes push away what we need most.",
+    "value": "Withinly helps you see these patterns clearly—not with labels or quick fixes, but through deep reflection and an ongoing dialogue with an AI that builds on what you share with nuance and care. Useful whether you’re single, in a relationship, or simply curious about your inner world.",
+    "quote": "This isn’t about labels. It’s about finally having words for your story."
   },
   "howItWorks": {
     "headline": "A journey inward, at your own pace",
-    "subheadline": "Self-discovery isn't a destination—it's an unfolding. Each step reveals something new, and every insight builds on the last.",
+    "subheadline": "Self‑understanding isn’t a destination. It unfolds. Each reflection builds on the last—and your AI consultant carries the thread using your traits and recent conversations.",
     "phase1": "Begin",
     "phase2": "Reflect",
     "phase3": "Connect",
     "phase4": "Grow",
     "step1": {
       "title": "Start with gentle discovery",
-      "description": "Short, thoughtful assessments that reveal how you connect, love, and relate. No right answers — just honest reflection.",
+      "description": "Short, thoughtful trait check‑ins help you notice how you relate, express love, and respond under stress. No right answers—just honest noticing.",
       "emotion": "Curiosity"
     },
     "step2": {
-      "title": "Receive your first insights",
-      "description": "A personal report that reads like a letter from someone who truly sees you. Free users get the essence; members unlock the full depth.",
+      "title": "Receive your Inner Portrait",
+      "description": "A personal narrative that brings your traits together with warmth and clarity. Free members get the essence; full members unlock deeper, integrative insight.",
       "emotion": "Recognition"
     },
     "step3": {
       "title": "Begin the conversation",
-      "description": "Meet your AI consultant — trained in psychological wisdom but speaks like a trusted friend. They remember your journey and help you connect the dots.",
+      "description": "Meet your AI consultant—grounded in psychological wisdom, speaking like a trusted friend. It uses your traits and recent reflections to help you make sense of patterns and support you as they evolve.",
       "emotion": "Understanding"
     },
     "step4": {
       "title": "Go deeper when you're ready",
-      "description": "Unlock specialized reports on conflict patterns, relationship dynamics, family echoes, and more. Each one reveals another layer of understanding.",
+      "description": "Unlock specialized reports—Conflict Compass, Relationship Blueprint, Stress Signals, and more. Explore simulated dynamics or sync privately with a real partner.",
       "emotion": "Transformation"
     },
     "insight": {
-      "title": "Your journey is uniquely yours",
-      "description": "There's no timeline, no pressure, no \"right way\" to grow. Some days you'll want to dive deep, others you'll prefer gentle reflection. Withinly adapts to where you are."
+      "title": "Your pace is the right pace",
+      "description": "Some days you’ll dive deep; other days you’ll simply check in. Withinly adapts to where you are—and remembers where you’ve been."
     }
   },
   "different": {
@@ -82,7 +82,7 @@
     "doOffer": {
       "title": "We do offer:",
       "items": [
-        "Nuanced understanding of your patterns",
+        "Nuanced understanding of your traits and patterns",
         "A companion who remembers your growth",
         "Insights that evolve with you",
         "Space for all your emotions"
@@ -126,7 +126,7 @@
         "author": "Early member"
       },
       {
-        "quote": "The report about my relationship patterns made me sob. Good tears. Recognition tears.",
+        "quote": "The report about my relationship patterns made me cry—clean tears. It felt like being seen.",
         "author": "Beta tester"
       },
       {

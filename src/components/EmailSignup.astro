@@ -45,7 +45,7 @@ const successId = `${formId}-success`
     )
   }
 
-  <form id={formId} class="space-y-4" novalidate data-form="email-signup">
+  <form id={formId} class="space-y-4" novalidate data-form="email-signup" action="javascript:void(0)" method="POST">
     <!-- Honeypot -->
     <input type="text" name="website" tabindex="-1" class="sr-only" aria-hidden="true" />
 
@@ -118,23 +118,32 @@ const successId = `${formId}-success`
     </p>
 
     <!-- Translation data for JavaScript -->
-    <script type="application/json" data-translations>
-      {JSON.stringify({
-        emailRequired: t('validation.emailRequired'),
-        emailInvalid: t('validation.emailInvalid'),
-        emailTooLong: t('validation.emailTooLong'),
-        submitError: t('validation.submitError'),
-        networkError: t('validation.networkError'),
-        successMessage: t('signup.successMessage'),
-        loadingButton: t('signup.loadingButton')
-      })}
-    </script>
+    <div 
+      data-translations 
+      data-email-required={t('validation.emailRequired', 'Email address is required')}
+      data-email-invalid={t('validation.emailInvalid', 'Please enter a valid email address')}
+      data-email-too-long={t('validation.emailTooLong', 'Email address is too long')}
+      data-submit-error={t('validation.submitError', 'Something went wrong. Please try again.')}
+      data-network-error={t('validation.networkError', 'Network error. Please check your connection and try again.')}
+      data-success-message={t('signup.successMessage', "Welcome! We'll be in touch soon.")}
+      data-loading-button={t('signup.loadingButton', 'Signing up...')}
+      class="hidden"
+    ></div>
   </form>
 </div>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  // Declare gtag function for TypeScript
+  declare global {
+    interface Window {
+      gtag?: (command: string, action: string, params: Record<string, any>) => void;
+    }
+  }
+
+  // Function to initialize form handlers
+  function initializeFormHandlers() {
     const signupForms = document.querySelectorAll('[data-form="email-signup"]')
+    console.log('Found signup forms:', signupForms.length)
 
     signupForms.forEach((form) => {
       const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement
@@ -144,9 +153,17 @@ const successId = `${formId}-success`
       const buttonText = submitButton?.querySelector('.button-text') as HTMLElement
       const buttonLoading = submitButton?.querySelector('.button-loading') as HTMLElement
       
-      // Get translations from JSON script tag
-      const translationsScript = form.querySelector('script[data-translations]') as HTMLScriptElement
-      const translations = translationsScript ? JSON.parse(translationsScript.textContent || '{}') : {}
+      // Get translations from data attributes
+      const translationsElement = form.querySelector('[data-translations]') as HTMLElement
+      const translations = translationsElement ? {
+        emailRequired: translationsElement.dataset.emailRequired || 'Email address is required',
+        emailInvalid: translationsElement.dataset.emailInvalid || 'Please enter a valid email address',
+        emailTooLong: translationsElement.dataset.emailTooLong || 'Email address is too long',
+        submitError: translationsElement.dataset.submitError || 'Something went wrong. Please try again.',
+        networkError: translationsElement.dataset.networkError || 'Network error. Please check your connection and try again.',
+        successMessage: translationsElement.dataset.successMessage || "Welcome! We'll be in touch soon.",
+        loadingButton: translationsElement.dataset.loadingButton || 'Signing up...'
+      } : {}
 
       if (!emailInput || !submitButton || !errorMessage || !successMessage) return
 
@@ -240,9 +257,9 @@ const successId = `${formId}-success`
             showMessage(successMessage, result.message || translations.successMessage || "Welcome! We'll be in touch soon.")
             emailInput.value = ''
 
-            // Track conversion
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'signup', {
+            // Track conversion (only if gtag is available)
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'signup', {
                 event_category: 'engagement',
                 event_label: 'email_signup',
               })
@@ -257,5 +274,15 @@ const successId = `${formId}-success`
         }
       })
     })
-  })
+  }
+
+  // Initialize on page load and on astro:page-load
+  document.addEventListener('astro:page-load', initializeFormHandlers)
+  
+  // Also initialize immediately if DOM is already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeFormHandlers)
+  } else {
+    initializeFormHandlers()
+  }
 </script>

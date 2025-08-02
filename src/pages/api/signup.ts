@@ -2,10 +2,14 @@
  * Email Signup API Endpoint
  *
  * @description Handles email signups for Withinly early access
- * Includes validation, rate limiting, and Mailjet integration preparation
+ * Includes validation, rate limiting, and Mailjet integration
  */
 
+// Ensure this route is not prerendered
+export const prerender = false
+
 import type { APIRoute } from 'astro'
+import Mailjet from 'node-mailjet'
 
 // Simple in-memory rate limiting (replace with Redis in production)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
@@ -46,25 +50,96 @@ function checkRateLimit(ip: string): { allowed: boolean; resetTime?: number } {
   return { allowed: true }
 }
 
-// Mock Mailjet integration (replace with actual implementation)
-async function addToMailjetList(email: string, source: string): Promise<{ success: boolean; message?: string }> {
-  // TODO: Replace with actual Mailjet API integration
-  // For now, just log the signup
-  console.log(`New signup: ${email} from ${source}`)
+// Mailjet integration
+async function addToMailjetList(email: string, _source: string): Promise<{ success: boolean; message?: string }> {
+  try {
+    // Get Mailjet credentials from environment variables
+    const apiKey = import.meta.env.MAILJET_API_KEY
+    const apiSecret = import.meta.env.MAILJET_API_SECRET
+    const contactListId = import.meta.env.MAILJET_LIST_ID
 
-  // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 500))
+    if (!apiKey || !apiSecret || !contactListId) {
+      console.error('Missing Mailjet environment variables:', {
+        hasApiKey: !!apiKey,
+        hasApiSecret: !!apiSecret,
+        hasContactListId: !!contactListId,
+      })
+      return {
+        success: false,
+        message: 'Email service configuration error',
+      }
+    }
 
-  // Mock success response
-  return {
-    success: true,
-    message: 'Successfully added to early access list',
+    console.log('Mailjet credentials found, attempting to add contact...')
+
+    // Initialize Mailjet client
+    const mailjet = new Mailjet({
+      apiKey,
+      apiSecret,
+    })
+
+    // Add contact directly to the list
+    const response = await mailjet
+      .post('contactslist', { version: 'v3' })
+      .id(contactListId)
+      .action('managecontact')
+      .request({
+        Email: email,
+        Action: 'addnoforce',
+      })
+
+    if (response.body && Array.isArray(response.body) && response.body.length > 0) {
+      console.log(`Successfully added ${email} to Mailjet list`)
+      return {
+        success: true,
+        message: 'Successfully added to early access list',
+      }
+    } else {
+      // Log the actual response for debugging
+      console.log('Mailjet response:', response.body)
+      console.log('Response type:', typeof response.body)
+      console.log('Is array:', Array.isArray(response.body))
+
+      // Check if it's a different success format
+      if (response.body && typeof response.body === 'object') {
+        console.log(`Successfully added ${email} to Mailjet list (alternative format)`)
+        return {
+          success: true,
+          message: 'Successfully added to early access list',
+        }
+      }
+
+      throw new Error('Unexpected response from Mailjet')
+    }
+  } catch (error: unknown) {
+    console.error('Mailjet API error:', error)
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      statusCode: error && typeof error === 'object' && 'statusCode' in error ? error.statusCode : 'N/A',
+      errorMessage: error && typeof error === 'object' && 'ErrorMessage' in error ? error.ErrorMessage : 'N/A',
+    })
+
+    // Handle specific Mailjet errors
+    if (error && typeof error === 'object' && 'statusCode' in error && error.statusCode === 400) {
+      const errorMessage = (error as { ErrorMessage?: string }).ErrorMessage
+      if (errorMessage?.includes('already exists')) {
+        return {
+          success: true,
+          message: 'You are already on our list!',
+        }
+      }
+    }
+
+    return {
+      success: false,
+      message: 'Failed to add to email list',
+    }
   }
 }
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
-    // Get client IP for rate limiting
+    // Get client IP for rate limiting (handle both server and static modes)
     const clientIP = clientAddress || 'unknown'
 
     // Check rate limit
@@ -91,7 +166,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     let body: { email?: string; source?: string; timestamp?: number }
     try {
       body = await request.json()
-    } catch (error) {
+    } catch {
       return new Response(
         JSON.stringify({
           success: false,
@@ -106,7 +181,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }
 
     // Validate required fields
-    const { email, source = 'website', timestamp } = body
+    const { email, source = 'website' } = body
 
     if (!email || typeof email !== 'string') {
       return new Response(
@@ -167,7 +242,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       return new Response(
         JSON.stringify({
           success: true,
-          message: "Welcome! We'll be in touch soon with your early access.",
+          message: result.message || "Welcome! We'll be in touch soon with your early access.",
           data: {
             email,
             timestamp: Date.now(),
@@ -178,8 +253,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           headers: { 'Content-Type': 'application/json' },
         },
       )
-    } catch (error) {
-      console.error('Mailjet integration error:', error)
+    } catch {
+      console.error('Mailjet integration error')
 
       return new Response(
         JSON.stringify({

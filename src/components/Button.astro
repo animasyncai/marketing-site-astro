@@ -56,6 +56,7 @@ const {
   fullWidth = false,
   loading = false,
   class: className,
+  href,
   ...attrs
 } = Astro.props
 
@@ -90,21 +91,37 @@ const variantClasses = {
 }
 
 const allClasses = [...baseClasses, sizeClasses[size], variantClasses[variant], className].filter(Boolean).join(' ')
+
+// Determine if we should render as an anchor or button
+const isAnchor = !!href
 ---
 
-<button type={type} disabled={disabled || loading} class={allClasses} {...attrs}>
-  {loading && <Icon name="lucide:loader-2" class="h-4 w-4 animate-spin" />}
+{isAnchor ? (
+  <a href={href} class={allClasses} {...attrs}>
+    {loading && <Icon name="lucide:loader-2" class="h-4 w-4 animate-spin" />}
 
-  {!loading && icon && iconPosition === 'left' && <Icon name={icon} class="h-4 w-4" />}
+    {!loading && icon && iconPosition === 'left' && <Icon name={icon} class="h-4 w-4" />}
 
-  <slot />
+    <slot />
 
-  {!loading && icon && iconPosition === 'right' && <Icon name={icon} class="h-4 w-4" />}
-</button>
+    {!loading && icon && iconPosition === 'right' && <Icon name={icon} class="h-4 w-4" />}
+  </a>
+) : (
+  <button type={type} disabled={disabled || loading} class={allClasses} {...attrs}>
+    {loading && <Icon name="lucide:loader-2" class="h-4 w-4 animate-spin" />}
+
+    {!loading && icon && iconPosition === 'left' && <Icon name={icon} class="h-4 w-4" />}
+
+    <slot />
+
+    {!loading && icon && iconPosition === 'right' && <Icon name={icon} class="h-4 w-4" />}
+  </button>
+)}
 
 <style>
   /* Custom focus ring for better accessibility */
-  button:focus-visible {
+  button:focus-visible,
+  a:focus-visible {
     outline: none;
     box-shadow:
       0 0 0 2px var(--background-color),
