@@ -4,9 +4,9 @@ Withinly is an AI-powered self-discovery and emotional insight tool. It helps us
 
 ## Key Features
 
-- In-depth psychological questionnaires (e.g., Attachment, Self-Acceptance)
-- AI-generated narrative reports and summaries
-- Emotionally intelligent conversation/chat assistant
+- Trait questionairres (love language, attahment type, mindfulness, etc)
+- AI-generated narrative reports and summaries based on trait data
+- Emotionally intelligent conversation/chat assistant who uses context from traits
 - Relationship simulations & partner reflections
 - Token-based economy for usage control
 
