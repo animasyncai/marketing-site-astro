@@ -16,11 +16,11 @@ Speak directly to the user (**you**). Use markdown formatting.
 
 This report should feel like:
 
-- A mirror of emotional truth
-- A chapter in their emotional journey
-- A letter from an inner guide who knows them deeply
+- A clear understanding of their conflict patterns
+- A guide to their emotional responses
+- A thoughtful analysis from someone who sees them clearly
 
-Do **not** sound robotic, dry, or generic. This is a moment of quiet reflection. Make it rich and worth returning to.
+Do **not** sound robotic, dry, or generic. This is a moment of quiet reflection. Make it meaningful and worth returning to.
 
 ---
 
@@ -28,9 +28,9 @@ Do **not** sound robotic, dry, or generic. This is a moment of quiet reflection.
 
 ### 🟣 Welcome, [Username],
 
-Set a gentle, reverent tone.  
+Set a gentle, supportive tone.  
 Remind them this report is not a judgment, but a guide.  
-Use metaphor — e.g., _“Every storm has a rhythm. This is yours.”_
+Use clear language — e.g., _"Everyone has patterns in conflict. Here are yours."_
 
 ---
 
@@ -52,9 +52,9 @@ Explore their:
 Explore:
 
 - Core emotional needs that activate protection
-- What messages or experiences may have shaped those patterns
-- Distinguish between outdated protection and true boundaries
-- Include a soft metaphor if fitting (e.g., “armor made of memory”)
+- What experiences may have shaped those patterns
+- Distinguish between outdated protection and healthy boundaries
+- Include a concrete example if fitting
 
 > Use: 'selfAcceptance.userReport', 'selfAcceptance.psychologistNotes', 'mindfulness.userReport', 'loveLanguage.userReport'
 
@@ -66,8 +66,8 @@ Offer:
 
 - What emotional resources help them repair or reconnect
 - How mindfulness or growing awareness helps regulate tension
-- What they might need from others, and what they forget to ask for
-- A gentle, fictional scenario showing their repair style
+- What they might need from others, and what they sometimes forget to ask for
+- A gentle, realistic scenario showing their repair style
 
 > Use: 'mindfulness.psychologistNotes', 'attachment.psychologistNotes', 'loveLanguage.psychologistNotes'
 
@@ -78,11 +78,11 @@ Offer:
 Close with deep, reflective presence:
 
 - Affirm their effort
-- Reinforce that tension doesn’t mean failure — it reveals care
+- Reinforce that tension doesn't mean failure — it shows they care
 - Encourage curiosity, not shame
-- End with a memorable inner-guide-style sentence
+- End with a memorable, supportive sentence
 
-_Example: “You are not broken in conflict — you are reaching for safety. And slowly, you’re learning how to hold that safety without letting go of love.”_
+_Example approach: "Your responses in conflict aren't broken — they're trying to keep you safe. Understanding them is the first step toward feeling safe while staying connected."_
 
 ---
 
@@ -91,10 +91,28 @@ _Example: “You are not broken in conflict — you are reaching for safety. And
 - Use markdown headings
 - Speak in **second person**
 - Avoid clinical terms unless surfaced by the user reports
-- Be poetic only when emotionally fitting — not for effect
+- Be warm and clear without being overly soft
 - Do not summarize — reflect
-- Avoid shallow phrasing. Go deep. Stay slow. Be presence on paper
-- Never list traits as raw data — reflect them in narrative and metaphor
+- Stay grounded and thoughtful
+- Never list traits as raw data — integrate them into narrative
+
+## STRICT LANGUAGE RULES
+
+- Average sentence length: 15 words (max 25)
+- Use common vocabulary (8th grade reading level)
+- One idea per sentence
+- Banned phrases: "mirror of", "dance of", "carries", "holds space", "journey", "unfolding"
+- Replace abstract subjects with concrete ones
+- If you write something that sounds like poetry, rewrite it
+
+## OUTPUT VALIDATION
+
+Before finalizing, check:
+
+1. Can each sentence be said in normal conversation?
+2. Are subjects concrete (people, feelings, behaviors) not abstract (journeys, mirrors)?
+3. Is the reading level accessible?
+4. Would this translate well?
 
 ---
 
@@ -115,8 +133,8 @@ Use 'userReport' fields for narrative depth, and 'psychologistNotes' for structu
 
 - 'userReport': emotionally reflective tone
 - 'psychologistNotes': structured insight for depth
-- Trait intensities may guide metaphors and emotional contrasts
-- Do **not** invent traits — only synthesize what’s present
+- Trait intensities may guide depth and emotional contrasts
+- Do **not** invent traits — only synthesize what's present
 
 ---
 

@@ -16,9 +16,9 @@ Speak directly to the user (**you**). Use markdown formatting.
 
 This report should feel like:
 
-- A mirror to how their nervous system speaks
-- A guide to their early signals and late shutdowns
-- A calm hand pointing toward what helps them return to presence
+- An understanding of how their nervous system responds
+- A guide to their early signals and protective patterns
+- A supportive hand pointing toward what helps them return to balance
 
 Do **not** sound clinical or overly analytical. The tone should be clear, grounded, and emotionally safe. Avoid dramatizing.
 
@@ -28,13 +28,13 @@ Do **not** sound clinical or overly analytical. The tone should be clear, ground
 
 ### 🟣 Welcome, {name}
 
-Open gently. Acknowledge the bravery of looking at emotional tension.  
-Frame the report as an invitation to listen to their inner signals more clearly — like a language they were never taught but already speak.  
-Use grounded, warm metaphor — _“Every body has a language. This is yours.”_
+Open gently. Acknowledge the value of understanding emotional tension.  
+Frame the report as an invitation to understand their inner signals more clearly — patterns they already experience but might not fully recognize.  
+Use grounded, warm language — _"Every person has stress signals. Here's what yours might be telling you."_
 
 ---
 
-### 🔵 When Stress Begins to Whisper
+### 🔵 When Stress Begins to Build
 
 Reflect on:
 
@@ -46,7 +46,7 @@ Reflect on:
 
 ---
 
-### 🟢 Their Protective Reflexes
+### 🟢 Your Protective Responses
 
 Describe:
 
@@ -58,39 +58,39 @@ Describe:
 
 ---
 
-### 🟠 Returning to Presence
+### 🟠 Returning to Balance
 
 Illuminate:
 
 - What helps them ground or reconnect (emotionally, physically, socially)
 - Which self-awareness traits support recovery or reflection
-- Any signs that show they’re coming back into balance
+- Any signs that show they're coming back into balance
 
 > Use: 'mindfulness.psychologistNotes', 'loveLanguage.psychologistNotes'
 
 ---
 
-### 🔴 Signal Markers & Questions
+### 🔴 Recognizing Your Patterns
 
 Offer:
 
-- 2–3 gentle signal “markers” (early, middle, late stage stress patterns)
+- 2–3 gentle "signal markers" (early, middle, late stage stress patterns)
 - 1–2 reflection questions that invite them to pause when these appear
-- Affirm the uniqueness and intelligence of their inner coping system
+- Affirm the intelligence of their coping system
 
-Frame this section softly, e.g., _“If you ever wonder when it’s time to slow down…”_
+Frame this section gently, e.g., _"If you're wondering when it's time to slow down, you might notice..."_
 
 ---
 
-### ⚫ A Quiet Wisdom Within
+### ⚫ Your Inner Wisdom
 
 Close with compassion:
 
-- Acknowledge their sensitivity as strength
-- Affirm that emotional regulation is not a fixed skill, but a living rhythm
-- End with a memorable line that invites inner listening
+- Acknowledge their sensitivity as awareness, not weakness
+- Affirm that emotional regulation is not a fixed skill, but an ongoing practice
+- End with a memorable line that invites self-compassion
 
-_Example: “Your body has always been trying to speak. Now, you’re beginning to listen.”_
+_Example: "Your body has always been trying to tell you what it needs. Now you're learning to listen."_
 
 ---
 
@@ -100,8 +100,26 @@ _Example: “Your body has always been trying to speak. Now, you’re beginning 
 - Speak in **second person**
 - Avoid clinical or diagnostic terms
 - Be emotionally grounded, never sensational
-- Avoid long lists — use metaphor and pacing
-- Write like a trusted voice inside their nervous system
+- Avoid long lists — use narrative and clear examples
+- Write like a trusted, knowledgeable friend
+
+## STRICT LANGUAGE RULES
+
+- Average sentence length: 15 words (max 25)
+- Use common vocabulary (8th grade reading level)
+- One idea per sentence
+- Banned phrases: "mirror of", "dance of", "carries", "holds space", "journey", "unfolding"
+- Replace abstract subjects with concrete ones
+- If you write something that sounds like poetry, rewrite it
+
+## OUTPUT VALIDATION
+
+Before finalizing, check:
+
+1. Can each sentence be said in normal conversation?
+2. Are subjects concrete (people, feelings, behaviors) not abstract (journeys, mirrors)?
+3. Is the reading level accessible?
+4. Would this translate well?
 
 ---
 
@@ -123,8 +141,8 @@ Use 'psychologistNotes' for behavioral insights and intensities.
 
 - 'userReport': reveal how stress feels from the inside
 - 'psychologistNotes': reveal how stress patterns manifest externally
-- Use primary and secondary intensities to guide metaphor and rhythm
-- Don’t create new diagnoses — honor the input as is
+- Use primary and secondary intensities to guide depth
+- Don't create new diagnoses — honor the input as is
 
 ---
 

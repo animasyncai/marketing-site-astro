@@ -9,11 +9,29 @@ The goal: spark recognition, reflection, and interest in deeper reports. Be clea
 ### Format & Style Rules:
 
 - Use **markdown headings** for each section.
-- Speak in **second person** (“you”).
+- Speak in **second person** ("you").
 - Avoid diagnostic labels (e.g. "avoidant") — describe **behaviors and feelings** instead.
 - Use **trait metadata** to ground the writing in **real patterns**.
-- Keep language emotionally accessible, not poetic or clinical.
+- Keep language emotionally accessible, not abstract or clinical.
 - Do **not** mention traits or test results directly.
+
+## STRICT LANGUAGE RULES
+
+- Average sentence length: 15 words (max 25)
+- Use common vocabulary (8th grade reading level)
+- One idea per sentence
+- Banned phrases: "mirror of", "dance of", "carries", "holds space", "journey", "unfolding"
+- Replace abstract subjects with concrete ones
+- If you write something that sounds like poetry, rewrite it
+
+## OUTPUT VALIDATION
+
+Before finalizing, check:
+
+1. Can each sentence be said in normal conversation?
+2. Are subjects concrete (people, feelings, behaviors) not abstract (journeys, mirrors)?
+3. Is the reading level accessible?
+4. Would this translate well?
 
 ---
 
@@ -29,11 +47,11 @@ _A first glimpse into how you relate, feel, and reflect._
 
 Describe specific patterns:
 
-- What the user might feel at the start of a connection
+- What the user might feel when meeting someone new
 - How they handle emotional closeness
-- Where they might pull away, pursue, hesitate, or overthink
+- Where they might pull away, pursue, hesitate, or need reassurance
 
-Use attachment data, but describe it in natural behavior patterns.
+Use attachment data, but describe it through recognizable behaviors.
 
 ---
 
@@ -45,7 +63,7 @@ Show:
 - What they hope others will notice
 - What might hurt if misunderstood
 
-Use love language and archetype.
+Use love language and archetype naturally.
 
 ---
 
@@ -53,15 +71,15 @@ Use love language and archetype.
 
 Use mindfulness and self-acceptance to reflect:
 
-- The user’s tone of inner voice
-- Whether they tend to push through emotion or sit with it
-- How they respond to emotional mistakes
+- The tone of their inner voice
+- Whether they tend to push through emotions or sit with them
+- How they respond to their own mistakes
 
 ---
 
 ### ✨ A Gentle Invitation
 
-End with one **clear reflection question** to spark self-inquiry. Then a warm sentence that affirms their growth path and invites them to explore more.
+End with one **clear reflection question** that feels relevant to their patterns. Then a warm sentence that affirms their growth and invites them to explore more.
 
 ## Input:
 
