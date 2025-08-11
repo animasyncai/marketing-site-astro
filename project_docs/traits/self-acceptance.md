@@ -118,39 +118,45 @@ And this user input
 <user_report>
 For user:
 
-- Write a warm, emotionally precise reflection (max 300 words).
+- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
 - Use markdown formatting.
+- Create recognition without being pushy or using hard labels.
 
 <tone_of_voice>
-Use a **stable, compassionate, and psychologically grounded tone**.
+Use a **direct but not harsh, insightful but not judgmental tone**.
 
-- It should feel **human, reflective, and emotionally safe**
-- Avoid overly casual, clinical, or poetic phrasing
-- Use clear, natural language that maintains **emotional depth and containment**
-- The tone must be **translation-friendly** and suitable for multiple languages
+- Make specific observations about their inner dialogue and self-relationship
+- Avoid labels about their "level" of self-acceptance
+- Use descriptive language about how they treat themselves
+- Be precise but emotionally safe
+- Create recognition about their internal patterns
   </tone_of_voice>
 
-- Describe how they experience their inner world:
+- Start with how they relate to themselves:
 
-  > "You [specific pattern of self-awareness or emotional processing]"
+  > "You [how they observe themselves] but [how they respond to what they see]."
 
-- Focus on their internal experience:
-  - How they notice and respond to emotions
-  - The tone of their inner dialogue
-  - Their relationship with difficult feelings
-  - Capacity for self-observation without judgment
+- Focus on ONE core pattern about their self-relationship:
+  - How they notice their emotions and reactions
+  - The tone of their inner voice
+  - How they handle self-criticism or difficult feelings about themselves
 
-- Be specific about their current level without labeling:
+- Include a specific moment they'll recognize about their inner experience
+
+- Show their current way of being with themselves without judgment:
   - What they can see about themselves vs. what feels unclear
-  - Moments of self-compassion vs. self-criticism
-  - Their ability to step back and observe their patterns
+  - How they respond to their own mistakes or struggles
 
-- Help them feel seen in their current state, not where they "should" be
+- Use gentle, observational language:
+  - "You tend to..." instead of "You are..."
+  - "Part of you..." instead of "You always..."
+  - "What you don't always notice..." instead of "What you can't see..."
 
-- Do NOT name levels, scores, or types
+- End subtly about their self-relationship:
+  > "This is just one layer of how you [meet yourself/hear your inner voice/handle being human]."
 
-- End with validation of their current awareness: > "The way you're learning to be with yourself matters. You don't need to have it all figured out."
-  </user_report>
+**WORD COUNT: 150-200 words maximum. Focus on self-relationship recognition.**
+</user_report>
 
 <psychologist_notes>
 For your own analysis as a psychologist:

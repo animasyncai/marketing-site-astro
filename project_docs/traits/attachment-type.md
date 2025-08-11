@@ -182,37 +182,39 @@ And this user input
 <user_report>
 For user:
 
-- Write a 3–4 paragraph reflection (max 350 words).
+- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
 - Use markdown formatting.
-- Use the following tone:
+- Create recognition without being pushy or using hard labels.
 
 <tone_of_voice>
-Use a **stable, compassionate, and psychologically grounded tone**.
+Use a **direct but not harsh, insightful but not judgmental tone**.
 
-- It should feel **human, reflective, and emotionally safe**
-- Avoid overly casual, clinical, or poetic phrasing
-- Use clear, natural language that maintains **emotional depth and containment**
-- The tone must be **translation-friendly** and suitable for multiple languages
+- Make specific behavioral observations they'll recognize
+- Avoid hard labels ("you are", "you always", "you never")
+- Use softer descriptive language ("you tend to", "something in you", "part of you")
+- Be precise but not aggressive
+- Create recognition that feels illuminating, not attacking
   </tone_of_voice>
 
-- Start with a clear behavioral observation about how they handle relationships:
+- Start with a behavioral contradiction they'll recognize:
 
-  > "In relationships, you tend to [specific behavior pattern]"
+  > "You [specific behavior] but [contrasting behavior in different situations]."
 
-- Describe their **dominant** and **secondary** attachment patterns through recognizable behaviors:
-  - How they respond to conflict or emotional distance
-  - What they need to feel safe in closeness
-  - How they balance independence and connection
-  - Include a specific scenario they'll recognize
+- Focus on ONE core pattern with specific examples:
+- Pick the most recognizable behavior
+- Include a micro-scenario they'll instantly relate to
+- Show the contradiction without labeling it as good/bad
 
-- Name one concrete strength that comes from their attachment style
+- Use observational language, not definitive statements:
+- "Something in you..." instead of "You always..."
+- "You tend to..." instead of "You are..."
+- "What you don't always see..." instead of "What you don't realize..."
 
-- Use direct "you" statements rather than tentative language
+- End with a subtle hint that there's more depth:
+  > "This is just one layer of how you [relevant behavior area]."
 
-- Do NOT use the words "anxious," "avoidant," or "disorganized." Describe behaviors instead.
-
-- Close with an affirmation that includes capability: > "You're capable of [specific relational ability]. The right people will recognize this."
-  </user_report>
+**WORD COUNT: 150-200 words maximum. Be precise but not harsh.**
+</user_report>
 
 <psychologist_notes>
 For your own analysis as a psychologist:

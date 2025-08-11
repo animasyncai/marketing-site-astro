@@ -170,37 +170,43 @@ And this user input
 <user_report>
 For user:
 
-- Write a warm, emotionally intelligent reflection (max 320 words) about how they naturally express and receive care.
+- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
 - Use markdown formatting.
+- Create recognition without being pushy or using hard labels.
 
 <tone_of_voice>
-Use a **stable, compassionate, and psychologically grounded tone**.
+Use a **direct but not harsh, insightful but not judgmental tone**.
 
-- It should feel **human, reflective, and emotionally safe**
-- Avoid overly casual, clinical, or poetic phrasing
-- Use clear, natural language that maintains **emotional depth and containment**
-- The tone must be **translation-friendly** and suitable for multiple languages
+- Make specific behavioral observations they'll recognize
+- Avoid hard labels ("you are", "you always", "you never")
+- Use softer descriptive language ("you tend to", "something in you", "part of you")
+- Be precise but not aggressive
+- Create recognition that feels illuminating, not attacking
   </tone_of_voice>
 
-- Begin with how they show care when feeling safe:
+- Start with how they naturally show care when feeling safe:
 
-  > "When you feel safe and accepted, you naturally [specific caring behavior]"
+  > "When you feel safe, you [specific caring behavior] but [what others might miss about it]."
 
-- Describe their primary and secondary love languages through actions, not labels:
-  - What they do when they want to show someone they care
-  - How they hope others will show care to them
-  - Include sensory details or specific examples
+- Focus on ONE core pattern about how they give/receive love:
+- Their most recognizable way of showing care
+- What they hope others will notice
+- A micro-scenario of how they express or need love
 
-- Integrate their expression archetype naturally:
-  - How their deeper nature (creative, guiding, healing, etc.) shows up in how they love
-  - Connect this to their caring style without naming the archetype
+- Show the gap between giving and receiving without judgment:
+- How they show care vs. how they want to receive it
+- What others might misunderstand about their caring style
 
-- Address any gap between how they give vs. receive care
+- Use observational language:
+- "You tend to..." instead of "You always..."
+- "Something in you..." instead of "You are..."
+- "What others might not see..." instead of "What they don't understand..."
 
-- Do NOT use terms like "love language" or "type"
+- End with a subtle hint about their unique caring style:
+  > "This is just one layer of how you [connect/care/express yourself]."
 
-- End with recognition of their unique caring style: > "The way you care for others when you feel free to be yourself deserves to be seen and valued."
-  </user_report>
+**WORD COUNT: 150-200 words maximum. Focus on recognition, not judgment.**
+</user_report>
 
 <psychologist_notes>
 For your own analysis as a psychologist:

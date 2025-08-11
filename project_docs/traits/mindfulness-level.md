@@ -138,39 +138,45 @@ And this user input
 <user_report>
 For user:
 
-- Write a 2–3 paragraph reflection (max 300 words).
+- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
 - Use markdown formatting.
+- Create recognition without being pushy or using hard labels.
 
 <tone_of_voice>
-Use a **stable, compassionate, and psychologically grounded tone**.
+Use a **direct but not harsh, insightful but not judgmental tone**.
 
-- It should feel **human, reflective, and emotionally safe**
-- Avoid overly casual, clinical, or poetic phrasing
-- Use clear, natural language that maintains **emotional depth and containment**
-- The tone must be **translation-friendly** and suitable for multiple languages
+- Make specific behavioral observations about their inner awareness
+- Avoid hard labels about their mindfulness "level"
+- Use descriptive language about what they notice vs. miss
+- Be precise but not critical
+- Create recognition about their inner world patterns
   </tone_of_voice>
 
-- Start with their current awareness level:
+- Start with how they experience their inner world:
 
-  > "You notice [specific internal experiences] but [honest assessment of consistency]"
+  > "You catch [specific internal experience] but [what you miss or struggle with]."
 
-- Describe how they relate to their inner world:
-  - What emotions or sensations they catch
+- Focus on ONE core pattern about their self-awareness:
+  - What emotions/sensations they notice vs. miss
   - How they respond to difficult feelings
-  - Their relationship with mindfulness practices
-  - Be specific about their patterns, not generic
+  - Their relationship with change or growth
 
-- Address their readiness for change:
-  - How they feel about personal growth right now
-  - What might help them take next steps
-  - Validate any ambivalence or uncertainty
+- Include a micro-scenario they'll recognize about their inner experience
 
-- Do NOT mention scores, levels, or phase names
+- Show their current relationship with awareness without judgment:
+  - What they're curious about vs. what feels unclear
+  - How they handle emotional intensity
 
-- Use concrete examples they'll recognize from daily life
+- Use gentle observational language:
+  - "You tend to notice..." instead of "You are aware..."
+  - "Something in you..." instead of "You always..."
+  - "What you don't always catch..." instead of "What you miss..."
 
-- End with encouragement about their current awareness: > "The awareness you already have is the foundation. Everything else builds from noticing."
-  </user_report>
+- End subtly about their inner world:
+  > "This is just one layer of how you [meet yourself/experience emotions/handle change]."
+
+**WORD COUNT: 150-200 words maximum. Focus on inner experience recognition.**
+</user_report>
 
 <psychologist_notes>
 For your own analysis as a psychologist:
