@@ -138,7 +138,7 @@ And this user input
 <user_report>
 For user:
 
-- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
+- Write a flowing, natural paragraph (75-100 words MAX - HARD LIMIT).
 - Use markdown formatting.
 - Create recognition without being pushy or using hard labels.
 
@@ -152,30 +152,19 @@ Use a **direct but not harsh, insightful but not judgmental tone**.
 - Create recognition about their inner world patterns
   </tone_of_voice>
 
-- Start with how they experience their inner world:
+- Build recognition through three integrated insights in one flowing paragraph:
+  - Start with how they experience their inner world/emotions
+  - Flow into their patterns of noticing vs. missing internal states
+  - End with relationship with stillness/overwhelm and depth hint
 
-  > "You catch [specific internal experience] but [what you miss or struggle with]."
+- Use observational language connecting insights with natural transitions ("and," "but," "probably")
 
-- Focus on ONE core pattern about their self-awareness:
-  - What emotions/sensations they notice vs. miss
-  - How they respond to difficult feelings
-  - Their relationship with change or growth
+- End with one of these dynamic curiosity hooks:
+  - "...and that resistance to slowing down might be telling you something important."
+  - "...and the way you avoid pause could be more intentional than it seems."
+  - "...and there's probably a reason why stillness feels harder than staying busy."
 
-- Include a micro-scenario they'll recognize about their inner experience
-
-- Show their current relationship with awareness without judgment:
-  - What they're curious about vs. what feels unclear
-  - How they handle emotional intensity
-
-- Use gentle observational language:
-  - "You tend to notice..." instead of "You are aware..."
-  - "Something in you..." instead of "You always..."
-  - "What you don't always catch..." instead of "What you miss..."
-
-- End subtly about their inner world:
-  > "This is just one layer of how you [meet yourself/experience emotions/handle change]."
-
-**WORD COUNT: 150-200 words maximum. Focus on inner experience recognition.**
+**WORD COUNT: 75-100 words maximum. Create flowing recognition, not structured analysis.**
 </user_report>
 
 <psychologist_notes>

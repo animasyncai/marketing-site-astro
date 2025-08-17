@@ -118,7 +118,7 @@ And this user input
 <user_report>
 For user:
 
-- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
+- Write a flowing, natural paragraph (75-100 words MAX - HARD LIMIT).
 - Use markdown formatting.
 - Create recognition without being pushy or using hard labels.
 
@@ -132,30 +132,19 @@ Use a **direct but not harsh, insightful but not judgmental tone**.
 - Create recognition about their internal patterns
   </tone_of_voice>
 
-- Start with how they relate to themselves:
+- Build recognition through three integrated insights in one flowing paragraph:
+  - Start with how they treat themselves/their inner voice
+  - Flow into their patterns with self-compassion vs. self-criticism
+  - End with protective behavior around needs/space and depth hint
 
-  > "You [how they observe themselves] but [how they respond to what they see]."
+- Use observational language connecting insights with natural transitions ("and," "but," "probably")
 
-- Focus on ONE core pattern about their self-relationship:
-  - How they notice their emotions and reactions
-  - The tone of their inner voice
-  - How they handle self-criticism or difficult feelings about themselves
+- End with one of these dynamic curiosity hooks:
+  - "...and that guilt around your needs might be protecting you in ways you haven't noticed."
+  - "...and the way you minimize yourself likely made sense once, even if it doesn't now."
+  - "...and there's probably a reason why being 'low-maintenance' feels safer."
 
-- Include a specific moment they'll recognize about their inner experience
-
-- Show their current way of being with themselves without judgment:
-  - What they can see about themselves vs. what feels unclear
-  - How they respond to their own mistakes or struggles
-
-- Use gentle, observational language:
-  - "You tend to..." instead of "You are..."
-  - "Part of you..." instead of "You always..."
-  - "What you don't always notice..." instead of "What you can't see..."
-
-- End subtly about their self-relationship:
-  > "This is just one layer of how you [meet yourself/hear your inner voice/handle being human]."
-
-**WORD COUNT: 150-200 words maximum. Focus on self-relationship recognition.**
+**WORD COUNT: 75-100 words maximum. Create flowing recognition, not structured analysis.**
 </user_report>
 
 <psychologist_notes>

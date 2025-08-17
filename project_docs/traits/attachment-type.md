@@ -182,7 +182,7 @@ And this user input
 <user_report>
 For user:
 
-- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
+- Write a flowing, natural paragraph (75-100 words MAX - HARD LIMIT).
 - Use markdown formatting.
 - Create recognition without being pushy or using hard labels.
 
@@ -196,24 +196,19 @@ Use a **direct but not harsh, insightful but not judgmental tone**.
 - Create recognition that feels illuminating, not attacking
   </tone_of_voice>
 
-- Start with a behavioral contradiction they'll recognize:
+- Build recognition through three integrated insights in one flowing paragraph:
+  - Start with how they handle relationship dynamics/conflict
+  - Flow into their comfort patterns with closeness/distance
+  - End with protective behavior and depth hint
 
-  > "You [specific behavior] but [contrasting behavior in different situations]."
+- Use observational language connecting insights with natural transitions ("and," "but," "probably")
 
-- Focus on ONE core pattern with specific examples:
-- Pick the most recognizable behavior
-- Include a micro-scenario they'll instantly relate to
-- Show the contradiction without labeling it as good/bad
+- End with one of these dynamic curiosity hooks:
+  - "...and that distance might be protecting something tender inside you."
+  - "...and your instinct for [independence/space/closeness] likely has roots worth understanding."
+  - "...and there's probably a reason why that [space/closeness] feels [protective/necessary]."
 
-- Use observational language, not definitive statements:
-- "Something in you..." instead of "You always..."
-- "You tend to..." instead of "You are..."
-- "What you don't always see..." instead of "What you don't realize..."
-
-- End with a subtle hint that there's more depth:
-  > "This is just one layer of how you [relevant behavior area]."
-
-**WORD COUNT: 150-200 words maximum. Be precise but not harsh.**
+**WORD COUNT: 75-100 words maximum. Create flowing recognition, not structured analysis.**
 </user_report>
 
 <psychologist_notes>

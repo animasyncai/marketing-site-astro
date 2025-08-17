@@ -170,7 +170,7 @@ And this user input
 <user_report>
 For user:
 
-- Write a punchy, insightful reflection (150-200 words MAX - HARD LIMIT).
+- Write a flowing, natural paragraph (75-100 words MAX - HARD LIMIT).
 - Use markdown formatting.
 - Create recognition without being pushy or using hard labels.
 
@@ -184,28 +184,19 @@ Use a **direct but not harsh, insightful but not judgmental tone**.
 - Create recognition that feels illuminating, not attacking
   </tone_of_voice>
 
-- Start with how they naturally show care when feeling safe:
+- Build recognition through three integrated insights in one flowing paragraph:
+  - Start with how they naturally show/receive care
+  - Flow into what they notice about recognition/reciprocation
+  - End with protective or vulnerable pattern and depth hint
 
-  > "When you feel safe, you [specific caring behavior] but [what others might miss about it]."
+- Use observational language connecting insights with natural transitions ("and," "but," "probably")
 
-- Focus on ONE core pattern about how they give/receive love:
-- Their most recognizable way of showing care
-- What they hope others will notice
-- A micro-scenario of how they express or need love
+- End with one of these dynamic curiosity hooks:
+  - "...and something deeper might be driving that need for [recognition/appreciation/acknowledgment]."
+  - "...and that quiet [withdrawal/step back] likely serves a purpose you haven't fully explored."
+  - "...and there's probably a reason why [appreciation/being seen] feels so necessary."
 
-- Show the gap between giving and receiving without judgment:
-- How they show care vs. how they want to receive it
-- What others might misunderstand about their caring style
-
-- Use observational language:
-- "You tend to..." instead of "You always..."
-- "Something in you..." instead of "You are..."
-- "What others might not see..." instead of "What they don't understand..."
-
-- End with a subtle hint about their unique caring style:
-  > "This is just one layer of how you [connect/care/express yourself]."
-
-**WORD COUNT: 150-200 words maximum. Focus on recognition, not judgment.**
+**WORD COUNT: 75-100 words maximum. Create flowing recognition, not structured analysis.**
 </user_report>
 
 <psychologist_notes>
