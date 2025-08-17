@@ -13,8 +13,8 @@ Withinly is an AI-powered self-discovery and emotional insight tool. It helps us
 ## How It Works
 
 1. User completes structured psychological assessments that we call traits.
-2. Based on trait questionairre AI generates two layers of insight. A public facing 300 word report and "psychologist notes" that serve as guidance to the AI consultant later on. In addition it saves a trait value like primaryLoveLanguage: touch and so on. 
-3. User can then interact with a AI Consultant for ongoing self-reflection. The 
+2. Based on trait questionairre AI generates two layers of insight. A very short user facing report (shown only first time when trait is done) and "psychologist notes" that serve as guidance to the AI consultant later on. In addition it saves a trait values like primaryLoveLanguage: touch and so on. See full reference of possible values in `/traits/trait-values.md`
+3. User can then interact with a AI Consultant for ongoing self-reflection. The AI consultant can access reports summaries and trait values/psychologist notes to provide more personalized guidance.
 4. Reports and chat usage are unlocked with tokens.
 
 ## Business Model

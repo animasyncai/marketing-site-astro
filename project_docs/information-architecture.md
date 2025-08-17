@@ -23,33 +23,39 @@ UX:
 
 ## Your traits
 
-TODO: No description yet, need to generate
-
 [ LIST OF TRAIT CARDS IN A GRID ]
 
 Cards structure:
 
 - Title
-- Report (300-400 words)
+- Description
 - Completed date
 - Call to actions
+- Price (each card has a price of 1 token)
 
 Cards:
 
 - The Way You Stay Present
+  - Understand how aware you are of your inner world and emotions. This reveals your relationship with mindfulness and your openness to personal growth.
 - The Way You Hear Yourself
+  - Discover how you treat yourself internally - the tone of your inner voice and how compassionately you meet your own emotions and experiences.
 - The way You attach
+  - Explore how you form emotional bonds and what you need to feel secure in relationships. Your attachment style shapes how you handle closeness, conflict, and connection.
 - The way You love
+  - Discover how you naturally express care and what makes you feel most loved. Understanding your love language helps you connect more deeply with others and communicate your needs clearly.
 
 CTAs on cards (TODO: IMPROVE):
 
 - Start (when not done)
 - Check in again (when done)
 
-TODO: SHOW PRICE SOMEWHERE WHICH IS 1 TOKEN FOR EACH TRAIT
-THOUGHTS:
+Notes:
 
-- Show we maybe display the amount of questions or some sort of description for each if not complete? Currently not needed as we actually force to do them in onboading,but that will likely change.
+- If less than 30 days have passed since last completion of a trait, we show a notification that it's unlikely that the trait has changed.
+  - Title: You completed this trait recently
+  - Description: Your [trait name] results are from [date]. Psychological patterns typically don't change in under 30 days, so retaking may not provide new insights.
+  - Continue anyway?
+  - CTA: [Continue] [Go Back]
 
 ## Inner Portrait
 
@@ -63,29 +69,45 @@ Cards:
 
 - Inner portrait (basic)
   - A gentle summary of your traits — how you tend to connect, protect, and care in relationships. A soft introduction to your emotional patterns.
-  - Cost: TBD
+  - Cost: 1 token (first free)
+  - Traits: Attachment, Mindfulness, Self-acceptance
   - Prompt: `/prompts/report_inner-portrait-basic.md`
 - Inner Portrait
   - A rich, personalized reflection of your emotional world — how you connect with others, express care, stay grounded, and meet yourself. Includes metaphors.. (Too long, need to shorten)
-  - Cost: TBD
+  - Traits: Attachment, Love Language, Mindfulness, Self-acceptance
+  - Cost: 3 tokens
   - Prompt: `/prompts/report_inner-portrait.md`
 - Conflict compass
   - A personal guide to how you move through conflict — what unsettles you, what shields you, and what brings you back to connection.
-  - Cost: TBD
+  - Traits: Attachment, Mindfulness
+  - Cost: 2 tokens
   - Prompt: `/prompts/report-conflict-map.md`
 - Relationship Blueprint
   - A map of how you form, maintain, and experience emotional bonds — what draws you closer, what pushes you away, and what you need to feel safe in connection.
-  - Cost: TBD
+  - Traits: Attachment, Love Language
+  - Cost: 2 tokens
   - Prompt: `/prompts/report-relationship-blueprint.md`
-- Stress signals map
-  - A guide to your emotional warning signs — how tension shows up in your body and mind, what patterns take over, and what helps you return to balance.
-  - Cost: TBD
-  - Prompt: `/prompts/report-stress-signals.md`
+- Trust & Vulnerability Map
+  - A map of how you open up, build trust, handle emotional intimacy.
+  - Traits: Attachment, Self-acceptance
+  - Cost: 3 tokens
+  - Prompt: `/prompts/report-trust-vulnerability-map.md`
+- Communication Decoder
+  - A guide to your communication patterns — how you express care, what patterns take over, and what helps you return to balance.
+  - Traits: Love Language, Attachment
+  - Cost: 2 tokens
+  - Prompt: `/prompts/report-communication-decoder.md`
+
+Notes:
+
+- Each card has a display of required traits for it to be generated
+- Each card has a display of cost
 
 CTA's on cards:
 
 - View insights (when done)
 - Generate insights (when not done)
+- Regenerate insights (when done, but traits changed)
 
 ## Relational Portrait
 
