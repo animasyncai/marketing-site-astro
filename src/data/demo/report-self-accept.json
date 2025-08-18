@@ -1,0 +1,32 @@
+{
+  "self_acceptance": {
+    "ACCEPTANCE_LOW": {
+      "reflections": [
+        "You often find it hard to sit with parts of yourself, and that can make your inner world feel split. That resistance probably once protected you, even if now it feels heavy.",
+        "There’s a sense of distance inside, as though certain emotions don’t quite belong to you. That separation may have grown from difficult times when feeling everything would have been too much.",
+        "Some parts of you feel exiled or pushed away, and while that can bring relief in the moment, it can also make wholeness feel out of reach."
+      ]
+    },
+    "ACCEPTANCE_TRANSITIONAL": {
+      "reflections": [
+        "You’re in between: some parts of yourself feel more welcome, others still kept at arm’s length. This shifting shows that your inner ground is beginning to soften.",
+        "There are moments when you allow yourself to feel fully, and others when you turn away. That rhythm is part of learning how much of yourself you can hold.",
+        "You’re moving between rejection and welcome, and even if it feels uneven, that in-between stage means something new is opening."
+      ]
+    },
+    "ACCEPTANCE_REFLECTIVE": {
+      "reflections": [
+        "You’re beginning to look at your inner world with more honesty, even when it feels messy. Reflection itself is a form of acceptance.",
+        "You can acknowledge difficult emotions without pushing them away as quickly as before. That space lets you begin to see yourself as a whole being, not fragments.",
+        "You’re learning that rejecting less of yourself gives you more room to grow, even when it isn’t easy."
+      ]
+    },
+    "ACCEPTANCE_INTEGRATED": {
+      "reflections": [
+        "You carry a deeper acceptance of who you are, even in the parts once hidden or resisted. That wholeness steadies you.",
+        "Integration shows in the way you can hold contradictions without breaking apart. You no longer need every part of yourself to change in order to belong.",
+        "Your self-acceptance feels like an inner home — not perfect, but real enough to hold you through what comes."
+      ]
+    }
+  }
+}

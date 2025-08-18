@@ -1,0 +1,267 @@
+---
+/**
+ * Withinly Trait Reflection Prototype
+ *
+ * Prototype page to test reflection outputs across traits
+ */
+
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// Page metadata
+const pageTitle = 'Trait Reflection Prototype'
+const pageDescription = 'Prototype page to test reflection outputs across traits'
+
+// Import trait data from demo folder
+import attachmentData from '../data/demo/report-attachment.json'
+import selfAcceptanceData from '../data/demo/report-self-accept.json'
+import mindfulnessData from '../data/demo/report-mindfulness.json'
+import loveLanguageData from '../data/demo/report-love.json'
+
+// Make data available to client-side script
+const traits = {
+  attachment: attachmentData.attachment,
+  self_acceptance: selfAcceptanceData.self_acceptance,
+  mindfulness: mindfulnessData.mindfulness,
+  love_language: loveLanguageData.love_language,
+}
+
+// Only attachment uses intensity modifiers
+const toneModifiers = attachmentData.toneModifiers
+---
+
+<DefaultLayout title={pageTitle} description={pageDescription}>
+  <main class="mx-auto max-w-2xl py-12">
+    <h1 class="mb-6 text-2xl font-bold">Trait Reflection Prototype</h1>
+
+    <form id="reflectionForm" class="space-y-4 rounded-xl bg-white p-6 shadow">
+      <!-- Trait Selector -->
+      <div>
+        <label class="mb-2 block font-medium">Trait</label>
+        <select id="trait" class="w-full rounded border p-2">
+          <option value="">Select trait</option>
+          <option value="attachment">Attachment</option>
+          <option value="self_acceptance">Self-Acceptance</option>
+          <option value="mindfulness">Mindfulness</option>
+          <option value="love_language">Love Language</option>
+        </select>
+      </div>
+
+      <!-- Dynamic trait-specific fields -->
+      <div id="traitOptions" class="space-y-4"></div>
+
+      <button type="button" id="generateBtn" class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+        Generate All Reflections
+      </button>
+    </form>
+
+    <!-- Output -->
+    <div id="output" class="mt-8 rounded-lg bg-gray-100 p-6 whitespace-pre-line"></div>
+  </main>
+
+  <script define:vars={{ traits, toneModifiers }}>
+    function toggleTraitOptions() {
+      const traitSelect = document.getElementById('trait')
+      const trait = traitSelect?.value
+      const container = document.getElementById('traitOptions')
+      if (!container) return
+
+      container.innerHTML = ''
+
+      if (!trait) return
+
+      if (trait === 'attachment') {
+        container.innerHTML = `
+          <div>
+            <label class="block mb-2 font-medium">Attachment Type</label>
+            <select id="attachmentType" class="w-full border rounded p-2">
+              <option value="ANXIOUS">Anxious</option>
+              <option value="AVOIDANT">Avoidant</option>
+              <option value="DISORGANIZED">Disorganized</option>
+              <option value="SECURE">Secure</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Intensity</label>
+            <select id="intensity" class="w-full border rounded p-2">
+              <option value="VERY_MILD">Very Mild</option>
+              <option value="MILD">Mild</option>
+              <option value="MODERATE">Moderate</option>
+              <option value="STRONG">Strong</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Secondary (Optional)</label>
+            <select id="secondary" class="w-full border rounded p-2">
+              <option value="">None</option>
+              <option value="ANXIOUS">Anxious</option>
+              <option value="AVOIDANT">Avoidant</option>
+              <option value="DISORGANIZED">Disorganized</option>
+              <option value="SECURE">Secure</option>
+            </select>
+          </div>
+        `
+      }
+
+      if (trait === 'self_acceptance') {
+        container.innerHTML = `
+          <div>
+            <label class="block mb-2 font-medium">Level</label>
+            <select id="saLevel" class="w-full border rounded p-2">
+              <option value="ACCEPTANCE_LOW">Low</option>
+              <option value="ACCEPTANCE_TRANSITIONAL">Transitional</option>
+              <option value="ACCEPTANCE_REFLECTIVE">Reflective</option>
+              <option value="ACCEPTANCE_INTEGRATED">Integrated</option>
+            </select>
+          </div>
+        `
+      }
+
+      if (trait === 'mindfulness') {
+        container.innerHTML = `
+          <div>
+            <label class="block mb-2 font-medium">Level</label>
+            <select id="mfLevel" class="w-full border rounded p-2">
+              <option value="MAP_BEGINNING">Map Beginning</option>
+              <option value="AWAKENING_POINT">Awakening Point</option>
+              <option value="PATH_SEEKER">Path Seeker</option>
+              <option value="MINDFULNESS_TRAVELER">Mindfulness Traveler</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Openness</label>
+            <select id="openness" class="w-full border rounded p-2">
+              <option value="NOT_YET_TIME">Not Yet Time</option>
+              <option value="INTERNAL_CONFLICT">Internal Conflict</option>
+              <option value="GROWTH_READINESS">Growth Readiness</option>
+              <option value="TRANSFORMATIONAL_PHASE">Transformational Phase</option>
+            </select>
+          </div>
+        `
+      }
+
+      if (trait === 'love_language') {
+        container.innerHTML = `
+          <div>
+            <label class="block mb-2 font-medium">Primary Love Language</label>
+            <select id="llPrimary" class="w-full border rounded p-2">
+              <option value="QUALITY_TIME">Quality Time</option>
+              <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+              <option value="ACTS_OF_SERVICE">Acts of Service</option>
+              <option value="GIFTS">Gifts</option>
+              <option value="PHYSICAL_TOUCH">Physical Touch</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Secondary (Optional)</label>
+            <select id="llSecondary" class="w-full border rounded p-2">
+              <option value="">None</option>
+              <option value="QUALITY_TIME">Quality Time</option>
+              <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+              <option value="ACTS_OF_SERVICE">Acts of Service</option>
+              <option value="GIFTS">Gifts</option>
+              <option value="PHYSICAL_TOUCH">Physical Touch</option>
+            </select>
+          </div>
+        `
+      }
+    }
+
+    function generateReflection() {
+      const trait = document.getElementById('trait')?.value
+      if (!trait) return
+
+      let allReflections = []
+
+      if (trait === 'attachment') {
+        const type = document.getElementById('attachmentType')?.value
+        const intensity = document.getElementById('intensity')?.value
+        const secondary = document.getElementById('secondary')?.value
+
+        if (!type || !intensity) return
+
+        bank = traits.attachment[type]
+
+        // Generate all reflections with tone modifiers
+        bank.reflections.forEach((reflection) => {
+          const tone = toneModifiers[intensity]
+          let fullReflection = reflection
+            .replace('[tone:frequency]', tone.frequency)
+            .replace('[tone:likelihood]', tone.likelihood)
+
+          if (secondary && bank.secondaryBridge[secondary]) {
+            fullReflection += ' ' + bank.secondaryBridge[secondary]
+          }
+
+          allReflections.push(fullReflection)
+        })
+      }
+
+      if (trait === 'self_acceptance') {
+        const level = document.getElementById('saLevel')?.value
+        if (!level) return
+
+        bank = traits.self_acceptance[level]
+
+        // Add all reflections
+        bank.reflections.forEach((reflection) => {
+          allReflections.push(reflection)
+        })
+      }
+
+      if (trait === 'mindfulness') {
+        const level = document.getElementById('mfLevel')?.value
+        const openness = document.getElementById('openness')?.value
+        if (!level || !openness) return
+
+        bank = traits.mindfulness[level]
+
+        // Generate all reflections with openness overlays
+        bank.reflections.forEach((reflection) => {
+          let fullReflection = reflection
+
+          if (traits.mindfulness.openness && traits.mindfulness.openness[openness]) {
+            const overlay = traits.mindfulness.openness[openness][0]
+            fullReflection += ' ' + overlay
+          }
+
+          allReflections.push(fullReflection)
+        })
+      }
+
+      if (trait === 'love_language') {
+        const primary = document.getElementById('llPrimary')?.value
+        const secondary = document.getElementById('llSecondary')?.value
+        if (!primary) return
+
+        bank = traits.love_language[primary]
+
+        // Generate all reflections with secondary bridges
+        bank.reflections.forEach((reflection) => {
+          let fullReflection = reflection
+
+          if (secondary && bank.secondaryBridge[secondary]) {
+            fullReflection += ' ' + bank.secondaryBridge[secondary]
+          }
+
+          allReflections.push(fullReflection)
+        })
+      }
+
+      const outputElement = document.getElementById('output')
+      if (outputElement && allReflections.length > 0) {
+        // Display all reflections with numbering
+        const numberedReflections = allReflections
+          .map((reflection, index) => `${index + 1}. ${reflection}`)
+          .join('\n\n')
+
+        outputElement.innerText = numberedReflections
+      }
+    }
+
+    // Hook up listeners
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('trait')?.addEventListener('change', toggleTraitOptions)
+      document.getElementById('generateBtn')?.addEventListener('click', generateReflection)
+    })
+  </script>
+</DefaultLayout>

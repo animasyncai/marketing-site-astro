@@ -1,0 +1,46 @@
+{
+  "mindfulness": {
+    "MAP_BEGINNING": {
+      "reflections": [
+        "Most days, your inner world feels distant or hard to notice — and that distance probably made sense once. It may have been safer not to feel too much at the time.",
+        "You move through life reacting more than noticing, and slowing down can feel unfamiliar. That doesn’t mean you’re failing — it means your system learned to move fast to cope.",
+        "Your awareness slips past emotions before you can catch them. That pattern isn’t random — it was once a way of protecting yourself from overwhelm."
+      ]
+    },
+    "AWAKENING_POINT": {
+      "reflections": [
+        "You notice your emotions, though they slip away just as quickly — and even those glimpses show awareness is waking up in you.",
+        "There are moments when you feel yourself clearly and moments when you drift. That rhythm itself tells a story about how you relate to inner stillness.",
+        "You catch yourself in the act of feeling, and even if it fades, it means your attention is starting to shift inward."
+      ]
+    },
+    "PATH_SEEKER": {
+      "reflections": [
+        "You tune into your inner states, even when processing them feels challenging. That awareness is already changing how you hold your emotions.",
+        "Your attention returns to yourself with curiosity, and that makes more room for growth than you may notice in the moment.",
+        "You meet your inner life with some steadiness, and while not every feeling is easy, you are learning to stay with yourself."
+      ]
+    },
+    "MINDFULNESS_TRAVELER": {
+      "reflections": [
+        "You carry a steady awareness into daily life, and that presence anchors you more than you may realize. It gives you a place to return to when things get shaky.",
+        "Even when tension rises, you meet it with acceptance, and that softens how it lives inside you.",
+        "Your awareness stays with you across experiences, and that consistency helps turn self-reflection into a natural part of life."
+      ]
+    },
+    "openness": {
+      "NOT_YET_TIME": [
+        "Right now, rest and safety matter more than change — there’s no rush to move faster than your energy allows."
+      ],
+      "INTERNAL_CONFLICT": [
+        "You want things to shift but also feel uncertain, and that push-pull deserves patience rather than pressure."
+      ],
+      "GROWTH_READINESS": [
+        "You seem ready for small steps forward, and the right tools could help you turn curiosity into change."
+      ],
+      "TRANSFORMATIONAL_PHASE": [
+        "Something in you feels ready to go deep — open to exploring shadows as much as light."
+      ]
+    }
+  }
+}

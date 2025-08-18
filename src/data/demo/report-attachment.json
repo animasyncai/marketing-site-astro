@@ -1,0 +1,70 @@
+{
+  "attachment": {
+    "ANXIOUS": {
+      "reflections": [
+        "You [tone:frequency] pull closer when you sense distance, and that longing for reassurance probably grew from old fears. At the same time, you may notice it doesn’t always match what’s happening now — and that contrast might be protecting something deeper.",
+        "Part of you [tone:frequency] seeks reassurance even when connection is steady, and that makes sense given how important closeness feels to you. Still, you might also feel the tension of wanting calm but bracing for loss.",
+        "You [tone:frequency] stay alert for signs of distance, scanning for cues that love might fade. That vigilance once kept you safe, but today it can leave you carrying weight you don’t always need."
+      ],
+      "secondaryBridge": {
+        "AVOIDANT": "At the same time, another part of you values space, which can make closeness feel confusing.",
+        "DISORGANIZED": "Alongside this, you sometimes swing between seeking closeness and pulling back, which adds another layer of complexity.",
+        "SECURE": "Still, you also carry moments of calm and trust, which help balance the pull for reassurance."
+      }
+    },
+    "AVOIDANT": {
+      "reflections": [
+        "You [tone:frequency] lean on independence when emotions get intense, and that distance might be guarding something tender inside you. Pulling back helps you feel safe, even when closeness could also bring comfort.",
+        "Closeness can [tone:likelihood] feel overwhelming, so you create space to steady yourself. That instinct isn’t wrong — it probably once protected you — but it can leave others unsure of where they stand.",
+        "There’s a pattern where you [tone:frequency] step away when things get heavy, and that space has meaning. It kept you safe before, but today it might also keep you from being fully seen."
+      ],
+      "secondaryBridge": {
+        "ANXIOUS": "At the same time, another part of you longs for closeness, creating a push-pull in your relationships.",
+        "DISORGANIZED": "There are moments when you both want and resist closeness, making connection unpredictable.",
+        "SECURE": "But you also show signs of steadiness and trust, which sometimes soften the distance."
+      }
+    },
+    "DISORGANIZED": {
+      "reflections": [
+        "You [tone:frequency] feel pulled between wanting closeness and fearing it, and both sides are trying to protect you. That swing can feel confusing, but it carries the story of how you learned to survive connection.",
+        "Part of you reaches out while another part holds back, and that inner split can be exhausting. It makes sense if trust once felt unsafe, but today it may also keep intimacy feeling unstable.",
+        "Conflict can [tone:likelihood] feel overwhelming, pushing you to shut down one moment and react intensely the next. Those shifts aren’t random — they’re protective strategies that once kept you safe."
+      ],
+      "secondaryBridge": {
+        "ANXIOUS": "Alongside this, your need for reassurance can amplify the swings you feel.",
+        "AVOIDANT": "You also carry a need for space, which can deepen the inner conflict around closeness.",
+        "SECURE": "Still, there’s also some stability in you — moments where calm trust shows through."
+      }
+    },
+    "SECURE": {
+      "reflections": [
+        "You [tone:frequency] trust stability in relationships, even when things get rocky, and that steadiness is grounding. Your calmness makes it easier to ride out tension without losing connection.",
+        "Even when emotions run high, you [tone:likelihood] return to a sense of safety and closeness. That flexibility helps you hold both your needs and your partner’s without shutting down.",
+        "You balance independence and intimacy with more ease than most, and that strength is noticeable. It gives you a foundation of trust, even when challenges arise."
+      ],
+      "secondaryBridge": {
+        "ANXIOUS": "At times, though, you also notice worries about closeness, which don’t fully disappear.",
+        "AVOIDANT": "There are also moments when distance feels easier, even if connection usually wins out.",
+        "DISORGANIZED": "Sometimes you still swing between pulling close and pulling away, though you recover more easily."
+      }
+    }
+  },
+  "toneModifiers": {
+    "VERY_MILD": {
+      "frequency": "occasionally",
+      "likelihood": "at times"
+    },
+    "MILD": {
+      "frequency": "sometimes",
+      "likelihood": "can"
+    },
+    "MODERATE": {
+      "frequency": "often",
+      "likelihood": "tend to"
+    },
+    "STRONG": {
+      "frequency": "regularly",
+      "likelihood": "usually"
+    }
+  }
+}
