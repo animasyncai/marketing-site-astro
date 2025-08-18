@@ -2,68 +2,76 @@
 
 This section describes all features and their working principles in Withinly project.
 
-## Traits
+# Traits
 
-Traits are used to understand users emotional and psichological picture. They consist of short questionairres which are then evaluated and used to genenerate insights for the user, AI consultant and reports.
+Traits are used to understand a user’s emotional and psychological picture. They consist of short questionnaires which are then evaluated and used to generate insights for the user, the AI consultant, and reports.
 
-Currently we have 4 traits:
+Currently we support 4 traits:
 
-- Love language
-- Attachment type
-- Mindfulness level
-- Self acceptance level
+- **Love Language**
+- **Attachment Type**
+- **Mindfulness Level**
+- **Self-Acceptance Level**
 
-While all of these are very distinct and our questionairres identify primary values, like for example primaryLoveLanguage: touch - we avoid any labels. It's in the nature of our product to encompass these things into story telling and avoiding labeling people as they tend to fixate.
+Each trait identifies **primary values** (e.g. `primaryLoveLanguage: Touch`), but we avoid static labels in user-facing text. Instead, results are translated into **storytelling and reflections**, so users don’t fixate on categories.
 
-Each trait produces short user facing report and thing we call 'psychologistNotes' which is then used by the AI consultant to enable it to go deeper and more personal into reflection together with the user. The generation of this information and evaluation of queastionairres is done by a prompt.
+Every trait produces two outputs:
 
-We might add more traits as we go and expand our report base or functionality. For now it seems solid to have 4 traits.
+1. **User-facing mini report** — a predefined reflection shown only the first time the trait is completed.
+2. **Psychologist Notes** — structured metadata used by the AI consultant to adapt tone, depth, and reflection style.
 
-### Love language
+We may add more traits in the future to expand the report base or functionality, but the current set is stable.
 
-Main goal of the trait is to identify primary and secondary love languages and their lovers archetype.
+---
 
-User facing title: The way You love
-Description: none, need to generate (displayed when trait not done)
+## Love Language
 
-Main prompt: `/traits/love-language.md`
-Example output: `/traits/love-language-example.md`
+- **Goal**: Identify primary and (optional) secondary love languages, plus archetypal expression styles.
+- **User-facing title**: _The Way You Love_
+- **Description**: _(to be generated)_
+- **Prompt**: `/traits/love-language.md`
+- **Example**: `/traits/love-language-example.md`
 
-### Attachment type
+---
 
-Main goal of the trait is to identify identify primary and secondary attachment types
+## Attachment Type
 
-User facing title: The way You attach
-Description: none, need to generate (displayed when trait not done)
+- **Goal**: Identify primary attachment style, intensity, and optional secondary style.
+- **User-facing title**: _The Way You Attach_
+- **Description**: _(to be generated)_
+- **Prompt**: `/traits/attachment-type.md`
+- **Example**: `/traits/attachment-type-example.md`
 
-Main prompt: `/traits/attachment-type.md`
-Example output: `/traits/attachment-type-example.md`
+---
 
-### Mindfulness level
+## Mindfulness Level
 
-Main goal of the trait is to identify mindfulness level of the user.
+- **Goal**: Identify the user’s level of mindfulness and openness to change.
+- **User-facing title**: _The Way You Stay Present_
+- **Description**: _(to be generated)_
+- **Prompt**: `/traits/mindfulness-level.md`
+- **Example**: `/traits/mindfulness-level-example.md`
 
-User facing title: The Way You Stay Present
-Description: none, need to generate (displayed when trait not done)
+---
 
-Main prompt: `/traits/mindfulness-level.md`
-Example output: `/traits/mindfulness-level-example.md`
+## Self-Acceptance Level
 
-### Self acceptance level
+- **Goal**: Identify how the user accepts themselves and what narratives shape their self-view.
+- **User-facing title**: _The Way You Hear Yourself_
+- **Description**: _(to be generated)_
+- **Prompt**: `/traits/self-acceptance.md`
+- **Example**: `/traits/self-acceptance-example.md`
 
-Main goal of the trait is to identify how users accepts one self and what kind of narrative might live in his/her head.
+---
 
-User facing title: The Way You Hear Yourself
-Description: none, need to generate (displayed when trait not done)
+## Predefined Reports & Change Evaluation
 
-Main prompt: `/traits/self-acceptance.md`
-Example output: `/traits/self-acceptance-example.md`
-
-Other notes:
-
-- The user report from trait is showed only first time when trait is done.
-- Second time when trait is done we have evaluation wether main traits have changed. If traits changed we flag the trait as changed. Then we can flag associated reports as recommended to regenerate.
-- The logic for change evaluation is in `/prompts/trait-evaluation.md`
+- **Mini Reports** are fully predefined. When a user first completes a trait, they receive one of these pregenerated reflections. No AI is used.
+- **Progress Feedback**: When a user retakes a questionnaire, the system compares **labels only** (e.g. attachment = _Avoidant → Anxious_, or love language = _Words → Touch_).
+  - If the label is unchanged → show a predefined “stable” reflection.
+  - If the label has changed → show a predefined “changed” reflection specific to the transition.
+- This MVP approach avoids complex scoring logic and keeps costs low.
+- If a trait changes significantly, the system can also flag associated reports (e.g. Master Report) as **recommended to regenerate**.
 
 ## Reports aka Inner Portrait
 
