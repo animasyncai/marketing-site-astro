@@ -307,3 +307,40 @@ Withinly uses 4 core psychological traits to understand users' emotional and rel
 3. **Dual Output**: Each trait generates user-facing reports + internal psychologist notes
 4. **Re-evaluation**: Users can retake traits, with meaningful change detection logic
 5. **Report Dependencies**: Different reports require different combinations of completed traits
+
+## Validation Hooks
+
+1. Purpose of Validation Hooks
+
+Validation hooks are checkpoints to make sure trait results are psychologically valid and not random clicking or contradictory answers.
+They help you:
+
+Prevent garbage-in → garbage-out (bad data ruining reports).
+
+Signal to the user when results are shaky or need retaking.
+
+Keep trust in the system by not giving “deep reflections” on invalid inputs.
+
+2. When Validation Hooks Trigger
+
+Inconsistent answers (e.g., answering “always” and “never” to parallel questions).
+
+Random clicking patterns (too fast completion, no variation).
+
+Contradictory trait logic (e.g., scoring both “very secure” and “very anxious” equally high).
+
+Invalid completion time (finished in 10 seconds when avg is 1–2 min).
+
+3. System Behavior
+
+When validation fails:
+
+Block deep outputs — don’t generate psychologist notes or detailed reports.
+
+Fallback to lightweight reflection — a predefined text like:
+
+“It looks like your answers were a bit inconsistent. That happens sometimes. You can retake the questionnaire when you feel ready — this way the reflections will feel more accurate.”
+
+Offer Retake — button CTA “Retake assessment” (free, no tokens deducted).
+
+Log the event — mark in backend that this attempt was invalid (for analytics).
