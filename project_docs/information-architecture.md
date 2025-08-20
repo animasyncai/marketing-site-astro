@@ -75,48 +75,15 @@ They bring together different layers of who you are — how you connect, care, g
 
 [ LIST OF REPORT CARDS IN A GRID ]
 
-Cards:
+Card structure:
 
-- **Inner Portrait (Basic)**  
-  A gentle summary of your traits — how you tend to connect, protect, and care in relationships. A soft introduction to your emotional patterns.
-  - Cost: 1 token (first free)
-  - Traits: Attachment, Mindfulness, Self-Acceptance
-  - Prompt: `/prompts/report_inner-portrait-basic.md`
-
-- **Inner Portrait (Full)**  
-  A rich, personalized reflection of your emotional world — how you connect with others, express care, stay grounded, and meet yourself.
-  - Cost: 3 tokens
-  - Traits: Attachment, Love Language, Mindfulness, Self-Acceptance
-  - Prompt: `/prompts/report_inner-portrait.md`
-
-- **Conflict Compass**  
-  A personal guide to how you move through conflict — what unsettles you, what shields you, and what brings you back to connection.
-  - Cost: 2 tokens
-  - Traits: Attachment, Mindfulness
-  - Prompt: `/prompts/report-conflict-map.md`
-
-- **Relationship Blueprint**  
-  A map of how you form, maintain, and experience emotional bonds — what draws you closer, what pushes you away, and what you need to feel safe in connection.
-  - Cost: 2 tokens
-  - Traits: Attachment, Love Language
-  - Prompt: `/prompts/report-relationship-blueprint.md`
-
-- **Trust & Vulnerability Map**  
-  A map of how you open up, build trust, and handle emotional intimacy.
-  - Cost: 3 tokens
-  - Traits: Attachment, Self-Acceptance
-  - Prompt: `/prompts/report-trust-vulnerability-map.md`
-
-- **Communication Decoder**  
-  A guide to your communication patterns — how you express care, what patterns take over, and what helps you return to balance.
-  - Cost: 2 tokens
-  - Traits: Love Language, Attachment
-  - Prompt: `/prompts/report-communication-decoder.md`
-
-Notes:
-
-- Each card shows required traits for generation.
-- Each card shows cost.
+- Title
+- Description
+- Completed date
+- Call to actions
+- Price (each card has a price of 1 token)
+- Traits required for generation
+- Image
 
 CTA’s on cards:
 
@@ -133,30 +100,18 @@ They show how your emotional patterns align, differ, and meet in relationship.
 
 [ LIST OF REPORT CARDS IN A GRID ]
 
-Cards:
+Card structure:
 
-- **Couple Snapshot**  
-  A first glimpse into how your patterns overlap and contrast. Highlights shared strengths and natural differences.
-  - Cost: Free with first sync
-  - Input: Trait metadata only
-  - Prompt: `/prompts/report-couple-snapshot.md`
-
-- **Relationship Compass (Couple Edition)**  
-  A deep, personalized reflection of how your patterns come together in bonding, care, and sensitivities.
-  - Cost: 3 tokens
-  - Input: Trait metadata + psychologist notes
-  - Prompt: `/`
-
-- **Conflict Compass (Couple Edition)**  
-  (Future) A guide to your shared conflict patterns — what triggers tension, how you protect yourselves, and how you reconnect.
-  - Cost: TBD
-  - Input: Trait metadata + psychologist notes
-  - Prompt: `/`
+- Title
+- Description
+- Completed date
+- Call to actions
+- Price (each card has a price of 1 token)
+- Traits required for generation
+- Image
 
 Notes:
 
-- Each card shows required inputs for generation.
-- Each card shows cost.
 - CTA’s on cards:
   - View insights (when done)
   - Generate insights (when not done)
