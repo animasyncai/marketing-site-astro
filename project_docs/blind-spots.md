@@ -1,3 +1,7 @@
+# This document identifies blind spots in the product and the business model.
+
+Look at it with a grain of salt.
+
 1. Revenue Model Reality Check
    You need users to buy Sparks regularly to sustain the business. But psychology insights aren't consumed like entertainment. Once someone gets their Inner Portrait, why do they need another report in 6 months? What drives repeat purchases?
 2. Relationship Status Changes
