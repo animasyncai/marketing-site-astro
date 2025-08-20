@@ -1,135 +1,98 @@
-# JTBD (Jobs to be done)
+# JTBD (Jobs To Be Done)
 
-The goal of this document is to define marketing material tobe used to frame value.active
-
-General acknowledgments:
-- Your product offers **psychological self-reflection**, built on rich structured trait data (attachment, love language, mindfulness, etc.).
-- You avoid rigid diagnostics or labeling — instead, you focus on **relational insight**, **emotional nuance**, and **compassionate growth**.
-- It uses AI to generate deep, thoughtful reports (individual and couple-based), including things like *Inner Portrait*, *Conflict Compass*, *Relationship Blueprint*, and fictional partner dynamics.
-- You plan to have a **tiered token-based monetization system**.
-- Your audience cares deeply about **growth**, **connection**, and **emotional understanding**, not gimmicks.
-
-## ✅ Primary Job:
-
-**"Help me understand the emotional patterns that shape how I connect — so I can grow, relate better, and make sense of my inner world."**
-
-This is the emotional core. Users want clarity. Not just “what am I?” but “why do I act this way?”
-
-Not just “how do we match?” but “how can we *meet* each other better?”
-
-They want language for the *unspoken* — feelings they struggle to articulate.
+The goal of this document is to frame value in terms of what users actually “hire” Withinly to do.
 
 ---
 
-## 🧠 Functional Jobs:
+## ✅ Primary Job
 
-- Reveal **how I behave in relationships** (patterns, defenses, needs).
-- Offer **gentle, private reflection** without feeling judged or diagnosed.
-- Simulate or visualize **how I interact with others** (especially romantic partners).
-- Make sense of emotional tensions and reactions I’ve always had but never understood.
-- Let me **invite my partner** or compare dynamics when I’m ready.
-- Guide me with practices and gentle nudges, not lectures or rigid rules.
+**"Help me understand the emotional patterns that shape how I connect — with myself and with others — so I can recognize myself more clearly and build better relationships."**
 
----
-
-## 💓 Emotional Jobs:
-
-- Help me **feel seen** and understood — even in my messiest emotional parts.
-- Reassure me that I’m not broken.
-- Let me explore my inner world **without shame**.
-- Give me the words I never had to explain myself — to me or someone else.
-- Show me that **connection is possible**, even when things feel hard.
+This is the emotional core.  
+Users want **clarity and recognition**.  
+Not “what am I?” but “why do I act this way?”  
+Not “how do we match?” but “how can we truly meet each other better?”
 
 ---
 
-## 🧲 Desired Outcomes:
+## 🧠 Functional Jobs
 
-- Language to explain myself and my needs (to a partner or therapist).
-- Tools for managing conflict and closeness.
-- More peaceful, self-aware relationships.
-- Confidence that I’m growing emotionally.
-- Permission to be complex — without being “diagnosed.”
+- Reveal **how I connect** (attachment, love language, mindfulness, self-acceptance)
+- Show me **my recurring patterns** in conflict, closeness, and self-talk
+- Generate **personal narratives** that help me recognize myself
+- Offer a safe **AI reflection space** that adapts to my patterns
+- Let me **see my relationship through patterns**, not judgments (Couple Snapshot, Relationship Compass)
+- Allow me to **return later** and see if my patterns shifted
+- Provide clarity without requiring therapy or oversimplified quizzes
 
 ---
 
-### 📦 Competing Alternatives (JTBD competition lens)
+## 💓 Emotional Jobs
+
+- Help me **feel seen and understood**, even in messy or contradictory parts of myself
+- Reassure me that I am **not broken** — just patterned
+- Let me explore my inner world **without judgment or labels**
+- Give me words I can use with a partner, friend, or therapist
+- Show me that **connection is possible**, even when it feels difficult
+- Create a sense of **safety**: my reflections are mine, private, and not exposed
+
+---
+
+## 🧲 Desired Outcomes
+
+- **Language** to explain myself and my needs (to a partner or therapist)
+- More **awareness of conflict patterns** and how I return to balance
+- Clarity on what kind of love and connection helps me feel safe
+- **Recognition of blind spots** that repeat in relationships
+- A sense of progress: seeing **patterns evolve** over time
+- Confidence that I am growing in how I connect, not just coping
+
+---
+
+## 📦 Competing Alternatives
 
 When someone is trying to “do” this job, what else might they hire?
 
-| Alternative | Strengths | Weaknesses Compared to You |
-| --- | --- | --- |
-| Therapy (talk or couples) | Deep, personal | Expensive, slow, vulnerable to judgment |
-| Books/workbooks on attachment, etc. | Low cost, informative | Generic, hard to personalize |
-| Personality quizzes (e.g., 16personalities) | Fun, quick | Shallow, overly labeled |
-| Journaling / reflection tools | Flexible, private | Unguided, no feedback |
-| Meditation / mindfulness apps | Emotionally regulating | Not insight-driven |
+| Alternative                                | Strengths              | Weaknesses Compared to Withinly   |
+| ------------------------------------------ | ---------------------- | --------------------------------- |
+| Therapy (talk or couples)                  | Deep, personal         | Expensive, slow, risk of judgment |
+| Books/workbooks on attachment, etc.        | Informative, low cost  | Generic, not personalized         |
+| Personality quizzes (e.g. 16personalities) | Quick, fun             | Shallow, overly labeled           |
+| Journaling / reflection tools              | Private, flexible      | Unguided, no feedback             |
+| Meditation / mindfulness apps              | Emotionally regulating | Not insight-driven                |
 
-Your tool sits right in the sweet spot between **insight + action**, **depth + gentleness**, **therapy-quality reflection** at **scalable access**.
-
----
-
-### 🗣️ Messaging Examples (Sales/Marketing Material Ideas)
-
-Let’s turn all that into **actual copy ideas**.
+Withinly sits between **therapy-level reflection** and **accessible tools**:  
+personalized, emotionally intelligent insights — without judgment or oversimplification.
 
 ---
+
+## 🗣️ Messaging Anchors
 
 ### 🧭 Core Value Prop
 
-> Discover the emotional patterns that shape how you love, connect, and grow.
-> 
-> 
-> Your personalized insight tool for building more mindful relationships — starting with yourself.
-> 
+> Discover the emotional patterns that shape how you connect —  
+> with yourself, with others, and with your partner.
 
----
+### 🪞 For Individuals
 
-### 🪞For Individuals
+> You’re not broken. You’re not “too much.”  
+> You’re just patterned — and patterns can be understood.
 
-> You're not too much. You're not broken. You're just… layered.
-> 
-> 
-> Let’s make sense of those layers — one insight at a time.
-> 
+### 💑 For Couples
 
----
+> What if you could see how your patterns meet —  
+> and where they miss each other?  
+> Couple Portraits make your connection clearer.
 
-### 💬 For Relationship Blueprint
+### 🧠 For Insight Seekers
 
-> Before you fix your relationship, learn how you do relationships.
-> 
-> 
-> Get your unique blueprint for connection, tension, and repair.
-> 
+> You’ve read the books. You’ve taken the tests.  
+> But now you want to _feel_ it — in your words, your depth, your pace.
 
----
+### 🔒 On Privacy
 
-### 💑 For Couple Dynamics
-
-> What if you could see your emotional dance — before stepping on each other's toes?
-> 
-> 
-> Understand how your nervous systems meet (or miss), and what to do about it.
-> 
-
----
-
-### 🧠 For the Insight-Seekers
-
-> You’ve read the books. You’ve taken the tests.
-> 
-> 
-> But now you want to *feel* it — in your language, your depth, your pace.
-> 
-
----
-
-### 🔒 On Privacy / Safety
-
-> No judgment. No labels.
-> 
-> 
-> Just insight — gently delivered, just for you.
-> 
+> Your patterns stay yours.  
+> Nothing is shared, nothing is sold.  
+> Safe reflection is the foundation for growth.
 
 ---

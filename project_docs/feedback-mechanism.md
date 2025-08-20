@@ -17,7 +17,7 @@ Always attach necessary identifiers (`user_id`, `trait_type`, `report_type`, `me
 - **Report Generated** ‼️
   `{ report_type, user_id, wi_tokens_spent, success: true/false }`
 
-I**f complex, not MVP:**
+**NOT MVP:**
 
 - **Chat Session Started**
   `{ user_id, traits_available, has_reports }`
@@ -26,7 +26,7 @@ I**f complex, not MVP:**
 
 ---
 
-## 🔁 Hybrid Chat Session Logic (gali būt per žiauru MVP, tai galima pasilikti vėliau)
+## 🔁 Hybrid Chat Session Logic (NOT MVP)
 
 A chat session is defined as the period of continuous conversation between a user and the AI.
 
@@ -73,7 +73,7 @@ Feedback should be contextual, quick, and lightweight.
   `trait_accuracy: 1-5`
 - **Report Feedback (at bottom of report)**
   `report_insightfulness: 1-5 stars`
-- **Chat Feedback (per AI message)**
+- **Chat Feedback (per AI message)** (NOT MVP)
   - **Primary (always visible):** 👍 Helpful / 👎 Not helpful
   - **Secondary (on click):**
     - Positive: ❤️ Resonated / 💡 New perspective / 🎯 Needed / 🤝 Good direction
@@ -95,7 +95,7 @@ mixpanel.track('Trait Retaken', { trait_type: 'attachment', old_label: 'anxious'
 // Reports
 mixpanel.track('Report Generated', { report_type: 'inner_portrait', user_id, wi_tokens_spent: 3, success: true })
 
-// Chat sessions
+// Chat sessions (NOT MVP)
 mixpanel.track('Chat Session Started', {
   user_id,
   traits_available: ['love_language', 'attachment'],
@@ -154,7 +154,7 @@ mixpanel.track('Chat Response Detailed Reaction', {
 
 ---
 
-## 💬 Chat Feedback
+## 💬 Chat Feedback (NOT MVP)
 
 **Primary prompt (always visible):**
 

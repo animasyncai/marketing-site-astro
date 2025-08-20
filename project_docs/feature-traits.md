@@ -302,13 +302,13 @@ Withinly uses 4 core psychological traits to understand users' emotional and rel
 
 ## Key Implementation Notes
 
-1. **No Labels**: Despite having structured values, the product avoids labeling users directly
-2. **Storytelling Focus**: Results are presented through narrative reports rather than categories
-3. **Dual Output**: Each trait generates user-facing reports + internal psychologist notes
-4. **Re-evaluation**: Users can retake traits, with meaningful change detection logic
+1. **No Labels**: Despite having structured values, the product avoids labeling users directly - the users are never exposed to the values directly.
+2. **Storytelling Focus**: Results are presented through narrative reports rather than trait focused reports or summaries.
+3. **Dual Output**: Each trait generates a short predefined user report (first time only) + internal psychologist notes (for future reports and Chat usage).
+4. **Re-evaluation**: Users can retake traits, with meaningful change detection logic (change of intesity or type)
 5. **Report Dependencies**: Different reports require different combinations of completed traits
 
-## Validation Hooks
+## Validation Hooks (TO BE IMPLEMENTED)
 
 1. Purpose of Validation Hooks
 
