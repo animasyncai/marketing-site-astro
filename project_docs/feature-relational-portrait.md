@@ -104,7 +104,7 @@ A deep exploration of how your emotional patterns come together — where you al
 - **Input:** Both partners' trait metadata + psychologist notes
 - **Focus:** How attachment styles interact, love language mismatches/matches, conflict patterns as a couple, trust and vulnerability dynamics together
 - **Value:** Comprehensive guide to relationship patterns with actionable insights for both partners
-- **Prompt:** `/prompts/report-relationship-compass.md`
+- **Prompt:** `/prompts/report-couple-relationship-compass.md`
 
 #### Conflict Compass (Couple Edition)
 
@@ -117,7 +117,7 @@ A guide to your shared conflict patterns — what triggers tension between you, 
 - **Input:** Both partners' conflict-related traits and patterns
 - **Focus:** Couple-specific conflict cycles, triggers, and repair strategies
 - **Value:** Practical tools for fighting better and reconnecting faster
-- **Prompt:** TBD
+- **Prompt:** `/prompts/report-couple-conflict-compass.md`
 
 ## Relational Report Requirements
 

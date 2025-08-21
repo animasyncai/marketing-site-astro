@@ -95,27 +95,184 @@ CTA’s on cards:
 
 ## Relational Portraits
 
-Relational Portraits are shared reflections created when you connect your account with a partner.  
-They show how your emotional patterns align, differ, and meet in relationship.
+### Page Content & States
 
-[ LIST OF REPORT CARDS IN A GRID ]
+#### State 1: No Partner Sync
 
-Card structure:
+**Page Header:**
+
+- Title: "Relational Portraits"
+- Subtitle: "Shared reflections created when you connect your account with a partner. They show how your emotional patterns align, differ, and meet in relationship."
+
+**Partner Sync Setup Block:**
+
+- Title: "Connect with Your Partner"
+- Description: "Sync your accounts to unlock couple insights while keeping your individual traits private."
+- CTA Button: "Send Partner Invite" → **opens Invitation Modal**
+- Secondary info: "Your partner will need to complete their core traits first"
+
+**Locked Reports Grid:**
+[ GRID OF LOCKED REPORT CARDS ]
+
+- Each card grayed out with lock icons
+- "Requires Partner Sync" overlay
+- Preview descriptions visible but no access
+
+---
+
+#### State 2: Pending Invitation Sent
+
+**Page Header:** Same as State 1
+
+**Invitation Status Block:**
+
+- "Invitation sent via [link/code/in-app]"
+- "Sent on [date]"
+- "Waiting for partner to accept and complete core traits"
+- Actions: "Cancel Invitation" | "Resend Invitation"
+
+**Locked Reports Grid:** Same as State 1
+
+---
+
+#### State 3: Invitation Received
+
+**Page Header:** Same as State 1
+
+**Invitation Received Block:**
+
+- "[Partner Name] wants to connect with you for couple insights"
+- "Your individual traits will remain private - only shared insights are visible"
+- Actions: "Accept Invitation" | "Decline"
+- Note: "Complete your core traits first" (if applicable)
+
+**Locked Reports Grid:** Same as State 1
+
+---
+
+#### State 4: Active Partner Sync
+
+**Page Header:** Same as State 1
+
+**Partner Status Block:**
+
+- "Connected with [Partner Name]"
+- "Connected on [date]"
+- Button: "Manage Connection" → **opens Settings Modal**
+
+**Active Reports Grid:**
+[ GRID OF REPORT CARDS ]
+
+**Report Card Content:**
 
 - Title
 - Description
-- Completed date
-- Call to actions
-- Price (each card has a price of 1 token)
-- Traits required for generation
-- Image
+- Completion date (if generated)
+- Regeneration flag (if traits changed)
+- Price in Sparks
+- Required traits indicator
+- Access note: "Both partners can view when one pays"
+- CTA button based on state:
+- "Generate insights" (not done)
+- "View insights" (completed)
+- "Regenerate insights" (needs update)
 
-Notes:
+**Available Reports:**
 
-- CTA’s on cards:
-  - View insights (when done)
-  - Generate insights (when not done)
-  - Regenerate insights (when traits changed)
+- Couple Snapshot (Free with first sync)
+- Relationship Compass (3 Sparks)
+- Conflict Compass - Couple Edition (3 Sparks, Future)
+
+---
+
+### Modal 1: Send Invitation
+
+**Modal Title:** "Invite Your Partner"
+
+**Modal Content:**
+
+- Explanation: "Choose how to invite your partner"
+
+**Invitation Methods:**
+
+1. **Share Link**
+
+- "Generate a link to send via text, email, or messaging"
+- Button: "Generate Link"
+
+2. **Share Code**
+
+- "Generate a 6-digit code your partner can enter"
+- Button: "Generate Code"
+
+3. **Find by Email** (if partner has account)
+
+- Email input field
+- Button: "Send In-App Invitation"
+
+IMPLEMENT WHATEVER IS THE EASIEST AT THE MOMENT.
+
+**Modal Actions:**
+
+- "Cancel" button
+- Method-specific "Send" button
+
+---
+
+### Modal 2: Connection Settings
+
+**Modal Title:** "Partner Connection Settings"
+
+**Connection Info Section:**
+
+- Partner's name and avatar
+- "Connected on [date]"
+- Status: "Active connection"
+
+**Report Access Section:**
+
+- "Generated Reports:"
+- List of reports with purchase info:
+- "Couple Snapshot - Free"
+- "Relationship Compass - Paid by [You/Partner] on [date]"
+- Note: "Both partners can view reports when one pays"
+
+**Privacy Section:**
+
+- "Privacy Protection:"
+- "✓ Your individual traits remain private"
+- "✓ Only shared couple insights are visible"
+- "✓ Either partner can unlink at any time"
+
+**Danger Zone:**
+
+- Red border section
+- "Unlink Partner" button
+- Warning: "This removes access to all couple reports for both partners"
+
+**Modal Actions:**
+
+- "Close" button
+- "Unlink Partner" button → **opens Confirmation Modal**
+
+---
+
+### Modal 3: Unlink Confirmation
+
+**Modal Title:** "Unlink Partner?"
+
+**Modal Content:**
+
+- "Are you sure you want to unlink from [Partner Name]?"
+- "This will:"
+- "• Remove access to all couple reports for both of you"
+- "• Cannot be undone"
+- "• Your individual traits will remain unaffected"
+
+**Modal Actions:**
+
+- "Cancel" button
+- "Yes, Unlink" button (red/warning style)
 
 ---
 
