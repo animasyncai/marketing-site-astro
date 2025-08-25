@@ -14,6 +14,7 @@
     "earlyAccess": "Ankstyvas priėjimas",
     "privacy": "Privatumas",
     "contact": "Kontaktai",
+    "faq": "DUK",
     "joinEarlyAccess": "Prisijungti prie ankstyvojo priėjimo",
     "menuLabel": "Pagrindinis meniu",
     "skipToMain": "Pereiti prie pagrindinio turinio",
@@ -75,6 +76,7 @@
   },
   "different": {
     "headline": "Tikras apmąstymas, ne greiti sprendimai",
+    "description": "Atpažinimas virš diagnozės. Šablonai virš etikečių.",
     "dontOffer": {
       "title": "Mes nesiūlome:",
       "items": ["5 minučių asmenybės tipų", "Santykių triukų", "Bendrų patarimų", "Toksiško pozityvumo"]
@@ -187,6 +189,24 @@
     "successMessage": "Sveikiname! Netrukus susisieksime dėl tavo ankstyvojo priėjimo.",
     "errorMessage": "Kažkas nepavyko. Bandyk dar kartą arba rašyk mums tiesiogiai."
   },
+  "couples": {
+    "badge": "Poroms",
+    "headline": "Pamatyk, kaip susitinka jūsų šablonai",
+    "subheadline": "Jūsų santykiai turi prasmę",
+    "relationshipMakesSense": "Jūsų santykiai turi prasmę",
+    "description1": "Kai ginčijatės dėl indų, bet iš tikrųjų tai apie jausmą būti vertinamam. Kai abu bandote padėti, bet kažkaip praleidžiate vienas kitą. Kai meilė yra, bet ryšys atrodo sunkus.",
+    "description2": "**Porų momentraščiai** parodo, kur jūsų šablonai sutampa ir kur susikerta — su užuojauta abiem pusėms.",
+    "description3": "Suprask savo šokį kartu.",
+    "coupleSnapshots": {
+      "title": "Porų momentraščiai",
+      "description": "Pamatyk, kur jūsų šablonai sutampa ir kur susikerta — su užuojauta abiem pusėms."
+    },
+    "testimonial": {
+      "quote": "Matau mūsų konfliktų šabloną išrašytą buvo tarsi kažkas įjungtų šviesas. Mes nesame sugedę — mums tiesiog reikėjo suprasti šokį, kurį šokome.",
+      "author": "Emma ir Davidas"
+    },
+    "cta": "Prisijungti prie ankstyvojo priėjimo"
+  },
   "closing": {
     "headline": "Augimas sunkus. Tau nereikia to daryti vienam.",
     "description": "Nesvarbu, ar esi smalsus, ar pasiruošęs nardyti giliai, esame pagerbti, kad esi čia. Tai kažko prasmingo pradžia.",
@@ -216,5 +236,30 @@
     "playSlider": "Paleisti atsiliepimų slankiklį",
     "loadingContent": "Kraunamas turinys",
     "errorContent": "Klaida kraunant turinį"
+  },
+  "faq": {
+    "headline": "Dažniausi klausimai",
+    "items": [
+      {
+        "question": "Ar tai terapija?",
+        "answer": "Ne. Galvok apie tai kaip apie veidrodį, kuris padeda aiškiau matyti tavo šablonus. Daugelis žmonių naudoja čia gautas įžvalgas, kad eitų giliau tikroje terapijoje."
+      },
+      {
+        "question": "O jei esu vienas?",
+        "answer": "Puiku. Savo šablonų supratimas prieš kitus santykius gali būti neįtikėtinai vertingas. Daugelis vartotojų sako, kad tai padėjo jiems pasirinkti geresnius partnerius ir pasirodyti kitaip."
+      },
+      {
+        "question": "Kuo tai skiriasi nuo asmenybės testų?",
+        "answer": "Jie duoda tau tipą. Mes duodame supratimą. Tavo šablonai yra unikalūs, sudėtingi ir gali keistis. Mes sutinkame tave ten, kur esi, o ne ten, kur testas sako, kad turėtum būti."
+      },
+      {
+        "question": "O kaip su mano privatumu?",
+        "answer": "Viskas lieka visiškai privatu. Net jei sinchronizuojiesi su partneriu, jis mato tik bendras įžvalgas — niekada tavo individualių šablonų ar pokalbių."
+      },
+      {
+        "question": "Ar tai gali pakeisti terapiją?",
+        "answer": "Ne, ir tai nėra tikslas. Jei esi krizėje ar susiduri su rimtais psichikos sveikatos iššūkiais, kreipkis pagalbos į specialistus. Mes esame čia savęs supratimui, o ne gydymui."
+      }
+    ]
   }
 }

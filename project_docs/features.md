@@ -120,7 +120,7 @@ More details in `feature-relational-portrait.md`
 
 ---
 
-## Chat Assistant aka Reflection Companion
+## 💬 Reflection Companion
 
 - Speaks in a warm, therapeutic-like tone — never clinical.
 - Adapts based on trait psychologist notes and report summaries.

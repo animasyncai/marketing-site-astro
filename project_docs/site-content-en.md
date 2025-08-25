@@ -1,191 +1,270 @@
 # Hero Section
 
-## Your relationships mirror your inner world.
+## Understand why you react that way in relationships
 
-We help you understand both — with depth, nuance, and an AI companion who truly gets the human experience.
+Discover your attachment patterns, love language, and emotional triggers. Get personalized insights that make your relationship patterns finally make sense.
 
-[Join Early Access] [See How It Works]
+[Join Early Access] [How It Works]
 
-_Real growth takes courage. We're here to hold space for it._
+_You're not broken. You're just patterned — and patterns can be understood._
 
 ---
 
 # Opening Hook
 
-## We all carry patterns we can't quite name.
+## We all repeat the same patterns in love.
 
-Why some people feel like home. Why conflict makes us shut down—or fight for closeness. Why love can feel both safe and scary. Why we sometimes push away what we need most.
+Why you shut down when your partner needs closeness. Why you give advice when they want comfort. Why conflict feels so threatening. Why you question if you're too much, or not enough.
 
-Withinly helps you see these patterns — not with labels or quick fixes, but through deep reflection and an ongoing dialogue with an AI that builds on what you share with nuance and care. Useful whether you’re single, in a relationship, or simply curious about your inner world.
+Withinly helps you see these patterns clearly — not through labels or quick fixes, but through gentle recognition and an AI companion trained in psychological depth.
 
-> "This isn’t about labels. It’s about finally having words for your story.""
+> "It's not about what's wrong with you. It's about understanding what makes sense about you."
+
+---
+
+# Social Proof / Early Results
+
+## People are finding their words
+
+> "I finally understand why I pull away when my partner tries to get closer. It's not that I don't love him — I just need to feel safe first."
+> — Sarah, 28
+
+> "Reading about my conflict patterns made me cry. Good tears. Recognition tears. I sent it to my therapist."
+> — James, 34
+
+> "We both took it and suddenly our fights made sense. We have language now instead of just hurt feelings."
+> — Maya & Alex, together 4 years
 
 ---
 
 # How It Works Section
 
-Comment // These cards should be equal height / have similar amount of characters as content
+## See yourself clearly, at your own pace
 
-## A journey inward, at your own pace
+Self-understanding unfolds gradually. Each reflection builds on the last, and your AI companion remembers your patterns to help you recognize them in daily life.
 
-Self‑understanding isn’t a destination. It unfolds. Each reflection builds on the last—and your AI consultant carries the thread using your traits and recent conversations.
+### 1. Notice your patterns
 
-### 1. Start with gentle discovery
+**Start Here**
 
-Label above title: Begin
+Gentle questions based on attachment theory and relationship psychology reveal how you connect, express love, stay present, and treat yourself. No categories — just recognition.
 
-Short, thoughtful trait check‑ins help you notice how you relate, express love, and respond under stress. No right answers—just honest noticing.
+**Outcome**: Recognition
 
-Tag below content: Curiosity
+### 2. Get your first reflection
 
-### 2. Receive your Inner Portrait
+**Understand**
 
-Label above title: Begin
+A personal narrative that connects your patterns into something you'll recognize. See why you react the way you do in relationships.
 
-A personal narrative that brings your traits together with warmth and clarity. Free members get the essence; full members unlock deeper, integrative insight.
+**Outcome**: Language
 
-Tag below content: Recognition
+### 3. Talk it through
 
-### 3. Begin the conversation
+**Explore**
 
-Label above title: Begin
+Your AI companion knows your patterns and helps you see how they show up in real situations. Like having a wise friend who remembers every conversation.
 
-Meet your AI consultant—grounded in psychological wisdom, speaking like a trusted friend. It uses your traits and recent reflections to help you make sense of patterns and support you as they evolve.
+**Outcome**: Insight
 
-Tag below content: Recognition
+### 4. Go deeper when ready
 
-### 4. Go deeper when you're ready
+**Grow**
 
-Label above title: Grow
+Unlock specialized portraits — Conflict Compass, Trust Map, Communication Decoder — or sync with your partner for couple insights.
 
-Unlock specialized reports—Conflict Compass, Relationship Blueprint, Stress Signals, and more. Explore simulated dynamics or sync privately with a real partner.
+**Outcome**: Connection
 
-Tag below content: Transformation
+### CTA BOX
 
-### CTA BOX BELOW
+**Title**: Your pace is the right pace
 
-Title: Your pace is the right pace
+**Content**: Some days you'll dive deep; other days you'll just check in. Withinly adapts to where you are and remembers where you've been.
 
-Content:
-Some days you’ll dive deep; other days you’ll simply check in. Withinly adapts to where you are—and remembers where you’ve been.
-
-[ Begin Your Discovery ] // Before launch  [Join early access]
+[Join Early Access]
 
 ---
 
 # What Makes This Different
 
-## Real reflection, not quick fixes
+## Recognition over diagnosis. Patterns over labels.
 
-We believe in depth over quick fixes, understanding over categorization
+### What you won't find here:
 
-**❌ We don't offer:**
+- Quick personality types that box you in
+- Generic relationship advice that doesn't fit
+- AI that pretends to be a therapist
+- Judgment about how you love or connect
 
-- 5-minute personality types
-- Relationship hacks
-- Generic advice
-- Toxic positivity
+### What you will find:
 
-**✓ We do offer:**
+- Language for patterns you've always felt
+- An AI companion who learns your specific emotional world
+- Insights that evolve as you do
+- Safe space to explore without being fixed or changed
 
-- Nuanced understanding of your patterns
-  - A companion who remembers your growth
-- Insights that evolve with you
-- Space for all your emotions
+_Because you don't need to be fixed. You need to be understood._
 
-_Because real growth isn't about becoming someone else. It's about understanding who you already are._
-
-[Start Your Journey]
+[Join Early Access]
 
 ---
 
-# Pricing Philosophy Section
+# For Couples Section
 
-## Fair exchange for real value
+## See how your patterns meet
 
-### Free Forever
+### Your relationship makes sense
 
-- Core assessments
-- Essential insights report
-- Limited AI consultation
-- Taste of what's possible
+When you fight about dishes but it's really about feeling valued. When you both try to help but somehow miss each other. When love is there but connection feels hard.
 
-### Full Membership — $12/month
+**Couple Snapshots** show where your patterns align and where they clash — with compassion for both sides.
 
-- All current & future reports
-- Unlimited AI consultation with full memory
-- Specialized deep-dives (conflict, family patterns, intimacy blocks)
-- Personalized practices
-- Early access to new features
+> "Seeing our conflict pattern written out was like someone turning on the lights. We're not broken — we just needed to understand the dance we were doing."
+> — Emma & David
 
-_Cancel anytime. This is your journey, your pace._
+[Join Early Access]
 
 ---
 
-# Early Access Testimonials 
+# Pricing Section
 
-Hear from people who are already exploring their inner patterns
+## Fair exchange for meaningful insights
 
-> "I've been in therapy for years. This gave me insights my therapist and I are now exploring together."
-> — Early member
+### Free to Start
 
-> "The report about my relationship patterns made me sob. Good tears. Recognition tears."
-> — Beta tester
+- Complete your pattern discovery
+- Get your first personal reflection
+- Try conversations with your AI companion
+- Explore what's possible
 
-> "It's like having a wise friend who remembers every conversation and helps me see the threads."
-> — Premium member
+### Pay as You Go with Sparks ✨
 
----
+- **Sparks** are tokens that unlock deeper insights
+- Generate detailed portraits when you're ready
+- Have unlimited conversations
+- Sync with your partner for couple insights
+- Only pay for what you actually want to explore
 
-# Trust & Safety Section
+_Pricing will be announced at launch. No subscriptions — just pay for insights that matter to you._
 
-## Your inner world deserves protection
-
-This is sacred space. Your thoughts, patterns, and revelations stay between you and your AI consultant.
-
-- **Complete privacy** — We don't need your real name
-- **Your data stays yours** — Never sold, never shared
-- **Delete anytime** — Take your insights and go, no questions
-- **Ethical AI** — Trained to support, not diagnose or fix
-
-We believe healing happens in safety. That's non-negotiable.
+[Join Early Access]
 
 ---
 
-# The Invitation Section
+# Trust & Safety
 
-## Be among the first to explore
+## Your patterns stay yours
 
-We're opening doors to a select group who understand that real self-discovery takes courage. Join our early access and mailing list and we'll personally reach out when Withinly launches.
+This is sacred space. Your insights, conversations, and growth stay completely private.
 
-[EMAIL INPUT] [Reserve Your Spot →]
+- **No real name required** — use whatever feels safe
+- **Your data stays yours** — never sold, never shared, delete anytime
+- **Private couple insights** — even synced partners can't see your individual patterns
+- **Built for safety** — designed to understand, not diagnose or treat
 
-We'll send you a personal note when doors open. No spam, ever.
-
-_We're limiting early access to ensure quality. Spots are filling._
+_Safe reflection is where real growth happens._
 
 ---
 
+# The Science
 
-# Closing Promise Section
+## Psychologically grounded, not just clever
 
-## Growth is hard. You don't have to do it alone.
+Built on decades of attachment theory, love language research, and mindfulness science. But instead of giving you a type, we give you understanding of your unique patterns.
 
-Whether you're curious or ready to dive deep, we're honored that you're here. This is the beginning of something meaningful.
+Our AI doesn't just chat — it understands emotional patterns the way a skilled therapist would, without the labels or diagnoses.
 
-**Questions before joining?** Reach a real human at hello@withinly.app
+---
 
-_Launching soon in English and Lithuanian • More languages coming_
+# FAQ Section
+
+## Common questions
+
+**Is this therapy?**
+No. Think of it as a mirror that helps you see your patterns more clearly. Many people use insights here to go deeper in actual therapy.
+
+**What if I'm single?**
+Perfect. Understanding your patterns before your next relationship can be incredibly valuable. Many users say it helped them choose better partners and show up differently.
+
+**How is this different from personality tests?**
+Those give you a type. We give you understanding. Your patterns are unique, complex, and can evolve. We meet you where you are, not where a test says you should be.
+
+**What about my privacy?**
+Everything stays completely private. Even if you sync with a partner, they only see shared insights — never your individual patterns or conversations.
+
+**Can this replace therapy?**
+No, and it's not meant to. If you're in crisis or dealing with serious mental health challenges, please seek professional help. We're here for self-understanding, not treatment.
+
+---
+
+# Call to Action Section
+
+## Be among the first to understand your patterns
+
+We're opening Withinly to a select group who understand that real self-discovery takes courage. Join our closed beta and be among the first to explore.
+
+**No commitment. No pressure. Just gentle recognition of who you already are.**
+
+[Join Early Access]
+
+_We'll reach out personally when your spot is ready._
 
 ---
 
 # Footer
 
-// Comment - currently not liking this - doesn't feel like it fits. Poetry is not part of what we sell.active
+**Support**: hello@withinly.app
+**Privacy**: We protect your reflections like they're our own
 
-_Withinly: Where psychology meets poetry, and AI meets the human heart._
+_Launching soon in English and Lithuanian_
 
-© 2025 Withinly. All rights reserved.
+© 2025 Withinly. Safe • Private • Understanding
 
-Secure & Private
-Made with Care
+---
+
+# Additional Sections for Later
+
+## For Specific Audiences
+
+### If you're in therapy
+
+Use Withinly insights to go deeper in sessions. Many therapists love when clients bring this kind of self-awareness to their work together.
+
+### If you're dating
+
+Understand your patterns before they become relationship patterns. Know what you need and how you naturally show care.
+
+### If you keep having the same fights
+
+See the cycle you're both stuck in. Most conflict isn't about the thing you're fighting about — it's about the pattern underneath.
+
+---
+
+## Product Positioning
+
+### Not like other apps because:
+
+- **Therapy apps**: Try to treat or fix you
+- **Dating apps**: Focus on matching, not understanding
+- **Personality tests**: Give you a category, not insight
+- **Meditation apps**: Focus on calm, not patterns
+
+### Withinly: Understands the emotional patterns that shape your relationships
+
+---
+
+## Conversion Optimization Notes
+
+**Primary CTA**: "Join Early Access" (creates exclusivity and urgency)
+**Secondary CTA**: "How It Works" (for people who need more info first)
+
+**Value Props in Order of Importance**:
+
+1. Recognition/Language for patterns you feel
+2. No labels or diagnosis — just understanding
+3. Evolves with you over time
+4. Safe and completely private
+5. Helps with real relationship situations
+
+**Emotional Journey**:
+Recognition → Understanding → Language → Growth → Connection

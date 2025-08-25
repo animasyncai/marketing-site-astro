@@ -9,11 +9,12 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 import HeroWithinly from '../components/HeroWithinly.astro'
 import HowItWorks from '../components/HowItWorks.astro'
 import DifferentiatorSection from '../components/DifferentiatorSection.astro'
+import ForCouplesSection from '../components/ForCouplesSection.astro'
 import FeatureComparison from '../components/FeatureComparison.astro'
 import TestimonialSlider from '../components/TestimonialSlider.astro'
 import TrustSignals from '../components/TrustSignals.astro'
 import EmailSignup from '../components/EmailSignup.astro'
-import Button from '../components/Button.astro'
+import FAQ from '../components/FAQ.astro'
 import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
@@ -56,6 +57,9 @@ const pageDescription = t('meta.defaultDescription')
   <!-- What Makes Us Different -->
   <DifferentiatorSection />
 
+  <!-- For couples section -->
+  <ForCouplesSection />
+
   <!-- Pricing/Features Comparison -->
   <FeatureComparison showPricing={false} />
 
@@ -64,6 +68,9 @@ const pageDescription = t('meta.defaultDescription')
 
   <!-- Trust & Safety -->
   <TrustSignals variant="horizontal" showDescriptions={true} />
+
+  <!-- FAQ Section -->
+  <FAQ headline={t('faq.headline')} items={(translations as any).faq?.items || []} />
 
   <!-- Early Access Section -->
   <section
@@ -95,7 +102,7 @@ const pageDescription = t('meta.defaultDescription')
         <h3 class="mb-6 text-lg font-semibold text-violet-100">{t('earlyAccess.benefits.title')}</h3>
         <div class="grid gap-3 text-left sm:grid-cols-2">
           {
-            translations.earlyAccess?.benefits?.items?.map((benefit) => (
+            (translations as any).earlyAccess?.benefits?.items?.map((benefit: string) => (
               <div class="flex items-center gap-3 text-violet-100">
                 <Icon name="lucide:check-circle" class="h-5 w-5 flex-shrink-0 text-violet-300" />
                 <span class="text-sm">{benefit}</span>
@@ -109,28 +116,6 @@ const pageDescription = t('meta.defaultDescription')
       <p class="text-sm text-violet-200 italic">
         {t('earlyAccess.urgency')}
       </p>
-    </div>
-  </section>
-
-  <!-- Closing Section -->
-  <section class="bg-gray-50 py-16 text-center" aria-labelledby="closing-headline">
-    <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-      <h2 id="closing-headline" class="mb-4 text-2xl font-bold text-gray-900">
-        {t('closing.headline')}
-      </h2>
-      <p class="mb-6 leading-relaxed text-gray-600">
-        {t('closing.description')}
-      </p>
-
-      <!-- Contact information -->
-      <div class="space-y-4">
-        <p class="text-gray-600">
-          {t('closing.contact')}
-        </p>
-        <p class="text-sm text-gray-500 italic">
-          {t('closing.languages')}
-        </p>
-      </div>
     </div>
   </section>
 </DefaultLayout>

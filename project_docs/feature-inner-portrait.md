@@ -1,4 +1,6 @@
-## Basic Reports (Individual)
+# Inner Portrait
+
+## Basic Reports
 
 **Purpose:** 400-600 word teasers that create desire for premium reports. Each previews specific premium content and ends with clear upsell path.
 
@@ -57,7 +59,7 @@ A reflection on your emotional safety patterns — how you approach trust, what 
 - Premium reports dive 3x deeper into the same psychological territory
 - Users should feel "I need to understand this better" after reading basic version
 
-## Premium Reports (Individual)
+## Premium Reports
 
 **Purpose:** 1200-1500 word comprehensive explorations that provide actionable psychological insight. Deep enough to reference repeatedly and share with partners/therapists.
 
@@ -70,7 +72,7 @@ A complete map of your emotional world — how you connect with others, express 
 - **Traits:** Attachment, Love Language, Mindfulness, Self-Acceptance
 - **Focus:** Integrated view of all psychological patterns and how they interact
 - **Value:** Complete psychological profile for self-understanding and sharing
-- **Prompt:** `/prompts/report_inner-portrait.md`
+- **Prompt:** `/prompts/report-inner-portrait.md`
 
 ### 2. Conflict Compass
 

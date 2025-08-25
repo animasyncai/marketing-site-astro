@@ -54,6 +54,13 @@ const skipLinkId = 'main-content'
         >
           {t('navigation.privacy')}
         </a>
+        <a
+          href="#faq"
+          class="nav-link text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+          data-nav-item
+        >
+          {t('navigation.faq')}
+        </a>
       </nav>
 
       <!-- Right side actions -->
@@ -109,6 +116,13 @@ const skipLinkId = 'main-content'
           data-mobile-nav-item
         >
           {t('navigation.features')}
+        </a>
+        <a
+          href="#faq"
+          class="mobile-nav-link block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900"
+          data-mobile-nav-item
+        >
+          {t('navigation.faq')}
         </a>
         <a
           href="#privacy"
@@ -218,7 +232,7 @@ const skipLinkId = 'main-content'
               const currentHeader = document.querySelector('header') as HTMLElement
               return currentHeader?.offsetHeight || 64
             }
-            
+
             const headerHeight = getHeaderHeight()
             const targetPosition = target.offsetTop - headerHeight - 24 // Extra 24px spacing for better visual separation
 
@@ -234,35 +248,85 @@ const skipLinkId = 'main-content'
 
     // Active navigation highlighting
     const highlightActiveNavItem = () => {
-      const sections = document.querySelectorAll('section[id]')
-      const navItems = document.querySelectorAll('[data-nav-item], [data-mobile-nav-item]')
+      // Wait for the page to be fully loaded and then find all sections
+      const findSections = () => {
+        // Only look for sections and main content areas, not all elements with IDs
+        const sections = document.querySelectorAll('section[id], main[id], [id].nav-target')
+        const navItems = document.querySelectorAll('[data-nav-item], [data-mobile-nav-item]')
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const sectionId = entry.target.id
-
-              // Remove active class from all nav items
-              navItems.forEach((item) => {
-                item.classList.remove('nav-active')
-              })
-
-              // Add active class to corresponding nav items
-              const activeItems = document.querySelectorAll(`[href="#${sectionId}"]`)
-              activeItems.forEach((item) => {
-                item.classList.add('nav-active')
-              })
-            }
-          })
-        },
-        {
-          rootMargin: '-20% 0px -70% 0px', // Trigger when section is roughly in center
-          threshold: 0.1,
+        // If no sections found, retry later
+        if (sections.length === 0) {
+          return false
         }
-      )
 
-      sections.forEach((section) => observer.observe(section))
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const sectionId = entry.target.id
+
+                // Remove active class from all nav items
+                navItems.forEach((item) => {
+                  item.classList.remove('nav-active')
+                })
+
+                // Add active class to corresponding nav items
+                const activeItems = document.querySelectorAll(`[href="#${sectionId}"]`)
+                activeItems.forEach((item) => {
+                  item.classList.add('nav-active')
+                })
+              }
+            })
+          },
+          {
+            rootMargin: '-20% 0px -70% 0px', // Trigger when section is roughly in center
+            threshold: 0.1,
+          }
+        )
+
+        sections.forEach((section) => {
+          observer.observe(section)
+        })
+
+        return true
+      }
+
+      // Try to find sections multiple times with increasing delays
+      let attempts = 0
+      const maxAttempts = 5
+
+      const tryFindSections = () => {
+        if (attempts >= maxAttempts) return
+
+        if (!findSections()) {
+          attempts++
+          setTimeout(tryFindSections, 200 * attempts)
+        }
+      }
+
+      tryFindSections()
+
+      // Also use a mutation observer to catch any dynamically added sections
+      const mutationObserver = new MutationObserver((mutations) => {
+        let shouldReinitialize = false
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE && (node as Element).id) {
+                shouldReinitialize = true
+              }
+            })
+          }
+        })
+        if (shouldReinitialize) {
+          setTimeout(findSections, 100)
+        }
+      })
+
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      })
     }
 
     // Header scroll effects - simplified to only add scrolled class
@@ -286,7 +350,13 @@ const skipLinkId = 'main-content'
 
     // Initialize all functionality
     addSmoothScrolling()
-    highlightActiveNavItem()
+
+    // Initialize active navigation highlighting with proper timing
+    // Use requestAnimationFrame to ensure DOM is fully ready
+    requestAnimationFrame(() => {
+      highlightActiveNavItem()
+    })
+
     handleHeaderScroll()
 
     // Clean up on page unload

@@ -25,51 +25,32 @@ This report should feel like:
 
 #### Where Your Hearts Align
 
-Explore shared strengths and natural compatibilities:
+Describe 2–3 shared strengths.  
+**Must include:** one realistic everyday scene where they naturally connect.
 
-- Attachment styles that complement each other
-- Love languages that naturally sync
-- Mindfulness and self-acceptance patterns that support each other
-- Specific examples of how you naturally care for each other well
+#### Where Your Patterns Differ
 
-> Use both partners' trait data to find genuine alignments
+Describe 2–3 key differences.  
+**Must include:** how these differences are felt in daily life (e.g., timing, communication, affection).  
+Frame contrasts as natural, not flaws.
 
-#### Where Your Patterns Meet Differently
+#### The Rhythm Between You
 
-Describe key differences without judgment:
-
-- Attachment needs that might create tension (closeness vs. space)
-- Love language mismatches and what each partner might miss
-- Different mindfulness styles (how you each process emotions/stress)
-- Self-acceptance differences (how you each treat yourselves and each other)
-
-Frame differences as natural, not problematic.
-
-#### The Dance You Do Together
-
-Illuminate relationship dynamics and cycles:
-
-- How your attachment styles interact in conflict
-- What happens when love languages don't translate
-- How stress affects your connection patterns
-- Specific scenarios they'll recognize from their relationship
+Describe the recurring “flow” of their relationship outside conflict.  
+**Must include:** one scene that shows how their patterns combine (could be playful, warm, or tense-but-manageable).
 
 #### Building Bridges
 
-Offer practical strategies for working with your patterns:
+Offer 3–4 **If/Then bridges**.
 
-- How to communicate your different attachment needs
-- Ways to translate between your love languages
-- Strategies for supporting each other's emotional processing
-- Concrete suggestions for honoring both patterns
+- If Partner A does X, Partner B can receive it as Y.
+- If Partner B does X, Partner A can receive it as Y.  
+  Keep them behavioral, concrete, and short.
 
-#### Your Unique Growth Edge
+#### Your Growth Edge
 
-Close with relationship-specific growth invitation:
-
-- One key insight about your relationship dynamic
-- How understanding these patterns can deepen your connection
-- Affirmation of your relationship's unique strengths
+Close with one growth insight + one small weekly practice (60 seconds, one-step).  
+Frame it as an experiment, not homework.
 
 ---
 
