@@ -70,7 +70,7 @@ End with compelling CTA to Communication Decoder:
 
 ## WORD COUNT LIMIT
 
-**HARD LIMIT: 400-600 words total. Count every word.**
+**STRICT LIMIT: 500 words maximum. Generate 450-500 words.**
 
 ## Input:
 

@@ -185,7 +185,7 @@ For couples (when you’re ready):
 
 ---
 
-# Your First Conversation (Free Preview)
+# Your First Conversation
 
 Now that you've seen your first reflection, you can also talk to me directly.
 

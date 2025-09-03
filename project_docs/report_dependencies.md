@@ -1,17 +1,5 @@
 # Report Dependencies & Generation Rules
 
-## Trait Requirements
-
-**3 Core Traits (Required for basic functionality):**
-
-- Attachment Type
-- Mindfulness Level
-- Self-Acceptance Level
-
-**Optional 4th Trait:**
-
-- Love Language (unlocks 3 additional reports)
-
 ## Report Generation Rules
 
 1. **Reports only generate when ALL required traits are complete**
@@ -19,7 +7,7 @@
 3. **Each report is standalone** - no cross-referencing for cost efficiency
 4. **Regeneration costs full price** - same AI processing as new generation
 
-## Report Access in Chat
+## Report Access in Chat (PROBABLY NOT IN MVP)
 
 - AI consultant can access purchased reports via tool-based system
 - Uses 200-word behavioral summaries, not full reports
