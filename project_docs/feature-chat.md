@@ -14,6 +14,24 @@
 
 ---
 
+## Memory System
+
+### Current Implementation (MVP)
+
+- Consultant has access to 10 recent messages + evolving summary
+- Summary updates every 5 messages
+- Unlimited summary length to preserve details
+- No separate memory extraction for users
+
+### Known Limitations
+
+- Early conversation details may get compressed
+- No explicit memory search
+- Consultant can't reference specific past sessions
+- See `/feature-memory-system.md` for full documentation
+
+---
+
 ## ✨ Reflection Prompt System
 
 **Core Problem:** Prevent casual "hello" usage and guide users toward meaningful pattern exploration.
@@ -21,11 +39,13 @@
 ### UX Flow
 
 **First Time (Empty Chat):**
+
 - Show 3-4 curated prompts as clickable cards
 - Message: "Let's explore a real situation from your life. Choose what resonates:"
 - User clicks → prompt populates chat input → user can edit/send
 
 **Ongoing Chat:**
+
 - Floating ✨ button (always visible)
 - Click → slide-out panel with full prompt library
 - User selects → prompt populates chat input
@@ -35,6 +55,7 @@
 **Three Types of Prompts:**
 
 1. **Universal/General** (always shown)
+
    ```
    "Something feels off but I can't name it"
    "I keep doing this thing in relationships where..."
@@ -42,6 +63,7 @@
    ```
 
 2. **Trait-Type Based** (attachment, love language)
+
    ```
    anxious_attachment: "Why do I need so much reassurance?"
    avoidant_attachment: "Why do I pull away when they get close?"
@@ -59,15 +81,18 @@
 ### Smart Filtering Logic
 
 **Show prompts IF:**
+
 - Universal/general prompts (always shown)
 - Match user's primary trait (gets ✨ recommended badge)
 - Match user's secondary trait (shown, no badge)
 - Match user's mindfulness/self-acceptance level
 
 **Hide prompts that:**
+
 - Don't match their primary, secondary, or level-appropriate traits
 
 **Example for Anxious Primary + Words Secondary + Low Mindfulness:**
+
 ```
 ✨ Reflection Starters
 
@@ -204,3 +229,4 @@ Use: "I notice you mentioned feeling unheard - verbal recognition seems importan
 - Encourage self-understanding and growth
 - Maintain psychological sophistication without clinical language
 - Provide curated, relevant conversation starters
+```

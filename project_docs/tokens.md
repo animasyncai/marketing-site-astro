@@ -139,7 +139,7 @@ Token system aligns costs with usage while enabling:
    {TODO WRITE DOWN THE CONTENT OF THE MODAL}
    3.2 Every time sparks are deducted, the balance is updated and the spark pulses (animation).
    3.3 If balance is < 3 sparks - it changes color
-4. Sparks balance is always visible in the profile itself. As well as
+4. Sparks balance is always visible in the profile itself.
 5. If sparks are < 3 we start showing a notification box (which can be turned off - local storage) that says..
    5.1 {TODO WRITE DOWN THE CONTENT OF THE NOTIFICATION BOX}
 6. If sparks are 0 show a notificion box (not togglable) that says...
