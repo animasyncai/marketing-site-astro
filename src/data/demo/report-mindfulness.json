@@ -3,44 +3,74 @@
     "MAP_BEGINNING": {
       "reflections": [
         "Most days, your inner world feels distant or hard to notice — and that distance probably made sense once. It may have been safer not to feel too much at the time.",
-        "You move through life reacting more than noticing, and slowing down can feel unfamiliar. That doesn’t mean you’re failing — it means your system learned to move fast to cope.",
-        "Your awareness slips past emotions before you can catch them. That pattern isn’t random — it was once a way of protecting yourself from overwhelm."
-      ]
+        "You move through life reacting more than noticing, and slowing down can feel unfamiliar. That doesn't mean you're failing — it means your system learned to move fast to cope.",
+        "Your awareness slips past emotions before you can catch them. That pattern isn't random — it was once a way of protecting yourself from overwhelm."
+      ],
+      "behavioralProfile": "Limited awareness of internal emotional and physical states. Tends to operate on autopilot with minimal introspection. May use distraction or busyness to avoid difficult emotions. Reacts to situations without much conscious processing. Little to no established mindfulness practice. Benefits from external structure and very gentle introduction to self-awareness practices."
     },
     "AWAKENING_POINT": {
       "reflections": [
         "You notice your emotions, though they slip away just as quickly — and even those glimpses show awareness is waking up in you.",
         "There are moments when you feel yourself clearly and moments when you drift. That rhythm itself tells a story about how you relate to inner stillness.",
         "You catch yourself in the act of feeling, and even if it fades, it means your attention is starting to shift inward."
-      ]
+      ],
+      "behavioralProfile": "Developing awareness of internal states but inconsistently. Can notice emotions and sensations when prompted but doesn't maintain continuous awareness. Sometimes processes difficult emotions with understanding but may also avoid them. Sporadic engagement with mindfulness practices. Shows curiosity about inner experience but lacks consistent framework for exploration."
     },
     "PATH_SEEKER": {
       "reflections": [
         "You tune into your inner states, even when processing them feels challenging. That awareness is already changing how you hold your emotions.",
         "Your attention returns to yourself with curiosity, and that makes more room for growth than you may notice in the moment.",
         "You meet your inner life with some steadiness, and while not every feeling is easy, you are learning to stay with yourself."
-      ]
+      ],
+      "behavioralProfile": "Regular awareness of emotional and physical states with growing consistency. Processes difficult emotions with acceptance and understanding most of the time. Maintains some form of regular mindfulness practice. Can observe thoughts and feelings without immediately reacting. Shows capacity for self-reflection and emotional regulation during stress."
     },
     "MINDFULNESS_TRAVELER": {
       "reflections": [
         "You carry a steady awareness into daily life, and that presence anchors you more than you may realize. It gives you a place to return to when things get shaky.",
         "Even when tension rises, you meet it with acceptance, and that softens how it lives inside you.",
         "Your awareness stays with you across experiences, and that consistency helps turn self-reflection into a natural part of life."
-      ]
+      ],
+      "behavioralProfile": "Highly attuned to internal states with consistent, continuous awareness. Advanced ability to observe emotions without attachment or immediate reaction. Well-established mindfulness practice integrated into daily life. Can maintain equanimity during difficult experiences. Strong capacity for self-regulation and conscious response rather than unconscious reaction."
     },
     "openness": {
-      "NOT_YET_TIME": [
-        "Right now, rest and safety matter more than change — there’s no rush to move faster than your energy allows."
-      ],
-      "INTERNAL_CONFLICT": [
-        "You want things to shift but also feel uncertain, and that push-pull deserves patience rather than pressure."
-      ],
-      "GROWTH_READINESS": [
-        "You seem ready for small steps forward, and the right tools could help you turn curiosity into change."
-      ],
-      "TRANSFORMATIONAL_PHASE": [
-        "Something in you feels ready to go deep — open to exploring shadows as much as light."
-      ]
+      "NOT_YET_TIME": {
+        "description": "Currently prioritizes stability and may resist change. May be experiencing emotional overwhelm or fatigue that makes growth work feel threatening. Needs rest and recovery more than active development.",
+        "behavioralProfile": "Too tired or skeptical about change making a difference. May be dealing with crisis, trauma, or significant life stress. Protective mechanisms are active. Change feels unsafe or overwhelming.",
+        "interactionNote": "Needs safety, support, and space. Avoid pushing for change or intensive self-exploration. Focus on containment and stability."
+      },
+      "INTERNAL_CONFLICT": {
+        "description": "Desires change but feels uncertain or ambivalent about the process. May have competing motivations or fears about what growth might require. Part of them wants to grow while another part resists.",
+        "behavioralProfile": "Feels need for change but uncertain how to begin. Has some motivation but also significant hesitation or fear. May start and stop growth efforts repeatedly. Ambivalent about what change might mean or require.",
+        "interactionNote": "Normalize ambivalence. Offer small, safe steps and clear guidance. Build trust before suggesting deeper work."
+      },
+      "GROWTH_READINESS": {
+        "description": "Motivated for change and willing to take concrete steps toward growth. Has energy and curiosity for self-development work. Ready for structure and gentle challenges.",
+        "behavioralProfile": "Desires change and ready to try small steps. Has some energy for growth work and can handle light structure. Willing to experiment with new practices or perspectives. Open to feedback and guidance.",
+        "interactionNote": "Can handle structured suggestions, practices, and gentle challenges. Good time for goal-setting and skill-building."
+      },
+      "TRANSFORMATIONAL_PHASE": {
+        "description": "Ready for deep exploration including shadow work and significant personal transformation. High openness to challenging insights and intensive growth work. Prepared for major life changes.",
+        "behavioralProfile": "Ready for deep exploration and authentic transformation. Can handle challenging insights about themselves. Prepared for intensive inner work including shadow integration. Open to fundamental shifts in identity or life structure.",
+        "interactionNote": "Can handle advanced psychological concepts, deep pattern exploration, and confronting difficult truths about themselves."
+      }
+    }
+  },
+  "interactionGuidance": {
+    "MAP_BEGINNING": {
+      "approach": "Offer spacious, non-pushy tone. Use grounding reflections and very simple awareness invitations. Focus on external validation and basic emotional safety.",
+      "avoidance": "Don't suggest complex self-awareness work or intensive practices. Avoid overwhelming with psychological concepts."
+    },
+    "AWAKENING_POINT": {
+      "approach": "Use grounding reflections and simple awareness invitations. Support gentle noticing without pressure for sustained attention. Encourage natural curiosity.",
+      "avoidance": "Don't push for consistent practice or deep emotional exploration. Keep invitations light and optional."
+    },
+    "PATH_SEEKER": {
+      "approach": "Support deeper processing and insight-based exploration. Can handle more structured mindfulness guidance and emotional pattern work.",
+      "avoidance": "Don't assume advanced capacity - still building consistent awareness. Respect their growing but not complete development."
+    },
+    "MINDFULNESS_TRAVELER": {
+      "approach": "Support advanced mindfulness work and sophisticated emotional exploration. Can engage with complex inner dynamics and serve as wisdom resource for others.",
+      "avoidance": "Don't underestimate their capacity - they can handle deep spiritual and psychological work."
     }
   }
 }

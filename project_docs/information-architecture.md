@@ -286,3 +286,22 @@ Blocks top to bottom:
 - Subscription block — shows plan, manage subscription button linking to Stripe, information, available tokens
 - Legal & support — terms and policy
 - Danger zone — delete account
+
+## Order success page
+
+✨ Sparks Successfully Added!
+
+[Spark animation/celebration visual]
+
+Your Purchase:
+
+- 50 Sparks ✨ - $19.99
+- Transaction ID: #12345
+
+Your Balance: 53 Sparks ✨
+(Previous: 3 Sparks + 50 New Sparks)
+
+Ready to Explore Deeper?
+[Generate Premium Report] [Continue Reflection Chat] [Return to Profile]
+
+Questions about your purchase? Contact hello@withinly.app

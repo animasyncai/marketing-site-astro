@@ -1,17 +1,17 @@
 ---
 /**
- * Withinly Trait Reflection Prototype
+ * Withinly Trait Reflection + Behavioral Profile Prototype
  *
- * Prototype page to test reflection outputs across traits
+ * Updated to include behavioral profile generation and testing
  */
 
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 
 // Page metadata
-const pageTitle = 'Trait Reflection Prototype'
-const pageDescription = 'Prototype page to test reflection outputs across traits'
+const pageTitle = 'Trait Reflection + Behavioral Profile Prototype'
+const pageDescription = 'Test reflection outputs and behavioral profiles across traits'
 
-// Import trait data from demo folder
+// Import trait data (use the complete versions)
 import attachmentData from '../data/demo/report-attachment.json'
 import selfAcceptanceData from '../data/demo/report-self-accept.json'
 import mindfulnessData from '../data/demo/report-mindfulness.json'
@@ -25,40 +25,281 @@ const traits = {
   love_language: loveLanguageData.love_language,
 }
 
-// Only attachment uses intensity modifiers
 const toneModifiers = attachmentData.toneModifiers
+const combinationProfiles = attachmentData.combinationProfiles
+const interactionGuidance = {
+  mindfulness: mindfulnessData.interactionGuidance,
+  selfAcceptance: selfAcceptanceData.interactionGuidance,
+}
+const loveLanguageExtras = {
+  expressionArchetypes: loveLanguageData.expressionArchetypes,
+  distributionPatterns: loveLanguageData.distributionPatterns,
+  combinationProfiles: loveLanguageData.combinationProfiles,
+}
 ---
 
 <DefaultLayout title={pageTitle} description={pageDescription}>
-  <main class="mx-auto max-w-2xl py-12">
-    <h1 class="mb-6 text-2xl font-bold">Trait Reflection Prototype</h1>
+  <main class="mx-auto max-w-4xl py-12">
+    <h1 class="mb-6 text-2xl font-bold">Trait Reflection + Behavioral Profile Prototype</h1>
 
-    <form id="reflectionForm" class="space-y-4 rounded-xl bg-white p-6 shadow">
-      <!-- Trait Selector -->
-      <div>
-        <label class="mb-2 block font-medium">Trait</label>
-        <select id="trait" class="w-full rounded border p-2">
-          <option value="">Select trait</option>
-          <option value="attachment">Attachment</option>
-          <option value="self_acceptance">Self-Acceptance</option>
-          <option value="mindfulness">Mindfulness</option>
-          <option value="love_language">Love Language</option>
-        </select>
+    <div class="grid gap-6 md:grid-cols-2">
+      <!-- Input Form -->
+      <div class="space-y-4">
+        <form id="reflectionForm" class="space-y-4 rounded-xl bg-white p-6 shadow">
+          <!-- Trait Selector -->
+          <div>
+            <label class="mb-2 block font-medium">Trait</label>
+            <select id="trait" class="w-full rounded border p-2">
+              <option value="">Select trait</option>
+              <option value="attachment">Attachment</option>
+              <option value="self_acceptance">Self-Acceptance</option>
+              <option value="mindfulness">Mindfulness</option>
+              <option value="love_language">Love Language</option>
+            </select>
+          </div>
+
+          <!-- Dynamic trait-specific fields -->
+          <div id="traitOptions" class="space-y-4"></div>
+
+          <div class="space-y-2">
+            <button
+              type="button"
+              id="generateReflections"
+              class="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+            >
+              Generate Reflections
+            </button>
+            <button
+              type="button"
+              id="generateBehavioral"
+              class="w-full rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+            >
+              Generate Behavioral Profile
+            </button>
+            <button
+              type="button"
+              id="generateInteraction"
+              class="w-full rounded bg-purple-600 px-4 py-2 text-white hover:bg-purple-700"
+            >
+              Generate Interaction Guidance
+            </button>
+            <button
+              type="button"
+              id="generateAll"
+              class="w-full rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+            >
+              Generate Everything
+            </button>
+          </div>
+        </form>
       </div>
 
-      <!-- Dynamic trait-specific fields -->
-      <div id="traitOptions" class="space-y-4"></div>
+      <!-- Output Area -->
+      <div class="space-y-4">
+        <!-- Reflections Output -->
+        <div class="rounded-lg bg-blue-50 p-6">
+          <h3 class="mb-3 font-semibold text-blue-900">User Reflections</h3>
+          <div id="reflectionsOutput" class="text-sm whitespace-pre-line text-blue-800"></div>
+        </div>
 
-      <button type="button" id="generateBtn" class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-        Generate All Reflections
-      </button>
-    </form>
+        <!-- Behavioral Profile Output -->
+        <div class="rounded-lg bg-green-50 p-6">
+          <h3 class="mb-3 font-semibold text-green-900">Behavioral Profile (For Reports/Consultant)</h3>
+          <div id="behavioralOutput" class="text-sm whitespace-pre-line text-green-800"></div>
+        </div>
 
-    <!-- Output -->
-    <div id="output" class="mt-8 rounded-lg bg-gray-100 p-6 whitespace-pre-line"></div>
+        <!-- Interaction Guidance Output -->
+        <div class="rounded-lg bg-purple-50 p-6">
+          <h3 class="mb-3 font-semibold text-purple-900">Interaction Guidance (For Consultant)</h3>
+          <div id="interactionOutput" class="text-sm whitespace-pre-line text-purple-800"></div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <script define:vars={{ traits, toneModifiers }}>
+  <script
+    define:vars={{
+      traits,
+      toneModifiers,
+      combinationProfiles,
+      interactionGuidance,
+      loveLanguageExtras,
+    }}
+  >
+    // Behavioral profile generation functions
+    function generateAttachmentProfile(traitData) {
+      const { primary, primaryIntensity, secondary, secondaryIntensity } = traitData
+
+      // Start with primary profile
+      const primaryProfile = attachmentData.attachment[primary].behavioralProfiles[primaryIntensity]
+
+      if (!secondary) {
+        return primaryProfile
+      }
+
+      // Check for specific predefined combination profile first
+      const combinationKey = `${primary}_${primaryIntensity}_${secondary}_${secondaryIntensity}`
+      if (attachmentData.attachment.combinationProfiles[combinationKey]) {
+        return attachmentData.attachment.combinationProfiles[combinationKey]
+      }
+
+      // SYSTEMATIC GENERATION for undefined combinations
+
+      // Combination descriptions for all possible primary-secondary pairs
+      const combinationDescriptions = {
+        ANXIOUS_AVOIDANT: 'internal conflict between needing reassurance and wanting independence',
+        ANXIOUS_SECURE: 'generally trusting foundation with notable need for extra reassurance during stress',
+        ANXIOUS_DISORGANIZED: 'fear of abandonment combined with conflicted feelings about intimacy',
+        AVOIDANT_ANXIOUS: 'independence drive complicated by underlying need for connection',
+        AVOIDANT_SECURE: 'stable foundation with strong appreciation for autonomy and healthy boundaries',
+        AVOIDANT_DISORGANIZED: 'independence needs combined with conflicted feelings about closeness',
+        SECURE_ANXIOUS: 'stable relationship foundation with periods of worry about connection security',
+        SECURE_AVOIDANT: 'secure base with healthy balance between intimacy and independence',
+        SECURE_DISORGANIZED: 'generally stable with occasional periods of conflicted feelings about intimacy',
+        DISORGANIZED_ANXIOUS: 'chaotic intimacy patterns intensified by fear of abandonment',
+        DISORGANIZED_AVOIDANT: 'conflicted feelings about closeness combined with tendency to withdraw for protection',
+        DISORGANIZED_SECURE: 'desire for stable connection complicated by periods of emotional confusion',
+      }
+
+      // Intensity combination modifiers
+      const intensityModifiers = {
+        STRONG_STRONG:
+          'Creates intense internal conflict and very challenging relationship dynamics requiring professional support.',
+        STRONG_MODERATE: 'Creates significant complexity with the primary pattern dominating most situations.',
+        STRONG_MILD: 'Primary pattern dominates with occasional secondary influence during stress.',
+        STRONG_VERY_MILD: 'Primary pattern dominates with rare secondary pattern emergence.',
+        MODERATE_STRONG: 'Creates notable complexity with secondary pattern having significant influence on behavior.',
+        MODERATE_MODERATE: 'Creates moderate relationship complexity requiring understanding partners.',
+        MODERATE_MILD: 'Generally manageable with secondary pattern surfacing during difficult periods.',
+        MODERATE_VERY_MILD: 'Mostly straightforward with minimal secondary pattern influence.',
+        MILD_STRONG: 'Secondary pattern often overwhelms the mild primary, creating confusing dynamics.',
+        MILD_MODERATE: 'Secondary pattern frequently influences behavior despite mild primary.',
+        MILD_MILD: 'Both patterns present but neither dominates, creating flexible attachment style.',
+        MILD_VERY_MILD: 'Very mild overall patterns with subtle attachment tendencies.',
+        VERY_MILD_STRONG: 'Secondary pattern dominates despite very mild primary attachment style.',
+        VERY_MILD_MODERATE: 'Secondary pattern is the main influence on attachment behavior.',
+        VERY_MILD_MILD: 'Minimal overall attachment patterns with slight tendencies.',
+        VERY_MILD_VERY_MILD: 'Very minimal attachment patterns overall.',
+      }
+
+      // Generate systematic combination
+      const typeKey = `${primary}_${secondary}`
+      const combinationDescription =
+        combinationDescriptions[typeKey] || 'complex interaction between different attachment needs'
+
+      const intensityKey = `${primaryIntensity}_${secondaryIntensity}`
+      const intensityNote = intensityModifiers[intensityKey] || 'Creates some relationship complexity.'
+
+      // Build complete profile
+      const primaryBase = primaryProfile.split('.')[0] // Take first sentence of primary profile
+
+      return `${primaryBase}. Secondary ${secondary.toLowerCase()} patterns create ${combinationDescription}. ${intensityNote}`
+    }
+
+    function generateLoveLanguageProfile(traitData) {
+      const { primary, secondary, distribution, archetype } = traitData
+
+      // Check for combination profile
+      if (secondary && distribution) {
+        const combinationKey = `${primary}_${secondary}_${distribution}`
+        if (loveLanguageExtras.combinationProfiles[combinationKey]) {
+          return loveLanguageExtras.combinationProfiles[combinationKey]
+        }
+      }
+
+      // Build from components
+      let profile = traits.love_language[primary].behavioralProfile || `Primary love language: ${primary}`
+
+      if (secondary) {
+        const bridge = traits.love_language[primary].secondaryBridge?.[secondary]
+        if (bridge) {
+          profile += ` ${bridge}`
+        }
+      }
+
+      if (distribution) {
+        const distProfile = loveLanguageExtras.distributionPatterns[distribution]?.behavioralProfile
+        if (distProfile) {
+          profile += ` ${distProfile}`
+        }
+      }
+
+      if (archetype) {
+        const archetypeProfile = loveLanguageExtras.expressionArchetypes[archetype]?.behavioralProfile
+        if (archetypeProfile) {
+          profile += ` Expression style: ${archetypeProfile}`
+        }
+      }
+
+      return profile
+    }
+
+    function generateMindfulnessProfile(traitData) {
+      const { level, openness } = traitData
+
+      const baseProfile = traits.mindfulness[level].behavioralProfile
+      const opennessProfile = traits.mindfulness.openness[openness].behavioralProfile
+
+      return `${baseProfile} Current openness to change: ${opennessProfile}`
+    }
+
+    function generateSelfAcceptanceProfile(traitData) {
+      const { level } = traitData
+      return traits.self_acceptance[level].behavioralProfile
+    }
+
+    function generateBehavioralProfile(traitType, traitData) {
+      switch (traitType) {
+        case 'attachment':
+          return generateAttachmentProfile(traitData)
+        case 'love_language':
+          return generateLoveLanguageProfile(traitData)
+        case 'mindfulness':
+          return generateMindfulnessProfile(traitData)
+        case 'self_acceptance':
+          return generateSelfAcceptanceProfile(traitData)
+        default:
+          return 'No behavioral profile available for this trait type.'
+      }
+    }
+
+    function generateInteractionGuidanceForTrait(traitType, traitData) {
+      let guidance = ''
+
+      switch (traitType) {
+        case 'attachment':
+          if (traitData.intensity === 'STRONG') {
+            if (traitData.type === 'ANXIOUS') {
+              guidance =
+                'Approach: Prioritize warm tone, consistent presence, frequent reassurance\nAvoidance: Avoid emotional distance, delayed responses, or ambiguous communication'
+            } else if (traitData.type === 'AVOIDANT') {
+              guidance =
+                'Approach: Respect emotional pacing, honor need for space, avoid pressure\nAvoidance: Avoid emotional flooding, pushing for vulnerability too quickly'
+            }
+          }
+          break
+
+        case 'mindfulness':
+          const mindfulnessGuidance = interactionGuidance.mindfulness[traitData.level]
+          if (mindfulnessGuidance) {
+            guidance = `Approach: ${mindfulnessGuidance.approach}\nAvoidance: ${mindfulnessGuidance.avoidance}`
+          }
+          break
+
+        case 'self_acceptance':
+          const selfAcceptanceGuidance = interactionGuidance.selfAcceptance[traitData.level]
+          if (selfAcceptanceGuidance) {
+            guidance = `Approach: ${selfAcceptanceGuidance.approach}\nAvoidance: ${selfAcceptanceGuidance.avoidance}`
+          }
+          break
+
+        default:
+          guidance = 'No specific interaction guidance available for this trait.'
+      }
+
+      return guidance || 'Standard supportive approach. Avoid overwhelming with too much information at once.'
+    }
+
     function toggleTraitOptions() {
       const traitSelect = document.getElementById('trait')
       const trait = traitSelect?.value
@@ -97,6 +338,15 @@ const toneModifiers = attachmentData.toneModifiers
               <option value="AVOIDANT">Avoidant</option>
               <option value="DISORGANIZED">Disorganized</option>
               <option value="SECURE">Secure</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Secondary Intensity</label>
+            <select id="secondaryIntensity" class="w-full border rounded p-2">
+              <option value="VERY_MILD">Very Mild</option>
+              <option value="MILD">Mild</option>
+              <option value="MODERATE">Moderate</option>
+              <option value="STRONG">Strong</option>
             </select>
           </div>
         `
@@ -162,34 +412,97 @@ const toneModifiers = attachmentData.toneModifiers
               <option value="PHYSICAL_TOUCH">Physical Touch</option>
             </select>
           </div>
+          <div>
+            <label class="block mb-2 font-medium">Distribution</label>
+            <select id="llDistribution" class="w-full border rounded p-2">
+              <option value="DOMINANT">Dominant</option>
+              <option value="DUAL">Dual</option>
+              <option value="MULTIPLE">Multiple</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2 font-medium">Expression Archetype</label>
+            <select id="llArchetype" class="w-full border rounded p-2">
+              <option value="VISIONARY">Visionary</option>
+              <option value="ARTIST">Artist</option>
+              <option value="HEALER">Healer</option>
+              <option value="TEACHER">Teacher</option>
+              <option value="CHILD">Child</option>
+            </select>
+          </div>
         `
       }
     }
 
-    function generateReflection() {
+    function getTraitData() {
       const trait = document.getElementById('trait')?.value
-      if (!trait) return
+      if (!trait) return null
+
+      if (trait === 'attachment') {
+        const primary = document.getElementById('attachmentType')?.value // Changed from 'type'
+        const primaryIntensity = document.getElementById('intensity')?.value // Changed from 'intensity'
+        const secondary = document.getElementById('secondary')?.value
+        const secondaryIntensity = document.getElementById('secondaryIntensity')?.value
+
+        if (!primary || !primaryIntensity) return null
+
+        return {
+          primary,
+          primaryIntensity,
+          secondary: secondary || null,
+          secondaryIntensity: secondary ? secondaryIntensity : null,
+        }
+      }
+
+      if (trait === 'self_acceptance') {
+        const level = document.getElementById('saLevel')?.value
+        if (!level) return null
+        return { level }
+      }
+
+      if (trait === 'mindfulness') {
+        const level = document.getElementById('mfLevel')?.value
+        const openness = document.getElementById('openness')?.value
+        if (!level || !openness) return null
+        return { level, openness }
+      }
+
+      if (trait === 'love_language') {
+        const primary = document.getElementById('llPrimary')?.value
+        const secondary = document.getElementById('llSecondary')?.value
+        const distribution = document.getElementById('llDistribution')?.value
+        const archetype = document.getElementById('llArchetype')?.value
+        if (!primary) return null
+
+        return {
+          primary,
+          secondary: secondary || null,
+          distribution,
+          archetype,
+        }
+      }
+
+      return null
+    }
+
+    function generateReflections() {
+      const trait = document.getElementById('trait')?.value
+      const traitData = getTraitData()
+      if (!trait || !traitData) return
 
       let allReflections = []
 
       if (trait === 'attachment') {
-        const type = document.getElementById('attachmentType')?.value
-        const intensity = document.getElementById('intensity')?.value
-        const secondary = document.getElementById('secondary')?.value
+        const bank = traits.attachment[traitData.type]
+        const tone = toneModifiers[traitData.intensity]
 
-        if (!type || !intensity) return
-
-        bank = traits.attachment[type]
-
-        // Generate all reflections with tone modifiers
         bank.reflections.forEach((reflection) => {
-          const tone = toneModifiers[intensity]
           let fullReflection = reflection
             .replace('[tone:frequency]', tone.frequency)
             .replace('[tone:likelihood]', tone.likelihood)
 
-          if (secondary && bank.secondaryBridge[secondary]) {
-            fullReflection += ' ' + bank.secondaryBridge[secondary]
+          if (traitData.secondary && bank.secondaryBridge[traitData.secondary]) {
+            fullReflection += ' ' + bank.secondaryBridge[traitData.secondary]
           }
 
           allReflections.push(fullReflection)
@@ -197,71 +510,79 @@ const toneModifiers = attachmentData.toneModifiers
       }
 
       if (trait === 'self_acceptance') {
-        const level = document.getElementById('saLevel')?.value
-        if (!level) return
-
-        bank = traits.self_acceptance[level]
-
-        // Add all reflections
-        bank.reflections.forEach((reflection) => {
-          allReflections.push(reflection)
-        })
+        const bank = traits.self_acceptance[traitData.level]
+        allReflections = bank.reflections
       }
 
       if (trait === 'mindfulness') {
-        const level = document.getElementById('mfLevel')?.value
-        const openness = document.getElementById('openness')?.value
-        if (!level || !openness) return
-
-        bank = traits.mindfulness[level]
-
-        // Generate all reflections with openness overlays
+        const bank = traits.mindfulness[traitData.level]
         bank.reflections.forEach((reflection) => {
           let fullReflection = reflection
-
-          if (traits.mindfulness.openness && traits.mindfulness.openness[openness]) {
-            const overlay = traits.mindfulness.openness[openness][0]
-            fullReflection += ' ' + overlay
+          if (traits.mindfulness.openness && traits.mindfulness.openness[traitData.openness]) {
+            const overlay = traits.mindfulness.openness[traitData.openness][0] || ''
+            if (overlay) fullReflection += ' ' + overlay
           }
-
           allReflections.push(fullReflection)
         })
       }
 
       if (trait === 'love_language') {
-        const primary = document.getElementById('llPrimary')?.value
-        const secondary = document.getElementById('llSecondary')?.value
-        if (!primary) return
-
-        bank = traits.love_language[primary]
-
-        // Generate all reflections with secondary bridges
+        const bank = traits.love_language[traitData.primary]
         bank.reflections.forEach((reflection) => {
           let fullReflection = reflection
-
-          if (secondary && bank.secondaryBridge[secondary]) {
-            fullReflection += ' ' + bank.secondaryBridge[secondary]
+          if (traitData.secondary && bank.secondaryBridge[traitData.secondary]) {
+            fullReflection += ' ' + bank.secondaryBridge[traitData.secondary]
           }
-
           allReflections.push(fullReflection)
         })
       }
 
-      const outputElement = document.getElementById('output')
-      if (outputElement && allReflections.length > 0) {
-        // Display all reflections with numbering
-        const numberedReflections = allReflections
-          .map((reflection, index) => `${index + 1}. ${reflection}`)
-          .join('\n\n')
-
-        outputElement.innerText = numberedReflections
+      const output = document.getElementById('reflectionsOutput')
+      if (output && allReflections.length > 0) {
+        const numbered = allReflections.map((reflection, index) => `${index + 1}. ${reflection}`).join('\n\n')
+        output.innerText = numbered
       }
+    }
+
+    function generateBehavioralProfileOutput() {
+      const trait = document.getElementById('trait')?.value
+      const traitData = getTraitData()
+      if (!trait || !traitData) return
+
+      const profile = generateBehavioralProfile(trait, traitData)
+
+      const output = document.getElementById('behavioralOutput')
+      if (output) {
+        output.innerText = profile
+      }
+    }
+
+    function generateInteractionGuidanceOutput() {
+      const trait = document.getElementById('trait')?.value
+      const traitData = getTraitData()
+      if (!trait || !traitData) return
+
+      const guidance = generateInteractionGuidanceForTrait(trait, traitData)
+
+      const output = document.getElementById('interactionOutput')
+      if (output) {
+        output.innerText = guidance
+      }
+    }
+
+    function generateAll() {
+      generateReflections()
+      generateBehavioralProfileOutput()
+      generateInteractionGuidanceOutput()
     }
 
     // Hook up listeners
     document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('trait')?.addEventListener('change', toggleTraitOptions)
-      document.getElementById('generateBtn')?.addEventListener('click', generateReflection)
+      document.getElementById('generateReflections')?.addEventListener('click', generateReflections)
+      document.getElementById('generateBehavioral')?.addEventListener('click', generateBehavioralProfileOutput)
+      document.getElementById('generateInteraction')?.addEventListener('click', generateInteractionGuidanceOutput)
+      document.getElementById('generateAll')?.addEventListener('click', generateAll)
     })
   </script>
 </DefaultLayout>

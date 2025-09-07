@@ -3,30 +3,52 @@
     "ACCEPTANCE_LOW": {
       "reflections": [
         "You often find it hard to sit with parts of yourself, and that can make your inner world feel split. That resistance probably once protected you, even if now it feels heavy.",
-        "There’s a sense of distance inside, as though certain emotions don’t quite belong to you. That separation may have grown from difficult times when feeling everything would have been too much.",
+        "There's a sense of distance inside, as though certain emotions don't quite belong to you. That separation may have grown from difficult times when feeling everything would have been too much.",
         "Some parts of you feel exiled or pushed away, and while that can bring relief in the moment, it can also make wholeness feel out of reach."
-      ]
+      ],
+      "behavioralProfile": "Limited capacity for self-reflection and emotional integration. Often experiences emotions at face value without deeper understanding of triggers or patterns. May feel disconnected from inner experience or use dissociation as emotional protection. Tends toward self-criticism rather than self-compassion. Limited ability to identify which inner parts are active during reactions. Benefits from very gentle, supportive approaches that build basic self-awareness without overwhelming the system."
     },
     "ACCEPTANCE_TRANSITIONAL": {
       "reflections": [
-        "You’re in between: some parts of yourself feel more welcome, others still kept at arm’s length. This shifting shows that your inner ground is beginning to soften.",
+        "You're in between: some parts of yourself feel more welcome, others still kept at arm's length. This shifting shows that your inner ground is beginning to soften.",
         "There are moments when you allow yourself to feel fully, and others when you turn away. That rhythm is part of learning how much of yourself you can hold.",
-        "You’re moving between rejection and welcome, and even if it feels uneven, that in-between stage means something new is opening."
-      ]
+        "You're moving between rejection and welcome, and even if it feels uneven, that in-between stage means something new is opening."
+      ],
+      "behavioralProfile": "Developing capacity for self-observation with moments of curiosity about inner experience. Sometimes reflects on emotional triggers and behavioral patterns but answers often unclear or inconsistent. Occasionally feels detached from experience but can return to self-connection. Growing ability to listen to themselves with interest rather than immediate judgment. Inner witness is emerging but not yet stable or consistent."
     },
     "ACCEPTANCE_REFLECTIVE": {
       "reflections": [
-        "You’re beginning to look at your inner world with more honesty, even when it feels messy. Reflection itself is a form of acceptance.",
+        "You're beginning to look at your inner world with more honesty, even when it feels messy. Reflection itself is a form of acceptance.",
         "You can acknowledge difficult emotions without pushing them away as quickly as before. That space lets you begin to see yourself as a whole being, not fragments.",
-        "You’re learning that rejecting less of yourself gives you more room to grow, even when it isn’t easy."
-      ]
+        "You're learning that rejecting less of yourself gives you more room to grow, even when it isn't easy."
+      ],
+      "behavioralProfile": "Strong capacity for self-observation and pattern recognition. Can identify behavioral triggers and name emotional patterns with clarity. Often connects emotions with deeper stories or past experiences. Developing self-compassion and ability to hold contradictions without breaking apart. Good balance between self-awareness and self-acceptance, though still integrating different aspects of self."
     },
     "ACCEPTANCE_INTEGRATED": {
       "reflections": [
         "You carry a deeper acceptance of who you are, even in the parts once hidden or resisted. That wholeness steadies you.",
         "Integration shows in the way you can hold contradictions without breaking apart. You no longer need every part of yourself to change in order to belong.",
         "Your self-acceptance feels like an inner home — not perfect, but real enough to hold you through what comes."
-      ]
+      ],
+      "behavioralProfile": "Advanced self-awareness with consistent self-compassion. Can observe all parts of themselves without immediate need to change or fix. Strong inner witness that provides stability during difficult experiences. Integrated understanding of their patterns, triggers, and growth edges. Capable of holding complexity and contradiction with equanimity. Can identify which inner parts are active and speak from a centered place."
+    }
+  },
+  "interactionGuidance": {
+    "ACCEPTANCE_LOW": {
+      "approach": "Prioritize safety and grounding. Avoid pushing for insight or action. Validate small moments of awareness and gently support basic self-observation without overwhelming.",
+      "avoidance": "Don't push for deep self-exploration or challenge defense mechanisms directly. Avoid complex psychological concepts."
+    },
+    "ACCEPTANCE_TRANSITIONAL": {
+      "approach": "Reflect slowly and help reconnect to emotions. Support development of stable inner witness. Encourage gentle pattern recognition without forcing integration.",
+      "avoidance": "Don't rush to insights or push past their capacity to hold complexity. Avoid overwhelming with too much self-awareness at once."
+    },
+    "ACCEPTANCE_REFLECTIVE": {
+      "approach": "Encourage pattern recognition and gentle self-inquiry. Support integration work and deeper emotional exploration. Can handle more sophisticated psychological concepts.",
+      "avoidance": "Don't assume full integration - still building capacity. Respect their developing process."
+    },
+    "ACCEPTANCE_INTEGRATED": {
+      "approach": "Support advanced emotional work and potentially mentoring others. Can engage with complex inner dynamics and sophisticated psychological exploration.",
+      "avoidance": "Don't underestimate their capacity - they can handle deep work and challenging insights."
     }
   }
 }
