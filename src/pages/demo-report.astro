@@ -27,10 +27,7 @@ const traits = {
 
 const toneModifiers = attachmentData.toneModifiers
 const combinationProfiles = attachmentData.combinationProfiles
-const interactionGuidance = {
-  mindfulness: mindfulnessData.interactionGuidance,
-  selfAcceptance: selfAcceptanceData.interactionGuidance,
-}
+
 const loveLanguageExtras = {
   expressionArchetypes: loveLanguageData.expressionArchetypes,
   distributionPatterns: loveLanguageData.distributionPatterns,
@@ -78,13 +75,6 @@ const loveLanguageExtras = {
             </button>
             <button
               type="button"
-              id="generateInteraction"
-              class="w-full rounded bg-purple-600 px-4 py-2 text-white hover:bg-purple-700"
-            >
-              Generate Interaction Guidance
-            </button>
-            <button
-              type="button"
               id="generateAll"
               class="w-full rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
             >
@@ -107,12 +97,6 @@ const loveLanguageExtras = {
           <h3 class="mb-3 font-semibold text-green-900">Behavioral Profile (For Reports/Consultant)</h3>
           <div id="behavioralOutput" class="text-sm whitespace-pre-line text-green-800"></div>
         </div>
-
-        <!-- Interaction Guidance Output -->
-        <div class="rounded-lg bg-purple-50 p-6">
-          <h3 class="mb-3 font-semibold text-purple-900">Interaction Guidance (For Consultant)</h3>
-          <div id="interactionOutput" class="text-sm whitespace-pre-line text-purple-800"></div>
-        </div>
       </div>
     </div>
   </main>
@@ -122,7 +106,6 @@ const loveLanguageExtras = {
       traits,
       toneModifiers,
       combinationProfiles,
-      interactionGuidance,
       loveLanguageExtras,
     }}
   >
@@ -130,19 +113,16 @@ const loveLanguageExtras = {
     function generateAttachmentProfile(traitData) {
       const { primary, primaryIntensity, secondary, secondaryIntensity } = traitData
 
-      // Start with primary profile
-      const primaryProfile = attachmentData.attachment[primary].behavioralProfiles[primaryIntensity]
+      const primaryProfile = traits.attachment[primary].behavioralProfiles[primaryIntensity]
 
       if (!secondary) {
         return primaryProfile
       }
 
-      // Check for specific predefined combination profile first
       const combinationKey = `${primary}_${primaryIntensity}_${secondary}_${secondaryIntensity}`
-      if (attachmentData.attachment.combinationProfiles[combinationKey]) {
-        return attachmentData.attachment.combinationProfiles[combinationKey]
+      if (combinationProfiles[combinationKey]) {
+        return combinationProfiles[combinationKey]
       }
-
       // SYSTEMATIC GENERATION for undefined combinations
 
       // Combination descriptions for all possible primary-secondary pairs
@@ -261,43 +241,6 @@ const loveLanguageExtras = {
         default:
           return 'No behavioral profile available for this trait type.'
       }
-    }
-
-    function generateInteractionGuidanceForTrait(traitType, traitData) {
-      let guidance = ''
-
-      switch (traitType) {
-        case 'attachment':
-          if (traitData.intensity === 'STRONG') {
-            if (traitData.type === 'ANXIOUS') {
-              guidance =
-                'Approach: Prioritize warm tone, consistent presence, frequent reassurance\nAvoidance: Avoid emotional distance, delayed responses, or ambiguous communication'
-            } else if (traitData.type === 'AVOIDANT') {
-              guidance =
-                'Approach: Respect emotional pacing, honor need for space, avoid pressure\nAvoidance: Avoid emotional flooding, pushing for vulnerability too quickly'
-            }
-          }
-          break
-
-        case 'mindfulness':
-          const mindfulnessGuidance = interactionGuidance.mindfulness[traitData.level]
-          if (mindfulnessGuidance) {
-            guidance = `Approach: ${mindfulnessGuidance.approach}\nAvoidance: ${mindfulnessGuidance.avoidance}`
-          }
-          break
-
-        case 'self_acceptance':
-          const selfAcceptanceGuidance = interactionGuidance.selfAcceptance[traitData.level]
-          if (selfAcceptanceGuidance) {
-            guidance = `Approach: ${selfAcceptanceGuidance.approach}\nAvoidance: ${selfAcceptanceGuidance.avoidance}`
-          }
-          break
-
-        default:
-          guidance = 'No specific interaction guidance available for this trait.'
-      }
-
-      return guidance || 'Standard supportive approach. Avoid overwhelming with too much information at once.'
     }
 
     function toggleTraitOptions() {
@@ -493,8 +436,8 @@ const loveLanguageExtras = {
       let allReflections = []
 
       if (trait === 'attachment') {
-        const bank = traits.attachment[traitData.type]
-        const tone = toneModifiers[traitData.intensity]
+        const bank = traits.attachment[traitData.primary]
+        const tone = toneModifiers[traitData.primaryIntensity]
 
         bank.reflections.forEach((reflection) => {
           let fullReflection = reflection
@@ -557,23 +500,9 @@ const loveLanguageExtras = {
       }
     }
 
-    function generateInteractionGuidanceOutput() {
-      const trait = document.getElementById('trait')?.value
-      const traitData = getTraitData()
-      if (!trait || !traitData) return
-
-      const guidance = generateInteractionGuidanceForTrait(trait, traitData)
-
-      const output = document.getElementById('interactionOutput')
-      if (output) {
-        output.innerText = guidance
-      }
-    }
-
     function generateAll() {
       generateReflections()
       generateBehavioralProfileOutput()
-      generateInteractionGuidanceOutput()
     }
 
     // Hook up listeners
@@ -581,7 +510,6 @@ const loveLanguageExtras = {
       document.getElementById('trait')?.addEventListener('change', toggleTraitOptions)
       document.getElementById('generateReflections')?.addEventListener('click', generateReflections)
       document.getElementById('generateBehavioral')?.addEventListener('click', generateBehavioralProfileOutput)
-      document.getElementById('generateInteraction')?.addEventListener('click', generateInteractionGuidanceOutput)
       document.getElementById('generateAll')?.addEventListener('click', generateAll)
     })
   </script>
