@@ -1,6 +1,8 @@
 # 🤖 Reflection Companion
 
-**Core Purpose:** Help users understand their life experiences through their psychological patterns without explicit labeling.
+**Core Purpose:**  
+Help users explore their emotional patterns in real situations — through conversation guided by their traits and reports.  
+Not therapy, not casual chat — but a **personal reflection partner**.
 
 ---
 
@@ -10,223 +12,133 @@
 
 > "I know how you connect and care. Let's explore how that shows up in your life."
 
-**Value:** Pattern-based self-understanding for real situations, not therapy or generic chat.
+**Value:**
+
+- Pattern-based self-understanding
+- Conversations tied to reports and traits
+- Safe exploration without judgment or labels
 
 ---
 
-## Memory System
+## 🧠 Memory System (MVP)
 
-### Current Implementation (MVP)
-
-- Consultant has access to 10 recent messages + evolving summary
+- Access to 10 most recent messages + evolving summary
 - Summary updates every 5 messages
 - Unlimited summary length to preserve details
-- No separate memory extraction for users
-
-### Known Limitations
-
-- Early conversation details may get compressed
-- No explicit memory search
-- Consultant can't reference specific past sessions
-- See `/feature-memory-system.md` for full documentation
+- No explicit memory search (post-MVP feature)
 
 ---
 
 ## ✨ Reflection Prompt System
 
-**Core Problem:** Prevent casual "hello" usage and guide users toward meaningful pattern exploration.
+**Goal:** Prevent “hello/hi” usage and guide users into meaningful exploration.
 
 ### UX Flow
 
-**First Time (Empty Chat):**
+- **First Time (Empty Chat):**
+  - Show 3–4 curated prompts as clickable cards
+  - Message: “Let’s explore a real situation from your life. Choose what resonates:”
+  - User clicks → prompt fills input → they can edit/send
 
-- Show 3-4 curated prompts as clickable cards
-- Message: "Let's explore a real situation from your life. Choose what resonates:"
-- User clicks → prompt populates chat input → user can edit/send
+- **Ongoing Chat:**
+  - Floating ✨ button always visible
+  - Opens prompt library, filtered by user’s traits
+  - Prompts populate input field on select
 
-**Ongoing Chat:**
+### Prompt Types
 
-- Floating ✨ button (always visible)
-- Click → slide-out panel with full prompt library
-- User selects → prompt populates chat input
+1. **Universal** → Always shown
+   - “Something feels off but I can’t name it”
+   - “Help me understand a recent conflict”
 
-### Prompt Library Structure
+2. **Trait-Type Based** → Based on attachment / love language
+   - “Why do I need so much reassurance?” (anxious)
+   - “They show they care but I still feel unseen” (words love language)
 
-**Three Types of Prompts:**
+3. **Trait-Level Based** → Based on mindfulness / self-acceptance
+   - “Help me slow down and notice what’s happening inside”
+   - “Why am I so hard on myself?”
 
-1. **Universal/General** (always shown)
+### Filtering Logic
 
-   ```
-   "Something feels off but I can't name it"
-   "I keep doing this thing in relationships where..."
-   "Help me understand a recent conflict"
-   ```
-
-2. **Trait-Type Based** (attachment, love language)
-
-   ```
-   anxious_attachment: "Why do I need so much reassurance?"
-   avoidant_attachment: "Why do I pull away when they get close?"
-   words_love_language: "They show they care but I still feel unseen"
-   ```
-
-3. **Trait-Level Based** (mindfulness, self-acceptance)
-   ```
-   low_mindfulness: "Help me slow down and notice what's happening inside"
-   high_mindfulness: "Walk me through the deeper pattern here"
-   low_self_acceptance: "Why am I so hard on myself?"
-   high_self_acceptance: "How can I use this insight to grow?"
-   ```
-
-### Smart Filtering Logic
-
-**Show prompts IF:**
-
-- Universal/general prompts (always shown)
-- Match user's primary trait (gets ✨ recommended badge)
-- Match user's secondary trait (shown, no badge)
-- Match user's mindfulness/self-acceptance level
-
-**Hide prompts that:**
-
-- Don't match their primary, secondary, or level-appropriate traits
-
-**Example for Anxious Primary + Words Secondary + Low Mindfulness:**
-
-```
-✨ Reflection Starters
-
-✨ Why do I need so much reassurance? (primary - badged)
-✨ Help me understand this conflict pattern (primary - badged)
-   They show they care but I still feel unseen (secondary)
-   Help me notice what I'm actually feeling (mindfulness level)
-   Something feels off but I can't name it (universal)
-
-[Hidden: secure attachment, high mindfulness prompts, etc.]
-
-**Recommended Badge Logic:**
-- Only primary attachment and love language traits get ✨ badge
-- Secondary traits and levels shown without badges
-- Universal prompts shown without badges
-
-### Analytics & Optimization
-
-**Simple Tracking:**
-- Which prompts get clicked (popularity)
-- ✨ button usage frequency (feature adoption)
-- Overall chat retention (indirect success signal)
-
-**Success Metrics:**
-- Prompt click-through rate
-- Return usage of ✨ button
-- Overall chat engagement and retention
-- Token spending on chat messages
-
-### Content Strategy
-
-**Prompt Quality Guidelines:**
-- Each prompt should lead to 3+ message exchanges
-- Focus on specific situations, not abstract concepts
-- Use behavioral language, avoid clinical terms
-- Create curiosity and self-reflection
-
-**Library Size:**
-- ~20-25 total prompts for MVP
-- 3-5 prompts per major trait type/level
-- All universal prompts applicable to any user
+- Always show universal prompts
+- Highlight prompts for primary traits (✨ badge)
+- Show secondary traits and levels unbadged
+- Hide irrelevant prompts
 
 ---
 
-## 💡 Usage Strategy
+## 💬 Usage Strategy
 
-**Encourage:**
+Encourage:
 
-- Relationship conflicts and communication patterns
-- Emotional triggers and recurring situations
-- Understanding personal reactions and responses
-- Practical application of psychological insights
+- Exploring relationship conflicts
+- Recognizing recurring triggers
+- Understanding personal reactions
+- Applying report insights
 
-**Redirect:**
+Redirect away from:
 
 - Crisis support → professional help
-- Generic advice → pattern exploration
-- General therapy → specific situations
-
----
-
-## 🧠 Response Approach
-
-**Pattern Integration Without Labels:**
-Instead of: "Based on your anxious attachment..."
-Use: "It sounds like you might need more reassurance in moments like this..."
-Instead of: "Your love language is words of affirmation..."
-Use: "I notice you mentioned feeling unheard - verbal recognition seems important to you..."
-
-**Always connect to their specific patterns without naming the clinical terms.**
+- General advice → focus on patterns
 
 ---
 
 ## 💰 Pricing (MVP)
 
-- **Free:** 3 messages after completing Basic Inner Portrait
-- **Paid:** 1 Spark per message
-- **Deep Dive:** 5 messages for 3 Sparks (bulk discount)
+- **Free**: First 3 messages after onboarding (Standard)
+- **Standard Chat (default)**: 1 Spark = 20 messages
+- **Depth Chat (optional toggle)**: 1 Spark = 5 messages
 
-**Philosophy:** Premium enough to prevent casual usage, accessible for meaningful exploration.
+Framing:
+
+- **Standard** = more quantity, lighter depth
+- **Depth** = fewer messages, richer nuance
 
 ---
 
 ## 🎨 User Experience
 
-**Opening Prompts:**
+- **Opening Prompts Examples:**
+  - “Help me understand a recent conflict”
+  - “Why do I react this way when…”
+  - “How can I communicate this need better?”
 
-- "Help me understand a recent conflict"
-- "Why do I react this way when..."
-- "How can I communicate this need better?"
-- "What pattern might be behind this feeling?"
+- **Pro Toggle:**
+  - Switch between Mini (default) and Pro Depth (premium quality)
+  - Clear Spark usage shown (“20 msgs” vs “5 msgs per Spark”)
 
-**Boundary Scripts:**
+- **Feedback & Balance:**
+  - Always show sparks left (“✨ 7 Sparks remaining”)
+  - Low balance (<3 Sparks) triggers refill suggestion
 
-- Crisis: "This sounds serious. Please reach out to a professional. I'm here for pattern exploration when you're ready."
-- Generic: "I'm designed to help you understand situations through your personal patterns. What specific situation brought this up?"
+- Under chat window show the following:
+  Mini mode: “✨ You’re in Mini mode — 20 messages per Spark. 14 left on this Spark.”
+  Depth mode: “✨ Depth mode — 5 richer messages per Spark. 3 left on this Spark.”
 
 ---
 
 ## 📊 Success Metrics
 
-**Quality over Quantity:**
-
-- Conversation depth (pattern references per message)
-- User satisfaction with personalization
+- Prompt click-through rate
+- Conversation depth (avg exchanges per Spark)
 - Return usage within 7 days
-- Conversion from free to paid messages
-
----
-
-## 🛡️ Key Differentiators
-
-- **Knows user's specific patterns** (vs generic AI)
-- **Behaviorally descriptive** (vs clinical labeling)
-- **Situation-focused** (vs emotional support)
-- **Growth-oriented** (vs problem-solving)
-- **Smart prompt curation** (vs random suggestions)
+- Spark spending ratio (chat vs reports)
 
 ---
 
 ## ⚠️ MVP Constraints
 
-**What We Won't Do:**
+**Won’t Do:**
 
-- Name psychological labels explicitly
+- Label psychological styles explicitly
 - Provide therapy or crisis support
-- Give generic life advice
-- Enable casual conversation
+- Enable endless casual small talk
 
-**What We Will Do:**
+**Will Do:**
 
-- Reference behavioral patterns descriptively
-- Connect real situations to their traits
-- Encourage self-understanding and growth
-- Maintain psychological sophistication without clinical language
-- Provide curated, relevant conversation starters
-```
+- Connect real situations to patterns
+- Encourage reflection and growth
+- Maintain psychological sophistication in plain language
+
+---

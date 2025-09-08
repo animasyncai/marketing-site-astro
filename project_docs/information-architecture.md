@@ -18,12 +18,27 @@ Main navigation consists of several menu elements (title / url / description for
 
 ## Reflection Companion
 
-It's a chat window so there's no title, it's purely chat. Input area at the bottom.
+The Reflection Companion is the chat interface.
 
-UX:
+### UX
 
-- When you open it first time there are prompt suggestions. We think we should add more suggestions based on traits you have and, in the future, based on the goal that you have.
-- There's also significant notes — extracted by AI from chat. This window is only seen by admins, but for now it does not work well, so it's experimental.
+- When opened for the first time, shows **3–4 curated prompt suggestions** (based on traits and universals).
+- Prompts can also be accessed at any time via a floating ✨ button, opening a filtered library.
+- Input area at the bottom for user messages.
+
+### Chat Modes
+
+- **Standard (default):** 1 Spark = 20 messages
+- **Depth (toggle):** 1 Spark = 5 messages
+- Free tier: first 3 standard messages after onboarding
+
+### Balance & Feedback
+
+- Sparks balance always visible in the sidebar and profile
+- After each deduction, show confirmation:
+  - Success → “✨ Message sent. [X Sparks left]”
+  - Low balance (<3 Sparks) → refill suggestion
+  - At 0 Sparks → blocking prompt “✨ Time to Refill Sparks”
 
 ---
 
@@ -38,7 +53,7 @@ Card structure:
 - User reflection access (permanent)
 - Completed date
 - Call to actions
-- Price (each card has a price of 1 token)
+- Price (initial = free, retake after 30 days = 1 Spark)
 
 Cards:
 
@@ -54,18 +69,15 @@ Cards:
 - **The Way You Love**  
   Discover how you naturally express care and what makes you feel most loved. Understanding your love language helps you connect more deeply with others and communicate your needs clearly.
 
-CTAs on cards (TODO: IMPROVE):
+CTAs on cards:
 
 - Start (when not done)
 - Check in again (when done)
 
 Notes:
 
-- If less than 30 days have passed since last completion of a trait, we show a notification that it's unlikely the trait has changed.
-  - Title: You completed this trait recently
-  - Description: Your [trait name] results are from [date]. Psychological patterns typically don't change in under 30 days, so retaking may not provide new insights.
-  - Continue anyway?
-  - CTA: [Continue] [Go Back]
+- If less than 30 days since last completion, show a notice discouraging early retake.
+- Retakes after 30 days → 1 Spark.
 
 ---
 
@@ -82,7 +94,7 @@ Card structure:
 - Description
 - Completed date
 - Call to actions
-- Price (each card has a price of 1 token)
+- Price in Sparks
 - Traits required for generation
 - Image
 
@@ -100,180 +112,36 @@ CTA’s on cards:
 
 #### State 1: No Partner Sync
 
-**Page Header:**
-
-- Title: "Relational Portraits"
-- Subtitle: "Shared reflections created when you connect your account with a partner. They show how your emotional patterns align, differ, and meet in relationship."
-
-**Partner Sync Setup Block:**
-
-- Title: "Connect with Your Partner"
-- Description: "Sync your accounts to unlock couple insights while keeping your individual traits private."
-- CTA Button: "Send Partner Invite" → **opens Invitation Modal**
-- Secondary info: "Your partner will need to complete their core traits first"
-
-**Locked Reports Grid:**
-[ GRID OF LOCKED REPORT CARDS ]
-
-- Each card grayed out with lock icons
-- "Requires Partner Sync" overlay
-- Preview descriptions visible but no access
-
----
+- Header: “Relational Portraits — Shared reflections when you connect with a partner”
+- Partner Sync Setup Block → invite partner (link/code/email)
+- Locked Reports Grid → grayed-out previews
 
 #### State 2: Pending Invitation Sent
 
-**Page Header:** Same as State 1
-
-**Invitation Status Block:**
-
-- "Invitation sent via [link/code/in-app]"
-- "Sent on [date]"
-- "Waiting for partner to accept and complete core traits"
-- Actions: "Cancel Invitation" | "Resend Invitation"
-
-**Locked Reports Grid:** Same as State 1
-
----
+- Invitation status + actions (cancel/resend)
+- Locked Reports Grid
 
 #### State 3: Invitation Received
 
-**Page Header:** Same as State 1
-
-**Invitation Received Block:**
-
-- "[Partner Name] wants to connect with you for couple insights"
-- "Your individual traits will remain private - only shared insights are visible"
-- Actions: "Accept Invitation" | "Decline"
-- Note: "Complete your core traits first" (if applicable)
-
-**Locked Reports Grid:** Same as State 1
-
----
+- Invitation block with accept/decline
+- Note: partner must complete core traits first
+- Locked Reports Grid
 
 #### State 4: Active Partner Sync
 
-**Page Header:** Same as State 1
+- Connected partner status
+- “Manage Connection” modal available
+- Active Reports Grid (Couple Snapshot free, Relationship Compass paid, etc.)
 
-**Partner Status Block:**
-
-- "Connected with [Partner Name]"
-- "Connected on [date]"
-- Button: "Manage Connection" → **opens Settings Modal**
-
-**Active Reports Grid:**
-[ GRID OF REPORT CARDS ]
-
-**Report Card Content:**
+**Report Cards include:**
 
 - Title
 - Description
-- Completion date (if generated)
-- Regeneration flag (if traits changed)
+- Completion date
 - Price in Sparks
 - Required traits indicator
-- Access note: "Both partners can view when one pays"
-- CTA button based on state:
-- "Generate insights" (not done)
-- "View insights" (completed)
-- "Regenerate insights" (needs update)
-
-**Available Reports:**
-
-- Couple Snapshot (Free with first sync)
-- Relationship Compass (3 Sparks)
-- Conflict Compass - Couple Edition (3 Sparks, Future)
-
----
-
-### Modal 1: Send Invitation
-
-**Modal Title:** "Invite Your Partner"
-
-**Modal Content:**
-
-- Explanation: "Choose how to invite your partner"
-
-**Invitation Methods:**
-
-1. **Share Link**
-
-- "Generate a link to send via text, email, or messaging"
-- Button: "Generate Link"
-
-2. **Share Code**
-
-- "Generate a 6-digit code your partner can enter"
-- Button: "Generate Code"
-
-3. **Find by Email** (if partner has account)
-
-- Email input field
-- Button: "Send In-App Invitation"
-
-IMPLEMENT WHATEVER IS THE EASIEST AT THE MOMENT.
-
-**Modal Actions:**
-
-- "Cancel" button
-- Method-specific "Send" button
-
----
-
-### Modal 2: Connection Settings
-
-**Modal Title:** "Partner Connection Settings"
-
-**Connection Info Section:**
-
-- Partner's name and avatar
-- "Connected on [date]"
-- Status: "Active connection"
-
-**Report Access Section:**
-
-- "Generated Reports:"
-- List of reports with purchase info:
-- "Couple Snapshot - Free"
-- "Relationship Compass - Paid by [You/Partner] on [date]"
-- Note: "Both partners can view reports when one pays"
-
-**Privacy Section:**
-
-- "Privacy Protection:"
-- "✓ Your individual traits remain private"
-- "✓ Only shared couple insights are visible"
-- "✓ Either partner can unlink at any time"
-
-**Danger Zone:**
-
-- Red border section
-- "Unlink Partner" button
-- Warning: "This removes access to all couple reports for both partners"
-
-**Modal Actions:**
-
-- "Close" button
-- "Unlink Partner" button → **opens Confirmation Modal**
-
----
-
-### Modal 3: Unlink Confirmation
-
-**Modal Title:** "Unlink Partner?"
-
-**Modal Content:**
-
-- "Are you sure you want to unlink from [Partner Name]?"
-- "This will:"
-- "• Remove access to all couple reports for both of you"
-- "• Cannot be undone"
-- "• Your individual traits will remain unaffected"
-
-**Modal Actions:**
-
-- "Cancel" button
-- "Yes, Unlink" button (red/warning style)
+- Access note: “Both partners can view when one pays”
+- CTA based on state (Generate / View / Regenerate)
 
 ---
 
@@ -283,26 +151,26 @@ A page with user settings.
 
 Blocks top to bottom:
 
-- User box (name, avatar, email verification badge, language selector, logout button)
-- Subscription block — shows plan, manage subscription button linking to Stripe, information, available tokens
-- Legal & support — terms and policy
+- User box (name, avatar, email, language selector, logout)
+- Sparks balance + purchase packs
+- Legal & support links
 - Danger zone — delete account
 
-## Order success page
+---
+
+## Order Success Page
 
 ✨ Sparks Successfully Added!
 
-[Spark animation/celebration visual]
-
 Your Purchase:
 
-- 50 Sparks ✨ - $19.99
+- 50 Sparks ✨ — €17.99
 - Transaction ID: #12345
 
-Your Balance: 53 Sparks ✨
-(Previous: 3 Sparks + 50 New Sparks)
+Your Balance: 53 Sparks ✨  
+(Previous: 3 Sparks + 50 new Sparks)
 
-Ready to Explore Deeper?
+Ready to explore deeper?  
 [Generate Premium Report] [Continue Reflection Chat] [Return to Profile]
 
-Questions about your purchase? Contact hello@withinly.app
+Support: hello@withinly.app

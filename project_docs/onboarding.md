@@ -185,11 +185,14 @@ For couples (when you’re ready):
 
 ---
 
-# Your First Conversation
+## Your First Conversation
 
 Now that you've seen your first reflection, you can also talk to me directly.
 
-This first 3 messages are on us — no Sparks needed.
+**The first 3 Mini messages are free** — no Sparks needed.
+
+- **Standard (default):** 1 Spark = 20 messages
+- **Depth (toggle):** 1 Spark = 5 messages (richer detail)
 
 [Continue to chat]
 
