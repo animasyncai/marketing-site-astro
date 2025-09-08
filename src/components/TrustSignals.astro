@@ -48,10 +48,10 @@ const trustFeatures = [
 
 // Additional trust badges
 const trustBadges = [
-  { icon: 'lucide:globe-lock', text: 'GDPR Compliant' },
-  { icon: 'lucide:server', text: 'Secure Hosting' },
-  { icon: 'lucide:mail-check', text: 'No Spam Policy' },
-  { icon: 'lucide:users', text: 'Human Support' },
+  { icon: 'lucide:globe-lock', text: t('trust.badges.0', 'GDPR Compliant') },
+  { icon: 'lucide:server', text: t('trust.badges.1', 'Secure Hosting') },
+  { icon: 'lucide:mail-check', text: t('trust.badges.2', 'No Spam Policy') },
+  { icon: 'lucide:users', text: t('trust.badges.3', 'Human Support') },
 ]
 
 // Layout classes based on variant
@@ -84,7 +84,7 @@ const gridClasses = {
               <Icon name={feature.icon} class="text-primary h-6 w-6" />
             </div>
             <div>
-              <h3 class="mb-1 font-semibold text-gray-900">{feature.title}</h3>
+              <h4 class="mb-1 font-semibold text-gray-900">{feature.title}</h4>
               {showDescriptions && <p class="text-sm text-gray-600">{feature.description}</p>}
             </div>
           </div>

@@ -1,12 +1,12 @@
 # Hero Section
 
-## Understand why you react that way in relationships
+## See the patterns that shape your relationships
 
-Discover your attachment patterns, love language, and emotional triggers. Get personalized insights that make your relationship patterns finally make sense.
+Discover how you attach, love, and react in closeness and conflict. Gain insights that make your emotional patterns finally make sense.
 
 [Join Early Access] [How It Works]
 
-_You're not broken. You're just patterned — and patterns can be understood._
+_You’re not broken — you’re patterned. Patterns can be understood._
 
 ---
 
@@ -14,9 +14,9 @@ _You're not broken. You're just patterned — and patterns can be understood._
 
 ## We all repeat the same patterns in love.
 
-Why you shut down when your partner needs closeness. Why you give advice when they want comfort. Why conflict feels so threatening. Why you question if you're too much, or not enough.
+Why you pull away when your partner needs closeness. Why you give advice when they want comfort. Why small fights feel so big. Why you wonder if you’re too much — or not enough.
 
-Withinly helps you see these patterns clearly — not through labels or quick fixes, but through gentle recognition and an AI companion trained in psychological depth.
+Withinly helps you see these patterns clearly. Not through labels or quick fixes, but through gentle recognition and an AI companion trained in psychological depth.
 
 > "It's not about what's wrong with you. It's about understanding what makes sense about you."
 
@@ -26,28 +26,28 @@ Withinly helps you see these patterns clearly — not through labels or quick fi
 
 ## People are finding their words
 
-> "I finally understand why I pull away when my partner tries to get closer. It's not that I don't love him — I just need to feel safe first."
+> "I finally understand why I shut down when he gets closer. It’s not about love — I just need to feel safe first."  
 > — Sarah, 28
 
-> "Reading about my conflict patterns made me cry. Good tears. Recognition tears. I sent it to my therapist."
+> "Reading about my conflict patterns made me cry — good tears, recognition tears. I shared it with my therapist."  
 > — James, 34
 
-> "We both took it and suddenly our fights made sense. We have language now instead of just hurt feelings."
-> — Maya & Alex, together 4 years
+> "We both used it and suddenly our fights made sense. Now we have language instead of just hurt feelings."  
+> — Maya & Alex, 4 years together
 
 ---
 
 # How It Works Section
 
-## See yourself clearly, at your own pace
+## Understand yourself at your own pace
 
-Self-understanding unfolds gradually. Each reflection builds on the last, and your AI companion remembers your patterns to help you recognize them in daily life.
+Self-reflection builds step by step. Each layer connects to the next, and your AI companion remembers your patterns to help you notice them in daily life.
 
 ### 1. Notice your patterns
 
 **Start Here**
 
-Gentle questions based on attachment theory and relationship psychology reveal how you connect, express love, stay present, and treat yourself. No categories — just recognition.
+Gentle questions inspired by psychology uncover how you connect, express love, stay present, and treat yourself. No categories — just recognition.
 
 **Outcome**: Recognition
 
@@ -55,7 +55,7 @@ Gentle questions based on attachment theory and relationship psychology reveal h
 
 **Understand**
 
-A personal narrative that connects your patterns into something you'll recognize. See why you react the way you do in relationships.
+A personal narrative ties your patterns together. See why you react the way you do.
 
 **Outcome**: Language
 
@@ -63,7 +63,7 @@ A personal narrative that connects your patterns into something you'll recognize
 
 **Explore**
 
-Your AI companion knows your patterns and helps you see how they show up in real situations. Like having a wise friend who remembers every conversation.
+Your AI companion remembers your patterns and reflects them back in real situations. Like a wise friend who never forgets.
 
 **Outcome**: Insight
 
@@ -71,7 +71,7 @@ Your AI companion knows your patterns and helps you see how they show up in real
 
 **Grow**
 
-Unlock specialized portraits — Conflict Compass, Trust Map, Communication Decoder — or sync with your partner for couple insights.
+Unlock portraits like the Conflict Compass, Trust Map, or Communication Decoder — or sync with your partner for couple insights.
 
 **Outcome**: Connection
 
@@ -79,7 +79,7 @@ Unlock specialized portraits — Conflict Compass, Trust Map, Communication Deco
 
 **Title**: Your pace is the right pace
 
-**Content**: Some days you'll dive deep; other days you'll just check in. Withinly adapts to where you are and remembers where you've been.
+**Content**: Some days you’ll dive deep; other days you’ll just check in. Withinly adapts and remembers where you’ve been.
 
 [Join Early Access]
 
@@ -87,23 +87,23 @@ Unlock specialized portraits — Conflict Compass, Trust Map, Communication Deco
 
 # What Makes This Different
 
-## Recognition over diagnosis. Patterns over labels.
+## Recognition, not diagnosis. Patterns, not labels.
 
-### What you won't find here:
+### What you won’t find:
 
-- Quick personality types that box you in
-- Generic relationship advice that doesn't fit
-- AI that pretends to be a therapist
-- Judgment about how you love or connect
+- Personality types that box you in
+- Generic advice that doesn’t fit
+- AI pretending to be therapy
+- Judgment about how you connect
 
 ### What you will find:
 
-- Language for patterns you've always felt
-- An AI companion who learns your specific emotional world
+- Language for patterns you’ve always felt
+- An AI companion that learns your world
 - Insights that evolve as you do
-- Safe space to explore without being fixed or changed
+- A safe space to reflect without being “fixed”
 
-_Because you don't need to be fixed. You need to be understood._
+_Because you don’t need to be fixed — you need to be understood._
 
 [Join Early Access]
 
@@ -115,11 +115,11 @@ _Because you don't need to be fixed. You need to be understood._
 
 ### Your relationship makes sense
 
-When you fight about dishes but it's really about feeling valued. When you both try to help but somehow miss each other. When love is there but connection feels hard.
+When fights about dishes are really about feeling valued. When you try to help but miss each other. When love is there but connection feels hard.
 
-**Couple Snapshots** show where your patterns align and where they clash — with compassion for both sides.
+**Couple Snapshots** reveal where your patterns align and where they clash — with compassion for both sides.
 
-> "Seeing our conflict pattern written out was like someone turning on the lights. We're not broken — we just needed to understand the dance we were doing."
+> "Seeing our conflict pattern written out was like someone turning on the lights. We’re not broken — we just needed to see the dance we were in."  
 > — Emma & David
 
 [Join Early Access]
@@ -132,20 +132,20 @@ When you fight about dishes but it's really about feeling valued. When you both 
 
 ### Free to Start
 
-- Complete your pattern discovery
+- Discover your patterns
 - Get your first personal reflection
 - Try conversations with your AI companion
-- Explore what's possible
+- Explore what’s possible
 
 ### Pay as You Go with Sparks ✨
 
-- **Sparks** are tokens that unlock deeper insights
-- Generate detailed portraits when you're ready
+- **Sparks** are tokens for deeper insights
+- Generate detailed portraits when ready
 - Have unlimited conversations
-- Sync with your partner for couple insights
-- Only pay for what you actually want to explore
+- Sync with your partner
+- Only pay for what matters to you
 
-_Pricing will be announced at launch. No subscriptions — just pay for insights that matter to you._
+_Pricing announced at launch. No subscriptions — just pay for insights that matter._
 
 [Join Early Access]
 
@@ -153,16 +153,16 @@ _Pricing will be announced at launch. No subscriptions — just pay for insights
 
 # Trust & Safety
 
-## Your patterns stay yours
+## Your reflections stay yours
 
-This is sacred space. Your insights, conversations, and growth stay completely private.
+This is your space. Everything stays private.
 
-- **No real name required** — use whatever feels safe
-- **Your data stays yours** — never sold, never shared, delete anytime
-- **Private couple insights** — even synced partners can't see your individual patterns
-- **Built for safety** — designed to understand, not diagnose or treat
+- **No real name required** — use what feels safe
+- **Data stays yours** — never sold, never shared, delete anytime
+- **Private couple insights** — even partners don’t see individual patterns
+- **Safe by design** — built to understand, not diagnose
 
-_Safe reflection is where real growth happens._
+_Safe reflection is where growth happens._
 
 ---
 

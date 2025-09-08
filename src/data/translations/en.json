@@ -1,10 +1,10 @@
 {
   "meta": {
     "siteName": "Withinly",
-    "tagline": "Understand your inner world",
-    "defaultTitle": "Understand Your Attachment Style & Relationship Patterns",
-    "defaultDescription": "Discover your attachment style, love language, and emotional triggers. Get personalized insights that explain why you react the way you do in relationships.",
-    "keywords": "psychology, relationships, self-awareness, emotional intelligence, AI therapy, personal growth, attachment style, love language, emotional triggers"
+    "tagline": "See the patterns that shape your connections",
+    "defaultTitle": "Understand Your Relationship Patterns & Inner World",
+    "defaultDescription": "Withinly helps you recognize the patterns behind how you connect — with yourself and with others. Built on attachment theory, love languages, and mindfulness, it translates psychology into personal reflections you can actually feel.",
+    "keywords": "self-awareness, relationships, personal growth, emotional intelligence, attachment theory, love languages, mindfulness, conflict patterns"
   },
   "navigation": {
     "home": "Home",
@@ -25,88 +25,89 @@
     "closeMenu": "Close menu"
   },
   "hero": {
-    "headline": "Understand why you react that way in relationships",
-    "subheadline": "Discover your attachment patterns, love language, and emotional triggers. Get personalized insights that make your relationship patterns finally make sense.",
+    "headline": "See the patterns that shape your relationships",
+    "subheadline": "Discover how you attach, love, and react in closeness and conflict. Gain insights that make your emotional patterns finally make sense.",
     "ctaPrimary": "Join Early Access",
     "ctaSecondary": "How It Works",
-    "tagline": "You're not broken. You're just patterned — and patterns can be understood.",
+    "tagline": "You’re not broken — you’re patterned. Patterns can be understood.",
     "trustSignals": {
       "privacy": "Complete Privacy",
-      "instant": "Instant Insights",
+      "instant": "Quick Insights",
       "humanCentered": "Human-Centered AI"
     }
   },
   "hook": {
     "headline": "We all repeat the same patterns in love.",
-    "description": "Why you shut down when your partner needs closeness. Why you give advice when they want comfort. Why conflict feels so threatening. Why you question if you're too much, or not enough.",
-    "value": "Withinly helps you see these patterns clearly — not through labels or quick fixes, but through gentle recognition and an AI companion trained in psychological depth.",
+    "description": "Why you pull away when your partner needs closeness. Why you give advice when they want comfort. Why small fights feel so big. Why you wonder if you’re too much — or not enough.",
+    "value": "Withinly helps you see these patterns clearly. Not through labels or quick fixes, but through gentle recognition and an AI companion trained in psychological depth.",
     "quote": "It's not about what's wrong with you. It's about understanding what makes sense about you."
   },
   "howItWorks": {
-    "headline": "See yourself clearly, at your own pace",
-    "subheadline": "Self-understanding unfolds gradually. Each reflection builds on the last, and your AI companion remembers your patterns to help you recognize them in daily life.",
+    "headline": "Understand yourself at your own pace",
+    "subheadline": "Self-reflection builds step by step. Each layer connects to the next, and your AI companion remembers your patterns to help you notice them in daily life.",
     "phase1": "Start Here",
     "phase2": "Understand",
     "phase3": "Explore",
     "phase4": "Grow",
     "step1": {
       "title": "Notice your patterns",
-      "description": "Gentle questions based on attachment theory and relationship psychology reveal how you connect, express love, stay present, and treat yourself. No categories — just recognition.",
+      "description": "Gentle questions inspired by psychology uncover how you connect, express love, stay present, and treat yourself. No categories — just recognition.",
       "emotion": "Recognition"
     },
     "step2": {
       "title": "Get your first reflection",
-      "description": "A personal narrative that connects your patterns into something you'll recognize. See why you react the way you do in relationships.",
+      "description": "A personal narrative ties your patterns together. See why you react the way you do.",
       "emotion": "Language"
     },
     "step3": {
       "title": "Talk it through",
-      "description": "Your AI companion knows your patterns and helps you see how they show up in real situations. Like having a wise friend who remembers every conversation.",
+      "description": "Your AI companion remembers your patterns and reflects them back in real situations. Like a wise friend who never forgets.",
       "emotion": "Insight"
     },
     "step4": {
       "title": "Go deeper when ready",
-      "description": "Unlock specialized portraits — Conflict Compass, Trust Map, Communication Decoder — or sync with your partner for couple insights.",
+      "description": "Unlock deeper portraits — like guides that show how you handle conflict, how you build trust, or how you communicate love. You can also sync with your partner for joint insights.",
       "emotion": "Connection"
     },
     "insight": {
       "title": "Your pace is the right pace",
-      "description": "Some days you'll dive deep; other days you'll just check in. Withinly adapts to where you are and remembers where you've been."
+      "description": "Some days you’ll dive deep; other days you’ll just check in. Withinly adapts and remembers where you’ve been."
     }
   },
   "different": {
     "headline": "What Makes This Different",
     "description": "Recognition over diagnosis. Patterns over labels.",
     "dontOffer": {
-      "title": "What you won't find here:",
+      "title": "What you won't find:",
       "items": [
-        "Quick personality types that box you in",
-        "Generic relationship advice that doesn't fit",
-        "AI that pretends to be a therapist",
-        "Judgment about how you love or connect"
+        "Personality types that box you in",
+        "Generic advice that doesn’t fit",
+        "AI pretending to be therapy",
+        "Judgment about how you connect"
       ]
     },
     "doOffer": {
       "title": "What you will find:",
       "items": [
-        "Language for patterns you've always felt",
-        "An AI companion who learns your specific emotional world",
+        "Language for patterns you’ve always felt",
+        "An AI companion that learns your world",
         "Insights that evolve as you do",
-        "Safe space to explore without being fixed or changed"
+        "A safe space to reflect without being “fixed”"
       ]
     },
-    "tagline": "Because you don't need to be fixed. You need to be understood."
+    "tagline": "Because you don't need to be fixed. You need to be understood.",
+    "cta": "Be the first to try out"
   },
   "trust": {
-    "headline": "Your patterns stay yours",
-    "description": "This is sacred space. Your insights, conversations, and growth stay completely private.",
+    "headline": "Your reflections stay yours",
+    "description": "This is your space. Everything stays private.",
     "features": [
       {
         "title": "No real name required",
         "description": "Use whatever feels safe"
       },
       {
-        "title": "Your data stays yours",
+        "title": "Data stays yours",
         "description": "Never sold, never shared, delete anytime"
       },
       {
@@ -115,13 +116,15 @@
       },
       {
         "title": "Built for safety",
-        "description": "Designed to understand, not diagnose or treat"
+        "description": "Built to understand, not diagnose"
       }
     ],
-    "tagline": "Safe reflection is where real growth happens."
+    "tagline": "Safe reflection is where real growth happens.",
+    "badges": ["GDPR Compliant", "Secure Hosting", "No Spam Policy", "Human Support"]
   },
   "testimonials": {
     "headline": "Early Access Testimonials",
+    "subheadline": "Hear from people who are already exploring their inner patterns",
     "slideIndicator": "of",
     "nextSlide": "Next testimonial",
     "prevSlide": "Previous testimonial",
@@ -149,29 +152,31 @@
       "title": "Free to Start",
       "period": "forever",
       "features": [
-        "Complete your pattern discovery",
+        "Discover your patterns",
         "Get your first personal reflection",
         "Try conversations with your AI companion",
         "Explore what's possible"
-      ]
+      ],
+      "cta": "Join Early Access"
     },
     "premium": {
-      "title": "Pay as You Go ",
+      "title": "Pay as You Go with Sparks ✨",
       "price": "$12/month",
       "period": "monthly",
       "features": [
-        "Sparks ✨ are tokens that unlock deeper insights",
-        "Generate detailed portraits when you're ready",
+        "Sparks are tokens for deeper insights",
+        "Generate detailed portraits when ready",
         "Have unlimited conversations",
-        "Sync with your partner for couple insights",
-        "Only pay for what you actually want to explore"
-      ]
+        "Sync with your partner",
+        "Only pay for what matters to you"
+      ],
+      "cta": "Early Access"
     },
-    "tagline": "Pricing will be announced at launch. No subscriptions — just pay for insights that matter to you."
+    "tagline": "Pricing announced at launch. No subscriptions — just pay for insights that matter."
   },
   "earlyAccess": {
-    "headline": "Be among the first to understand your patterns",
-    "description": "We're opening Withinly to a select group who understand that real self-discovery takes courage. Join our closed beta and be among the first to explore.",
+    "headline": "Be among the first to see your patterns clearly",
+    "description": "We’re opening Withinly to a small early group. Join our closed beta and be among the first to explore.",
     "cta": "Join the list",
     "benefits": {
       "title": "As an early member, you'll receive:",
@@ -198,10 +203,10 @@
     "badge": "For Couples",
     "headline": "See how your patterns meet",
     "subheadline": "Your relationship makes sense",
-    "description1": "When you fight about dishes but it's really about feeling valued. When you both try to help but somehow miss each other. When love is there but connection feels hard.",
+    "description1": "When fights about dishes are really about feeling valued. When you try to help but miss each other. When love is there but connection feels hard.",
     "coupleSnapshots": {
       "title": "Couple Reports",
-      "description": "See where your patterns align and where they clash — with compassion for both sides."
+      "description": "Reveal where your patterns align and where they clash — with compassion for both sides."
     },
     "testimonial": {
       "quote": "Seeing our conflict pattern written out was like someone turning on the lights. We're not broken — we just needed to understand the dance we were doing.",
@@ -211,10 +216,12 @@
   },
   "footer": {
     "tagline": "Launching soon in English and Lithuanian",
-    "copyright": "© 2025 Withinly. All rights reserved.",
+    "copyright": "© {{year}} Withinly. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "contact": "Contact"
+    "contact": "Contact",
+    "securePrivate": "Secure & Private",
+    "madeWithCare": "Made with Care"
   },
   "validation": {
     "emailRequired": "Email address is required",
@@ -238,7 +245,7 @@
     "items": [
       {
         "question": "Is this therapy?",
-        "answer": "No. Think of it as a mirror that helps you see your patterns more clearly. Many people use insights here to go deeper in actual therapy."
+        "answer": "No. Think of it as a mirror that helps you see your patterns more clearly. It draws on frameworks like attachment theory and love languages, but instead of boxing you into labels, it translates them into personal reflections you can actually feel and use."
       },
       {
         "question": "What if I'm single?",
@@ -246,7 +253,7 @@
       },
       {
         "question": "How is this different from personality tests?",
-        "answer": "Those give you a type. We give you understanding. Your patterns are unique, complex, and can evolve. We meet you where you are, not where a test says you should be."
+        "answer": "Personality tests give you a type. Withinly gives you a reflection. Instead of putting you into a fixed box, it weaves your patterns into narratives that feel alive and evolving. The focus isn’t on “what category am I?” but on recognizing how I actually show up — in conflict, in closeness, in how I love."
       },
       {
         "question": "What about my privacy?",

@@ -22,7 +22,7 @@ This balances **user clarity**, **fair value**, and **sustainable margins**.
 ## ⚡ Model Strategy
 
 - **Reports** → GPT-4.1 (fast, sophisticated, premium quality)
-- **Chat** → Default = GPT-4.1 mini (cost-efficient), optional toggle to GPT-4.1 “Pro Depth”
+- **Chat** → Default = GPT-4.1 mini (cost-efficient), optional toggle to GPT-4.1 “Depth mode”
 - **Translations** → GPT-4.1 mini (absorbed)
 - **Consultant recommendations (trait completion/change)** → invisible background calls, absorbed into margin (controlled by cooldowns + batching to prevent bleed)
 
@@ -38,8 +38,8 @@ This balances **user clarity**, **fair value**, and **sustainable margins**.
 - **Couple Snapshot** → Free (first sync), then 1 Spark
 - **Premium couple report** → 3 Sparks
   - (Future: may rise to 4–5 Sparks due to higher value perception)
-- **Chat (Mini)** → 1 Spark = 20 messages
-- **Chat (Pro Depth)** → 1 Spark = 5 messages
+- **Chat (Standard)** → 1 Spark = 20 messages
+- **Chat (Depth)** → 1 Spark = 5 messages
 
 ---
 
@@ -53,22 +53,53 @@ This ensures users taste **solo reports, couple insights, and chat** before hitt
 
 ---
 
-## 💰 Spark Value
+## 💰 Spark Value & Bundles
 
-- Target retail price: **€0.40–0.50 per Spark** (depending on bundle size)
-- Gross margins:
-  - **Reports** → 95–98%
-  - **Chat** → ~65–70%
-- This blend ensures reports subsidize higher-frequency chat usage.
+Target retail price: **€0.40–0.50 per Spark** (depending on bundle size).
+
+Optimized bundles:
+
+- **5 Sparks — €2.50** → €0.50 each
+- **10 Sparks — €4.50** → €0.45 each
+- **25 Sparks — €9.99** → €0.40 each
+- **50 Sparks — €17.99** → €0.36 each
+
+Margins:
+
+- **Reports** → 95–98%
+- **Chat** → ~65–70%
 
 ---
 
-## 📦 Bundles
+## 📊 Break-Even & Free User Scenarios
 
-- 5 Sparks — €2.50
-- 10 Sparks — €4.50
-- 25 Sparks — €9.99
-- 50 Sparks — €17.99
+**Cost per free user** (average):
+
+- 3 free Sparks (~$0.05–0.10 cost)
+- First Couple Snapshot (~$0.016 cost)
+- Consultant background calls (~$0.01–0.02)
+- Infra (~$0.05)  
+  ➡️ **Total cost per free user: ~$0.12–0.18**
+
+---
+
+### Scenario A: 4% conversion (conservative)
+
+- 100 free users → cost = ~$15
+- 4 pay €4.50 each → €18 revenue
+- Break-even with thin margin (~20%).
+
+### Scenario B: 6% conversion (moderate)
+
+- 100 free users → cost = ~$15
+- 6 pay €4.50 each → €27 revenue
+- Profit margin ~40%.
+
+### Scenario C: 8% conversion (strong)
+
+- 100 free users → cost = ~$15
+- 8 pay €9.99 each → €80 revenue
+- Profit margin ~80%.
 
 ---
 
@@ -136,10 +167,10 @@ Available: 32 Sparks
 Quick top-up for quick reflection or a premium report
 
 10 Sparks — €4.50
-Enough for 3 premium reports or ~200 reflectionmessages
+Enough for 3 premium reports or ~200 reflection messages
 
 25 Sparks — €9.99
-Most popular — balanced for regular use
+Most popular — balanced for regular use and exploration
 
 50 Sparks — €17.99
 Best value — ideal for deep dives or couples

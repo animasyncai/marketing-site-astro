@@ -86,7 +86,7 @@ Redirect away from:
 
 ## 💰 Pricing (MVP)
 
-- **Free**: First 3 messages after onboarding (Standard)
+- **Free**: First 3 messages after onboarding (Standards)
 - **Standard Chat (default)**: 1 Spark = 20 messages
 - **Depth Chat (optional toggle)**: 1 Spark = 5 messages
 
