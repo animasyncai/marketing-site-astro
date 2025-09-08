@@ -35,6 +35,7 @@ Card structure:
 
 - Title
 - Description
+- User reflection access (permanent)
 - Completed date
 - Call to actions
 - Price (each card has a price of 1 token)

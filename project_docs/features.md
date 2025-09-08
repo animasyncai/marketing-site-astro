@@ -17,10 +17,10 @@ Each trait identifies **primary values** (e.g. `primaryLoveLanguage: Touch`), bu
 
 Every trait produces two outputs:
 
-1. **User-facing mini report** — a predefined reflection shown only the first time the trait is completed.
-2. **Psychologist Notes** — structured metadata used by the AI consultant to adapt tone, depth, and reflection style.
+1. **User-facing mini report** — a predefined reflection shown after completion and saved for ongoing reference.
+2. **Behavioral profile** — rich psychological context for reports/consultant
 
-We may add more traits in the future to expand the report base or functionality, but the current set is stable.
+**No individual interaction guidance** - consultant gets AI-generated integrated guidance instead.
 
 ---
 

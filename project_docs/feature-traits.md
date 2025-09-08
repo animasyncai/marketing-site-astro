@@ -308,6 +308,20 @@ Withinly uses 4 core psychological traits to understand users' emotional and rel
 4. **Re-evaluation**: Users can retake traits, with meaningful change detection logic (change of intesity or type)
 5. **Report Dependencies**: Different reports require different combinations of completed traits
 
+## Behavioral Profiles
+
+Each trait generates a behavioral profile for reports/consultant:
+
+- **Attachment**: Uses combination logic (predefined + systematic generation)
+- **Love Language**: Combines primary + secondary + distribution + archetype
+- **Mindfulness**: Base level + openness to change
+- **Self-Acceptance**: Direct level mapping
+
+**Usage:**
+
+- Reports: Get rich behavioral context for AI generation
+- Consultant: Combined with AI-generated integrated guidance
+
 ## Validation Hooks (TO BE IMPLEMENTED)
 
 1. Purpose of Validation Hooks
