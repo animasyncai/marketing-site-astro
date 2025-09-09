@@ -22,9 +22,16 @@ const t = (key: string, fallback = '') => {
   return getTranslation(translations, key, {}, fallback)
 }
 
-// Get features from translations
-const freeFeatures = translations.pricing?.free?.features || []
-const premiumFeatures = translations.pricing?.premium?.features || []
+// Get features from translations with safe typing
+type PricingTranslations = {
+  pricing?: {
+    free?: { features?: string[] }
+    premium?: { features?: string[] }
+  }
+}
+const pricingData = (translations as unknown as PricingTranslations)?.pricing
+const freeFeatures: string[] = Array.isArray(pricingData?.free?.features) ? pricingData.free.features : []
+const premiumFeatures: string[] = Array.isArray(pricingData?.premium?.features) ? pricingData.premium.features : []
 ---
 
 <section id="pricing" class:list={[className, 'bg-gray-50 py-20']}>
@@ -52,7 +59,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
         </div>
         <ul class="mb-8 space-y-4">
           {
-            freeFeatures.map((feature) => (
+            freeFeatures.map((feature: string) => (
               <li class="flex items-start gap-3">
                 <Icon name="lucide:check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
                 <span class="text-gray-600">{feature}</span>
@@ -61,7 +68,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
           }
         </ul>
         <Button href="#early-access" variant="secondary" size="lg" fullWidth>
-          {t('pricing.free.cta', 'Join Waitlist')}
+          {t('earlyAccess.cta', 'Get Early Access')}
         </Button>
       </div>
 
@@ -72,7 +79,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
         <div class="absolute -top-4 left-1/2 -translate-x-1/2">
           <div class="bg-primary flex items-center gap-1 rounded-full px-4 py-1 text-sm font-medium text-white">
             <Icon name="lucide:sparkles" class="h-3 w-3" />
-            {t('pricing.premium.badge', 'Early Access')}
+            Early Access
           </div>
         </div>
         <div class="mb-6 text-center">
@@ -88,7 +95,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
         </div>
         <ul class="mb-8 space-y-4">
           {
-            premiumFeatures.map((feature) => (
+            premiumFeatures.map((feature: string) => (
               <li class="flex items-start gap-3">
                 <Icon name="lucide:check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-violet-500" />
                 <span class="text-gray-700">{feature}</span>
@@ -97,7 +104,7 @@ const premiumFeatures = translations.pricing?.premium?.features || []
           }
         </ul>
         <Button href="#early-access" variant="primary" size="lg" fullWidth>
-          {t('pricing.premium.cta', 'Get Early Access')}
+          {t('earlyAccess.cta', 'Get Early Access')}
         </Button>
       </div>
     </div>

@@ -1,0 +1,57 @@
+---
+/**
+ * WhyWithinly Component
+ *
+ * Inspired by `DifferentiatorSection` and `TrustSignals`, this section
+ * presents concise reasons to choose Withinly using translation content
+ * from `whyWithinly` in the locale files.
+ */
+
+import { Icon } from 'astro-icon/components'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+
+// Load translations based on current path
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  return getTranslation(translations, key, {}, fallback)
+}
+
+// Data from translations
+const items = (translations as any)?.whyWithinly?.items || []
+
+// A small set of friendly icons to pair with items (cycled)
+const icons = ['lucide:sparkles', 'lucide:shield-check', 'lucide:heart-handshake', 'lucide:brain']
+---
+
+<section id="why-withinly" class:list={[className, 'bg-white py-20']}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-14 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+        {t('whyWithinly.headline')}
+      </h2>
+      <p class="text-lg text-gray-600">{t('whyWithinly.tagline')}</p>
+    </div>
+
+    <div class="mx-auto grid max-w-6xl gap-6 sm:gap-8 md:grid-cols-2">
+      {
+        items.map((item: any, index: number) => (
+          <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div class="mb-4 flex items-center gap-3">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100">
+                <Icon name={icons[index % icons.length]} class="text-primary h-5 w-5" />
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900">{item.title}</h3>
+            </div>
+            <p class="text-gray-700">{item.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -3,13 +3,13 @@
     "siteName": "Withinly",
     "tagline": "Atpažink modelius, kurie formuoja tavo ryšius",
     "defaultTitle": "Suprask savo santykių modelius ir vidinį pasaulį",
-    "defaultDescription": "Withinly padeda atpažinti, kaip mezgi ryšius su savimi ir kitais. Remiasi prisirišimo teorija, meilės kalbomis ir sąmoningumu — psichologiją paverčia asmeniniais atspindžiais, kuriuos gali iš tikrųjų pajusti.",
-    "keywords": "savistaba, santykiai, asmeninis augimas, emocinis intelektas, prisirišimo teorija, meilės kalbos, sąmoningumas, konfliktų dinamika"
+    "defaultDescription": "Withinly padeda atpažinti, kaip mezgi ryšius su savimi ir kitais. Remiasi prisirišimo teorija, meilės kalbomis ir sąmoningumu — psichologiją paverčia asmeniniais atspindžiais, kuriuos iš tikrųjų gali pajusti.",
+    "keywords": "savistaba, santykiai, asmeninis augimas, emocinis intelektas, prisirišimo teorija, meilės kalbos, sąmoningumas, konfliktų modeliai"
   },
   "navigation": {
     "home": "Pradžia",
     "howItWorks": "Kaip tai veikia",
-    "features": "Funkcijos",
+    "features": "Kodėl Withinly",
     "pricing": "Kainodara",
     "earlyAccess": "Ankstyva prieiga",
     "privacy": "Privatumas",
@@ -19,14 +19,14 @@
     "menuLabel": "Pagrindinė navigacija",
     "skipToMain": "Pereiti prie turinio",
     "toggleDarkMode": "Perjungti tamsų režimą",
-    "switchLanguage": "Pereiti į lietuvių kalbą",
-    "currentLanguage": "Anglų",
+    "switchLanguage": "Perjungti į anglų kalbą",
+    "currentLanguage": "Lietuvių",
     "openMenu": "Atidaryti meniu",
     "closeMenu": "Uždaryti meniu"
   },
   "hero": {
     "headline": "Pamatyk modelius, kurie formuoja tavo santykius",
-    "subheadline": "Atrask, kaip prisiriši, kaip myli ir kaip reaguoji į artumą bei konfliktą. Įžvalgos, kurios pagaliau paaiškina tavo santykių modelius.",
+    "subheadline": "Atrask, kaip prisiriši, kaip myli ir kaip reaguoji į artumą bei konfliktą — žodžiais, kuriuos gali suprasti ir pritaikyti.",
     "ctaPrimary": "Ankstyva prieiga",
     "ctaSecondary": "Kaip tai veikia",
     "tagline": "Tu nesi „sugedęs“ — tave formuoja modeliai. Juos galima suprasti.",
@@ -37,94 +37,81 @@
     }
   },
   "hook": {
-    "headline": "Mes visi kartojame tuos pačius meilės modelius.",
-    "description": "Kodėl atsitrauki, kai partneriui reikia artumo. Kodėl patari, nors jam tereikėjo palaikymo. Kodėl smulkūs konfliktai atrodo tokie dideli. Kodėl klausi savęs, ar nesi per daug — ar per mažai.",
-    "value": "Withinly padeda šiuos modelius pamatyti aiškiai. Ne per etiketes ar greitus patarimus, o per švelnų atpažinimą ir AI palydovą, kuris remiasi psichologinėmis žiniomis.",
-    "quote": "Svarbu ne tai, kas su tavimi negerai. Svarbu suprasti, kas tavyje iš tikrųjų turi prasmę."
+    "headline": "Ar tai pažįstama?",
+    "description": "Withinly šiuos modelius paverčia į žodžius, kuriais gali remtis — be etikečių, be greitų taisymų, tik aiškus atpažinimas.",
+    "bullets": [
+      "Atsitrauki, kai kitam reikia artumo",
+      "Duodi patarimus, kai reikėjo paguodos",
+      "Smulkūs konfliktai jaučiasi per dideli",
+      "Klausi savęs, ar nesi per daug — ar per mažai"
+    ],
+    "quote": "Svarbu ne tai, kas su tavimi negerai. Svarbu suprasti, kas tavyje turi prasmę."
   },
   "howItWorks": {
     "headline": "Atrask save savo tempu",
-    "subheadline": "Savistaba vyksta žingsnis po žingsnio. Kiekvienas sluoksnis jungiasi prie kito, o tavo AI palydovas prisimena tavo modelius ir padeda juos atpažinti kasdienybėje.",
+    "subheadline": "Savistaba vyksta žingsnis po žingsnio. Kiekvienas sluoksnis jungiasi su kitu, o AI palydovas prisimena tavo modelius, kad juos pamatytum kasdienybėje.",
+    "atAGlance": {
+      "title": "Trumpai",
+      "items": [
+        "3–5 minutės iki pirmojo atspindžio",
+        "Be etikečių ar diagnozių — tik atpažinimas",
+        "Privatus net dirbant su antra puse",
+        "Pradžia nemokama; moki tik kai nori nerti gilyn"
+      ]
+    },
     "phase1": "Pradėk čia",
     "phase2": "Suprask",
     "phase3": "Tyrinėk",
     "phase4": "Tobulėk",
     "step1": {
       "title": "Pastebėk savo modelius",
-      "description": "Švelnūs klausimai, paremti psichologija, atskleidžia, kaip kuri ryšį, kaip išreiški meilę, kaip išlieki sąmoningas ir kaip elgiesi su savimi. Jokių kategorijų — tik atpažinimas.",
+      "description": "Trumpi, psichologija paremti klausimai atskleidžia, kaip kuri ryšį, kaip išreiški meilę, kaip išlieki sąmoningas ir kaip elgiesi su savimi. Be dėžučių ir etikečių.",
       "emotion": "Atpažinimas"
     },
     "step2": {
       "title": "Pirmasis atspindys",
-      "description": "Asmeninė istorija sujungia tavo modelius į vientisą pasakojimą. Suprasi, kodėl taip reaguoji santykiuose.",
+      "description": "Asmeninis pasakojimas sujungia tavo elgesio ir mąstymo modelius į aiškią visumą. Suprasi, kodėl taip reaguoji.",
       "emotion": "Kalba"
     },
     "step3": {
       "title": "Pasikalbėk apie tai",
-      "description": "Tavo AI palydovas prisimena tavo modelius ir padeda pamatyti juos realiose situacijose. Tarsi išmintingas draugas, kuris niekada nepamiršta.",
+      "description": "AI palydovas atspindi tavo modelius realiose situacijose — tarsi išmintingas draugas, kuris prisimena kiekvieną pokalbį.",
       "emotion": "Įžvalga"
     },
     "step4": {
-      "title": "Eik giliau, kai būsi pasiruošęs",
-      "description": "Atrakink gilesnius portretus — gaires, kurios parodo, kaip sprendi konfliktus, kaip kuri pasitikėjimą ar kaip išreiški meilę. Taip pat gali susieti paskyrą su partneriu ir gauti bendrų įžvalgų.",
+      "title": "Eik gilyn, kada norisi",
+      "description": "Individualios įžvalgos — praktiniai gidai apie konfliktus, pasitikėjimą ir meilės komunikaciją. Taip pat galimybė sinchronizuoti paskyrą su antra puse bendroms įžvalgoms.",
       "emotion": "Ryšys"
     },
     "insight": {
-      "title": "Tavo tempas yra tinkamas tempas",
-      "description": "Vieną dieną norėsis nerti giliai, kitą — tik trumpai sustoti. Withinly prisitaiko prie tavęs."
+      "title": "Tavo tempas — tinkamas tempas",
+      "description": "Vieną dieną nersi giliai, kitą — tiesiog užsuksi. Withinly prisitaiko ir prisimena tavo kelią."
     }
   },
-  "different": {
-    "headline": "Kas čia kitaip",
-    "description": "Atpažinimas, o ne diagnozės. Modeliai, o ne etiketės.",
-    "dontOffer": {
-      "title": "Ko čia nerasite:",
-      "items": [
-        "Asmenybės tipų, kurie įspraudžia į dėžutę",
-        "Bendrų patarimų, kurie netinka",
-        "AI, apsimetančio terapeutu",
-        "Vertinimo, kaip tu myli ar kuri ryšį"
-      ]
-    },
-    "doOffer": {
-      "title": "Ką čia rasi:",
-      "items": [
-        "Kalbą tavo jaučiamiems modeliams",
-        "AI palydovą, kuris mokosi tavo pasaulio",
-        "Įžvalgas, kurios auga kartu su tavimi",
-        "Saugų lauką refleksijai, be „taisymo“"
-      ]
-    },
-    "tagline": "Nereikia būti „sutaisytam“. Reikia būti suprastam.",
-    "cta": "Būk vienas iš pirmųjų"
-  },
-  "trust": {
-    "headline": "Tavo įžvalgos lieka tau",
-    "description": "Tai yra tavo erdvė. Viskas lieka privačiai.",
-    "features": [
+  "whyWithinly": {
+    "headline": "Kodėl Withinly",
+    "items": [
       {
-        "title": "Nereikia tikro vardo",
-        "description": "Pasirink tai, kas tau saugiausia"
+        "title": "Atpažinimas, o ne etiketės",
+        "description": "Psichologinius modelius verčiame kalba, kuri tinka tau — be įspraudimo į dėžutę."
       },
       {
-        "title": "Duomenys lieka tavo",
-        "description": "Niekada neparduodami, neperduodami, gali ištrinti 1 paspaudimu"
+        "title": "Privatumas",
+        "description": "Tavo mintys ir patarimai lieka tau. Ištrink duomenis vienu paspaudimu."
       },
       {
-        "title": "Privatumas poroje",
-        "description": "Susietas partneris nemato tavo individualios informacijos ar pokalbių"
+        "title": "Giliau nei testas, lengviau nei terapija",
+        "description": "Asmeniniai pasakojimai ir vedami pokalbiai — įžvalgos, kurias gali pritaikyti realiame gyvenime."
       },
       {
-        "title": "Saugi erdvė",
-        "description": "Sukurta tam, kad suprastų, o ne diagnozuotų"
+        "title": "Auga kartu su tavimi",
+        "description": "Nuo pirmojo atspindžio iki portretų apie konfliktus, pasitikėjimą ir komunikaciją — tavo tempu."
       }
     ],
-    "tagline": "Tikras augimas galimas tik saugioje erdvėje.",
-    "badges": ["GDPR atitikimas", "Saugus serveris", "Jokio šlamšto politika", "Žmogiška pagalba"]
+    "tagline": "Tavęs nereikia „taisyt“ — tave reikia suprasti."
   },
   "testimonials": {
-    "headline": "Pirmųjų naudotojų atsiliepimai",
-    "subheadline": "Šie žmonės gavo galimybę susipažinti ir tyrinėti savo vidinius modelius",
+    "headline": "Ankstyvųjų naudotojų atsiliepimai",
     "slideIndicator": "iš",
     "nextSlide": "Kitas atsiliepimas",
     "prevSlide": "Ankstesnis atsiliepimas",
@@ -132,17 +119,37 @@
     "playSlider": "Leisti skaidres",
     "items": [
       {
-        "quote": "Metus lankau terapiją. Čia atradau įžvalgų, kurias dabar giliau nagrinėjame su terapeutu.",
-        "author": "Greta, 33m."
+        "quote": "Metus lankau terapiją. Čia atradau įžvalgų, kurias dabar nagrinėjame su terapeutu.",
+        "author": "Ankstyvas narys"
       },
       {
         "quote": "Santykių modelių ataskaita privertė pravirkti — tai buvo tyras atpažinimas. Pirmą kartą jaučiausi pamatyta.",
-        "author": "Viktorija, 38m."
+        "author": "Beta testuotoja"
       },
       {
         "quote": "Tai tarsi išmintingas draugas, kuris prisimena kiekvieną pokalbį ir padeda pamatyti besikartojančias gijas.",
-        "author": "Robertas, 28m."
+        "author": "Premium narys"
       }
+    ]
+  },
+  "couples": {
+    "badge": "Poroms",
+    "headline": "Pamatykite, kaip persipina jūsų modeliai",
+    "subheadline": "Viena nuoroda. Dvi privačios erdvės. Vienas bendras žemėlapis.",
+    "description1": "Sinchronizuokite paskyras ir pamatykite, kur derate, kur prasilenkiate ir kaip susitikti per vidurį — neatskleidžiant individualių detalių.",
+    "coupleSnapshots": {
+      "title": "Porų įžvalgos",
+      "description": "Pirmą sinchronizaciją pradėkite nuo nemokamos trumpos apžvalgos. Norėdami daugiau — giluminės porų ataskaitos, kurios padeda suprasti jūsų dinamiką."
+    },
+    "testimonial": {
+      "quote": "Kai pamatėme mūsų konfliktų modelį parašytą, buvo kaip įjungta šviesa. Mes nesugedę — tiesiog supratome šokį, kuriame buvome.",
+      "author": "Emma & David"
+    },
+    "cta": "Ankstyva prieiga",
+    "highlights": [
+      "Privatu pagal numatymą — matomos tik bendros įžvalgos",
+      "Vienas apmokėjimas atrakina premium porų ataskaitas abiem partneriams",
+      "Gilesnės porų ataskaitos pateikia aiškius žingsnius"
     ]
   },
   "pricing": {
@@ -155,28 +162,27 @@
         "Atrask savo modelius",
         "Pirmasis asmeninis atspindys",
         "Išbandyk pokalbius su AI palydovu",
+        "Pirmoji poros apžvalga — nemokama",
         "Pažvelk, kas įmanoma"
-      ],
-      "cta": "Ankstyva prieiga"
+      ]
     },
     "premium": {
-      "title": "Mokėk tik už tai, kas svarbu (Sparks ✨)",
-      "price": "$12/mėn.",
-      "period": "mėnesinis",
+      "title": "Moki pagal poreikį (Sparks ✨)",
+      "price": "",
+      "period": "",
       "features": [
         "Sparks — žetonai gilesnėms įžvalgoms",
-        "Generuok išsamius portretus, kai būsi pasiruošęs",
+        "Generuok įžvalgas, kai būsi pasiruošęs",
         "Neriboti pokalbiai",
-        "Susiek su partneriu",
-        "Mokėk tik už tai, kas tau prasminga"
-      ],
-      "cta": "Ankstyva prieiga"
+        "Porų sinchronizacija bendroms įžvalgoms",
+        "Mokėk tik už tai, kas tau svarbu"
+      ]
     },
     "tagline": "Kainodara bus paskelbta starto metu. Jokių prenumeratų — tik mokestis už tau svarbias įžvalgas."
   },
   "earlyAccess": {
     "headline": "Būk tarp pirmųjų, kurie aiškiai pamatys savo modelius",
-    "description": "Atveriame Withinly mažai ankstyvajai grupei. Prisijunk prie beta ir būk vienas iš pirmųjų, kurie tyrinės.",
+    "description": "Atveriame Withinly mažai ankstyvajai grupei. Prisijunk prie uždaro beta ir būk tarp pirmųjų tyrinėtojų.",
     "cta": "Į sąrašą",
     "benefits": {
       "title": "Kaip ankstyvas narys gausi:",
@@ -187,41 +193,24 @@
         "Asmeninį pasveikinimą iš komandos"
       ]
     },
-    "urgency": "Jokių įsipareigojimų. Jokio spaudimo. Tik pažintis su tuo, kas gyvena tavyje."
+    "urgency": "Jokių įsipareigojimų. Jokio spaudimo. Tik švelnus atpažinimas to, kas tu jau esi."
   },
   "signup": {
     "headline": "Pasiruošęs suprasti savo modelius?",
-    "description": "Prisijunk prie laukiančiųjų sąrašo ir išbandyk pirmas.",
+    "description": "Prisijunk prie laukiančiųjų sąrašo ir sužinok pirmas, kai atversime duris.",
     "emailPlaceholder": "Įvesk savo el. pašto adresą",
     "submitButton": "Gauti prieigą",
     "loadingButton": "Jungiama...",
-    "privacy": "Kai tik startuosime - išsiųsime tau asmeninį laišką. Jokio šlamšto.",
-    "successMessage": "Sveikas prisijungęs! Greitai atsiųsime tau informaciją apie ankstyvą prieigą.",
+    "privacy": "Kai atversime — atsiųsime asmeninį laišką. Jokio šlamšto.",
+    "successMessage": "Sveikas prisijungęs! Greitai atsiųsime informaciją apie ankstyvą prieigą.",
     "errorMessage": "Kažkas nepavyko. Bandyk dar kartą arba parašyk mums tiesiogiai."
-  },
-  "couples": {
-    "badge": "Poroms",
-    "headline": "Pamatykite ir supraskite savo santykių modelius",
-    "subheadline": "Įžvalgos padėsiančios suprasti vienam kitą",
-    "description1": "Kai ginčai dėl indų iš tiesų yra apie jausmą, kad esi vertinamas. Kai abu stengiatės, bet vis tiek prasilenkiate. Kai meilė yra, bet ryšys vis tiek sunkus.",
-    "coupleSnapshots": {
-      "title": "Porų ataskaitos",
-      "description": "Parodo, kur jūsų modeliai sutampa, o kur išsiskiria — su supratimu ir empatija abiem pusėms."
-    },
-    "testimonial": {
-      "quote": "Pamatyti mūsų konfliktų modelį užrašytą buvo tarsi įjungta šviesa. Mes nesugedę — tiesiog turėjome suprasti šokį, kuriame esame.",
-      "author": "Emma & David"
-    },
-    "cta": "Ankstyva prieiga"
   },
   "footer": {
     "tagline": "Greitai startuosime lietuvių ir anglų kalbomis",
-    "copyright": "© {{year}} Withinly. Visos teisės saugomos.",
+    "copyright": "© 2025 Withinly. Visos teisės saugomos.",
     "privacy": "Privatumo politika",
     "terms": "Naudojimo sąlygos",
-    "contact": "Kontaktai",
-    "securePrivate": "Saugus ir privatus",
-    "madeWithCare": "Sukurta su rūpesčiu"
+    "contact": "Kontaktai"
   },
   "validation": {
     "emailRequired": "Reikalingas el. pašto adresas",
@@ -245,23 +234,23 @@
     "items": [
       {
         "question": "Ar tai terapija?",
-        "answer": "Ne. Tai labiau kaip veidrodis, padedantis aiškiau pamatyti savo modelius. Jis remiasi prisirišimo teorija, meilės kalbomis ir sąmoningumu, bet vietoje etikečių pateikia asmeninius atspindžius, kuriuos gali iš tikrųjų pajusti ir pritaikyti."
+        "answer": "Ne. Tai labiau kaip veidrodis, padedantis aiškiau pamatyti savo modelius. Remiamės prisirišimo teorija ir meilės kalbomis, bet vietoje etikečių pateikiame asmeninius atspindžius, kuriuos gali pajusti ir pritaikyti."
       },
       {
         "question": "Kas, jei esu vienišas?",
-        "answer": "Suprasti savo modelius prieš ar po santykių gali būti labai vertinga. Daug žmonių sako, kad tai padėjo jiems rinktis geresnius partnerius ir elgtis santykiuose kitaip."
+        "answer": "Nieko tokio. Suprasti savo modelius prieš naujus santykius — labai vertinga. Daugelis sako, kad tai padėjo rinktis geriau ir elgtis kitaip."
       },
       {
         "question": "Kuo tai skiriasi nuo asmenybės testų?",
-        "answer": "Asmenybės testai suteikia tipą. Withinly suteikia atspindį. Vietoje to, kad įspraustų į dėžutę, jis sudeda tavo vidinius modelius į pasakojimą, kuris yra gyvas ir besikeičiantis. Svarbiausia ne „kokiam tipui priklausau?“, o „kaip iš tikrųjų pasireiškiu — konflikte, artume, meilėje“."
+        "answer": "Testai suteikia tipą. Withinly suteikia atspindį — gyvus pasakojimus apie tai, kaip pasireiški konflikte, artume ir meilėje."
       },
       {
         "question": "O kaip su privatumu?",
-        "answer": "Viskas lieka visiškai privačiai. Net susiejus paskyrą su partneriu, jis mato tik bendrą abiejų informaciją — niekada tavo individualių modelių, gidų ar pokalbių."
+        "answer": "Viskas lieka privačiai. Net poros sinchronizacijoje matomos tik bendros įžvalgos — niekada individualūs modeliai ar pokalbiai. Visą informaciją galima ištrinti vos poros mygtukų paspaudimu."
       },
       {
         "question": "Ar tai gali pakeisti terapiją?",
-        "answer": "Ne, ir tam tai neskirta. Jei esi krizėje ar patiri rimtų psichikos sveikatos sunkumų, kreipkis pagalbos į specialistą. Withinly yra skirtas savistabai, o ne gydymui."
+        "answer": "Ne. Jei esi krizėje ar patiri rimtų psichikos sveikatos sunkumų, kreipkis į specialistus. Withinly skirta savistabai ir augimui, ne gydymui."
       }
     ]
   }

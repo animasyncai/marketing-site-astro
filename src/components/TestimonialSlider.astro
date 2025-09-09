@@ -6,7 +6,7 @@
  */
 
 import { Icon } from 'astro-icon/components'
-import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+import { getTranslationsFromUrl, getTranslation, hasTranslation } from '../utils/useTranslation.js'
 
 interface Props {
   class?: string
@@ -22,8 +22,13 @@ const t = (key: string, fallback = '') => {
   return getTranslation(translations, key, {}, fallback)
 }
 
-// Get testimonials from translations
-const testimonials = translations.testimonials?.items || []
+const hasSubheadline = hasTranslation(translations, 'testimonials.subheadline')
+
+// Get testimonials from translations with safe typing
+type TestimonialsItem = { quote: string; author: string }
+const testimonials: TestimonialsItem[] = Array.isArray((translations as any)?.testimonials?.items)
+  ? ((translations as any).testimonials.items as TestimonialsItem[])
+  : []
 ---
 
 <section class:list={[className, "py-20 bg-white"]}>
@@ -32,13 +37,14 @@ const testimonials = translations.testimonials?.items || []
       <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
         {t('testimonials.headline')}
       </h2>
-      <p class="text-xl text-gray-600">
-        {t('testimonials.subheadline')}
-      </p>
+      {hasSubheadline && (
+        <p class="text-xl text-gray-600">
+          {t('testimonials.subheadline')}
+        </p>
+      )}
     </div>
 
     {autoPlay ? (
-      <!-- Auto-advancing slider for larger testimonial sets -->
       <div 
         class="relative max-w-4xl mx-auto"
         data-component="testimonial-slider"
@@ -80,9 +86,8 @@ const testimonials = translations.testimonials?.items || []
           </button>
         </div>
 
-        <!-- Testimonial content -->
         <div class="relative overflow-hidden min-h-[200px]">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial: TestimonialsItem, index: number) => (
             <div 
               class={`absolute inset-0 transition-all duration-500 ${index === 0 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}
               data-slide={index}
@@ -100,9 +105,8 @@ const testimonials = translations.testimonials?.items || []
           ))}
         </div>
 
-        <!-- Indicators -->
         <div class="flex justify-center gap-2 mt-6">
-          {testimonials.map((_, index) => (
+          {testimonials.map((_: unknown, index: number) => (
             <button
               class={`w-2 h-2 rounded-full transition-colors ${index === 0 ? 'bg-purple-600' : 'bg-gray-300'}`}
               aria-label={t('testimonials.goToSlide', `Go to testimonial ${index + 1}`)}
@@ -112,9 +116,8 @@ const testimonials = translations.testimonials?.items || []
         </div>
       </div>
     ) : (
-      <!-- Simple grid for static display -->
       <div class="grid md:grid-cols-3 gap-8">
-        {testimonials.map(testimonial => (
+        {testimonials.map((testimonial: TestimonialsItem) => (
           <div class="bg-gray-50 rounded-2xl p-6 hover:shadow-md transition-shadow">
             <Icon name="lucide:quote" class="w-6 h-6 text-purple-300 mb-4" />
             <blockquote class="text-gray-700 mb-4 italic leading-relaxed">

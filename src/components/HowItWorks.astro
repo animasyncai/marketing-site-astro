@@ -71,7 +71,7 @@ const journey = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Header with emotional framing -->
-    <div class="text-center mb-20">
+    <div class="text-center mb-8">
       <h2 id="how-it-works-headline" class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
         {t('howItWorks.headline')}
       </h2>
@@ -80,9 +80,25 @@ const journey = [
       </p>
     </div>
 
+          <!-- At a glance -->
+      <div class="mx-auto mb-20 max-w-4xl">
+        <h3 class="mb-4 text-center text-lg font-semibold text-gray-900 hidden">
+          {t('howItWorks.atAGlance.title')}
+        </h3>
+        <ul class="grid grid-cols-2 gap-3 text-sm text-gray-700 sm:grid-cols-2 md:grid-cols-4">
+          {
+            (translations as any).howItWorks?.atAGlance?.items?.map((item: string) => (
+              <li class="flex items-center gap-2 rounded-lg bg-white/70 px-3 py-2 ring-1 ring-gray-200/60">
+                <Icon name="lucide:check" class="h-4 w-4 text-green-600" />
+                <span class="leading-snug">{item}</span>
+              </li>
+            )) || []
+          }
+        </ul>
+      </div>
+
     <!-- Journey visualization -->
-    <div class="relative">
-      
+    <div class="relative">     
       <!-- Connecting path for desktop -->
       <div class="hidden lg:block absolute top-11 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-200 via-purple-200 via-green-200 to-indigo-200 opacity-60" aria-hidden="true"></div>
       

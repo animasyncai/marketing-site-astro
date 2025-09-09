@@ -21,6 +21,11 @@ const translations = await getTranslationsFromUrl(Astro.url.pathname)
 const t = (key: string, fallback = '') => {
   return getTranslation(translations, key, {}, fallback)
 }
+
+type CouplesTranslations = { couples?: { highlights?: string[] } }
+const couplesHighlights: string[] = Array.isArray((translations as unknown as CouplesTranslations)?.couples?.highlights)
+  ? ((translations as unknown as CouplesTranslations).couples!.highlights as string[])
+  : []
 ---
 
 <section
@@ -46,17 +51,17 @@ const t = (key: string, fallback = '') => {
     </div>
 
     <!-- Main content grid -->
-    <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
       <!-- Left side: Enhanced content with better visual hierarchy -->
-      <div class="space-y-8">
+      <div class="space-y-6">
         <!-- Main description with improved typography -->
         <div class="prose prose-lg">
-          <p class="text-lg leading-relaxed text-gray-700">
+          <p class="text-center text-lg leading-relaxed text-gray-700">
             {t('couples.description1')}
           </p>
         </div>
 
-        <!-- Enhanced feature highlight card -->
+        <!-- Combined insight + highlights card for compact layout -->
         <div
           class="group relative overflow-hidden rounded-2xl border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50 p-8 transition-all duration-300 hover:border-purple-300 hover:shadow-lg"
         >
@@ -77,15 +82,30 @@ const t = (key: string, fallback = '') => {
                 {t('couples.coupleSnapshots.title')}
               </h4>
             </div>
-            <p class="leading-relaxed text-purple-800">
+            <p class="mb-6 leading-relaxed text-purple-800">
               {t('couples.coupleSnapshots.description')}
             </p>
+
+            {
+              couplesHighlights.length > 0 && (
+                <div class="rounded-xl border border-purple-200/70 bg-white/70 p-5">
+                  <ul class="space-y-3" aria-label={t('couples.badge')}>
+                    {couplesHighlights.map((item: string) => (
+                      <li class="flex items-start gap-3">
+                        <Icon name="lucide:check-circle" class="mt-0.5 h-5 w-5 text-purple-600" />
+                        <span class="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
 
       <!-- Right side: Enhanced testimonial and CTA -->
-      <div class="space-y-8">
+      <div class="space-y-6">
         <!-- Enhanced testimonial card -->
         <div class="group relative">
           <div
@@ -115,8 +135,8 @@ const t = (key: string, fallback = '') => {
           </blockquote>
         </div>
 
-        <!-- Enhanced CTA section -->
-        <div class="space-y-4 text-center">
+        <!-- Compact CTA -->
+        <div class="text-center">
           <Button href="#early-access" variant="primary" size="lg" icon="lucide:heart" class="w-full sm:w-auto">
             {t('couples.cta')}
           </Button>
