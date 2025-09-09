@@ -48,7 +48,7 @@ Reflection unfolds step by step. Each layer connects to the next, and your AI co
 
 **Start Here**
 
-Short, psychology-informed questions reveal how you connect, express love, stay present, and treat yourself. No boxes — just recognition.
+Short, psychology-informed questions reveal how you connect and relate to yourself.
 
 **Outcome**: Recognition
 
@@ -64,7 +64,7 @@ A personal narrative weaves your signals into something coherent. See why you re
 
 **Explore**
 
-Your AI companion reflects your patterns back in real situations — like a wise friend who remembers every conversation.
+Your AI companion reflects your patterns back in real situations — like a wise friend.
 
 **Outcome**: Insight
 
@@ -72,7 +72,7 @@ Your AI companion reflects your patterns back in real situations — like a wise
 
 **Grow**
 
-Unlock deeper portraits — practical guides on how you handle conflict, build trust, and communicate love. You can also sync with your partner for joint insights.
+Unlock richer portraits on conflict, trust, and communication — or explore how your patterns meet with a partner.
 
 **Outcome**: Connection
 
@@ -92,19 +92,19 @@ Unlock deeper portraits — practical guides on how you handle conflict, build t
 
 ### Recognition, not labels
 
-We translate psychological frameworks into language you can feel and use — without putting you in a box.
+Language you can feel and use, without boxes.
 
 ### Private by default
 
-Your reflections stay yours. Even in partner sync, only shared insights are visible.
+Your reflections stay yours.
 
 ### Deeper than a quiz, lighter than therapy
 
-Personal narratives and guided chat — insights you can actually use in real life.
+Insights you can actually use.
 
 ### Grows with you
 
-From a first reflection to portraits on conflict, trust, and communication — at your pace.
+From your first reflection to deeper portraits — at your pace.
 
 _You don't need fixing — you deserve understanding._
 
@@ -116,16 +116,16 @@ _You don't need fixing — you deserve understanding._
 
 ### One link. Two private spaces. One shared map.
 
-Sync with your partner to see where you align, where you miss, and how to meet in the middle — without exposing individual details.
+Sync with your partner to see where you align, where you miss, and how to meet in the middle.
 
 **Couple Insights**
-Start with a free Snapshot on first sync. Upgrade to deeper couple reports for a fuller guide to your dynamics.
+Start with a free glimpse. Unlock deeper insights together if you’re ready.
 
 **Highlights:**
 
 - Private by default — only shared insights are visible
-- One purchase unlocks premium couple reports for both partners
-- Deeper couple reports offer actionable guidance
+- One purchase unlocks couple insights for both partners
+- Actionable guidance that helps you meet in the middle
 
 > "We stopped asking who's right and started noticing our rhythm. Naming our patterns took the heat out of conflict and gave us a way to meet in the middle."  
 > — Maya & Luis
@@ -141,13 +141,13 @@ Start with a free Snapshot on first sync. Upgrade to deeper couple reports for a
 - Discover your patterns
 - Get your first personal reflection
 - Try conversations with your AI companion
-- First Couple Snapshot is free
+- First Couple Glimpse is free
 - Explore what's possible
 
 ### Pay as You Go with Sparks ✨
 
 - **Sparks** are tokens for deeper insights
-- Generate detailed portraits when you're ready
+- Dive into detailed portraits when you're ready
 - Unlimited conversations
 - Partner sync for joint insights
 - Only pay for what matters to you
@@ -173,22 +173,27 @@ _Pricing announced at launch. No subscriptions required — just pay for insight
 
 # FAQ Section
 
-## Common questions
+### Is this therapy?
 
-**Is this therapy?**
-No. Think of it as a mirror that helps you see your patterns more clearly. It draws on frameworks like attachment theory and love languages, but instead of boxing you into labels, it translates them into personal reflections you can actually feel and use.
+No. Withinly is a reflection tool — like a mirror for your patterns. It’s about recognition, not treatment. If you’re in crisis, please seek professional help.
 
-**What if I'm single?**
-Perfect. Understanding your patterns before your next relationship is incredibly valuable — it helps you choose better and show up differently.
+---
 
-**How is this different from personality tests?**
-Tests give you a type. Withinly gives you a reflection — living narratives about how you show up in conflict, in closeness, and in how you love.
+### What if I’m single?
 
-**What about my privacy?**
-Everything stays private. Even with partner sync, only shared insights are visible — never your individual patterns or conversations.
+Perfect. Understanding yourself before your next relationship is one of the best ways to grow. You don’t need a partner to use Withinly.
 
-**Can this replace therapy?**
-No. If you're in crisis or dealing with serious mental-health challenges, please seek professional help. Withinly is for self-understanding, not treatment.
+---
+
+### How private is this?
+
+Your reflections stay yours. Even in partner sync, only shared insights are visible — never your private answers or chats.
+
+---
+
+### How much does it cost?
+
+Starting reflections are free. If you want to go deeper, you’ll use **Sparks** (credits). In beta, pricing is flexible while we learn from users — you won’t have to commit to subscriptions.
 
 ---
 
@@ -198,12 +203,7 @@ No. If you're in crisis or dealing with serious mental-health challenges, please
 
 We're opening Withinly to a small early group. Join our closed beta and be among the first to explore.
 
-**As an early member, you'll receive:**
-
-- First access when we launch
-- Founding-member pricing (locked forever)
-- Direct input on features
-- A personal welcome from our team
+[USER FORM]
 
 **No commitment. No pressure. Just gentle recognition of who you already are.**
 
@@ -276,3 +276,22 @@ Recognition → Understanding → Language → Insight → Connection
 - Complete Privacy
 - Quick Insights (3-5 minutes to first reflection)
 - Human-Centered AI
+
+## Later FAQ
+
+## Common questions
+
+**Is this therapy?**
+No. Think of it as a mirror that helps you see your patterns more clearly. It draws on frameworks like attachment theory and love languages, but instead of boxing you into labels, it translates them into personal reflections you can actually feel and use.
+
+**What if I'm single?**
+Perfect. Understanding your patterns before your next relationship is incredibly valuable — it helps you choose better and show up differently.
+
+**How is this different from personality tests?**
+Tests give you a type. Withinly gives you a reflection — living narratives about how you show up in conflict, in closeness, and in how you love.
+
+**What about my privacy?**
+Everything stays private. Even with partner sync, only shared insights are visible — never your individual patterns or conversations.
+
+**Can this replace therapy?**
+No. If you're in crisis or dealing with serious mental-health challenges, please seek professional help. Withinly is for self-understanding, not treatment.
