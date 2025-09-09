@@ -16,7 +16,7 @@ const skipLinkId = 'main-content'
 ---
 
 <!-- Skip Links for Accessibility -->
-<a href={`#${skipLinkId}`} class="skip-link">
+<a href={`#${skipLinkId}`} class="skip-link" tabindex="1">
   {t('navigation.skipToMain')}
 </a>
 
@@ -33,34 +33,52 @@ const skipLinkId = 'main-content'
 
       <!-- Desktop Navigation -->
       <nav class="hidden items-center space-x-8 md:flex" aria-label={t('navigation.menuLabel')} role="navigation">
-        <a
-          href="#how-it-works"
-          class="nav-link text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-nav-item
-        >
-          {t('navigation.howItWorks')}
-        </a>
-        <a
-          href="#why-withinly"
-          class="nav-link text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-nav-item
-        >
-          {t('navigation.features')}
-        </a>
-        <a
-          href="#forCouples"
-          class="nav-link text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-nav-item
-        >
-          {t('navigation.couples')}
-        </a>
-        <a
-          href="#faq"
-          class="nav-link text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-nav-item
-        >
-          {t('navigation.faq')}
-        </a>
+        <ul class="flex items-center space-x-8" role="menubar">
+          <li role="none">
+            <a
+              href="#how-it-works"
+              class="nav-link focus:ring-primary-600 rounded-md px-2 py-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-nav-item
+              role="menuitem"
+              tabindex="0"
+            >
+              {t('navigation.howItWorks')}
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#why-withinly"
+              class="nav-link focus:ring-primary-600 rounded-md px-2 py-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-nav-item
+              role="menuitem"
+              tabindex="0"
+            >
+              {t('navigation.features')}
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#forCouples"
+              class="nav-link focus:ring-primary-600 rounded-md px-2 py-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-nav-item
+              role="menuitem"
+              tabindex="0"
+            >
+              {t('navigation.couples')}
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#faq"
+              class="nav-link focus:ring-primary-600 rounded-md px-2 py-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-nav-item
+              role="menuitem"
+              tabindex="0"
+            >
+              {t('navigation.faq')}
+            </a>
+          </li>
+        </ul>
       </nav>
 
       <!-- Right side actions -->
@@ -78,14 +96,15 @@ const skipLinkId = 'main-content'
         <!-- Mobile menu button -->
         <button
           type="button"
-          class="mobile-menu-toggle rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 md:hidden"
+          class="mobile-menu-toggle focus:ring-primary-600 rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none md:hidden"
           aria-expanded="false"
           aria-controls="mobile-menu"
           aria-label={t('navigation.openMenu')}
+          aria-haspopup="true"
           data-mobile-menu-toggle
         >
-          <Icon name="lucide:menu" class="h-5 w-5" data-menu-icon />
-          <Icon name="lucide:x" class="hidden h-5 w-5" data-close-icon />
+          <Icon name="lucide:menu" class="h-5 w-5" data-menu-icon aria-hidden="true" />
+          <Icon name="lucide:x" class="hidden h-5 w-5" data-close-icon aria-hidden="true" />
           <span class="menu-text sr-only">{t('navigation.openMenu')}</span>
         </button>
       </div>
@@ -99,38 +118,57 @@ const skipLinkId = 'main-content'
     data-mobile-menu
     role="navigation"
     aria-label={t('navigation.menuLabel')}
+    aria-hidden="true"
   >
     <div class="space-y-4 px-4 py-6">
       <!-- Mobile navigation links -->
       <nav class="space-y-4" role="none">
-        <a
-          href="#how-it-works"
-          class="mobile-nav-link block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-mobile-nav-item
-        >
-          {t('navigation.howItWorks')}
-        </a>
-        <a
-          href="#features"
-          class="mobile-nav-link block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-mobile-nav-item
-        >
-          {t('navigation.features')}
-        </a>
-        <a
-          href="#faq"
-          class="mobile-nav-link block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-mobile-nav-item
-        >
-          {t('navigation.faq')}
-        </a>
-        <a
-          href="#privacy"
-          class="mobile-nav-link block py-2 font-medium text-gray-600 transition-colors hover:text-gray-900"
-          data-mobile-nav-item
-        >
-          {t('navigation.privacy')}
-        </a>
+        <ul class="space-y-4" role="menubar">
+          <li role="none">
+            <a
+              href="#how-it-works"
+              class="mobile-nav-link focus:ring-primary-600 block rounded-md px-2 py-2 font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-mobile-nav-item
+              role="menuitem"
+              tabindex="-1"
+            >
+              {t('navigation.howItWorks')}
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#features"
+              class="mobile-nav-link focus:ring-primary-600 block rounded-md px-2 py-2 font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-mobile-nav-item
+              role="menuitem"
+              tabindex="-1"
+            >
+              {t('navigation.features')}
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#forCouples"
+              class="mobile-nav-link focus:ring-primary-600 block rounded-md px-2 py-2 font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-nav-item
+              role="menuitem"
+              tabindex="0"
+            >
+              {t('navigation.couples')}
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#faq"
+              class="mobile-nav-link focus:ring-primary-600 block rounded-md px-2 py-2 font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              data-mobile-nav-item
+              role="menuitem"
+              tabindex="-1"
+            >
+              {t('navigation.faq')}
+            </a>
+          </li>
+        </ul>
       </nav>
 
       <!-- Mobile bottom section -->
@@ -166,6 +204,9 @@ const skipLinkId = 'main-content'
     const openText = mobileMenuToggle.getAttribute('aria-label') || 'Open menu'
     const closeText = openText.replace('Open', 'Close') || 'Close menu'
 
+    // Focus management
+    let previousActiveElement: HTMLElement | null = null
+
     // Mobile menu toggle functionality
     const toggleMobileMenu = () => {
       const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true'
@@ -173,6 +214,7 @@ const skipLinkId = 'main-content'
 
       mobileMenuToggle.setAttribute('aria-expanded', newExpanded.toString())
       mobileMenuToggle.setAttribute('aria-label', newExpanded ? closeText : openText)
+      mobileMenu.setAttribute('aria-hidden', (!newExpanded).toString())
 
       if (newExpanded) {
         // Open menu
@@ -180,6 +222,16 @@ const skipLinkId = 'main-content'
         menuIcon.classList.add('hidden')
         closeIcon.classList.remove('hidden')
         if (menuText) menuText.textContent = closeText
+
+        // Store the currently focused element
+        previousActiveElement = document.activeElement as HTMLElement
+
+        // Focus the first menu item
+        const firstMenuItem = mobileMenu.querySelector('[data-mobile-nav-item]') as HTMLElement
+        if (firstMenuItem) {
+          firstMenuItem.tabIndex = 0
+          firstMenuItem.focus()
+        }
 
         // Prevent body scroll when menu is open
         document.body.style.overflow = 'hidden'
@@ -189,6 +241,9 @@ const skipLinkId = 'main-content'
         menuIcon.classList.remove('hidden')
         closeIcon.classList.add('hidden')
         if (menuText) menuText.textContent = openText
+
+        // Restore focus to the toggle button
+        mobileMenuToggle.focus()
 
         // Restore body scroll
         document.body.style.overflow = ''
@@ -205,11 +260,52 @@ const skipLinkId = 'main-content'
         mobileMenu.classList.add('hidden')
         mobileMenuToggle.setAttribute('aria-expanded', 'false')
         mobileMenuToggle.setAttribute('aria-label', openText)
+        mobileMenu.setAttribute('aria-hidden', 'true')
         menuIcon.classList.remove('hidden')
         closeIcon.classList.add('hidden')
         if (menuText) menuText.textContent = openText
         document.body.style.overflow = ''
+
+        // Restore focus to toggle button
+        mobileMenuToggle.focus()
       })
+    })
+
+    // Enhanced keyboard navigation for mobile menu
+    const handleMobileMenuKeydown = (e: KeyboardEvent) => {
+      const currentElement = e.target as HTMLElement
+      const menuItems = Array.from(mobileMenu.querySelectorAll('[data-mobile-nav-item]')) as HTMLElement[]
+      const currentIndex = menuItems.indexOf(currentElement)
+
+      switch (e.key) {
+        case 'Escape':
+          e.preventDefault()
+          toggleMobileMenu()
+          break
+        case 'ArrowDown':
+          e.preventDefault()
+          const nextIndex = (currentIndex + 1) % menuItems.length
+          menuItems[nextIndex].focus()
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          const prevIndex = currentIndex === 0 ? menuItems.length - 1 : currentIndex - 1
+          menuItems[prevIndex].focus()
+          break
+        case 'Home':
+          e.preventDefault()
+          menuItems[0].focus()
+          break
+        case 'End':
+          e.preventDefault()
+          menuItems[menuItems.length - 1].focus()
+          break
+      }
+    }
+
+    // Add keyboard navigation to mobile menu items
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener('keydown', handleMobileMenuKeydown as EventListener)
     })
 
     // Close mobile menu on escape key
@@ -365,167 +461,3 @@ const skipLinkId = 'main-content'
     })
   })
 </script>
-
-<style lang="scss">
-  @use '../assets/scss/base/mixins' as *;
-  @use '../assets/scss/base/breakpoint' as *;
-
-  // Skip link styling
-  .skip-link {
-    position: absolute;
-    top: -46px;
-    left: 6px;
-    z-index: 100;
-    transition: top var(--animation-speed-fast) var(--cubic-bezier);
-    border-radius: var(--radius-m);
-    background: var(--color-primary-600);
-    padding: 8px 16px;
-    color: white;
-    font-weight: 500;
-    text-decoration: none;
-
-    &:focus {
-      top: 6px;
-    }
-  }
-
-  // Header scroll effects
-  header {
-    transition: all var(--animation-speed-medium) var(--cubic-bezier);
-
-    &.header-scrolled {
-      backdrop-filter: blur(12px);
-      box-shadow: var(--elevation-2);
-      border-bottom-color: rgba(229, 231, 235, 0.8);
-      background-color: rgba(255, 255, 255, 0.98);
-    }
-  }
-
-  // Navigation link styles
-  .nav-link,
-  .mobile-nav-link {
-    position: relative;
-    transition: all var(--animation-speed-fast) var(--cubic-bezier);
-
-    &:hover {
-      @include text-decoration(transparent, var(--color-primary-600), 2px, 2px, 4px, 2px);
-    }
-
-    &.nav-active {
-      color: var(--color-primary);
-      font-weight: 600;
-
-      &::after {
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 50%;
-        background: var(--color-primary);
-        width: 6px;
-        height: 6px;
-        content: '';
-
-        @include breakpoint(m) {
-          bottom: -12px;
-        }
-      }
-    }
-  }
-
-  // Mobile menu improvements
-  .mobile-menu {
-    animation: slideDown var(--animation-speed-medium) var(--cubic-bezier);
-
-    &.hidden {
-      animation: slideUp var(--animation-speed-fast) var(--cubic-bezier);
-    }
-  }
-
-  // Mobile menu toggle improvements
-  .mobile-menu-toggle {
-    position: relative;
-
-    &:focus-visible {
-      @include outline;
-    }
-
-    [data-menu-icon],
-    [data-close-icon] {
-      transition: all var(--animation-speed-fast) var(--cubic-bezier);
-    }
-
-    &[aria-expanded='true'] {
-      [data-menu-icon] {
-        transform: rotate(90deg);
-      }
-    }
-  }
-
-  // Animations
-  @keyframes slideDown {
-    from {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-  }
-
-  // Accessibility improvements
-  @media (prefers-reduced-motion: reduce) {
-    header,
-    .nav-link,
-    .mobile-nav-link,
-    .mobile-menu-toggle * {
-      animation: none;
-      transition: none;
-    }
-
-    .mobile-menu {
-      &.hidden {
-        display: none;
-      }
-    }
-  }
-
-  // High contrast mode
-  @media (prefers-contrast: high) {
-    header {
-      border-bottom: 2px solid var(--foreground-color);
-    }
-
-    .nav-link,
-    .mobile-nav-link {
-      &.nav-active {
-        border-radius: var(--radius-s);
-        background-color: var(--color-primary-600);
-        padding: 4px 8px;
-        color: white;
-      }
-    }
-  }
-
-  // Focus management for mobile menu
-  .mobile-menu {
-    &:not(.hidden) {
-      .mobile-nav-link:first-child {
-        // Ensure first link gets focus when menu opens
-        scroll-margin-top: var(--space-l);
-      }
-    }
-  }
-</style>

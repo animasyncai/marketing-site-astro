@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import './hero.css';
+@import './header.css';
 
 @theme {
   --color-primary: #59489e;

@@ -1,0 +1,331 @@
+/* Header Component Styles */
+
+/* Skip link styling for accessibility */
+.skip-link {
+  @apply absolute -top-12 left-1.5 z-[100] rounded-md px-4 py-2 text-white font-medium no-underline transition-all duration-200;
+  background-color: var(--color-primary);
+
+  /* Hide by default, only show when focused */
+  &:not(:focus) {
+    @apply sr-only;
+  }
+
+  &:focus {
+    @apply top-1.5;
+    /* Override sr-only when focused */
+    position: absolute;
+    clip: auto;
+    margin: 0;
+    width: auto;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+/* Header scroll effects */
+header {
+  @apply transition-all duration-300 ease-in-out;
+
+  &.header-scrolled {
+    @apply backdrop-blur-md shadow-lg border-gray-200/80;
+    background-color: rgba(255, 255, 255, 0.98);
+  }
+}
+
+/* Navigation link styles with focus-within for screen readers */
+.nav-link,
+.mobile-nav-link {
+  @apply relative transition-all duration-200 ease-in-out;
+
+  &:hover {
+    @apply text-gray-900;
+    text-decoration: underline;
+    text-decoration-color: #59489e;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  &.nav-active {
+    @apply text-primary font-semibold;
+
+    &::after {
+      @apply absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary w-1.5 h-1.5;
+      content: '';
+
+      @media (min-width: 768px) {
+        @apply -bottom-3;
+      }
+    }
+  }
+
+  /* Focus-within for screen readers only */
+  @media (prefers-reduced-motion: no-preference) {
+    &:focus-within {
+      @apply outline-none ring-2 ring-offset-2 rounded-md;
+      --tw-ring-color: var(--color-primary);
+    }
+  }
+}
+
+/* Mobile menu improvements */
+.mobile-menu {
+  @apply transition-all duration-300 ease-in-out;
+
+  &:not(.hidden) {
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  &.hidden {
+    animation: slideUp 0.2s ease-in-out;
+  }
+}
+
+/* Mobile menu toggle improvements */
+.mobile-menu-toggle {
+  @apply relative transition-all duration-200 ease-in-out;
+
+  [data-menu-icon],
+  [data-close-icon] {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  &[aria-expanded='true'] {
+    [data-menu-icon] {
+      @apply rotate-90;
+    }
+  }
+
+  /* Focus-within for screen readers only */
+  @media (prefers-reduced-motion: no-preference) {
+    &:focus-within {
+      @apply outline-none ring-2 ring-offset-2;
+      --tw-ring-color: var(--color-primary);
+    }
+  }
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  header,
+  .nav-link,
+  .mobile-nav-link,
+  .mobile-menu-toggle * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .mobile-menu {
+    &.hidden {
+      @apply hidden;
+    }
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  header {
+    @apply border-2;
+    border-color: currentColor;
+  }
+
+  .nav-link,
+  .mobile-nav-link {
+    &.nav-active {
+      @apply rounded-sm px-2 py-1 text-white;
+      background-color: var(--color-primary);
+    }
+  }
+}
+
+/* Focus management for mobile menu */
+.mobile-menu {
+  &:not(.hidden) {
+    .mobile-nav-link:first-child {
+      @apply scroll-mt-6;
+    }
+  }
+}
+
+/* Screen reader only focus states */
+@media (prefers-reduced-motion: no-preference) {
+  .nav-link:focus-within,
+  .mobile-nav-link:focus-within,
+  .mobile-menu-toggle:focus-within {
+    @apply outline-none ring-2 ring-offset-2 rounded-md;
+    --tw-ring-color: var(--color-primary);
+  }
+}
+
+/* Ensure proper focus indicators for keyboard navigation */
+.nav-link:focus-visible,
+.mobile-nav-link:focus-visible,
+.mobile-menu-toggle:focus-visible {
+  @apply outline-none ring-2 ring-offset-2 rounded-md;
+  --tw-ring-color: var(--color-primary);
+}
+
+/* Mobile menu focus trap - handled via JavaScript */
+
+/* Navigation Component Styles */
+#main-navigation {
+  .mobile-menu {
+    @apply w-full mt-4 border border-gray-200 rounded-lg p-4;
+
+    &.show {
+      @apply block;
+    }
+
+    > ul {
+      @apply flex-col items-start;
+
+      ul {
+        @apply relative mt-4;
+      }
+    }
+
+    a,
+    button {
+      @apply block py-2 w-full;
+    }
+  }
+
+  .desktop-menu {
+    @apply hidden;
+
+    @media (min-width: 768px) {
+      @apply block;
+    }
+  }
+
+  .responsive-toggle {
+    @apply flex items-center gap-1;
+
+    @media (min-width: 768px) {
+      @apply hidden;
+    }
+  }
+
+  a,
+  button {
+    color: currentColor;
+  }
+
+  nav > ul {
+    @apply flex gap-4 list-none;
+
+    li {
+      @apply flex items-center;
+    }
+
+    a:hover,
+    a:focus-visible,
+    .is-active,
+    button[aria-expanded='true'],
+    .has-dropdown > button:hover,
+    .has-dropdown > button:focus-visible {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 7px;
+    }
+
+    .is-active {
+      @apply font-bold;
+    }
+
+    .highlight a {
+      @apply inline-flex items-center gap-1 transition-all duration-200 -mt-1 border rounded-full px-2 py-1 no-underline;
+      border-color: currentColor;
+
+      &:where(:hover, :focus-visible) {
+        @apply text-white;
+        background-color: currentColor;
+      }
+    }
+  }
+
+  .has-dropdown {
+    @apply relative;
+
+    > button {
+      @apply flex items-center gap-1 -mt-px;
+
+      svg {
+        @apply transition-all duration-100;
+      }
+
+      &.show {
+        svg {
+          @apply scale-x-[-1];
+        }
+      }
+    }
+
+    ul {
+      @apply hidden absolute flex-col gap-2 translate-y-4 opacity-0 z-[100] top-[125%] right-0 left-0 shadow-lg border-2 border-gray-200 rounded-lg bg-white p-4 min-w-[275px];
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition-behavior: allow-discrete;
+        transition-duration: 200ms;
+        transition-property: display, opacity, translate;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    > button.show ~ ul {
+      @apply flex translate-y-0 opacity-100;
+
+      @starting-style {
+        @apply translate-y-4 opacity-0;
+      }
+    }
+  }
+
+  .darkmode-toggle {
+    @apply border-0 p-0;
+
+    @media (min-width: 768px) {
+      @apply mt-[7px];
+    }
+
+    .icon {
+      @apply w-[30px] h-[30px];
+    }
+
+    &:where(:hover, :focus-visible) {
+      @apply shadow-none;
+    }
+
+    &:focus {
+      @apply outline-2 outline-offset-2;
+      outline-color: var(--color-primary);
+
+      &:not(:focus-visible) {
+        @apply outline-none shadow-none;
+      }
+    }
+  }
+}
