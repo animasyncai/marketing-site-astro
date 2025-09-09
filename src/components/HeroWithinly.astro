@@ -18,19 +18,23 @@ const t = (key: string, fallback = '') => {
 }
 ---
 
-<section class:list={[className, 'relative overflow-hidden bg-gradient-to-br from-purple-50 via-white to-blue-50']}>
-  <!-- Background decoration -->
-  <div class="bg-grid-gray-100/50 absolute inset-0 bg-[size:2rem_2rem] opacity-50" aria-hidden="true"></div>
-  <div class="absolute top-0 left-1/2 h-full w-full max-w-4xl -translate-x-1/2">
-    <div class="absolute top-20 left-10 h-32 w-32 rounded-full bg-purple-200/30 blur-3xl" aria-hidden="true"></div>
-    <div class="absolute right-10 bottom-20 h-40 w-40 rounded-full bg-blue-200/30 blur-3xl" aria-hidden="true"></div>
+<section class:list={[className, 'hero-gradient-bg']}>
+  <!-- Enhanced background effects -->
+  <div class="hero-grid-pattern absolute inset-0" aria-hidden="true"></div>
+
+  <!-- Floating animated shapes -->
+  <div class="hero-floating-shapes">
+    <div class="hero-shape-1" aria-hidden="true"></div>
+    <div class="hero-shape-2" aria-hidden="true"></div>
+    <div class="hero-shape-3" aria-hidden="true"></div>
+    <div class="hero-shape-4" aria-hidden="true"></div>
   </div>
 
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="hero-content mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="pt-20 pb-16 lg:pt-32 lg:pb-24">
       <div class="mx-auto max-w-4xl text-center">
         <!-- Main headline -->
-        <h1 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+        <h1 class="hero-text-shadow mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           <span class="text-gray-900">
             {t('hero.headline')}
           </span>
@@ -44,7 +48,7 @@ const t = (key: string, fallback = '') => {
         <!-- Action area -->
         {
           showSignup ? (
-            <div class="mx-auto mb-12 max-w-lg">
+            <div class="hero-glow mx-auto mb-12 max-w-lg rounded-2xl p-1">
               <EmailSignup
                 variant="hero"
                 showLabels={false}
@@ -53,7 +57,7 @@ const t = (key: string, fallback = '') => {
               />
             </div>
           ) : (
-            <div class="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div class="hero-glow mb-12 flex flex-col items-center justify-center gap-4 rounded-2xl p-4 sm:flex-row">
               <Button href="#early-access" size="lg" variant="primary" icon="lucide:mail">
                 {t('hero.ctaPrimary')}
               </Button>
@@ -88,9 +92,3 @@ const t = (key: string, fallback = '') => {
     </div>
   </div>
 </section>
-
-<style>
-  .bg-grid-gray-100\/50 {
-    background-image: radial-gradient(circle, #f3f4f6 1px, transparent 1px);
-  }
-</style>
