@@ -116,24 +116,23 @@ const successId = `${formId}-success`
     </div>
 
     <!-- Privacy notice -->
-    <p class="flex items-center justify-center gap-1 text-center text-xs text-white">
+    <p class="flex items-center justify-center gap-1 text-center text-xs text-gray-500">
       <Icon name="lucide:shield-check" class="h-3 w-3" />
       {t('signup.privacy', 'We respect your privacy and never spam.')}
     </p>
 
     <!-- Translation data for JavaScript -->
-    <script type="application/json" id={`${formId}-translations`}>
-      {JSON.stringify({
-        emailRequired: t('validation.emailRequired', 'Email address is required'),
-        emailInvalid: t('validation.emailInvalid', 'Please enter a valid email address'),
-        emailTooLong: t('validation.emailTooLong', 'Email address is too long'),
-        submitError: t('validation.submitError', 'Something went wrong. Please try again.'),
-        networkError: t('validation.networkError', 'Network error. Please check your connection and try again.'),
-        successMessage: t('signup.successMessage', "Welcome! We'll be in touch soon."),
-        loadingButton: t('signup.loadingButton', 'Signing up...'),
-        rateLimitError: t('validation.rateLimitError', 'Too many attempts. Please try again later.'),
-        alreadySubscribed: t('validation.alreadySubscribed', 'You are already on our list!')
-      })}
+    <script type="application/json" id={`${formId}-translations`} set:html={JSON.stringify({
+      emailRequired: t('validation.emailRequired', 'Email address is required'),
+      emailInvalid: t('validation.emailInvalid', 'Please enter a valid email address'),
+      emailTooLong: t('validation.emailTooLong', 'Email address is too long'),
+      submitError: t('validation.submitError', 'Something went wrong. Please try again.'),
+      networkError: t('validation.networkError', 'Network error. Please check your connection and try again.'),
+      successMessage: t('signup.successMessage', "Welcome! We'll be in touch soon."),
+      loadingButton: t('signup.loadingButton', 'Signing up...'),
+      rateLimitError: t('validation.rateLimitError', 'Too many attempts. Please try again later.'),
+      alreadySubscribed: t('validation.alreadySubscribed', 'You are already on our list!')
+    })}>
     </script>
   </form>
 </div>
@@ -270,27 +269,23 @@ const successId = `${formId}-success`
         }
 
         // Check submission timing (too fast = likely bot)
-        const timeTaken = Date.now() - submissionStartTime
-        if (timeTaken < 2000) { // Less than 2 seconds
-          console.warn('Submission too fast:', timeTaken, 'ms')
-          return false
+        // Only check timing if user has interacted with the form
+        if (submissionStartTime > 0) {
+          const timeTaken = Date.now() - submissionStartTime
+          if (timeTaken < 1000) { // Less than 1 second
+            console.warn('Submission too fast:', timeTaken, 'ms')
+            return false
+          }
         }
 
         return true
       }
 
-      // Real-time validation
+      // Real-time validation - just hide messages on input
       emailInput.addEventListener('input', () => {
         hideAllMessages()
-      })
-
-      emailInput.addEventListener('blur', () => {
-        const email = emailInput.value.trim()
-        if (email) {
-          const validationMessage = getValidationMessage(email)
-          if (validationMessage) {
-            showMessage(errorMessage, validationMessage)
-          }
+        if (submissionStartTime === 0) {
+          submissionStartTime = Date.now()
         }
       })
 
@@ -316,24 +311,24 @@ const successId = `${formId}-success`
         const email = emailInput.value.trim()
         console.log('Email to submit:', email ? email.substring(0, 3) + '***' : 'empty')
 
-        // Validate honeypot first
-        if (!validateHoneypot()) {
-          console.warn('Honeypot validation failed')
-          // Silently fail for bots
-          setLoading(true)
-          setTimeout(() => {
-            setLoading(false)
-            showMessage(successMessage, translations.successMessage || "Welcome! We'll be in touch soon.")
-          }, 2000)
-          return
-        }
-
-        // Validate email
+        // Validate email FIRST
         const validationMessage = getValidationMessage(email)
         if (validationMessage) {
           console.log('Validation failed:', validationMessage)
           showMessage(errorMessage, validationMessage)
           emailInput.focus()
+          return
+        }
+
+        // Only check honeypot if email validation passes
+        if (!validateHoneypot()) {
+          console.warn('Honeypot validation failed')
+          // Silently fail for bots (but only if email was actually valid)
+          setLoading(true)
+          setTimeout(() => {
+            setLoading(false)
+            showMessage(successMessage, translations.successMessage || "Welcome! We'll be in touch soon.")
+          }, 2000)
           return
         }
 
@@ -357,7 +352,6 @@ const successId = `${formId}-success`
           })
 
           console.log('Response status:', response.status)
-          console.log('Response headers:', response.headers)
 
           const result = await response.json()
           console.log('Response result:', result)
@@ -397,8 +391,8 @@ const successId = `${formId}-success`
     })
   }
 
-  // Initialize on page load
-  function ensureInitialization() {
+  // Initialize handlers - handle both regular page loads and Astro navigation
+  function initialize() {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeFormHandlers)
     } else {
@@ -406,7 +400,9 @@ const successId = `${formId}-success`
     }
   }
 
-  // Initialize for both regular page loads and Astro page loads
+  // Handle Astro page transitions
   document.addEventListener('astro:page-load', initializeFormHandlers)
-  ensureInitialization()
+  
+  // Initial setup
+  initialize()
 </script>
