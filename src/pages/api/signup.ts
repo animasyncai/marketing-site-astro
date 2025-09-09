@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
- * Email Signup API Endpoint
+ * Fixed Email Signup API Endpoint for Mailjet
  *
- * @description Handles email signups for Withinly early access
- * Includes validation, rate limiting, and Mailjet integration
+ * @description Handles email signups with proper Mailjet integration
+ * Includes better error handling and debugging
  */
 
 // Ensure this route is not prerendered
@@ -52,7 +50,7 @@ function checkRateLimit(ip: string): { allowed: boolean; resetTime?: number } {
   return { allowed: true }
 }
 
-// Simplified and fixed Mailjet integration
+// Fixed Mailjet integration
 async function addToMailjetList(
   email: string,
   source: string,
@@ -60,11 +58,23 @@ async function addToMailjetList(
   try {
     // Get Mailjet credentials from environment variables
     const apiKey = import.meta.env.MAILJET_API_KEY
-    const apiSecret = import.meta.env.MAILJET_API_SECRET
+    const apiSecret = import.meta.env.MAILJET_SECRET_KEY || import.meta.env.MAILJET_API_SECRET
     const contactListId = import.meta.env.MAILJET_LIST_ID
 
+    console.log('Environment check:', {
+      hasApiKey: !!apiKey,
+      hasApiSecret: !!apiSecret,
+      hasListId: !!contactListId,
+      apiKeyLength: apiKey?.length || 0,
+      listId: contactListId,
+    })
+
     if (!apiKey || !apiSecret || !contactListId) {
-      console.error('Missing Mailjet environment variables')
+      console.error('Missing Mailjet environment variables:', {
+        MAILJET_API_KEY: !!apiKey,
+        MAILJET_SECRET_KEY: !!apiSecret,
+        MAILJET_LIST_ID: !!contactListId,
+      })
       return {
         success: false,
         message: 'Email service configuration error',
@@ -77,66 +87,141 @@ async function addToMailjetList(
       apiSecret,
     })
 
-    // Use the simplified approach: directly add contact to list
-    // Mailjet handles duplicates gracefully with 'addforce'
+    console.log('Mailjet client initialized, attempting to add contact:', email)
+
     try {
-      const response = await mailjet
-        .post('contactslist', { version: 'v3' })
-        .id(contactListId)
-        .action('managecontact')
-        .request({
-          Email: email,
-          Action: 'addforce', // This handles existing contacts gracefully
-          Properties: {
-            source: source || 'website',
-            signup_date: new Date().toISOString(),
-          },
+      // Step 1: Try to create/update the contact first
+      const contactResponse = await mailjet.post('contact', { version: 'v3' }).request({
+        Email: email,
+        IsExcludedFromCampaigns: false,
+      })
+
+      console.log('Contact creation response:', {
+        status: contactResponse.response.status,
+        statusText: contactResponse.response.statusText,
+        data: contactResponse.body,
+      })
+
+      let contactExists = false
+      let contactId = null
+
+      if (contactResponse.response.status === 201) {
+        // Contact created successfully
+        contactId = (contactResponse.body as any)?.Data?.[0]?.ID
+        console.log('Contact created with ID:', contactId)
+      } else if (contactResponse.response.status === 400) {
+        // Contact might already exist, try to get it
+        const responseData = contactResponse.body as any
+        const errorInfo = responseData?.ErrorInfo || responseData?.ErrorMessage || ''
+
+        if (errorInfo.toLowerCase().includes('already') || errorInfo.toLowerCase().includes('exist')) {
+          contactExists = true
+          console.log('Contact already exists, fetching contact ID')
+
+          try {
+            const getContactResponse = await mailjet.get('contact', { version: 'v3' }).id(email).request()
+
+            if (getContactResponse.response.status === 200) {
+              contactId = (getContactResponse.body as any)?.Data?.[0]?.ID
+              console.log('Retrieved existing contact ID:', contactId)
+            }
+          } catch (getError) {
+            console.error('Error getting existing contact:', getError)
+          }
+        } else {
+          console.error('Unexpected contact creation error:', errorInfo)
+          return {
+            success: false,
+            message: 'Invalid email address or service error',
+          }
+        }
+      } else {
+        console.error('Unexpected contact response status:', contactResponse.response.status)
+        return {
+          success: false,
+          message: 'Unable to process your signup. Please try again.',
+        }
+      }
+
+      // Step 2: Add contact to list (whether new or existing)
+      if (contactId || contactExists) {
+        console.log('Adding contact to list:', contactListId)
+
+        const listResponse = await mailjet
+          .post('contactslist', { version: 'v3' })
+          .id(contactListId)
+          .action('managecontact')
+          .request({
+            Email: email,
+            Action: 'addnoforce', // Use addnoforce to avoid errors if already in list
+          })
+
+        console.log('List addition response:', {
+          status: listResponse.response.status,
+          data: listResponse.body,
         })
 
-      // Check response
-      if (response.response?.status === 200 || response.response?.status === 201) {
-        // Check if contact was already in list
-        const responseData = response.body as any
+        if (listResponse.response.status === 200 || listResponse.response.status === 201) {
+          const responseData = listResponse.body as any
 
-        // Mailjet returns ContactsCount for the operation
-        // If it's 0, the contact was already in the list
-        if (responseData?.Data?.[0]?.ContactsCount === 0) {
+          // Check if contact was already in list
+          if (responseData?.Data?.[0]?.ContactsCount === 0) {
+            return {
+              success: true,
+              message: 'You are already on our early access list!',
+              isExisting: true,
+            }
+          }
+
+          return {
+            success: true,
+            message: contactExists
+              ? "Welcome back! You're confirmed on our early access list."
+              : "Welcome to our early access list! We'll be in touch soon.",
+            isExisting: contactExists,
+          }
+        } else {
+          console.error('List addition failed:', listResponse.response.status, listResponse.body)
+          return {
+            success: false,
+            message: 'Unable to add you to our list. Please try again.',
+          }
+        }
+      } else {
+        console.error('No contact ID available for list addition')
+        return {
+          success: false,
+          message: 'Unable to process your signup. Please try again.',
+        }
+      }
+    } catch (mailjetError: any) {
+      console.error('Mailjet API error:', {
+        status: mailjetError.statusCode,
+        message: mailjetError.message,
+        errorInfo: mailjetError.ErrorInfo,
+        errorMessage: mailjetError.ErrorMessage,
+        fullError: mailjetError,
+      })
+
+      // Handle specific Mailjet errors
+      if (mailjetError.statusCode === 400) {
+        const errorMessage = mailjetError.ErrorMessage || mailjetError.message || ''
+        if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('format')) {
+          return {
+            success: false,
+            message: 'Please enter a valid email address',
+          }
+        }
+        if (errorMessage.toLowerCase().includes('already') || errorMessage.toLowerCase().includes('exist')) {
           return {
             success: true,
             message: 'You are already on our early access list!',
             isExisting: true,
           }
         }
-
-        return {
-          success: true,
-          message: "Welcome to our early access list! We'll be in touch soon.",
-          isExisting: false,
-        }
-      }
-
-      // Handle unexpected response
-      console.error('Unexpected Mailjet response:', response.response?.status)
-      return {
-        success: false,
-        message: 'Unable to process your signup. Please try again.',
-      }
-    } catch (mailjetError: any) {
-      console.error('Mailjet API error:', mailjetError)
-
-      // Handle specific Mailjet errors
-      if (mailjetError.statusCode === 400) {
-        // Bad request - likely invalid email
-        if (mailjetError.ErrorMessage?.toLowerCase().includes('invalid')) {
-          return {
-            success: false,
-            message: 'Please enter a valid email address',
-          }
-        }
       }
 
       if (mailjetError.statusCode === 401) {
-        // Authentication error
         console.error('Mailjet authentication failed - check API credentials')
         return {
           success: false,
@@ -145,8 +230,7 @@ async function addToMailjetList(
       }
 
       if (mailjetError.statusCode === 404) {
-        // List not found
-        console.error('Mailjet list not found - check MAILJET_LIST_ID')
+        console.error('Mailjet resource not found - check MAILJET_LIST_ID')
         return {
           success: false,
           message: 'Email service configuration error. Please contact support.',
@@ -154,7 +238,6 @@ async function addToMailjetList(
       }
 
       if (mailjetError.statusCode === 429) {
-        // Rate limit
         return {
           success: false,
           message: 'Service temporarily busy. Please try again in a moment.',
@@ -315,6 +398,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         },
       )
     }
+
+    console.log(`Processing signup for: ${trimmedEmail}`)
 
     // Add to Mailjet list
     const result = await addToMailjetList(trimmedEmail, source)
