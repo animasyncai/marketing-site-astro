@@ -213,11 +213,16 @@
     "contact": "Contact"
   },
   "validation": {
+    "required": "required",
     "emailRequired": "Email address is required",
     "emailInvalid": "Please enter a valid email address",
-    "emailTooLong": "Email address is too long",
-    "submitError": "Failed to submit. Please try again.",
-    "networkError": "Network error. Please check your connection and try again."
+    "emailTooLong": "Email address is too long (maximum 254 characters)",
+    "submitError": "Something went wrong. Please try again.",
+    "networkError": "Network error. Please check your connection and try again.",
+    "rateLimitError": "Too many signup attempts. Please try again later.",
+    "alreadySubscribed": "You are already on our early access list!",
+    "disposableEmail": "Please use a permanent email address",
+    "serviceUnavailable": "Signup service is temporarily unavailable. Please try again later."
   },
   "accessibility": {
     "openModal": "Open modal",

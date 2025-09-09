@@ -29,7 +29,7 @@ const t = (key: string, fallback = '') => {
 }
 
 // Generate unique IDs
-const formId = `email-signup-${variant}`
+const formId = `email-signup-${variant}-${Math.random().toString(36).substr(2, 9)}`
 const emailId = `${formId}-email`
 const errorId = `${formId}-error`
 const successId = `${formId}-success`
@@ -45,16 +45,20 @@ const successId = `${formId}-success`
     )
   }
 
-  <form id={formId} class="space-y-4" novalidate data-form="email-signup" action="javascript:void(0)" method="POST">
-    <!-- Honeypot -->
-    <input type="text" name="website" tabindex="-1" class="sr-only" aria-hidden="true" />
+  <form id={formId} class="space-y-4" novalidate data-form="email-signup">
+    <!-- Enhanced Honeypot -->
+    <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      <input type="email" name="email_confirm" tabindex="-1" autocomplete="off" />
+      <input type="text" name="full_name" tabindex="-1" autocomplete="off" />
+    </div>
 
     <!-- Email input group -->
     <div class="space-y-2">
       {
         showLabels && (
           <label for={emailId} class="block text-sm font-medium text-gray-700">
-            {t('signup.emailPlaceholder')}
+            {t('signup.emailPlaceholder', 'Email address')}
             <span class="text-red-500" aria-label={t('validation.required', 'required')}>
               *
             </span>
@@ -70,30 +74,30 @@ const successId = `${formId}-success`
             id={emailId}
             name="email"
             class="h-11 w-full rounded-lg border border-gray-300 pr-4 pl-10 text-gray-900 placeholder-gray-500 transition-colors focus:border-transparent focus:ring-2 focus:ring-purple-500"
-            placeholder={placeholder || t('signup.emailPlaceholder')}
+            placeholder={placeholder || t('signup.emailPlaceholder', 'Enter your email address')}
             aria-describedby={`${errorId} ${successId}`}
             required
+            autocomplete="email"
           />
         </div>
 
         <button
           type="submit"
-          class="flex h-11 min-w-[140px] items-center justify-center gap-2 rounded-lg bg-purple-600 px-6 font-medium text-white transition-colors hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          disabled={false}
+          class="signup-button flex h-11 min-w-[140px] items-center justify-center gap-2 rounded-lg bg-purple-600 px-6 font-medium text-white transition-colors hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <span class="button-text">
-            {buttonText || t('signup.submitButton')}
+            {buttonText || t('signup.submitButton', 'Get Early Access')}
           </span>
           <span class="button-loading hidden items-center gap-2">
             <Icon name="lucide:loader-2" class="h-4 w-4 animate-spin" />
-            {t('signup.loadingButton')}
+            <span>{t('signup.loadingButton', 'Signing up...')}</span>
           </span>
         </button>
       </div>
     </div>
 
     <!-- Messages -->
-    <div id={errorId} class="hidden rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700" role="alert">
+    <div id={errorId} class="message-container error-message hidden rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700" role="alert">
       <div class="flex items-center gap-2">
         <Icon name="lucide:alert-circle" class="h-4 w-4 flex-shrink-0" />
         <span class="message-text"></span>
@@ -102,7 +106,7 @@ const successId = `${formId}-success`
 
     <div
       id={successId}
-      class="hidden rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-700"
+      class="message-container success-message hidden rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-700"
       role="status"
     >
       <div class="flex items-center gap-2">
@@ -112,23 +116,25 @@ const successId = `${formId}-success`
     </div>
 
     <!-- Privacy notice -->
-    <p class="flex items-center justify-center gap-1 text-center text-xs text-gray-200">
+    <p class="flex items-center justify-center gap-1 text-center text-xs text-white">
       <Icon name="lucide:shield-check" class="h-3 w-3" />
-      {t('signup.privacy')}
+      {t('signup.privacy', 'We respect your privacy and never spam.')}
     </p>
 
     <!-- Translation data for JavaScript -->
-    <div 
-      data-translations 
-      data-email-required={t('validation.emailRequired', 'Email address is required')}
-      data-email-invalid={t('validation.emailInvalid', 'Please enter a valid email address')}
-      data-email-too-long={t('validation.emailTooLong', 'Email address is too long')}
-      data-submit-error={t('validation.submitError', 'Something went wrong. Please try again.')}
-      data-network-error={t('validation.networkError', 'Network error. Please check your connection and try again.')}
-      data-success-message={t('signup.successMessage', "Welcome! We'll be in touch soon.")}
-      data-loading-button={t('signup.loadingButton', 'Signing up...')}
-      class="hidden"
-    ></div>
+    <script type="application/json" id={`${formId}-translations`}>
+      {JSON.stringify({
+        emailRequired: t('validation.emailRequired', 'Email address is required'),
+        emailInvalid: t('validation.emailInvalid', 'Please enter a valid email address'),
+        emailTooLong: t('validation.emailTooLong', 'Email address is too long'),
+        submitError: t('validation.submitError', 'Something went wrong. Please try again.'),
+        networkError: t('validation.networkError', 'Network error. Please check your connection and try again.'),
+        successMessage: t('signup.successMessage', "Welcome! We'll be in touch soon."),
+        loadingButton: t('signup.loadingButton', 'Signing up...'),
+        rateLimitError: t('validation.rateLimitError', 'Too many attempts. Please try again later.'),
+        alreadySubscribed: t('validation.alreadySubscribed', 'You are already on our list!')
+      })}
+    </script>
   </form>
 </div>
 
@@ -142,38 +148,68 @@ const successId = `${formId}-success`
 
   // Function to initialize form handlers
   function initializeFormHandlers() {
+    console.log('Initializing email signup form handlers...')
+    
     const signupForms = document.querySelectorAll('[data-form="email-signup"]')
-    console.log('Found signup forms:', signupForms.length)
+    console.log(`Found ${signupForms.length} signup form(s)`)
 
-    signupForms.forEach((form) => {
-      const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement
+    signupForms.forEach((form, index) => {
+      console.log(`Setting up form ${index + 1}`)
+      
+      const formElement = form as HTMLFormElement
+      const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement
       const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement
-      const errorMessage = form.querySelector('[role="alert"]') as HTMLElement
-      const successMessage = form.querySelector('[role="status"]') as HTMLElement
+      const errorMessage = form.querySelector('.error-message') as HTMLElement
+      const successMessage = form.querySelector('.success-message') as HTMLElement
       const buttonText = submitButton?.querySelector('.button-text') as HTMLElement
       const buttonLoading = submitButton?.querySelector('.button-loading') as HTMLElement
       
-      // Get translations from data attributes
-      const translationsElement = form.querySelector('[data-translations]') as HTMLElement
-      const translations = translationsElement ? {
-        emailRequired: translationsElement.dataset.emailRequired || 'Email address is required',
-        emailInvalid: translationsElement.dataset.emailInvalid || 'Please enter a valid email address',
-        emailTooLong: translationsElement.dataset.emailTooLong || 'Email address is too long',
-        submitError: translationsElement.dataset.submitError || 'Something went wrong. Please try again.',
-        networkError: translationsElement.dataset.networkError || 'Network error. Please check your connection and try again.',
-        successMessage: translationsElement.dataset.successMessage || "Welcome! We'll be in touch soon.",
-        loadingButton: translationsElement.dataset.loadingButton || 'Signing up...'
-      } : {}
+      // Get translations from JSON script tag
+      const formId = formElement.id
+      const translationsScript = document.getElementById(`${formId}-translations`)
+      let translations: Record<string, string> = {}
+      
+      if (translationsScript) {
+        try {
+          translations = JSON.parse(translationsScript.textContent || '{}')
+        } catch (e) {
+          console.warn('Failed to parse translations:', e)
+          // Fallback translations
+          translations = {
+            emailRequired: 'Email address is required',
+            emailInvalid: 'Please enter a valid email address',
+            emailTooLong: 'Email address is too long',
+            submitError: 'Something went wrong. Please try again.',
+            networkError: 'Network error. Please check your connection and try again.',
+            successMessage: "Welcome! We'll be in touch soon.",
+            loadingButton: 'Signing up...',
+            rateLimitError: 'Too many attempts. Please try again later.',
+            alreadySubscribed: 'You are already on our list!'
+          }
+        }
+      }
 
-      if (!emailInput || !submitButton || !errorMessage || !successMessage) return
+      if (!emailInput || !submitButton || !errorMessage || !successMessage) {
+        console.error('Missing required form elements:', {
+          emailInput: !!emailInput,
+          submitButton: !!submitButton,
+          errorMessage: !!errorMessage,
+          successMessage: !!successMessage
+        })
+        return
+      }
 
       let isSubmitting = false
+      let submissionStartTime = 0
 
       const showMessage = (element: HTMLElement, message: string) => {
         const messageText = element.querySelector('.message-text') as HTMLElement
         if (messageText) {
           messageText.textContent = message
           element.classList.remove('hidden')
+          // Hide other messages
+          const otherMessage = element.classList.contains('error-message') ? successMessage : errorMessage
+          otherMessage.classList.add('hidden')
         }
       }
 
@@ -201,37 +237,101 @@ const successId = `${formId}-success`
         }
       }
 
-      // Email validation using translated messages
+      // Enhanced email validation
       const validateEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        return emailRegex.test(email)
+        return emailRegex.test(email) && email.length <= 254
       }
 
       const getValidationMessage = (email: string) => {
-        if (!email.trim()) return translations.emailRequired || 'Email address is required'
-        if (!validateEmail(email)) return translations.emailInvalid || 'Please enter a valid email address'
-        if (email.length > 254) return translations.emailTooLong || 'Email address is too long'
+        if (!email || !email.trim()) {
+          return translations.emailRequired || 'Email address is required'
+        }
+        if (!validateEmail(email)) {
+          return translations.emailInvalid || 'Please enter a valid email address'
+        }
+        if (email.length > 254) {
+          return translations.emailTooLong || 'Email address is too long'
+        }
         return null
       }
 
+      // Enhanced honeypot validation
+      const validateHoneypot = () => {
+        const honeypotFields = form.querySelectorAll('input[name="website"], input[name="email_confirm"], input[name="full_name"]')
+        
+        // Check if any honeypot field has a value
+        for (const field of honeypotFields) {
+          const input = field as HTMLInputElement
+          if (input.value && input.value.trim() !== '') {
+            console.warn('Honeypot triggered:', input.name, input.value)
+            return false
+          }
+        }
+
+        // Check submission timing (too fast = likely bot)
+        const timeTaken = Date.now() - submissionStartTime
+        if (timeTaken < 2000) { // Less than 2 seconds
+          console.warn('Submission too fast:', timeTaken, 'ms')
+          return false
+        }
+
+        return true
+      }
+
       // Real-time validation
-      emailInput.addEventListener('input', hideAllMessages)
+      emailInput.addEventListener('input', () => {
+        hideAllMessages()
+      })
+
+      emailInput.addEventListener('blur', () => {
+        const email = emailInput.value.trim()
+        if (email) {
+          const validationMessage = getValidationMessage(email)
+          if (validationMessage) {
+            showMessage(errorMessage, validationMessage)
+          }
+        }
+      })
+
+      // Track when user starts interacting with form
+      emailInput.addEventListener('focus', () => {
+        if (submissionStartTime === 0) {
+          submissionStartTime = Date.now()
+        }
+      })
 
       // Form submission
-      form.addEventListener('submit', async (e) => {
+      formElement.addEventListener('submit', async (e) => {
         e.preventDefault()
+        e.stopPropagation()
 
-        if (isSubmitting) return
+        console.log('Form submission started')
+
+        if (isSubmitting) {
+          console.log('Already submitting, ignoring')
+          return
+        }
 
         const email = emailInput.value.trim()
-        const honeypot = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value
+        console.log('Email to submit:', email ? email.substring(0, 3) + '***' : 'empty')
 
-        // Check honeypot
-        if (honeypot) return
+        // Validate honeypot first
+        if (!validateHoneypot()) {
+          console.warn('Honeypot validation failed')
+          // Silently fail for bots
+          setLoading(true)
+          setTimeout(() => {
+            setLoading(false)
+            showMessage(successMessage, translations.successMessage || "Welcome! We'll be in touch soon.")
+          }, 2000)
+          return
+        }
 
         // Validate email
         const validationMessage = getValidationMessage(email)
         if (validationMessage) {
+          console.log('Validation failed:', validationMessage)
           showMessage(errorMessage, validationMessage)
           emailInput.focus()
           return
@@ -241,21 +341,32 @@ const successId = `${formId}-success`
         setLoading(true)
 
         try {
+          console.log('Sending request to /api/signup')
+          
           const response = await fetch('/api/signup', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
             body: JSON.stringify({
-              email,
+              email: email,
               source: 'website',
               timestamp: Date.now(),
             }),
           })
 
+          console.log('Response status:', response.status)
+          console.log('Response headers:', response.headers)
+
           const result = await response.json()
+          console.log('Response result:', result)
 
           if (response.ok && result.success) {
+            console.log('Signup successful')
             showMessage(successMessage, result.message || translations.successMessage || "Welcome! We'll be in touch soon.")
             emailInput.value = ''
+            submissionStartTime = 0
 
             // Track conversion (only if gtag is available)
             if (typeof window !== 'undefined' && window.gtag) {
@@ -265,9 +376,19 @@ const successId = `${formId}-success`
               })
             }
           } else {
-            showMessage(errorMessage, result.message || translations.submitError || 'Something went wrong. Please try again.')
+            console.log('Signup failed:', result)
+            
+            // Handle specific error cases
+            let errorMsg = result.message || translations.submitError || 'Something went wrong. Please try again.'
+            
+            if (result.error === 'RATE_LIMIT_EXCEEDED') {
+              errorMsg = translations.rateLimitError || 'Too many attempts. Please try again later.'
+            }
+            
+            showMessage(errorMessage, errorMsg)
           }
         } catch (error) {
+          console.error('Network error:', error)
           showMessage(errorMessage, translations.networkError || 'Network error. Please check your connection and try again.')
         } finally {
           setLoading(false)
@@ -276,13 +397,16 @@ const successId = `${formId}-success`
     })
   }
 
-  // Initialize on page load and on astro:page-load
-  document.addEventListener('astro:page-load', initializeFormHandlers)
-  
-  // Also initialize immediately if DOM is already loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeFormHandlers)
-  } else {
-    initializeFormHandlers()
+  // Initialize on page load
+  function ensureInitialization() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeFormHandlers)
+    } else {
+      initializeFormHandlers()
+    }
   }
+
+  // Initialize for both regular page loads and Astro page loads
+  document.addEventListener('astro:page-load', initializeFormHandlers)
+  ensureInitialization()
 </script>

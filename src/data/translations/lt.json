@@ -213,11 +213,16 @@
     "contact": "Kontaktai"
   },
   "validation": {
-    "emailRequired": "Reikalingas el. pašto adresas",
-    "emailInvalid": "Įvesk galiojantį el. pašto adresą",
-    "emailTooLong": "El. pašto adresas per ilgas",
-    "submitError": "Nepavyko pateikti. Bandyk dar kartą.",
-    "networkError": "Tinklo klaida. Patikrink ryšį ir bandyk iš naujo."
+    "required": "privalomas",
+    "emailRequired": "El. pašto adresas yra privalomas",
+    "emailInvalid": "Įveskite galiojantį el. pašto adresą",
+    "emailTooLong": "El. pašto adresas per ilgas (maksimaliai 254 simboliai)",
+    "submitError": "Kažkas nepavyko. Pabandykite dar kartą.",
+    "networkError": "Tinklo klaida. Patikrinkite interneto ryšį ir pabandykite dar kartą.",
+    "rateLimitError": "Per daug bandymų. Pabandykite vėliau.",
+    "alreadySubscribed": "Jūs jau esate mūsų ankstyvos prieigos sąraše!",
+    "disposableEmail": "Naudokite nuolatinį el. pašto adresą",
+    "serviceUnavailable": "Registracijos paslauga laikinai nepasiekiama. Pabandykite vėliau."
   },
   "accessibility": {
     "openModal": "Atidaryti langą",

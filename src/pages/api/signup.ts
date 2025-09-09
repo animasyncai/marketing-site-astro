@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Email Signup API Endpoint
  *
@@ -50,8 +51,11 @@ function checkRateLimit(ip: string): { allowed: boolean; resetTime?: number } {
   return { allowed: true }
 }
 
-// Mailjet integration
-async function addToMailjetList(email: string, _source: string): Promise<{ success: boolean; message?: string }> {
+// Enhanced Mailjet integration
+async function addToMailjetList(
+  email: string,
+  source: string,
+): Promise<{ success: boolean; message?: string; isExisting?: boolean }> {
   try {
     // Get Mailjet credentials from environment variables
     const apiKey = import.meta.env.MAILJET_API_KEY
@@ -70,7 +74,7 @@ async function addToMailjetList(email: string, _source: string): Promise<{ succe
       }
     }
 
-    console.log('Mailjet credentials found, attempting to add contact...')
+    console.log(`Adding contact ${email.substring(0, 3)}*** to Mailjet list...`)
 
     // Initialize Mailjet client
     const mailjet = new Mailjet({
@@ -78,73 +82,127 @@ async function addToMailjetList(email: string, _source: string): Promise<{ succe
       apiSecret,
     })
 
-    // Add contact directly to the list
+    // First, try to check if contact already exists
+    try {
+      const existingContact = await mailjet.get('contact', { version: 'v3' }).id(email).request()
+
+      if (existingContact.body) {
+        console.log(`Contact ${email.substring(0, 3)}*** already exists`)
+
+        // Check if already in our list
+        try {
+          const listMembership = await mailjet.get('listrecipient', { version: 'v3' }).request({
+            Contact: email,
+            List: contactListId,
+          })
+
+          if (listMembership.body && Array.isArray(listMembership.body) && listMembership.body.length > 0) {
+            return {
+              success: true,
+              message: 'You are already on our early access list!',
+              isExisting: true,
+            }
+          }
+        } catch (listError) {
+          console.log('Could not check list membership, proceeding to add...')
+        }
+      }
+    } catch (contactError) {
+      console.log('Contact does not exist yet, proceeding to add...')
+    }
+
+    // Add contact to the list
     const response = await mailjet
       .post('contactslist', { version: 'v3' })
       .id(contactListId)
       .action('managecontact')
       .request({
         Email: email,
-        Action: 'addnoforce',
+        Action: 'addforce', // Use addforce to handle existing contacts gracefully
+        Properties: {
+          source: source,
+          signup_date: new Date().toISOString(),
+        },
       })
 
-    if (response.body && Array.isArray(response.body) && response.body.length > 0) {
-      console.log(`Successfully added ${email} to Mailjet list`)
+    console.log('Mailjet response status:', response.response?.status)
+    console.log('Mailjet response body type:', typeof response.body)
+
+    if (response.body) {
+      console.log(`Successfully processed ${email.substring(0, 3)}*** with Mailjet`)
       return {
         success: true,
-        message: 'Successfully added to early access list',
+        message: "Welcome to our early access list! We'll be in touch soon.",
       }
     } else {
-      // Log the actual response for debugging
-      console.log('Mailjet response:', response.body)
-      console.log('Response type:', typeof response.body)
-      console.log('Is array:', Array.isArray(response.body))
-
-      // Check if it's a different success format
-      if (response.body && typeof response.body === 'object') {
-        console.log(`Successfully added ${email} to Mailjet list (alternative format)`)
-        return {
-          success: true,
-          message: 'Successfully added to early access list',
-        }
-      }
-
-      throw new Error('Unexpected response from Mailjet')
+      throw new Error('No response body from Mailjet')
     }
   } catch (error: unknown) {
     console.error('Mailjet API error:', error)
-    console.error('Error details:', {
+
+    // Extract error details
+    const errorDetails = {
       message: error instanceof Error ? error.message : 'Unknown error',
       statusCode: error && typeof error === 'object' && 'statusCode' in error ? error.statusCode : 'N/A',
       errorMessage: error && typeof error === 'object' && 'ErrorMessage' in error ? error.ErrorMessage : 'N/A',
-    })
+    }
+
+    console.error('Error details:', errorDetails)
 
     // Handle specific Mailjet errors
-    if (error && typeof error === 'object' && 'statusCode' in error && error.statusCode === 400) {
-      const errorMessage = (error as { ErrorMessage?: string }).ErrorMessage
-      if (errorMessage?.includes('already exists')) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
+      const statusCode = error.statusCode as number
+      const errorMessage = (error as { ErrorMessage?: string }).ErrorMessage || ''
+
+      if (statusCode === 400) {
+        if (errorMessage.toLowerCase().includes('already exists') || errorMessage.toLowerCase().includes('duplicate')) {
+          return {
+            success: true,
+            message: 'You are already on our early access list!',
+            isExisting: true,
+          }
+        }
+
+        if (errorMessage.toLowerCase().includes('invalid') && errorMessage.toLowerCase().includes('email')) {
+          return {
+            success: false,
+            message: 'Please enter a valid email address',
+          }
+        }
+      }
+
+      if (statusCode === 429) {
         return {
-          success: true,
-          message: 'You are already on our list!',
+          success: false,
+          message: 'Service temporarily busy. Please try again in a moment.',
         }
       }
     }
 
     return {
       success: false,
-      message: 'Failed to add to email list',
+      message: 'Unable to process your signup right now. Please try again later.',
     }
   }
 }
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
+  const startTime = Date.now()
+
   try {
     // Get client IP for rate limiting (handle both server and static modes)
-    const clientIP = clientAddress || 'unknown'
+    const clientIP =
+      clientAddress || request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+
+    console.log(`Signup request from IP: ${clientIP}`)
 
     // Check rate limit
     const rateCheck = checkRateLimit(clientIP)
     if (!rateCheck.allowed) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`)
+
+      const retryAfter = Math.ceil((rateCheck.resetTime! - Date.now()) / 1000)
+
       return new Response(
         JSON.stringify({
           success: false,
@@ -156,7 +214,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           status: 429,
           headers: {
             'Content-Type': 'application/json',
-            'Retry-After': Math.ceil((rateCheck.resetTime! - Date.now()) / 1000).toString(),
+            'Retry-After': retryAfter.toString(),
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'Content-Type',
           },
         },
       )
@@ -165,8 +226,17 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     // Parse request body
     let body: { email?: string; source?: string; timestamp?: number }
     try {
-      body = await request.json()
-    } catch {
+      const rawBody = await request.text()
+      console.log('Raw request body length:', rawBody.length)
+
+      if (!rawBody.trim()) {
+        throw new Error('Empty request body')
+      }
+
+      body = JSON.parse(rawBody)
+      console.log('Parsed body keys:', Object.keys(body))
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError)
       return new Response(
         JSON.stringify({
           success: false,
@@ -175,13 +245,20 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
         },
       )
     }
 
     // Validate required fields
-    const { email, source = 'website' } = body
+    const { email, source = 'website', timestamp } = body
+
+    console.log('Email provided:', email ? email.substring(0, 3) + '***' : 'none')
+    console.log('Source:', source)
+    console.log('Timestamp:', timestamp)
 
     if (!email || typeof email !== 'string') {
       return new Response(
@@ -192,13 +269,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
         },
       )
     }
 
+    const trimmedEmail = email.trim()
+
     // Validate email format
-    if (!isValidEmail(email)) {
+    if (!isValidEmail(trimmedEmail)) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -207,15 +289,27 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
         },
       )
     }
 
     // Check for common disposable email domains (basic protection)
-    const disposableDomains = ['10minutemail.com', 'tempmail.org', 'guerrillamail.com', 'mailinator.com']
+    const disposableDomains = [
+      '10minutemail.com',
+      'tempmail.org',
+      'guerrillamail.com',
+      'mailinator.com',
+      'temp-mail.org',
+      'throwaway.email',
+      'getnada.com',
+      'maildrop.cc',
+    ]
 
-    const emailDomain = email.split('@')[1]?.toLowerCase()
+    const emailDomain = trimmedEmail.split('@')[1]?.toLowerCase()
     if (disposableDomains.includes(emailDomain)) {
       return new Response(
         JSON.stringify({
@@ -225,18 +319,24 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
         },
       )
     }
 
     // Add to email list (Mailjet integration)
     try {
-      const result = await addToMailjetList(email, source)
+      const result = await addToMailjetList(trimmedEmail, source)
 
       if (!result.success) {
         throw new Error(result.message || 'Failed to add to email list')
       }
+
+      const processingTime = Date.now() - startTime
+      console.log(`Signup processed successfully in ${processingTime}ms`)
 
       // Success response
       return new Response(
@@ -244,17 +344,21 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           success: true,
           message: result.message || "Welcome! We'll be in touch soon with your early access.",
           data: {
-            email,
+            email: trimmedEmail,
             timestamp: Date.now(),
+            isExisting: result.isExisting || false,
           },
         }),
         {
           status: 200,
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
         },
       )
-    } catch {
-      console.error('Mailjet integration error')
+    } catch (mailjetError) {
+      console.error('Mailjet integration error:', mailjetError)
 
       return new Response(
         JSON.stringify({
@@ -264,12 +368,16 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         }),
         {
           status: 503,
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
         },
       )
     }
   } catch (error) {
-    console.error('Signup API error:', error)
+    const processingTime = Date.now() - startTime
+    console.error(`Signup API error after ${processingTime}ms:`, error)
 
     return new Response(
       JSON.stringify({
@@ -279,10 +387,26 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       }),
       {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
       },
     )
   }
+}
+
+// Handle preflight requests
+export const OPTIONS: APIRoute = async () => {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
+    },
+  })
 }
 
 // Handle other HTTP methods
@@ -295,7 +419,10 @@ export const GET: APIRoute = async () => {
     }),
     {
       status: 405,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
     },
   )
 }
