@@ -142,37 +142,44 @@ const successId = `${formId}-success`
   declare global {
     interface Window {
       gtag?: (command: string, action: string, params: Record<string, any>) => void;
+      emailSignupHandlers?: WeakMap<HTMLFormElement, () => void>;
     }
+  }
+
+  // Keep track of initialized forms to prevent duplicate handlers
+  if (!window.emailSignupHandlers) {
+    window.emailSignupHandlers = new WeakMap();
   }
 
   // Function to initialize form handlers
   function initializeFormHandlers() {
-    console.log('Initializing email signup form handlers...')
+    const signupForms = document.querySelectorAll('[data-form="email-signup"]');
     
-    const signupForms = document.querySelectorAll('[data-form="email-signup"]')
-    console.log(`Found ${signupForms.length} signup form(s)`)
-
-    signupForms.forEach((form, index) => {
-      console.log(`Setting up form ${index + 1}`)
+    signupForms.forEach((form) => {
+      const formElement = form as HTMLFormElement;
       
-      const formElement = form as HTMLFormElement
-      const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement
-      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement
-      const errorMessage = form.querySelector('.error-message') as HTMLElement
-      const successMessage = form.querySelector('.success-message') as HTMLElement
-      const buttonText = submitButton?.querySelector('.button-text') as HTMLElement
-      const buttonLoading = submitButton?.querySelector('.button-loading') as HTMLElement
+      // Skip if already initialized
+      if (window.emailSignupHandlers!.has(formElement)) {
+        return;
+      }
+      
+      const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement;
+      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const errorMessage = form.querySelector('.error-message') as HTMLElement;
+      const successMessage = form.querySelector('.success-message') as HTMLElement;
+      const buttonText = submitButton?.querySelector('.button-text') as HTMLElement;
+      const buttonLoading = submitButton?.querySelector('.button-loading') as HTMLElement;
       
       // Get translations from JSON script tag
-      const formId = formElement.id
-      const translationsScript = document.getElementById(`${formId}-translations`)
-      let translations: Record<string, string> = {}
+      const formId = formElement.id;
+      const translationsScript = document.getElementById(`${formId}-translations`);
+      let translations: Record<string, string> = {};
       
       if (translationsScript) {
         try {
-          translations = JSON.parse(translationsScript.textContent || '{}')
+          translations = JSON.parse(translationsScript.textContent || '{}');
         } catch (e) {
-          console.warn('Failed to parse translations:', e)
+          console.warn('Failed to parse translations:', e);
           // Fallback translations
           translations = {
             emailRequired: 'Email address is required',
@@ -184,160 +191,145 @@ const successId = `${formId}-success`
             loadingButton: 'Signing up...',
             rateLimitError: 'Too many attempts. Please try again later.',
             alreadySubscribed: 'You are already on our list!'
-          }
+          };
         }
       }
 
       if (!emailInput || !submitButton || !errorMessage || !successMessage) {
-        console.error('Missing required form elements:', {
-          emailInput: !!emailInput,
-          submitButton: !!submitButton,
-          errorMessage: !!errorMessage,
-          successMessage: !!successMessage
-        })
-        return
+        console.error('Missing required form elements');
+        return;
       }
 
-      let isSubmitting = false
-      let submissionStartTime = 0
+      let isSubmitting = false;
+      let submissionStartTime = 0;
 
       const showMessage = (element: HTMLElement, message: string) => {
-        const messageText = element.querySelector('.message-text') as HTMLElement
+        const messageText = element.querySelector('.message-text') as HTMLElement;
         if (messageText) {
-          messageText.textContent = message
-          element.classList.remove('hidden')
+          messageText.textContent = message;
+          element.classList.remove('hidden');
           // Hide other messages
-          const otherMessage = element.classList.contains('error-message') ? successMessage : errorMessage
-          otherMessage.classList.add('hidden')
+          const otherMessage = element.classList.contains('error-message') ? successMessage : errorMessage;
+          otherMessage.classList.add('hidden');
         }
-      }
+      };
 
       const hideMessage = (element: HTMLElement) => {
-        element.classList.add('hidden')
-      }
+        element.classList.add('hidden');
+      };
 
       const hideAllMessages = () => {
-        hideMessage(errorMessage)
-        hideMessage(successMessage)
-      }
+        hideMessage(errorMessage);
+        hideMessage(successMessage);
+      };
 
       const setLoading = (loading: boolean) => {
-        isSubmitting = loading
-        submitButton.disabled = loading
+        isSubmitting = loading;
+        submitButton.disabled = loading;
 
         if (loading) {
-          buttonText.classList.add('hidden')
-          buttonLoading.classList.remove('hidden')
-          buttonLoading.classList.add('flex')
+          buttonText.classList.add('hidden');
+          buttonLoading.classList.remove('hidden');
+          buttonLoading.classList.add('flex');
         } else {
-          buttonText.classList.remove('hidden')
-          buttonLoading.classList.add('hidden')
-          buttonLoading.classList.remove('flex')
+          buttonText.classList.remove('hidden');
+          buttonLoading.classList.add('hidden');
+          buttonLoading.classList.remove('flex');
         }
-      }
+      };
 
       // Enhanced email validation
       const validateEmail = (email: string) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        return emailRegex.test(email) && email.length <= 254
-      }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email) && email.length <= 254;
+      };
 
       const getValidationMessage = (email: string) => {
         if (!email || !email.trim()) {
-          return translations.emailRequired || 'Email address is required'
+          return translations.emailRequired || 'Email address is required';
         }
         if (!validateEmail(email)) {
-          return translations.emailInvalid || 'Please enter a valid email address'
+          return translations.emailInvalid || 'Please enter a valid email address';
         }
         if (email.length > 254) {
-          return translations.emailTooLong || 'Email address is too long'
+          return translations.emailTooLong || 'Email address is too long';
         }
-        return null
-      }
+        return null;
+      };
 
       // Enhanced honeypot validation
       const validateHoneypot = () => {
-        const honeypotFields = form.querySelectorAll('input[name="website"], input[name="email_confirm"], input[name="full_name"]')
+        const honeypotFields = form.querySelectorAll('input[name="website"], input[name="email_confirm"], input[name="full_name"]');
         
         // Check if any honeypot field has a value
         for (const field of honeypotFields) {
-          const input = field as HTMLInputElement
+          const input = field as HTMLInputElement;
           if (input.value && input.value.trim() !== '') {
-            console.warn('Honeypot triggered:', input.name, input.value)
-            return false
+            console.warn('Honeypot triggered');
+            return false;
           }
         }
 
-        // Check submission timing (too fast = likely bot)
-        // Only check timing if user has interacted with the form
+        // Check submission timing (increased to 2 seconds)
         if (submissionStartTime > 0) {
-          const timeTaken = Date.now() - submissionStartTime
-          if (timeTaken < 1000) { // Less than 1 second
-            console.warn('Submission too fast:', timeTaken, 'ms')
-            return false
+          const timeTaken = Date.now() - submissionStartTime;
+          if (timeTaken < 2000) { // Less than 2 seconds
+            console.warn('Submission too fast:', timeTaken, 'ms');
+            return false;
           }
         }
 
-        return true
-      }
+        return true;
+      };
 
-      // Real-time validation - just hide messages on input
-      emailInput.addEventListener('input', () => {
-        hideAllMessages()
+      // Event handlers
+      const handleInput = () => {
+        hideAllMessages();
         if (submissionStartTime === 0) {
-          submissionStartTime = Date.now()
+          submissionStartTime = Date.now();
         }
-      })
+      };
 
-      // Track when user starts interacting with form
-      emailInput.addEventListener('focus', () => {
+      const handleFocus = () => {
         if (submissionStartTime === 0) {
-          submissionStartTime = Date.now()
+          submissionStartTime = Date.now();
         }
-      })
+      };
 
-      // Form submission
-      formElement.addEventListener('submit', async (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-
-        console.log('Form submission started')
+      const handleSubmit = async (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
 
         if (isSubmitting) {
-          console.log('Already submitting, ignoring')
-          return
+          return;
         }
 
-        const email = emailInput.value.trim()
-        console.log('Email to submit:', email ? email.substring(0, 3) + '***' : 'empty')
+        const email = emailInput.value.trim();
 
-        // Validate email FIRST
-        const validationMessage = getValidationMessage(email)
+        // Validate email
+        const validationMessage = getValidationMessage(email);
         if (validationMessage) {
-          console.log('Validation failed:', validationMessage)
-          showMessage(errorMessage, validationMessage)
-          emailInput.focus()
-          return
+          showMessage(errorMessage, validationMessage);
+          emailInput.focus();
+          return;
         }
 
-        // Only check honeypot if email validation passes
+        // Check honeypot
         if (!validateHoneypot()) {
-          console.warn('Honeypot validation failed')
-          // Silently fail for bots (but only if email was actually valid)
-          setLoading(true)
+          // Silently fail for bots
+          setLoading(true);
           setTimeout(() => {
-            setLoading(false)
-            showMessage(successMessage, translations.successMessage || "Welcome! We'll be in touch soon.")
-          }, 2000)
-          return
+            setLoading(false);
+            showMessage(successMessage, translations.successMessage || "Welcome! We'll be in touch soon.");
+            emailInput.value = '';
+          }, 2000);
+          return;
         }
 
-        hideAllMessages()
-        setLoading(true)
+        hideAllMessages();
+        setLoading(true);
 
         try {
-          console.log('Sending request to /api/signup')
-          
           const response = await fetch('/api/signup', {
             method: 'POST',
             headers: { 
@@ -349,60 +341,73 @@ const successId = `${formId}-success`
               source: 'website',
               timestamp: Date.now(),
             }),
-          })
+          });
 
-          console.log('Response status:', response.status)
-
-          const result = await response.json()
-          console.log('Response result:', result)
+          const result = await response.json();
 
           if (response.ok && result.success) {
-            console.log('Signup successful')
-            showMessage(successMessage, result.message || translations.successMessage || "Welcome! We'll be in touch soon.")
-            emailInput.value = ''
-            submissionStartTime = 0
+            showMessage(successMessage, result.message || translations.successMessage || "Welcome! We'll be in touch soon.");
+            emailInput.value = '';
+            submissionStartTime = 0;
 
-            // Track conversion (only if gtag is available)
+            // Track conversion
             if (typeof window !== 'undefined' && window.gtag) {
               window.gtag('event', 'signup', {
                 event_category: 'engagement',
                 event_label: 'email_signup',
-              })
+              });
             }
           } else {
-            console.log('Signup failed:', result)
-            
-            // Handle specific error cases
-            let errorMsg = result.message || translations.submitError || 'Something went wrong. Please try again.'
+            let errorMsg = result.message || translations.submitError || 'Something went wrong. Please try again.';
             
             if (result.error === 'RATE_LIMIT_EXCEEDED') {
-              errorMsg = translations.rateLimitError || 'Too many attempts. Please try again later.'
+              errorMsg = translations.rateLimitError || 'Too many attempts. Please try again later.';
+            } else if (result.isExisting) {
+              errorMsg = translations.alreadySubscribed || 'You are already on our list!';
             }
             
-            showMessage(errorMessage, errorMsg)
+            showMessage(errorMessage, errorMsg);
           }
         } catch (error) {
-          console.error('Network error:', error)
-          showMessage(errorMessage, translations.networkError || 'Network error. Please check your connection and try again.')
+          console.error('Network error:', error);
+          showMessage(errorMessage, translations.networkError || 'Network error. Please check your connection and try again.');
         } finally {
-          setLoading(false)
+          setLoading(false);
         }
-      })
-    })
+      };
+
+      // Attach event listeners
+      emailInput.addEventListener('input', handleInput);
+      emailInput.addEventListener('focus', handleFocus);
+      formElement.addEventListener('submit', handleSubmit);
+
+      // Store cleanup function
+      const cleanup = () => {
+        emailInput.removeEventListener('input', handleInput);
+        emailInput.removeEventListener('focus', handleFocus);
+        formElement.removeEventListener('submit', handleSubmit);
+      };
+
+      // Mark form as initialized
+      window.emailSignupHandlers!.set(formElement, cleanup);
+    });
   }
 
-  // Initialize handlers - handle both regular page loads and Astro navigation
-  function initialize() {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeFormHandlers)
-    } else {
-      initializeFormHandlers()
-    }
+  // Cleanup function for page transitions
+  function cleanupFormHandlers() {
+    const signupForms = document.querySelectorAll('[data-form="email-signup"]');
+    
+    signupForms.forEach((form) => {
+      const formElement = form as HTMLFormElement;
+      const cleanup = window.emailSignupHandlers?.get(formElement);
+      if (cleanup) {
+        cleanup();
+        window.emailSignupHandlers?.delete(formElement);
+      }
+    });
   }
 
   // Handle Astro page transitions
-  document.addEventListener('astro:page-load', initializeFormHandlers)
-  
-  // Initial setup
-  initialize()
+  document.addEventListener('astro:before-swap', cleanupFormHandlers);
+  document.addEventListener('astro:page-load', initializeFormHandlers);
 </script>
