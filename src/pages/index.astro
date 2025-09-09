@@ -19,7 +19,6 @@ import TestimonialSlider from '../components/TestimonialSlider.astro'
 import WhyWithinly from '../components/WhyWithinly.astro'
 import EmailSignup from '../components/EmailSignup.astro'
 import FAQ from '../components/FAQ.astro'
-import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 // Get translations for current language
@@ -83,21 +82,6 @@ const pageDescription = t('meta.defaultDescription')
           placeholder={t('signup.emailPlaceholder')}
           buttonText={t('earlyAccess.cta')}
         />
-      </div>
-
-      <!-- Benefits list -->
-      <div class="mb-8 hidden">
-        <h3 class="mb-6 text-lg font-semibold text-violet-100">{t('earlyAccess.benefits.title')}</h3>
-        <div class="grid gap-3 text-left sm:grid-cols-2">
-          {
-            (translations as any).earlyAccess?.benefits?.items?.map((benefit: string) => (
-              <div class="flex items-center gap-3 text-violet-100">
-                <Icon name="lucide:check-circle" class="h-5 w-5 flex-shrink-0 text-violet-300" />
-                <span class="text-sm">{benefit}</span>
-              </div>
-            )) || []
-          }
-        </div>
       </div>
 
       <!-- Urgency message -->
