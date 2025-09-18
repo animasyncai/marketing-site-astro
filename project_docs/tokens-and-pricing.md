@@ -45,9 +45,9 @@ This balances **user clarity**, **fair value**, and **sustainable margins**.
 
 ## 🆓 Free Tier
 
-- **3 Sparks** on signup
+- **5 Sparks** on signup
 - **First Couple Snapshot free**
-- Growth hooks: +1 Spark if partner connects, +1 if both finish traits quickly
+- Growth hooks: +1 Spark if partner connects
 
 This ensures users taste **solo reports, couple insights, and chat** before hitting a paywall.
 
@@ -159,24 +159,24 @@ Margins:
 
 ## Final copy for displaying sparks
 
-### ✨ Sparks Balance
+### ✨ Spark balance (in profile) | ✨ Add More Sparks (in modal)
 
 Available: 32 Sparks
 
-5 Sparks — €2.50
-Quick top-up for quick reflection or a premium report
+5 Sparks — €2.50 (€0.50 each)
+Quick top-up for a reflection or one premium report.
 
-10 Sparks — €4.50
-Enough for 3 premium reports or ~200 reflection messages
+10 Sparks — €4.50 (€0.45 each)
+Enough for 3 premium reports or ~200 chat messages.
 
-25 Sparks — €9.99
-Most popular — balanced for regular use and exploration
+25 Sparks — €9.99 (€0.40 each)
+⭐ Most popular — balanced for regular insights and growth.
 
-50 Sparks — €17.99
-Best value — ideal for deep dives or couples
+50 Sparks — €17.99 (€0.36 each)
+Best value — perfect for couples or deep exploration.
 
-Notes (below packs, small text)
+Notes (below packs, small text):
 
-- Bigger packs = lower price per Spark
-- Sparks never expire
+- Bigger packs = lower cost per Spark
+- Sparks never expire — use them anytime
 - Couple reports unlock for both partners when one pays
