@@ -99,9 +99,9 @@ Reports can be regenerated if traits change significantly.
 Unlocked through **Partner Sync**.  
 Designed for romantic couples in MVP scope (1:1 partner link).
 
-- **Couple Snapshot** — free, 300–500 words. Highlights overlaps and differences in partners’ traits.
-- **Relationship Compass (Couple Edition)** — a deep 1000–1500 word reflection on how patterns meet.
-- **Conflict Compass (Couple Edition)** — future expansion into stress and repair styles.
+- **Couple Snapshot** — free, 300–500 words. Shows specific behavioral dynamics both partners will recognize.
+- **Relationship Compass (Personalized Pair)** — two 1200-1500 word guides helping each partner understand their role in loving their partner better.
+- **Conflict Compass (Personalized Pair)** — two 1200-1500 word guides helping each partner fight better with their specific partner.
 
 Partner traits are never shared directly. Only synthesized reflections are visible.
 

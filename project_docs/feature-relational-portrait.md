@@ -97,12 +97,12 @@ A first glimpse into how your patterns overlap and contrast — highlighting sha
 
 #### Relationship Compass (Couple Edition)
 
-A deep exploration of how your emotional patterns come together — where you align, where you clash, and how to bridge the gaps for deeper connection.
+Two personalized guides that help each partner understand their role in creating deeper connection with their specific partner.
 
-- **Cost:** 3 Sparks (accessible to both partners if one pays)
+- **Cost:** 5-6 Sparks (generates two personalized reports)
+- **Focus:** How each person can love their partner better, relationship-specific behavioral changes, daily connection tools
 - **Length:** 1200-1500 words
 - **Input:** Both partners' trait metadata + psychologist notes
-- **Focus:** How attachment styles interact, love language mismatches/matches, conflict patterns as a couple, trust and vulnerability dynamics together
 - **Value:** Comprehensive guide to relationship patterns with actionable insights for both partners
 - **Prompt:** `/prompts/report-couple-relationship-compass.md`
 

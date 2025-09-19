@@ -27,7 +27,7 @@ By exploring your traits and how they meet in connection, Withinly gives you emo
   - **Inner Portraits** (basic & full) — your emotional patterns woven into narrative
   - **Conflict Compass** — how you react under tension, and how you return to safety
   - **Relationship Blueprint** — how you bond, express care, and need to be met
-  - **Couple Reports** (via Partner Sync) — snapshots and deep portraits for romantic partners
+  - **Couple Reports** (via Partner Sync) — personalized relationship guides helping each partner understand their role in creating better connection
 
 - **AI Consultant (Reflection Companion)**:
   - Context-aware, emotionally intelligent chat

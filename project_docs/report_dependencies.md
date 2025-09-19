@@ -13,3 +13,11 @@
 - Uses 200-word behavioral summaries, not full reports
 - Only accesses when contextually relevant to conversation
 - Natural integration without mechanical references
+
+## Couple Report Regeneration Rules
+
+When either partner's traits change significantly:
+
+- Both personalized couple reports are marked for regeneration
+- User gets warning: "This will regenerate both your report and your partner's report"
+- Both reports must be regenerated together since they depend on both partners' trait combinations

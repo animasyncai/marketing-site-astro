@@ -36,7 +36,7 @@ This balances **user clarity**, **fair value**, and **sustainable margins**.
 - **Premium solo report** → 3 Sparks
   - Inner Portrait Full may later rise to 4 Sparks
 - **Couple Snapshot** → Free (first sync), then 1 Spark
-- **Premium couple report** → 3 Sparks
+- **Premium couple reports (personalized pair)** → 5-6 Sparks
   - (Future: may rise to 4–5 Sparks due to higher value perception)
 - **Chat (Standard)** → 1 Spark = 20 messages
 - **Chat (Depth)** → 1 Spark = 5 messages
