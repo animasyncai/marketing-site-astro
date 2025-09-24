@@ -20,7 +20,11 @@ import loveLanguageData from '../data/demo/report-love.json'
 // Make data available to client-side script
 const traits = {
   attachment: attachmentData.attachment,
-  self_acceptance: selfAcceptanceData.self_acceptance,
+  self_acceptance: {
+    ...selfAcceptanceData.self_acceptance,
+    opennessModifiers: selfAcceptanceData.opennessModifiers,
+    interactionGuidance: selfAcceptanceData.interactionGuidance,
+  },
   mindfulness: mindfulnessData.mindfulness,
   love_language: loveLanguageData.love_language,
 }
@@ -231,8 +235,18 @@ const loveLanguageExtras = {
     }
 
     function generateSelfAcceptanceProfile(traitData) {
-      const { level } = traitData
-      return traits.self_acceptance[level].behavioralProfile
+      const { level, openness } = traitData
+      let profile = traits.self_acceptance[level].behavioralProfile
+
+      // Add openness behavioral addition if present
+      if (openness && traits.self_acceptance.opennessModifiers && traits.self_acceptance.opennessModifiers[openness]) {
+        const behavioralAddition = traits.self_acceptance.opennessModifiers[openness].behavioralAddition
+        if (behavioralAddition) {
+          profile += ' ' + behavioralAddition
+        }
+      }
+
+      return profile
     }
 
     function generateBehavioralProfile(traitType, traitData) {
@@ -304,18 +318,27 @@ const loveLanguageExtras = {
 
       if (trait === 'self_acceptance') {
         container.innerHTML = `
-          <div>
-            <label class="block mb-2 font-medium">Level</label>
-            <select id="saLevel" class="w-full border rounded p-2">
-              <option value="ACCEPTANCE_LOW">Low</option>
-              <option value="ACCEPTANCE_TRANSITIONAL">Transitional</option>
-              <option value="ACCEPTANCE_REFLECTIVE">Reflective</option>
-              <option value="ACCEPTANCE_INTEGRATED">Integrated</option>
-            </select>
-          </div>
-        `
+    <div>
+      <label class="block mb-2 font-medium">Self-Acceptance Level</label>
+      <select id="saLevel" class="w-full border rounded p-2">
+        <option value="BEGINNING_SELF_ACCEPTANCE">Beginning Self-Acceptance</option>
+        <option value="DEVELOPING_SELF_ACCEPTANCE">Developing Self-Acceptance</option>
+        <option value="GROWING_SELF_ACCEPTANCE">Growing Self-Acceptance</option>
+        <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated Self-Acceptance</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-medium">Openness to Change</label>
+      <select id="saOpenness" class="w-full border rounded p-2">
+        <option value="">None (Optional)</option>
+        <option value="RESTING_PHASE">Resting Phase</option>
+        <option value="MIXED_FEELINGS">Mixed Feelings</option>
+        <option value="READY_TO_GROW">Ready to Grow</option>
+        <option value="DEEP_EXPLORATION">Deep Exploration</option>
+      </select>
+    </div>
+  `
       }
-
       if (trait === 'mindfulness') {
         container.innerHTML = `
     <div>
@@ -406,8 +429,12 @@ const loveLanguageExtras = {
 
       if (trait === 'self_acceptance') {
         const level = document.getElementById('saLevel')?.value
+        const openness = document.getElementById('saOpenness')?.value
         if (!level) return null
-        return { level }
+        return {
+          level,
+          openness: openness || null,
+        }
       }
 
       if (trait === 'mindfulness') {
@@ -467,7 +494,19 @@ const loveLanguageExtras = {
 
       if (trait === 'self_acceptance') {
         const bank = traits.self_acceptance[traitData.level]
-        finalReflection = bank.reflection
+        let reflection = bank.reflection
+
+        // Add openness modifier if selected
+        if (
+          traitData.openness &&
+          traits.self_acceptance.opennessModifiers &&
+          traits.self_acceptance.opennessModifiers[traitData.openness]
+        ) {
+          const modifier = traits.self_acceptance.opennessModifiers[traitData.openness].modifier
+          reflection += ' ' + modifier
+        }
+
+        finalReflection = reflection
       }
 
       if (trait === 'mindfulness') {
