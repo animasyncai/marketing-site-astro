@@ -1,11 +1,7 @@
 {
   "attachment": {
     "ANXIOUS": {
-      "reflections": [
-        "You [tone:frequency] pull closer when you sense distance, and that longing for reassurance probably grew from old fears. At the same time, you may notice it doesn't always match what's happening now — and that contrast might be protecting something deeper.",
-        "Part of you [tone:frequency] seeks reassurance even when connection is steady, and that makes sense given how important closeness feels to you. Still, you might also feel the tension of wanting calm but bracing for loss.",
-        "You [tone:frequency] stay alert for signs of distance, scanning for cues that love might fade. That vigilance once kept you safe, but today it can leave you carrying weight you don't always need."
-      ],
+      "reflection": "You [tone:frequency] notice changes in people's attention or tone, and when someone feels distant, your heart speeds up a little. There's a part of you that reaches for reassurance—wanting to know you're still important, still wanted. When conflict arises, you [tone:likelihood] move toward connection rather than away, hoping to repair and reconnect quickly. You notice small shifts that others might miss: a shorter text, a distracted look, a change in someone's usual warmth. These moments can feel bigger than they are because your system is finely tuned to detect threats to closeness. Your heart wants security, and when you feel uncertain about where you stand, you [tone:frequency] seek confirmation through words, time, or attention. This isn't neediness—it's a deep capacity for connection and a fear of losing what matters to you.",
       "secondaryBridge": {
         "AVOIDANT": "At the same time, another part of you values space, which can make closeness feel confusing.",
         "DISORGANIZED": "Alongside this, you sometimes swing between seeking closeness and pulling back, which adds another layer of complexity.",
@@ -19,11 +15,7 @@
       }
     },
     "AVOIDANT": {
-      "reflections": [
-        "You [tone:frequency] lean on independence when emotions get intense, and that distance might be guarding something tender inside you. Pulling back helps you feel safe, even when closeness could also bring comfort.",
-        "Closeness can [tone:likelihood] feel overwhelming, so you create space to steady yourself. That instinct isn't wrong — it probably once protected you — but it can leave others unsure of where they stand.",
-        "There's a pattern where you [tone:frequency] step away when things get heavy, and that space has meaning. It kept you safe before, but today it might also keep you from being fully seen."
-      ],
+      "reflection": "When emotions run high or someone wants to get closer, you [tone:frequency] feel a pull to step back and create some breathing room. There's something in you that values independence and self-reliance, especially when relationships start to feel intense or demanding. You [tone:likelihood] handle conflict by taking space to think rather than diving straight into emotional conversations. This isn't because you don't care—it's because you process things differently. You need room to sort through your thoughts and feelings before you can share them. Others might interpret your stepping back as rejection, but for you, it's how you stay grounded and avoid feeling overwhelmed. You show care in practical, thoughtful ways rather than through big emotional displays, and that distance might be protecting something tender inside you.",
       "secondaryBridge": {
         "ANXIOUS": "At the same time, another part of you longs for closeness, creating a push-pull in your relationships.",
         "DISORGANIZED": "There are moments when you both want and resist closeness, making connection unpredictable.",
@@ -37,11 +29,7 @@
       }
     },
     "DISORGANIZED": {
-      "reflections": [
-        "You [tone:frequency] feel pulled between wanting closeness and fearing it, and both sides are trying to protect you. That swing can feel confusing, but it carries the story of how you learned to survive connection.",
-        "Part of you reaches out while another part holds back, and that inner split can be exhausting. It makes sense if trust once felt unsafe, but today it may also keep intimacy feeling unstable.",
-        "Conflict can [tone:likelihood] feel overwhelming, pushing you to shut down one moment and react intensely the next. Those shifts aren't random — they're protective strategies that once kept you safe."
-      ],
+      "reflection": "You [tone:frequency] find yourself caught between wanting closeness and feeling scared of it at the same time. One moment you might reach out for connection, and the next you may pull back, feeling confused about what you actually want. When conflict happens, you [tone:likelihood] have intense reactions that surprise even you—sometimes shutting down completely, other times responding more strongly than the situation seems to warrant. There's an internal tug-of-war happening: part of you craves the safety of close relationships, while another part warns that getting too close is dangerous. This can make your responses feel unpredictable, both to yourself and others. You might find yourself testing relationships—pushing to see if someone will stay, or pulling away to see if they'll fight for you, and that distance might be protecting something tender inside you.",
       "secondaryBridge": {
         "ANXIOUS": "Alongside this, your need for reassurance can amplify the swings you feel.",
         "AVOIDANT": "You also carry a need for space, which can deepen the inner conflict around closeness.",
@@ -55,11 +43,7 @@
       }
     },
     "SECURE": {
-      "reflections": [
-        "You [tone:frequency] trust stability in relationships, even when things get rocky, and that steadiness is grounding. Your calmness makes it easier to ride out tension without losing connection.",
-        "Even when emotions run high, you [tone:likelihood] return to a sense of safety and closeness. That flexibility helps you hold both your needs and your partner's without shutting down.",
-        "You balance independence and intimacy with more ease than most, and that strength is noticeable. It gives you a foundation of trust, even when challenges arise."
-      ],
+      "reflection": "You [tone:frequency] approach relationships with a steady trust that things will work out, even when there are bumps along the way. When conflict arises, you [tone:likelihood] stay relatively calm and can communicate your feelings without losing your center. You're comfortable with both closeness and independence—you can be deeply connected to someone while still maintaining your own sense of self. You don't panic when someone needs space, and you don't feel threatened when they want more closeness. Your emotional responses tend to match the actual situation rather than being amplified by old fears or wounds. You can express your needs clearly and listen to others without getting defensive, and your instinct for independence and connection likely has roots worth understanding.",
       "secondaryBridge": {
         "ANXIOUS": "At times, though, you also notice worries about closeness, which don't fully disappear.",
         "AVOIDANT": "There are also moments when distance feels easier, even if connection usually wins out.",

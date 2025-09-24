@@ -2,7 +2,7 @@
 /**
  * Withinly Trait Reflection + Behavioral Profile Prototype
  *
- * Updated to include behavioral profile generation and testing
+ * Updated to handle single reflection per trait instead of multiple variations
  */
 
 import DefaultLayout from '../layouts/DefaultLayout.astro'
@@ -11,7 +11,7 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 const pageTitle = 'Trait Reflection + Behavioral Profile Prototype'
 const pageDescription = 'Test reflection outputs and behavioral profiles across traits'
 
-// Import trait data (use the complete versions)
+// Import trait data (use the simplified versions)
 import attachmentData from '../data/demo/report-attachment.json'
 import selfAcceptanceData from '../data/demo/report-self-accept.json'
 import mindfulnessData from '../data/demo/report-mindfulness.json'
@@ -64,7 +64,7 @@ const loveLanguageExtras = {
               id="generateReflections"
               class="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
             >
-              Generate Reflections
+              Generate Reflection
             </button>
             <button
               type="button"
@@ -88,7 +88,7 @@ const loveLanguageExtras = {
       <div class="space-y-4">
         <!-- Reflections Output -->
         <div class="rounded-lg bg-blue-50 p-6">
-          <h3 class="mb-3 font-semibold text-blue-900">User Reflections</h3>
+          <h3 class="mb-3 font-semibold text-blue-900">User Reflection</h3>
           <div id="reflectionsOutput" class="text-sm whitespace-pre-line text-blue-800"></div>
         </div>
 
@@ -215,12 +215,19 @@ const loveLanguageExtras = {
     }
 
     function generateMindfulnessProfile(traitData) {
-      const { level, openness } = traitData
+      const { mindfulnessLevel, awarenessLevel, combinationKey } = traitData
 
-      const baseProfile = traits.mindfulness[level].behavioralProfile
-      const opennessProfile = traits.mindfulness.openness[openness].behavioralProfile
+      // Try to get combination profile first
+      const combinationProfile = traits.mindfulness.combinations[combinationKey]?.behavioralProfile
+      if (combinationProfile) {
+        return combinationProfile
+      }
 
-      return `${baseProfile} Current openness to change: ${opennessProfile}`
+      // Fallback to individual dimensions
+      const mindfulnessProfile = traits.mindfulness.dimensions.mindfulness[mindfulnessLevel]?.behavioralProfile
+      const awarenessProfile = traits.mindfulness.dimensions.awareness[awarenessLevel]?.behavioralProfile
+
+      return `${mindfulnessProfile} ${awarenessProfile}`
     }
 
     function generateSelfAcceptanceProfile(traitData) {
@@ -311,25 +318,25 @@ const loveLanguageExtras = {
 
       if (trait === 'mindfulness') {
         container.innerHTML = `
-          <div>
-            <label class="block mb-2 font-medium">Level</label>
-            <select id="mfLevel" class="w-full border rounded p-2">
-              <option value="MAP_BEGINNING">Map Beginning</option>
-              <option value="AWAKENING_POINT">Awakening Point</option>
-              <option value="PATH_SEEKER">Path Seeker</option>
-              <option value="MINDFULNESS_TRAVELER">Mindfulness Traveler</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-2 font-medium">Openness</label>
-            <select id="openness" class="w-full border rounded p-2">
-              <option value="NOT_YET_TIME">Not Yet Time</option>
-              <option value="INTERNAL_CONFLICT">Internal Conflict</option>
-              <option value="GROWTH_READINESS">Growth Readiness</option>
-              <option value="TRANSFORMATIONAL_PHASE">Transformational Phase</option>
-            </select>
-          </div>
-        `
+    <div>
+      <label class="block mb-2 font-medium">Mindfulness Level</label>
+      <select id="mindfulnessLevel" class="w-full border rounded p-2">
+        <option value="LOW_MINDFULNESS">Low Mindfulness (6-10)</option>
+        <option value="MODERATE_MINDFULNESS">Moderate Mindfulness (11-15)</option>
+        <option value="GOOD_MINDFULNESS">Good Mindfulness (16-20)</option>
+        <option value="HIGH_MINDFULNESS">High Mindfulness (21-24)</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-medium">Self-Awareness Level</label>
+      <select id="awarenessLevel" class="w-full border rounded p-2">
+        <option value="LOW_AWARENESS">Low Awareness (4-6)</option>
+        <option value="MODERATE_AWARENESS">Moderate Awareness (7-9)</option>
+        <option value="GOOD_AWARENESS">Good Awareness (10-12)</option>
+        <option value="HIGH_AWARENESS">High Awareness (13-16)</option>
+      </select>
+    </div>
+  `
       }
 
       if (trait === 'love_language') {
@@ -382,8 +389,8 @@ const loveLanguageExtras = {
       if (!trait) return null
 
       if (trait === 'attachment') {
-        const primary = document.getElementById('attachmentType')?.value // Changed from 'type'
-        const primaryIntensity = document.getElementById('intensity')?.value // Changed from 'intensity'
+        const primary = document.getElementById('attachmentType')?.value
+        const primaryIntensity = document.getElementById('intensity')?.value
         const secondary = document.getElementById('secondary')?.value
         const secondaryIntensity = document.getElementById('secondaryIntensity')?.value
 
@@ -404,10 +411,15 @@ const loveLanguageExtras = {
       }
 
       if (trait === 'mindfulness') {
-        const level = document.getElementById('mfLevel')?.value
-        const openness = document.getElementById('openness')?.value
-        if (!level || !openness) return null
-        return { level, openness }
+        const mindfulnessLevel = document.getElementById('mindfulnessLevel')?.value
+        const awarenessLevel = document.getElementById('awarenessLevel')?.value
+        if (!mindfulnessLevel || !awarenessLevel) return null
+        return {
+          mindfulnessLevel,
+          awarenessLevel,
+          // Create combination key for lookup
+          combinationKey: `${mindfulnessLevel}_${awarenessLevel}`,
+        }
       }
 
       if (trait === 'love_language') {
@@ -428,62 +440,66 @@ const loveLanguageExtras = {
       return null
     }
 
+    // UPDATED: Generate single reflection instead of multiple
     function generateReflections() {
       const trait = document.getElementById('trait')?.value
       const traitData = getTraitData()
       if (!trait || !traitData) return
 
-      let allReflections = []
+      let finalReflection = ''
 
       if (trait === 'attachment') {
         const bank = traits.attachment[traitData.primary]
         const tone = toneModifiers[traitData.primaryIntensity]
 
-        bank.reflections.forEach((reflection) => {
-          let fullReflection = reflection
-            .replace('[tone:frequency]', tone.frequency)
-            .replace('[tone:likelihood]', tone.likelihood)
+        // NEW: Use single reflection property
+        let reflection = bank.reflection
+          .replace('[tone:frequency]', tone.frequency)
+          .replace('[tone:likelihood]', tone.likelihood)
 
-          if (traitData.secondary && bank.secondaryBridge[traitData.secondary]) {
-            fullReflection += ' ' + bank.secondaryBridge[traitData.secondary]
-          }
+        // Add secondary bridge if exists
+        if (traitData.secondary && bank.secondaryBridge && bank.secondaryBridge[traitData.secondary]) {
+          reflection += ' ' + bank.secondaryBridge[traitData.secondary]
+        }
 
-          allReflections.push(fullReflection)
-        })
+        finalReflection = reflection
       }
 
       if (trait === 'self_acceptance') {
         const bank = traits.self_acceptance[traitData.level]
-        allReflections = bank.reflections
+        finalReflection = bank.reflection
       }
 
       if (trait === 'mindfulness') {
-        const bank = traits.mindfulness[traitData.level]
-        bank.reflections.forEach((reflection) => {
-          let fullReflection = reflection
-          if (traits.mindfulness.openness && traits.mindfulness.openness[traitData.openness]) {
-            const overlay = traits.mindfulness.openness[traitData.openness][0] || ''
-            if (overlay) fullReflection += ' ' + overlay
-          }
-          allReflections.push(fullReflection)
-        })
+        const combinationKey = traitData.combinationKey
+        const combinationBank = traits.mindfulness.combinations[combinationKey]
+
+        if (combinationBank) {
+          finalReflection = combinationBank.reflection
+        } else {
+          // Fallback to individual dimension if combination not found
+          const mindfulnessBank = traits.mindfulness.dimensions.mindfulness[traitData.mindfulnessLevel]
+          finalReflection = mindfulnessBank.reflection
+        }
       }
 
       if (trait === 'love_language') {
         const bank = traits.love_language[traitData.primary]
-        bank.reflections.forEach((reflection) => {
-          let fullReflection = reflection
-          if (traitData.secondary && bank.secondaryBridge[traitData.secondary]) {
-            fullReflection += ' ' + bank.secondaryBridge[traitData.secondary]
-          }
-          allReflections.push(fullReflection)
-        })
+
+        // NEW: Use single reflection property
+        let reflection = bank.reflection
+
+        // Add secondary bridge if exists
+        if (traitData.secondary && bank.secondaryBridge && bank.secondaryBridge[traitData.secondary]) {
+          reflection += ' ' + bank.secondaryBridge[traitData.secondary]
+        }
+
+        finalReflection = reflection
       }
 
       const output = document.getElementById('reflectionsOutput')
-      if (output && allReflections.length > 0) {
-        const numbered = allReflections.map((reflection, index) => `${index + 1}. ${reflection}`).join('\n\n')
-        output.innerText = numbered
+      if (output && finalReflection) {
+        output.innerText = finalReflection
       }
     }
 
