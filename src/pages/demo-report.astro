@@ -1,61 +1,36 @@
 ---
-/**
- * Withinly Trait Reflection + Behavioral Profile Prototype
- *
- * Updated to handle single reflection per trait instead of multiple variations
- */
-
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 
-// Page metadata
-const pageTitle = 'Trait Reflection + Behavioral Profile Prototype'
+const pageTitle = 'Trait Reflection Demo'
 const pageDescription = 'Test reflection outputs and behavioral profiles across traits'
-
-// Import trait data (use the simplified versions)
-import attachmentData from '../data/demo/report-attachment.json'
-import selfAcceptanceData from '../data/demo/report-self-accept.json'
-import mindfulnessData from '../data/demo/report-mindfulness.json'
-import loveLanguageData from '../data/demo/report-love.json'
-
-// Make data available to client-side script
-const traits = {
-  attachment: attachmentData.attachment,
-  self_acceptance: {
-    ...selfAcceptanceData.self_acceptance,
-    opennessModifiers: selfAcceptanceData.opennessModifiers,
-    interactionGuidance: selfAcceptanceData.interactionGuidance,
-  },
-  mindfulness: mindfulnessData.mindfulness,
-  love_language: loveLanguageData.love_language,
-}
-
-const toneModifiers = attachmentData.toneModifiers
-const combinationProfiles = attachmentData.combinationProfiles
-
-const loveLanguageExtras = {
-  expressionArchetypes: loveLanguageData.expressionArchetypes,
-  distributionPatterns: loveLanguageData.distributionPatterns,
-  combinationProfiles: loveLanguageData.combinationProfiles,
-}
 ---
 
 <DefaultLayout title={pageTitle} description={pageDescription}>
   <main class="mx-auto max-w-4xl py-12">
-    <h1 class="mb-6 text-2xl font-bold">Trait Reflection + Behavioral Profile Prototype</h1>
+    <h1 class="mb-6 text-2xl font-bold">Trait Reflection Demo</h1>
 
     <div class="grid gap-6 md:grid-cols-2">
       <!-- Input Form -->
       <div class="space-y-4">
         <form id="reflectionForm" class="space-y-4 rounded-xl bg-white p-6 shadow">
+          <!-- Language Selector -->
+          <div>
+            <label class="mb-2 block font-medium">Language</label>
+            <select id="locale" class="w-full rounded border p-2">
+              <option value="en">English</option>
+              <option value="lt">Lithuanian</option>
+            </select>
+          </div>
+
           <!-- Trait Selector -->
           <div>
             <label class="mb-2 block font-medium">Trait</label>
             <select id="trait" class="w-full rounded border p-2">
               <option value="">Select trait</option>
               <option value="attachment">Attachment</option>
-              <option value="self_acceptance">Self-Acceptance</option>
+              <option value="loveLanguage">Love Language</option>
               <option value="mindfulness">Mindfulness</option>
-              <option value="love_language">Love Language</option>
+              <option value="selfAcceptance">Self-Acceptance</option>
             </select>
           </div>
 
@@ -65,24 +40,10 @@ const loveLanguageExtras = {
           <div class="space-y-2">
             <button
               type="button"
-              id="generateReflections"
-              class="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            >
-              Generate Reflection
-            </button>
-            <button
-              type="button"
-              id="generateBehavioral"
-              class="w-full rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
-            >
-              Generate Behavioral Profile
-            </button>
-            <button
-              type="button"
               id="generateAll"
-              class="w-full rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+              class="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-gray-400"
             >
-              Generate Everything
+              Generate Reflection & Profile
             </button>
           </div>
         </form>
@@ -90,482 +51,272 @@ const loveLanguageExtras = {
 
       <!-- Output Area -->
       <div class="space-y-4">
-        <!-- Reflections Output -->
+        <!-- User Reflection Output -->
         <div class="rounded-lg bg-blue-50 p-6">
           <h3 class="mb-3 font-semibold text-blue-900">User Reflection</h3>
-          <div id="reflectionsOutput" class="text-sm whitespace-pre-line text-blue-800"></div>
+          <div id="reflectionsOutput" class="text-sm whitespace-pre-line text-blue-800">
+            Select a trait and generate to see results...
+          </div>
         </div>
 
         <!-- Behavioral Profile Output -->
         <div class="rounded-lg bg-green-50 p-6">
-          <h3 class="mb-3 font-semibold text-green-900">Behavioral Profile (For Reports/Consultant)</h3>
-          <div id="behavioralOutput" class="text-sm whitespace-pre-line text-green-800"></div>
+          <h3 class="mb-3 font-semibold text-green-900">Behavioral Profile (Always English)</h3>
+          <div id="behavioralOutput" class="text-sm whitespace-pre-line text-green-800">
+            Select a trait and generate to see results...
+          </div>
         </div>
       </div>
     </div>
   </main>
 
-  <script
-    define:vars={{
-      traits,
-      toneModifiers,
-      combinationProfiles,
-      loveLanguageExtras,
-    }}
-  >
-    // Behavioral profile generation functions
-    function generateAttachmentProfile(traitData) {
-      const { primary, primaryIntensity, secondary, secondaryIntensity } = traitData
+  <script>
+    import('../trait-report-demo/index.js')
+      .then((module) => {
+        const { generateTraitReflection } = module
+        console.log('Module loaded successfully')
 
-      const primaryProfile = traits.attachment[primary].behavioralProfiles[primaryIntensity]
+        function toggleTraitOptions() {
+          const traitSelect = document.getElementById('trait')
+          const trait = traitSelect?.value
+          const container = document.getElementById('traitOptions')
+          if (!container) return
 
-      if (!secondary) {
-        return primaryProfile
-      }
+          container.innerHTML = ''
+          if (!trait) return
 
-      const combinationKey = `${primary}_${primaryIntensity}_${secondary}_${secondaryIntensity}`
-      if (combinationProfiles[combinationKey]) {
-        return combinationProfiles[combinationKey]
-      }
-      // SYSTEMATIC GENERATION for undefined combinations
+          if (trait === 'attachment') {
+            container.innerHTML = `
+            <div>
+              <label class="block mb-2 font-medium">Primary Attachment Type</label>
+              <select id="attachmentType" class="w-full border rounded p-2">
+                <option value="ANXIOUS">Anxious</option>
+                <option value="AVOIDANT">Avoidant</option>
+                <option value="DISORGANIZED">Disorganized</option>
+                <option value="SECURE">Secure</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Primary Intensity</label>
+              <select id="intensity" class="w-full border rounded p-2">
+                <option value="VERY_MILD">Very Mild</option>
+                <option value="MILD">Mild</option>
+                <option value="MODERATE">Moderate</option>
+                <option value="STRONG">Strong</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Secondary Type (Optional)</label>
+              <select id="secondary" class="w-full border rounded p-2">
+                <option value="">None</option>
+                <option value="ANXIOUS">Anxious</option>
+                <option value="AVOIDANT">Avoidant</option>
+                <option value="DISORGANIZED">Disorganized</option>
+                <option value="SECURE">Secure</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Secondary Intensity</label>
+              <select id="secondaryIntensity" class="w-full border rounded p-2">
+                <option value="VERY_MILD">Very Mild</option>
+                <option value="MILD">Mild</option>
+                <option value="MODERATE">Moderate</option>
+                <option value="STRONG">Strong</option>
+              </select>
+            </div>
+          `
+          }
 
-      // Combination descriptions for all possible primary-secondary pairs
-      const combinationDescriptions = {
-        ANXIOUS_AVOIDANT: 'internal conflict between needing reassurance and wanting independence',
-        ANXIOUS_SECURE: 'generally trusting foundation with notable need for extra reassurance during stress',
-        ANXIOUS_DISORGANIZED: 'fear of abandonment combined with conflicted feelings about intimacy',
-        AVOIDANT_ANXIOUS: 'independence drive complicated by underlying need for connection',
-        AVOIDANT_SECURE: 'stable foundation with strong appreciation for autonomy and healthy boundaries',
-        AVOIDANT_DISORGANIZED: 'independence needs combined with conflicted feelings about closeness',
-        SECURE_ANXIOUS: 'stable relationship foundation with periods of worry about connection security',
-        SECURE_AVOIDANT: 'secure base with healthy balance between intimacy and independence',
-        SECURE_DISORGANIZED: 'generally stable with occasional periods of conflicted feelings about intimacy',
-        DISORGANIZED_ANXIOUS: 'chaotic intimacy patterns intensified by fear of abandonment',
-        DISORGANIZED_AVOIDANT: 'conflicted feelings about closeness combined with tendency to withdraw for protection',
-        DISORGANIZED_SECURE: 'desire for stable connection complicated by periods of emotional confusion',
-      }
+          if (trait === 'loveLanguage') {
+            container.innerHTML = `
+            <div>
+              <label class="block mb-2 font-medium">Primary Love Language</label>
+              <select id="llPrimary" class="w-full border rounded p-2">
+                <option value="QUALITY_TIME">Quality Time</option>
+                <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+                <option value="ACTS_OF_SERVICE">Acts of Service</option>
+                <option value="GIFTS">Gifts</option>
+                <option value="PHYSICAL_TOUCH">Physical Touch</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Secondary (Optional)</label>
+              <select id="llSecondary" class="w-full border rounded p-2">
+                <option value="">None</option>
+                <option value="QUALITY_TIME">Quality Time</option>
+                <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+                <option value="ACTS_OF_SERVICE">Acts of Service</option>
+                <option value="GIFTS">Gifts</option>
+                <option value="PHYSICAL_TOUCH">Physical Touch</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Distribution</label>
+              <select id="llDistribution" class="w-full border rounded p-2">
+                <option value="DOMINANT">Dominant</option>
+                <option value="DUAL">Dual</option>
+                <option value="MULTIPLE">Multiple</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Expression Archetype</label>
+              <select id="llArchetype" class="w-full border rounded p-2">
+                <option value="VISIONARY">Visionary</option>
+                <option value="ARTIST">Artist</option>
+                <option value="HEALER">Healer</option>
+                <option value="TEACHER">Teacher</option>
+                <option value="CHILD">Child</option>
+              </select>
+            </div>
+          `
+          }
 
-      // Intensity combination modifiers
-      const intensityModifiers = {
-        STRONG_STRONG:
-          'Creates intense internal conflict and very challenging relationship dynamics requiring professional support.',
-        STRONG_MODERATE: 'Creates significant complexity with the primary pattern dominating most situations.',
-        STRONG_MILD: 'Primary pattern dominates with occasional secondary influence during stress.',
-        STRONG_VERY_MILD: 'Primary pattern dominates with rare secondary pattern emergence.',
-        MODERATE_STRONG: 'Creates notable complexity with secondary pattern having significant influence on behavior.',
-        MODERATE_MODERATE: 'Creates moderate relationship complexity requiring understanding partners.',
-        MODERATE_MILD: 'Generally manageable with secondary pattern surfacing during difficult periods.',
-        MODERATE_VERY_MILD: 'Mostly straightforward with minimal secondary pattern influence.',
-        MILD_STRONG: 'Secondary pattern often overwhelms the mild primary, creating confusing dynamics.',
-        MILD_MODERATE: 'Secondary pattern frequently influences behavior despite mild primary.',
-        MILD_MILD: 'Both patterns present but neither dominates, creating flexible attachment style.',
-        MILD_VERY_MILD: 'Very mild overall patterns with subtle attachment tendencies.',
-        VERY_MILD_STRONG: 'Secondary pattern dominates despite very mild primary attachment style.',
-        VERY_MILD_MODERATE: 'Secondary pattern is the main influence on attachment behavior.',
-        VERY_MILD_MILD: 'Minimal overall attachment patterns with slight tendencies.',
-        VERY_MILD_VERY_MILD: 'Very minimal attachment patterns overall.',
-      }
+          if (trait === 'mindfulness') {
+            container.innerHTML = `
+            <div>
+              <label class="block mb-2 font-medium">Mindfulness Level</label>
+              <select id="mindfulnessLevel" class="w-full border rounded p-2">
+                <option value="LOW_MINDFULNESS">Low Mindfulness</option>
+                <option value="MODERATE_MINDFULNESS">Moderate Mindfulness</option>
+                <option value="GOOD_MINDFULNESS">Good Mindfulness</option>
+                <option value="HIGH_MINDFULNESS">High Mindfulness</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Awareness Level</label>
+              <select id="awarenessLevel" class="w-full border rounded p-2">
+                <option value="LOW_AWARENESS">Low Awareness</option>
+                <option value="MODERATE_AWARENESS">Moderate Awareness</option>
+                <option value="GOOD_AWARENESS">Good Awareness</option>
+                <option value="HIGH_AWARENESS">High Awareness</option>
+              </select>
+            </div>
+          `
+          }
 
-      // Generate systematic combination
-      const typeKey = `${primary}_${secondary}`
-      const combinationDescription =
-        combinationDescriptions[typeKey] || 'complex interaction between different attachment needs'
-
-      const intensityKey = `${primaryIntensity}_${secondaryIntensity}`
-      const intensityNote = intensityModifiers[intensityKey] || 'Creates some relationship complexity.'
-
-      // Build complete profile
-      const primaryBase = primaryProfile.split('.')[0] // Take first sentence of primary profile
-
-      return `${primaryBase}. Secondary ${secondary.toLowerCase()} patterns create ${combinationDescription}. ${intensityNote}`
-    }
-
-    function generateLoveLanguageProfile(traitData) {
-      const { primary, secondary, distribution, archetype } = traitData
-
-      // Check for combination profile
-      if (secondary && distribution) {
-        const combinationKey = `${primary}_${secondary}_${distribution}`
-        if (loveLanguageExtras.combinationProfiles[combinationKey]) {
-          return loveLanguageExtras.combinationProfiles[combinationKey]
-        }
-      }
-
-      // Build from components
-      let profile = traits.love_language[primary].behavioralProfile || `Primary love language: ${primary}`
-
-      if (secondary) {
-        const bridge = traits.love_language[primary].secondaryBridge?.[secondary]
-        if (bridge) {
-          profile += ` ${bridge}`
-        }
-      }
-
-      if (distribution) {
-        const distProfile = loveLanguageExtras.distributionPatterns[distribution]?.behavioralProfile
-        if (distProfile) {
-          profile += ` ${distProfile}`
-        }
-      }
-
-      if (archetype) {
-        const archetypeProfile = loveLanguageExtras.expressionArchetypes[archetype]?.behavioralProfile
-        if (archetypeProfile) {
-          profile += ` Expression style: ${archetypeProfile}`
-        }
-      }
-
-      return profile
-    }
-
-    function generateMindfulnessProfile(traitData) {
-      const { mindfulnessLevel, awarenessLevel, combinationKey } = traitData
-
-      // Try to get combination profile first
-      const combinationProfile = traits.mindfulness.combinations[combinationKey]?.behavioralProfile
-      if (combinationProfile) {
-        return combinationProfile
-      }
-
-      // Fallback to individual dimensions
-      const mindfulnessProfile = traits.mindfulness.dimensions.mindfulness[mindfulnessLevel]?.behavioralProfile
-      const awarenessProfile = traits.mindfulness.dimensions.awareness[awarenessLevel]?.behavioralProfile
-
-      return `${mindfulnessProfile} ${awarenessProfile}`
-    }
-
-    function generateSelfAcceptanceProfile(traitData) {
-      const { level, openness } = traitData
-      let profile = traits.self_acceptance[level].behavioralProfile
-
-      // Add openness behavioral addition if present
-      if (openness && traits.self_acceptance.opennessModifiers && traits.self_acceptance.opennessModifiers[openness]) {
-        const behavioralAddition = traits.self_acceptance.opennessModifiers[openness].behavioralAddition
-        if (behavioralAddition) {
-          profile += ' ' + behavioralAddition
-        }
-      }
-
-      return profile
-    }
-
-    function generateBehavioralProfile(traitType, traitData) {
-      switch (traitType) {
-        case 'attachment':
-          return generateAttachmentProfile(traitData)
-        case 'love_language':
-          return generateLoveLanguageProfile(traitData)
-        case 'mindfulness':
-          return generateMindfulnessProfile(traitData)
-        case 'self_acceptance':
-          return generateSelfAcceptanceProfile(traitData)
-        default:
-          return 'No behavioral profile available for this trait type.'
-      }
-    }
-
-    function toggleTraitOptions() {
-      const traitSelect = document.getElementById('trait')
-      const trait = traitSelect?.value
-      const container = document.getElementById('traitOptions')
-      if (!container) return
-
-      container.innerHTML = ''
-
-      if (!trait) return
-
-      if (trait === 'attachment') {
-        container.innerHTML = `
-          <div>
-            <label class="block mb-2 font-medium">Attachment Type</label>
-            <select id="attachmentType" class="w-full border rounded p-2">
-              <option value="ANXIOUS">Anxious</option>
-              <option value="AVOIDANT">Avoidant</option>
-              <option value="DISORGANIZED">Disorganized</option>
-              <option value="SECURE">Secure</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-2 font-medium">Intensity</label>
-            <select id="intensity" class="w-full border rounded p-2">
-              <option value="VERY_MILD">Very Mild</option>
-              <option value="MILD">Mild</option>
-              <option value="MODERATE">Moderate</option>
-              <option value="STRONG">Strong</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-2 font-medium">Secondary (Optional)</label>
-            <select id="secondary" class="w-full border rounded p-2">
-              <option value="">None</option>
-              <option value="ANXIOUS">Anxious</option>
-              <option value="AVOIDANT">Avoidant</option>
-              <option value="DISORGANIZED">Disorganized</option>
-              <option value="SECURE">Secure</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-2 font-medium">Secondary Intensity</label>
-            <select id="secondaryIntensity" class="w-full border rounded p-2">
-              <option value="VERY_MILD">Very Mild</option>
-              <option value="MILD">Mild</option>
-              <option value="MODERATE">Moderate</option>
-              <option value="STRONG">Strong</option>
-            </select>
-          </div>
-        `
-      }
-
-      if (trait === 'self_acceptance') {
-        container.innerHTML = `
-    <div>
-      <label class="block mb-2 font-medium">Self-Acceptance Level</label>
-      <select id="saLevel" class="w-full border rounded p-2">
-        <option value="BEGINNING_SELF_ACCEPTANCE">Beginning Self-Acceptance</option>
-        <option value="DEVELOPING_SELF_ACCEPTANCE">Developing Self-Acceptance</option>
-        <option value="GROWING_SELF_ACCEPTANCE">Growing Self-Acceptance</option>
-        <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated Self-Acceptance</option>
-      </select>
-    </div>
-    <div>
-      <label class="block mb-2 font-medium">Openness to Change</label>
-      <select id="saOpenness" class="w-full border rounded p-2">
-        <option value="">None (Optional)</option>
-        <option value="RESTING_PHASE">Resting Phase</option>
-        <option value="MIXED_FEELINGS">Mixed Feelings</option>
-        <option value="READY_TO_GROW">Ready to Grow</option>
-        <option value="DEEP_EXPLORATION">Deep Exploration</option>
-      </select>
-    </div>
-  `
-      }
-      if (trait === 'mindfulness') {
-        container.innerHTML = `
-    <div>
-      <label class="block mb-2 font-medium">Mindfulness Level</label>
-      <select id="mindfulnessLevel" class="w-full border rounded p-2">
-        <option value="LOW_MINDFULNESS">Low Mindfulness (6-10)</option>
-        <option value="MODERATE_MINDFULNESS">Moderate Mindfulness (11-15)</option>
-        <option value="GOOD_MINDFULNESS">Good Mindfulness (16-20)</option>
-        <option value="HIGH_MINDFULNESS">High Mindfulness (21-24)</option>
-      </select>
-    </div>
-    <div>
-      <label class="block mb-2 font-medium">Self-Awareness Level</label>
-      <select id="awarenessLevel" class="w-full border rounded p-2">
-        <option value="LOW_AWARENESS">Low Awareness (4-6)</option>
-        <option value="MODERATE_AWARENESS">Moderate Awareness (7-9)</option>
-        <option value="GOOD_AWARENESS">Good Awareness (10-12)</option>
-        <option value="HIGH_AWARENESS">High Awareness (13-16)</option>
-      </select>
-    </div>
-  `
-      }
-
-      if (trait === 'love_language') {
-        container.innerHTML = `
-          <div>
-            <label class="block mb-2 font-medium">Primary Love Language</label>
-            <select id="llPrimary" class="w-full border rounded p-2">
-              <option value="QUALITY_TIME">Quality Time</option>
-              <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
-              <option value="ACTS_OF_SERVICE">Acts of Service</option>
-              <option value="GIFTS">Gifts</option>
-              <option value="PHYSICAL_TOUCH">Physical Touch</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-2 font-medium">Secondary (Optional)</label>
-            <select id="llSecondary" class="w-full border rounded p-2">
-              <option value="">None</option>
-              <option value="QUALITY_TIME">Quality Time</option>
-              <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
-              <option value="ACTS_OF_SERVICE">Acts of Service</option>
-              <option value="GIFTS">Gifts</option>
-              <option value="PHYSICAL_TOUCH">Physical Touch</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-2 font-medium">Distribution</label>
-            <select id="llDistribution" class="w-full border rounded p-2">
-              <option value="DOMINANT">Dominant</option>
-              <option value="DUAL">Dual</option>
-              <option value="MULTIPLE">Multiple</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-2 font-medium">Expression Archetype</label>
-            <select id="llArchetype" class="w-full border rounded p-2">
-              <option value="VISIONARY">Visionary</option>
-              <option value="ARTIST">Artist</option>
-              <option value="HEALER">Healer</option>
-              <option value="TEACHER">Teacher</option>
-              <option value="CHILD">Child</option>
-            </select>
-          </div>
-        `
-      }
-    }
-
-    function getTraitData() {
-      const trait = document.getElementById('trait')?.value
-      if (!trait) return null
-
-      if (trait === 'attachment') {
-        const primary = document.getElementById('attachmentType')?.value
-        const primaryIntensity = document.getElementById('intensity')?.value
-        const secondary = document.getElementById('secondary')?.value
-        const secondaryIntensity = document.getElementById('secondaryIntensity')?.value
-
-        if (!primary || !primaryIntensity) return null
-
-        return {
-          primary,
-          primaryIntensity,
-          secondary: secondary || null,
-          secondaryIntensity: secondary ? secondaryIntensity : null,
-        }
-      }
-
-      if (trait === 'self_acceptance') {
-        const level = document.getElementById('saLevel')?.value
-        const openness = document.getElementById('saOpenness')?.value
-        if (!level) return null
-        return {
-          level,
-          openness: openness || null,
-        }
-      }
-
-      if (trait === 'mindfulness') {
-        const mindfulnessLevel = document.getElementById('mindfulnessLevel')?.value
-        const awarenessLevel = document.getElementById('awarenessLevel')?.value
-        if (!mindfulnessLevel || !awarenessLevel) return null
-        return {
-          mindfulnessLevel,
-          awarenessLevel,
-          // Create combination key for lookup
-          combinationKey: `${mindfulnessLevel}_${awarenessLevel}`,
-        }
-      }
-
-      if (trait === 'love_language') {
-        const primary = document.getElementById('llPrimary')?.value
-        const secondary = document.getElementById('llSecondary')?.value
-        const distribution = document.getElementById('llDistribution')?.value
-        const archetype = document.getElementById('llArchetype')?.value
-        if (!primary) return null
-
-        return {
-          primary,
-          secondary: secondary || null,
-          distribution,
-          archetype,
-        }
-      }
-
-      return null
-    }
-
-    // UPDATED: Generate single reflection instead of multiple
-    function generateReflections() {
-      const trait = document.getElementById('trait')?.value
-      const traitData = getTraitData()
-      if (!trait || !traitData) return
-
-      let finalReflection = ''
-
-      if (trait === 'attachment') {
-        const bank = traits.attachment[traitData.primary]
-        const tone = toneModifiers[traitData.primaryIntensity]
-
-        // NEW: Use single reflection property
-        let reflection = bank.reflection
-          .replace('[tone:frequency]', tone.frequency)
-          .replace('[tone:likelihood]', tone.likelihood)
-
-        // Add secondary bridge if exists
-        if (traitData.secondary && bank.secondaryBridge && bank.secondaryBridge[traitData.secondary]) {
-          reflection += ' ' + bank.secondaryBridge[traitData.secondary]
+          if (trait === 'selfAcceptance') {
+            container.innerHTML = `
+            <div>
+              <label class="block mb-2 font-medium">Self-Acceptance Level</label>
+              <select id="saLevel" class="w-full border rounded p-2">
+                <option value="BEGINNING_SELF_ACCEPTANCE">Beginning Self-Acceptance</option>
+                <option value="DEVELOPING_SELF_ACCEPTANCE">Developing Self-Acceptance</option>
+                <option value="GROWING_SELF_ACCEPTANCE">Growing Self-Acceptance</option>
+                <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated Self-Acceptance</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 font-medium">Openness to Change (Optional)</label>
+              <select id="saOpenness" class="w-full border rounded p-2">
+                <option value="">None</option>
+                <option value="RESTING_PHASE">Resting Phase</option>
+                <option value="MIXED_FEELINGS">Mixed Feelings</option>
+                <option value="READY_TO_GROW">Ready to Grow</option>
+                <option value="DEEP_EXPLORATION">Deep Exploration</option>
+              </select>
+            </div>
+          `
+          }
         }
 
-        finalReflection = reflection
-      }
+        function getTraitData() {
+          const trait = document.getElementById('trait')?.value
+          if (!trait) return null
 
-      if (trait === 'self_acceptance') {
-        const bank = traits.self_acceptance[traitData.level]
-        let reflection = bank.reflection
+          if (trait === 'attachment') {
+            const primary = document.getElementById('attachmentType')?.value
+            const primaryIntensity = document.getElementById('intensity')?.value
+            const secondary = document.getElementById('secondary')?.value
+            const secondaryIntensity = document.getElementById('secondaryIntensity')?.value
 
-        // Add openness modifier if selected
-        if (
-          traitData.openness &&
-          traits.self_acceptance.opennessModifiers &&
-          traits.self_acceptance.opennessModifiers[traitData.openness]
-        ) {
-          const modifier = traits.self_acceptance.opennessModifiers[traitData.openness].modifier
-          reflection += ' ' + modifier
+            if (!primary || !primaryIntensity) return null
+
+            return {
+              primary,
+              primaryIntensity,
+              secondary: secondary || null,
+              secondaryIntensity: secondary ? secondaryIntensity : null,
+            }
+          }
+
+          if (trait === 'loveLanguage') {
+            const primary = document.getElementById('llPrimary')?.value
+            const secondary = document.getElementById('llSecondary')?.value
+            const distribution = document.getElementById('llDistribution')?.value
+            const expressionArchetype = document.getElementById('llArchetype')?.value
+            if (!primary) return null
+
+            return {
+              primary,
+              secondary: secondary || null,
+              distribution,
+              expressionArchetype,
+            }
+          }
+
+          if (trait === 'mindfulness') {
+            const mindfulnessLevel = document.getElementById('mindfulnessLevel')?.value
+            const awarenessLevel = document.getElementById('awarenessLevel')?.value
+            if (!mindfulnessLevel || !awarenessLevel) return null
+            return {
+              mindfulnessLevel,
+              awarenessLevel,
+            }
+          }
+
+          if (trait === 'selfAcceptance') {
+            const level = document.getElementById('saLevel')?.value
+            const openness_to_change = document.getElementById('saOpenness')?.value
+            if (!level) return null
+            return {
+              level,
+              openness_to_change: openness_to_change || null,
+            }
+          }
+
+          return null
         }
 
-        finalReflection = reflection
-      }
+        function generateAll() {
+          const trait = document.getElementById('trait')?.value
+          const locale = document.getElementById('locale')?.value || 'en'
+          const traitData = getTraitData()
 
-      if (trait === 'mindfulness') {
-        const combinationKey = traitData.combinationKey
-        const combinationBank = traits.mindfulness.combinations[combinationKey]
+          if (!trait || !traitData) {
+            alert('Please select a trait and fill in all required fields')
+            return
+          }
 
-        if (combinationBank) {
-          finalReflection = combinationBank.reflection
-        } else {
-          // Fallback to individual dimension if combination not found
-          const mindfulnessBank = traits.mindfulness.dimensions.mindfulness[traitData.mindfulnessLevel]
-          finalReflection = mindfulnessBank.reflection
+          try {
+            console.log('Generating reflection for:', trait, locale, traitData)
+            const result = generateTraitReflection(trait, traitData, locale)
+            console.log('Result:', result)
+
+            const reflectionsOutput = document.getElementById('reflectionsOutput')
+            const behavioralOutput = document.getElementById('behavioralOutput')
+
+            if (reflectionsOutput) {
+              reflectionsOutput.innerText = result.userReport
+            }
+
+            if (behavioralOutput) {
+              behavioralOutput.innerText = result.behavioralProfile
+            }
+          } catch (error) {
+            alert(`Error: ${error.message}`)
+            console.error(error)
+          }
         }
-      }
 
-      if (trait === 'love_language') {
-        const bank = traits.love_language[traitData.primary]
+        // Hook up listeners
+        document.getElementById('trait')?.addEventListener('change', toggleTraitOptions)
+        document.getElementById('generateAll')?.addEventListener('click', generateAll)
 
-        // NEW: Use single reflection property
-        let reflection = bank.reflection
-
-        // Add secondary bridge if exists
-        if (traitData.secondary && bank.secondaryBridge && bank.secondaryBridge[traitData.secondary]) {
-          reflection += ' ' + bank.secondaryBridge[traitData.secondary]
-        }
-
-        finalReflection = reflection
-      }
-
-      const output = document.getElementById('reflectionsOutput')
-      if (output && finalReflection) {
-        output.innerText = finalReflection
-      }
-    }
-
-    function generateBehavioralProfileOutput() {
-      const trait = document.getElementById('trait')?.value
-      const traitData = getTraitData()
-      if (!trait || !traitData) return
-
-      const profile = generateBehavioralProfile(trait, traitData)
-
-      const output = document.getElementById('behavioralOutput')
-      if (output) {
-        output.innerText = profile
-      }
-    }
-
-    function generateAll() {
-      generateReflections()
-      generateBehavioralProfileOutput()
-    }
-
-    // Hook up listeners
-    document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('trait')?.addEventListener('change', toggleTraitOptions)
-      document.getElementById('generateReflections')?.addEventListener('click', generateReflections)
-      document.getElementById('generateBehavioral')?.addEventListener('click', generateBehavioralProfileOutput)
-      document.getElementById('generateAll')?.addEventListener('click', generateAll)
-    })
+        console.log('Event listeners attached')
+      })
+      .catch((error) => {
+        console.error('Failed to load module:', error)
+        alert('Failed to load trait reflection module: ' + error.message)
+      })
   </script>
 </DefaultLayout>

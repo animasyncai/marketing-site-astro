@@ -1,0 +1,30 @@
+{
+  "levels": {
+    "BEGINNING_SELF_ACCEPTANCE": {
+      "reflection": "Pradedate pastebėti savo vidinius modelius, nors jų supratimas gali būti iššūkis. Jūsų vidinis balsas gali būti gana kritiškas, ir galite visiškai nepastebėti ar nejausti, kas vyksta jumyse dabartyje. Kai kyla stiprios emocijos, jos dažnai jaučiasi pribloškiančios ar lyg jos atsitinka jums, o ne išgyvenimai, kuriuos galite tyrinėti. Kartais sprendžiate savo reakcijas kaip neteisingas ar problematiškus, o ne tampantys smalsūs, kodėl jos vyksta. Dažnai yra atstumo jausmas tarp jūsų ir jūsų vidinio pasaulio, tarsi žiūrėtumėte savo gyvenimą per stiklą kartais. Šis atsijungimas nėra kažkas, ką pasirinkote — dažnai vystėsi kaip apsauga, kai visa jausti būtų buvę per daug pribloškianti, ir būdas, kaip minimizuojatės, tikriausiai turėjo prasmę kartą, net jei dabar ne."
+    },
+    "DEVELOPING_SELF_ACCEPTANCE": {
+      "reflection": "Auginate sąmoningumą apie savo emocinius modelius ir kartais galite stebėti save su smalsumu, o ne sprendimu. Yra momentų, kai pagaunate savo modelių užuominų ir galvojate: 'O, tai kas darau, kai jaučiuosi grasomas' arba 'Pastebiu, kad visada taip reaguoju, kai...' Bet šios įžvalgos ne visada laikosi, ir galite atsidurti atgal žinomuose savęs sprendimo ar emocinės apkrovos cikluose. Mokotės būti malonesni sau, nors jūsų vidinis kritikas vis dar reguliariai pasirodo. Kartais galite būti švelnūs sau, kai dalykai nevyksta kaip planuota, ir kitais atvejais tas kritiškas balsas perima su žinoma griežtumu. Esate aktyvioje savęs atradimo fazėje, vystydami gebėjimą atsitraukti ir stebėti savo išgyvenimą, bet tai dar nėra nuoseklu."
+    },
+    "GROWING_SELF_ACCEPTANCE": {
+      "reflection": "Turite gerą savęs sąmoningumą ir dažnai galite atsitraukti stebėti savo modelius be griežto sprendimo. Išugdėte tikrą smalsumą apie savo vidinį pasaulį ir dažnai galite stebėti savo emocijas ir reakcijas, neturintys iš karto bandyti pataisyti ar spręsti. Kai kas nors jus sukelia, vis labiau galite sustoti ir paklausti: 'Kas iš tikrųjų čia vyksta?' o ne tiesiog būti nušluojamam jausmo. Paprastai elgiatės su savimi su užuojauta ir galite priimti skirtingas savo puses. Auginate užuojautą sau, kai nesusitvarkote dalykų tobulai, ir mokotės traktuoti savo klaidas kaip informaciją, o ne įrodymą neadekvačio. Vystote išmintį, palaikantį vidinį balsą, nors vis dar turite momentų, kai senas kritiškas balsas perima."
+    },
+    "INTEGRATED_SELF_ACCEPTANCE": {
+      "reflection": "Nuosekliai sutinkate save su smalsumu ir meilumu. Galite stebėti savo emocijas ir reakcijas su aiškumu ir užuojauta, laikydami visas savo dalis su priėmimu. Išugdėte stiprų, palaikantį santykį su savimi, kuris tapo vienu iš jūsų didžiausių išteklių. Kai kyla sudėtingos emocijos, galite sutikti jas su tikru smalsumu ir užuojauta, suprasti, kad jos dalis jūsų žmogiškojo išgyvenimo, o ne problemos, kurios turi būti išspręstos. Išugdėte patikimą vidinį stebėtoją — jūsų dalį, kuri gali stebėti jūsų mintis ir jausmus su išmintimi ir meilumu, net sunkiomis akimirkomis. Atpažįstate savo modelius neesant jų valdomi, ir kai patenkate į senus ciklus, galite rasti kelią atgal į centrą su kantrybe, o ne savęs puolimu."
+    }
+  },
+  "opennessModifiers": {
+    "RESTING_PHASE": {
+      "modifier": "Dabar galite jaustis priblokštas, pavargęs arba skeptiškas dėl pokyčių, ir tai visiškai teisinga — kartais mums reikia poilsio ir stabilumo prieš esant pasiruošusiems augimui."
+    },
+    "MIXED_FEELINGS": {
+      "modifier": "Jūsų dalis nori augti ir keistis, o kita dalis jaučiasi neaiškiai ar priešinasi, ir ši vidinė įtampa yra normali ir rodo, kad apmąstote, ką augimas galėtų jums reikšti."
+    },
+    "READY_TO_GROW": {
+      "modifier": "Esate motyvuotas daryti teigiamus pokyčius ir pasiruošęs imtis veiksmų su tinkama parama ir įrankiais, atnešant energijos ir atvirumo augimo darbui."
+    },
+    "DEEP_EXPLORATION": {
+      "modifier": "Esate susijaudinęs dėl reikšmingo asmeninio tyrimo ir pasiruošęs prasmingiems vidiniam darbui, atviras iššūkiams įžvalgoms ir dideliems pokyčiams, kaip suprantate save."
+    }
+  }
+}

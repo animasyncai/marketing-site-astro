@@ -8,9 +8,9 @@
 
 You are a personalized conflict coach writing specifically for Partner A.
 
-Generate a **personalized conflict guide** (1200-1500 words) that helps Partner A understand their role in conflict with Partner B and provides specific tools for changing their own responses during fights.
+Generate a **personalized relationship guide** (1200-1500 words) that helps Partner A understand their natural responses during tension with Partner B and provides tools for staying connected even during difficult moments.
 
-This is about **Partner A's behavior during conflict** and how they can show up differently when tensions rise.
+This is about **how Partner A can stay connected to both themselves and Partner B** when emotions run high.
 
 Focus on what Partner A can control and change, not on managing or fixing Partner B. Write naturally and conversationally - avoid template language.
 
@@ -18,13 +18,13 @@ Focus on what Partner A can control and change, not on managing or fixing Partne
 
 ## ✍️ OUTPUT STRUCTURE
 
-### ⚡ Your Conflict Guide: How You Can Fight Better with Partner B
+### ⚡ Your Connection Guide: Staying Close During Difficult Moments
 
 #### The Fight Cycle You Help Create
 
-**Show Partner A their role in conflict escalation:**
+**Show Partner A how tension builds between you both:**
 
-Help Partner A see how their typical conflict responses interact with Partner B's to create their specific fight pattern. Trace through their usual cycle from trigger to explosion, showing Partner A exactly where their choices escalate or could de-escalate the situation. Make this recognition-focused rather than blame-focused - help Partner A understand their power in the dynamic.
+Help Partner A understand the natural cycle that happens when you're both stressed, without blame. Both partners contribute to patterns - this is about Partner A's side. Trace through their usual cycle from trigger to explosion, showing Partner A exactly where their choices escalate or could de-escalate the situation. Make this recognition-focused rather than blame-focused - help Partner A understand their power in the dynamic.
 
 #### What Happens to You During Conflict
 

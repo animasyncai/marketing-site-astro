@@ -1,0 +1,82 @@
+{
+  "dimensions": {
+    "mindfulness": {
+      "LOW_MINDFULNESS": {
+        "reflection": "Jūs dažnai judite gyvenime autopilote, praleidžiate signalus iš savo kūno ir emocijų, kai jie pirmą kartą iškyla. Jūsų dėmesys linkęs būti išsklaidytas į kelis dalykus, todėl sunku likti dabartyje su tuo, ką išgyvenate. Kai jausmai iškyla, galite juos pastebėti tik tada, kai jie jau paveikė jūsų veiksmus ar nuotaiką. Tai nėra nesėkmė — tai tiesiog vieta, kur jūsų dėmesys natūraliai eina, kai esate sutelkę į kasdienes praktiškumo reikmes. Sąmoningo įsisavinimo sąvoka į savo vidinį pasaulį gali atrodyti svetima ar nepraktiška, ir tas pasipriešinimas sulėtėti gali jums ką nors svarbaus pasakyti."
+      },
+      "MODERATE_MINDFULNESS": {
+        "reflection": "Kartais pagaunate save išgyvenimo viduryje ir galvojate: 'O, štai ką iš tikrųjų dabar jaučiu.' Šie pripažinimo momentai ateina ir eina — kartais esate įsitraukę, kitais atvejais esate kur nors kitur. Galite atsidurti pastebėdami savo kvėpavimą stresinį momentą ar pagaudami įtampą pečiuose vidury dienos. Idėja būti labiau dabartimi jus traukia, net jei nuoseklumas atrodo iššūkis. Kai prisimenkate sustoti ir įsijungti, dažnai atrandate išgyvenimų sluoksnius, kurie buvo visą laiką, laukdami būti pripažinti."
+      },
+      "GOOD_MINDFULNESS": {
+        "reflection": "Jūs išugdėte tikrą santykį su dabarties momentu ir reguliariai įsijungiate į tai, kas vyksta jumyse. Per savo dieną atsiduriate natūraliai tikrinantys savo kvėpavimą, pastebintys fizinius pojūčius ar stebintys savo emocinę būseną, kai ji vystosi. Išmokote pagauti išgyvenimus arčiau, kai jie kyla, suteikdami daugiau pasirinkimo, kaip atsakyti. Šis sąmoningumas nėra tobulas ar pastovus, bet jis pakankamai patikimas, kad galėtumėte jį pasiekti, kai labiausiai reikia. Jūsų gebėjimas likti dabartimi tapo vertingu ištekliu, ypač sunkių ar intensyvių momentų metu."
+      },
+      "HIGH_MINDFULNESS": {
+        "reflection": "Dabarties momento sąmoningumas įaustas į jūsų kasdienio išgyvenimo audinį. Natūraliai ilsitės sąmoningumo apie savo kvėpavimą, kūną, mintis ir emocijas visą dieną, neturėdami prisiminti kreipti dėmesį. Kai kyla intensyvūs išgyvenimai, galite juos sutikti su erdviu, priimančiu buvimu, kuris nėra nušluojamas turinio. Jūsų sąmoningumas nėra pastangų — tai tapo natūraliu būdu būti, kuris palaiko tiek jūsų vidinį stabilumą, tiek gebėjimą būti visiškai dalyvaujant su kitais. Šis nuoseklus buvimas tapo viena iš jūsų didžiausių stiprybių."
+      }
+    },
+    "awareness": {
+      "LOW_AWARENESS": {
+        "reflection": "Kai kyla stiprūs jausmai, jie gali atrodyti pribloškiantys ar painiami, ir galite atsidurti reaguodami prieš suprasdami, kas iš tikrųjų vyksta jumyse. Dažnai patriate emocijas ir pojūčius kaip dalykus, kurie atsitinka jums, o ne išgyvenimus, nešančius informaciją apie jūsų poreikius ar aplinkybes. Gilesnė reikšmė už jūsų reakcijų — kas jas sukėlė, į ką jos nurodo, ar kaip jos siejasi su jūsų platesnius modelius — dažnai lieka neaiški. Tai ne apie intelektą; tai apie dar neišugdytą smalsaus savęs tyrinėjimo įprotį. Jūsų emocinis gyvenimas yra tikras ir validus, net kai jo žinutės jaučiasi paslaptingos."
+      },
+      "MODERATE_AWARENESS": {
+        "reflection": "Kartais apmąstote savo jausmus ir gaunate įžvalgą, ką jie reiškia, bet šis supratimas ne visada yra nuoseklus ar prieinamas momentu. Yra laikų, kai galite atsitraukti ir pagalvoti: 'O, suprantu, apie ką tai iš tikrųjų buvo,' bet kitais atvejais jūsų reakcijos lieka mįslingos. Vystote gebėjimą susieti savo emocijas su poreikiais, praeities išgyvenimais ar dabartinėmis aplinkybėmis, nors šis įgūdis vis dar formuojasi. Turite aiškumo momentų apie savo modelius, bet ne visada pasitikite arba veikiate pagal šias įžvalgas. Šis besivystantis sąmoningumas yra vertingas — tai pagrindas gilesniam savęs supratimui."
+      },
+      "GOOD_AWARENESS": {
+        "reflection": "Išugdėte patikimą gebėjimą apmąstyti savo emocijas ir susieti jas su gilesniais poreikiais, modeliais ar aplinkybėmis. Kai kas nors jus sukelia, dažnai galite sustoti ir paklausti: 'Kas iš tikrųjų čia vyksta?' ir rasti prasmingų atsakymų. Atpažįstate savo modelius — kaip reaguojate į kritiką, kokios situacijos iškelia skirtingas jūsų puses, kaip jūsų praeities išgyvenimai įtakoja dabarties reakcijas. Šis savęs sąmoningumas suteikia pasirinkimų, kaip atsakyti, o ne būti varomam nesąmoningų reakcijų. Nors nesuprantate visko apie save, turite tvirtus įrankius savęs tyrinėjimui ir augančiai įžvalgai."
+      },
+      "HIGH_AWARENESS": {
+        "reflection": "Turite gilų, niuansuotą supratimą apie savo vidinį pasaulį ir galite matyti sudėtingus ryšius tarp savo emocijų, poreikių, istorijos ir dabartinių aplinkybių. Kai kyla sudėtingi jausmai, paprastai galite juos atsekti iki šaknų ir suprasti ne tik ką jaučiate, bet kodėl, ir ką tai reiškia platesniame jūsų gyvenimo kontekste. Esate sąmoningi savo nesąmoningų modelių, augimo ribų ir subtilių būdų, kaip jūsų praeitis įtakoja dabartį. Šis savęs sąmoningumo lygis leidžia sutikti save su užuojauta ir priimti sąmoningus sprendimus, kaip atsakyti į gyvenimo iššūkius."
+      }
+    }
+  },
+  "combinations": {
+    "LOW_MINDFULNESS_LOW_AWARENESS": {
+      "reflection": "Jūs dažnai judite gyvenime autopilote, praleidžiate signalus iš savo kūno ir emocijų. Kai kyla stiprūs jausmai, jie gali atrodyti pribloškiantys ar painiami. Santykiuose tai gali apsunkinti pastebėti partnerio poreikius ar ramiai valdyti konfliktus, bet net maži žingsniai sąmoningume sukurs daugiau ryšio. Tai natūralus pradingas taškas — jūsų pirmasis žingsnis tiesiog pastebėti mažus momentus, kaip savo kvėpavimą ar kūno pojūtį. Kiekviena sąmoningumo akimirka yra progresas."
+    },
+    "LOW_MINDFULNESS_MODERATE_AWARENESS": {
+      "reflection": "Kartais apmąstote savo jausmus ir gaunate įžvalgą, bet momentu linkęs praleisti, kas vyksta jumyse. Tai gali palikti jus su supratimu po fakto, bet mažiau gebėjimu atsakyti, kai tai išsivysto. Santykiuose tai gali reikšti, kad vėliau suprantate, kas iš tikrųjų jums vyko, todėl praktikuojant buvimą padės jums dalintis atvirai ir atsakyti momentu. Paprastos sąmoningumo praktikos padės jums susieti savo įžvalgas su realiu laiku sąmoningumu."
+    },
+    "LOW_MINDFULNESS_GOOD_AWARENESS": {
+      "reflection": "Turite stiprų gebėjimą apmąstyti savo emocijas ir susieti jas su poreikiais ar modeliais. Tačiau galite praleisti jas, kai jos kyla momentu, o tai riboja gebėjimą veikti pagal savo įžvalgas iš karto. Santykiuose tai leidžia gerai suprasti save, bet kartais praleisti galimybes bendrauti ar prisitaikyti realiu laiku. Ugdymas dabarties momento dėmesio leis jums pritaikyti savo apmąstymus praktikoje, kai labiausiai svarbu."
+    },
+    "LOW_MINDFULNESS_HIGH_AWARENESS": {
+      "reflection": "Suprantate save giliai ir galite matyti reikšmę už savo emocijų, bet dažnai praleidžiate jas pagaunant, kai jos vyksta. Tai reiškia, kad jūsų įžvalgos gali atvykti 'per vėlai,' kad pakeistų jūsų tiesioginias reakcijas. Santykiuose tai gali reikšti, kad galite paaiškinti savo poreikius vėliau, bet kovojate likti ramiu ar atsakingu karščio momentu. Sutelkimas į įsišakninimo praktikas — kaip sąmoningas kvėpavimas ar sustojimas momentu — padės sujungti jūsų sąmoningumą į kasdienį gyvenimą."
+    },
+    "MODERATE_MINDFULNESS_LOW_AWARENESS": {
+      "reflection": "Kartais pastebite savo vidinius išgyvenimus, kai jie vyksta, bet galite nesuprasti, ką jie reiškia ar kaip jie siejasi su jūsų poreikiais. Tai gali palikti jus su sąmoningumu, bet mažai aiškumo. Santykiuose galite pastebėti įtampą kylant, bet nežinote, kaip išreikšti, ką iš tikrųjų jaučiate, o tai gali sukurti nesusipratimus. Apmąstymo praktikos kaip dienoraštis ar klausimai 'Į ką šis jausmas nurodo?' gali sustiprinti jūsų savęs sąmoningumą."
+    },
+    "MODERATE_MINDFULNESS_MODERATE_AWARENESS": {
+      "reflection": "Retkarčiais pastebite savo emocijas ir kartais apmąstote jų reikšmę, nors abi įgūdžiai vis dar vystosi. Pradėdate balansuoti buvimą ir supratimą, bet tai gali jaustis nenuoseklu. Santykiuose kartais galite pagauti save ir dalintis, ką jaučiate, bet nuoseklumas padarys jūsų komunikaciją ir empatiją stipresnę. Švelnios kasdienės praktikos — kaip trumpa sąmoninga pauzė, po kurios sekamas apmąstymas — padės stabilizuoti šį balansą."
+    },
+    "MODERATE_MINDFULNESS_GOOD_AWARENESS": {
+      "reflection": "Dažnai gerai apmąstote savo išgyvenimus, ir mokotės pastebėti juos momentu. Nors galite praleisti kai kuriuos signalus ar nuslysti į autopilotą, jūsų pagrindas yra tvirtas. Santykiuose tai padeda dalintis savo jausmais su augančiu aiškumu, nors vis dar gali tekti sustoti prieš reaguojant sudėtingais momentais. Su nuosekliu sąmoningumo praktikavimu jūsų apmąstymai taps tiesioginesni ir įgalinantys."
+    },
+    "MODERATE_MINDFULNESS_HIGH_AWARENESS": {
+      "reflection": "Giliai suprantate savo emocijas ir modelius, ir kartais pagaunate juos realiu laiku. Vis dėlto jūsų sąmoningumas ne visada nuoseklus, todėl jūsų įžvalgos gali ne visada vadovauti jūsų atsakams momentu. Santykiuose tai reiškia, kad suprantate, kas jus skatina, bet vis dar gali perreaguoti kartais — statybos tvirtesnė buvimo padės išreikšti poreikius ramiai. Stiprinimas kasdienių sąmoningumo įpročių padės jums gyventi savo gilų savęs sąmoningumą pilniau."
+    },
+    "GOOD_MINDFULNESS_LOW_AWARENESS": {
+      "reflection": "Esate dabartimi ir galite aiškiai pastebėti emocijas ir pojūčius, bet galite kovoti interpretuoti, ką jie reiškia. Matote 'ką,' bet ne visada 'kodėl.' Santykiuose tai padeda likti ramiu ir įsišaknijusiam, nors jūsų partneris gali norėti daugiau gilumo supratimo ir dalijimosi jūsų vidiniu pasauliu. Apmąstymo įrankiai — kaip poreikių identifikavimas ar emocijų susiejimas su praeities išgyvenimais — praturtins jūsų sąmoningumą su reikšme."
+    },
+    "GOOD_MINDFULNESS_MODERATE_AWARENESS": {
+      "reflection": "Pastebite daug to, kas vyksta jumyse ir kartais susiejate su gilesniais poreikiais. Nors jūsų buvimas tvirtas, jūsų įžvalga vis dar vystosi. Santykiuose šis balansas padeda likti dalyvaujant su kitais, nors kartais galite kovoti išreikšti pilną jūsų jausmų reikšmę. Su praktika galite išplėsti gebėjimą matyti didesnį paveikslą už savo emocijų. Tai padarys jūsų sąmoningą sąmoningumą dar galingesniu."
+    },
+    "GOOD_MINDFULNESS_GOOD_AWARENESS": {
+      "reflection": "Turite stiprų gebėjimą tiek pastebėti savo išgyvenimus momentu, tiek apmąstyti jų reikšmę. Šie įgūdžiai sustiprina vienas kitą, padedantys jums sutikti iššūkius su augančiu aiškumu. Santykiuose tai padeda naršyti konfliktus konstruktyviai ir išreikšti savo emocijas būdais, kurie kviečia ryšį ir supratimą. Su tęsiamu praktikavimu pagilinsite tai į natūralų ir nuoseklų gyvenimo būdą."
+    },
+    "GOOD_MINDFULNESS_HIGH_AWARENESS": {
+      "reflection": "Gerai balansuojate buvimą ir gilią įžvalgą. Pastebite savo emocijas, kai jos kyla, ir dažnai suprantate, į ką jos nurodo. Kartais iššūkiai vis dar gali išvesti iš pusiausvyros, bet turite įrankius greitai atsigauti. Santykiuose tai reiškia, kad paprastai galite aiškiai išreikšti savo poreikius ir atsakyti su rūpesčiu, net kai emocijos kyla. Stiprinimas priėmimo ir užuojautos padarys jūsų sąmoningumą dar atsparesnį."
+    },
+    "HIGH_MINDFULNESS_LOW_AWARENESS": {
+      "reflection": "Esate labai dabartimi ir sąmoningi, kas vyksta jumyse, tačiau galite ne dažnai apmąstyti gilesnę savo emocijų reikšmę. Galite aiškiai stebėti, bet galite praleisti 'žinutę' už jūsų jausmų. Santykiuose šis buvimas padeda gerai klausytis ir likti ramiu, nors galite sunkiau dalintis savo gilesniais emociniais poreikiais. Praktikavimas švelnaus savęs tyrimo — kaip klausimas 'Ką ši emocija man sako?' — sujungs buvimą su įžvalga."
+    },
+    "HIGH_MINDFULNESS_MODERATE_AWARENESS": {
+      "reflection": "Esate nuosekliai dabartimi savo kasdieniam gyvenime, ir kartais interpretuojate, ką jūsų emocijos reiškia. Tai suteikia jums stabilią bazę, bet yra vietos augti susiejant išgyvenimus su jūsų gilesniais poreikiais ar modeliais. Santykiuose tai padeda likti tvirtam ir dėmesingam, nors didesnis apmąstymas leis išreikšti savo vidinį pasaulį pilniau. Sujungimas sąmoningumo su apmąstymu sustiprins reikšmės kūrimo pusę jūsų sąmoningumo."
+    },
+    "HIGH_MINDFULNESS_GOOD_AWARENESS": {
+      "reflection": "Gyvenate su stipriu buvimu ir gera įžvalga į savo išgyvenimus. Galite pastebėti emocijas realiu laiku ir dažnai susiejate jas su savo poreikiais ar modeliais. Šis balansas suteikia aiškumą ir lankstumą, kaip atsakote į iššūkius. Santykiuose šis balansas padeda aiškiai bendrauti, klausytis su empatija ir sukurti erdvę sveikiems, palaikomiems ryšiams. Tęstinas praktikavimas pagilins jūsų integravimą."
+    },
+    "HIGH_MINDFULNESS_HIGH_AWARENESS": {
+      "reflection": "Išugdėte integruotą sąmoningumą: esate nuosekliai dabartimi ir giliai įžvalgus. Galite pastebėti emocijas, kai jos kyla, suprasti jų reikšmę ir atsakyti su aiškumu ir užuojauta. Santykiuose tai leidžia sutikti kitus su empatija, autentiškumu ir balansu, padarant jūsų ryšius giliai palaikančius ir maitinančius. Tai galinga stiprybė — jūsų sąmoningumas teka natūraliai ir palaiko jūsų augimą, santykius ir atsparumą."
+    }
+  }
+}
