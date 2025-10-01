@@ -73,7 +73,17 @@ Since we don’t have full tracking infra yet, we’ll focus on **manual + light
 3. Which feature gave you the most value so far? (traits / basic reports / premium reports / chat / partner sync)
 4. What confused you or felt difficult to use? (open text)
 
-**After Sparks depletion:** 5. When Sparks ran out, what did you want to do next? (buy more / satisfied / lost interest) 6. Would you pay for more Sparks? (yes / maybe / no — too expensive / no — not valuable) 7. If yes/maybe: What price feels right for 10 Sparks? (€2–3 / €4–5 / €6–7 / €8+) 8. Did you try syncing with a partner? (yes completed / yes but partner didn’t engage / tried but failed / not interested) 9. **NPS Question** → How likely are you to recommend Withinly to a friend or partner? (0–10 scale)
+**After Sparks depletion:**
+
+5. When Sparks ran out, what did you want to do next? (buy more / satisfied / lost interest)
+
+6. Would you pay for more Sparks? (yes / maybe / no — too expensive / no — not valuable)
+
+7. If yes/maybe: What price feels right for 10 Sparks? (€2–3 / €4–5 / €6–7 / €8+)
+
+8. Did you try syncing with a partner? (yes completed / yes but partner didn’t engage / tried but failed / not interested)
+
+9. **NPS Question** → How likely are you to recommend Withinly to a friend or partner? (0–10 scale)
 
 ### Short 1:1 Calls (optional, 3–5 users)
 

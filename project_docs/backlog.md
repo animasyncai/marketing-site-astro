@@ -1,3 +1,7 @@
+# Current Tasks to be achieved (priority order)
+
+- [ ] Implement prompt library for reflection consultant
+
 #POST MVP ENHANCEMENTS
 
 ### Memory System Evolution

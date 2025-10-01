@@ -7,7 +7,7 @@
 3. **Each report is standalone** - no cross-referencing for cost efficiency
 4. **Regeneration costs full price** - same AI processing as new generation
 
-## Report Access in Chat (PROBABLY NOT IN MVP)
+## Report Access in Chat (NOT IN MVP)
 
 - AI consultant can access purchased reports via tool-based system
 - Uses 200-word behavioral summaries, not full reports

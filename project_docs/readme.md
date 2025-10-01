@@ -21,7 +21,7 @@ By exploring your traits and how they meet in connection, Withinly gives you emo
 
 - **Traits**:
   - Attachment, Love Language, Mindfulness, Self-Acceptance
-  - Each generates a mini user-facing reflection + psychologist notes (for deeper reports and chat)
+  - Each generates a mini user-facing reflection +behavioral profile (for deeper reports and chat)
 
 - **Reports**:
   - **Inner Portraits** (basic & full) — your emotional patterns woven into narrative
@@ -67,20 +67,61 @@ It is about **recognition, reflection, and connection.**
 ## 🛠️ How It Works
 
 1. Complete short questionnaires (traits)
-2. Unlock mini reflections instantly
+2. Unlock mini reflections (requires atleast 2 traits to be completed)
 3. Generate deeper reports when you’re ready
 4. Reflect with your AI consultant at any time
 5. Sync with your partner for joint insights
-6. Use Sparks (tokens) to manage reports and chat
+6. Use Sparks (tokens) to get reports and use chat
 
 ---
 
 ## 💡 Business Model
 
 - **Token-based pricing**
-- Free tier includes core assessments, a basic report, and preview chat
+- Free tier includes 3 sparks forcore assessments, a basic report, and preview chat
 - Paid tokens unlock deeper reports, unlimited chat, and partner sync
-- Optional monthly bundles for regular users
+- Optional monthly bundles for regular users (NOT YET)
+
+---
+
+## Technical Stack
+
+- Frontend
+  - Tailwind
+  - Next.js
+  - React
+  - Typescript
+  - Hosting: Vercel
+- Backend
+  - Next.js
+  - OpenAi
+  - MongoDB
+  - Hosting: AWS
+- Marketing site
+  - Astro
+  - Tailwind
+  - Typescript
+  - Hosting: Vercel
+- Other
+  - Mailjet (mails / newsletter)
+  - Mixpanel (analytics)
+  - Fathom (analytics)
+
+### Current status
+
+Everything in documentation is implemented unless stated otherwise.
+
+See future tasks in `backlog.md` for more details.
+
+Beta testing upcoming.
+
+Closed beta strategy can be found in `closed-beta-strategy.md`
+
+Sparks and pricing strategy can be found in `tokens-and-pricing.md`
+
+Features can be found in `features.md`
+
+Critical considerations about product can be found in `blind-spots.md`
 
 ---
 
