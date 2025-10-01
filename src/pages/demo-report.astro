@@ -1,22 +1,28 @@
 ---
+/**
+ * Withinly Trait Reflection Prototype
+ * Uses independent generators from src/trait-report-demo/
+ */
+
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 
-const pageTitle = 'Trait Reflection Demo'
-const pageDescription = 'Test reflection outputs and behavioral profiles across traits'
+const pageTitle = 'Trait Reflection + Behavioral Profile Prototype'
+const pageDescription = 'Test reflection outputs using pluggable generators'
 ---
 
 <DefaultLayout title={pageTitle} description={pageDescription}>
-  <main class="mx-auto max-w-4xl py-12">
-    <h1 class="mb-6 text-2xl font-bold">Trait Reflection Demo</h1>
+  <main class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="mb-6 text-2xl font-bold">Trait Reflection Prototype</h1>
+    <p class="mb-8 text-gray-600">Testing independent, pluggable trait generators</p>
 
-    <div class="grid gap-6 md:grid-cols-2">
-      <!-- Input Form -->
+    <div class="grid gap-6 lg:grid-cols-2">
+      <!-- INPUT FORM -->
       <div class="space-y-4">
-        <form id="reflectionForm" class="space-y-4 rounded-xl bg-white p-6 shadow">
-          <!-- Language Selector -->
+        <form id="reflectionForm" class="space-y-4 rounded-xl bg-white p-6 shadow-lg">
+          <!-- Locale Selector -->
           <div>
-            <label class="mb-2 block font-medium">Language</label>
-            <select id="locale" class="w-full rounded border p-2">
+            <label class="mb-2 block font-medium text-gray-700">Language</label>
+            <select id="locale" class="w-full rounded-lg border border-gray-300 p-2.5 focus:border-blue-500">
               <option value="en">English</option>
               <option value="lt">Lithuanian</option>
             </select>
@@ -24,46 +30,53 @@ const pageDescription = 'Test reflection outputs and behavioral profiles across 
 
           <!-- Trait Selector -->
           <div>
-            <label class="mb-2 block font-medium">Trait</label>
-            <select id="trait" class="w-full rounded border p-2">
-              <option value="">Select trait</option>
+            <label class="mb-2 block font-medium text-gray-700">Select Trait</label>
+            <select id="trait" class="w-full rounded-lg border border-gray-300 p-2.5 focus:border-blue-500">
+              <option value="">Choose a trait...</option>
+              <option value="love_language">Love Language</option>
               <option value="attachment">Attachment</option>
-              <option value="loveLanguage">Love Language</option>
               <option value="mindfulness">Mindfulness</option>
-              <option value="selfAcceptance">Self-Acceptance</option>
+              <option value="self_acceptance">Self-Acceptance</option>
             </select>
           </div>
 
-          <!-- Dynamic trait-specific fields -->
+          <!-- Dynamic Options Container -->
           <div id="traitOptions" class="space-y-4"></div>
 
-          <div class="space-y-2">
-            <button
-              type="button"
-              id="generateAll"
-              class="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-gray-400"
-            >
-              Generate Reflection & Profile
-            </button>
-          </div>
+          <!-- Generate Button -->
+          <button
+            type="button"
+            id="generate"
+            disabled
+            class="w-full rounded-lg bg-blue-600 px-4 py-3 font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-300"
+          >
+            Generate Reflection
+          </button>
         </form>
       </div>
 
-      <!-- Output Area -->
+      <!-- OUTPUT DISPLAY -->
       <div class="space-y-4">
-        <!-- User Reflection Output -->
-        <div class="rounded-lg bg-blue-50 p-6">
-          <h3 class="mb-3 font-semibold text-blue-900">User Reflection</h3>
-          <div id="reflectionsOutput" class="text-sm whitespace-pre-line text-blue-800">
-            Select a trait and generate to see results...
+        <!-- User Reflection -->
+        <div class="rounded-xl bg-blue-50 p-6 shadow">
+          <h3 class="mb-3 flex items-center gap-2 font-semibold text-blue-900">
+            <span class="text-xl">📖</span>
+            User Reflection
+          </h3>
+          <div id="userOutput" class="min-h-[200px] text-sm leading-relaxed whitespace-pre-line text-blue-800">
+            <p class="text-gray-400 italic">Select a trait and generate to see output...</p>
           </div>
         </div>
 
-        <!-- Behavioral Profile Output -->
-        <div class="rounded-lg bg-green-50 p-6">
-          <h3 class="mb-3 font-semibold text-green-900">Behavioral Profile (Always English)</h3>
-          <div id="behavioralOutput" class="text-sm whitespace-pre-line text-green-800">
-            Select a trait and generate to see results...
+        <!-- Behavioral Profile -->
+        <div class="rounded-xl bg-green-50 p-6 shadow">
+          <h3 class="mb-3 flex items-center gap-2 font-semibold text-green-900">
+            <span class="text-xl">🧠</span>
+            Behavioral Profile
+            <span class="text-xs font-normal text-green-600">(For AI/Reports)</span>
+          </h3>
+          <div id="behavioralOutput" class="min-h-[150px] text-sm leading-relaxed whitespace-pre-line text-green-800">
+            <p class="text-gray-400 italic">Behavioral context will appear here...</p>
           </div>
         </div>
       </div>
@@ -71,25 +84,210 @@ const pageDescription = 'Test reflection outputs and behavioral profiles across 
   </main>
 
   <script>
+    // ==========================================
+    // IMPORT ALL GENERATORS
+    // ==========================================
     import('../trait-report-demo/index.js')
       .then((module) => {
-        const { generateTraitReflection } = module
-        console.log('Module loaded successfully')
+        const {
+          generateAttachmentReflection,
+          generateLoveLanguageReflection,
+          generateMindfulnessReflection,
+          generateSelfAcceptanceReflection,
+        } = module
 
-        function toggleTraitOptions() {
-          const traitSelect = document.getElementById('trait')
-          const trait = traitSelect?.value
+        // ==========================================
+        // CONSTANTS
+        // ==========================================
+        const LOVE_LANGUAGE_LABELS: Record<string, { A: string; B: string } | null> = {
+          WORDS_OF_AFFIRMATION: {
+            A: 'Meaningful conversations',
+            B: 'Words of affection/encouragement',
+          },
+          QUALITY_TIME: {
+            A: 'Shared activities/presence',
+            B: 'Focused attention/listening',
+          },
+          ACTS_OF_SERVICE: {
+            A: 'Support when needed',
+            B: 'Taking over responsibilities',
+          },
+          GIFTS: {
+            A: 'Valuable/precious gifts',
+            B: 'Small surprises/tokens',
+          },
+          PHYSICAL_TOUCH: null,
+        }
+
+        // ==========================================
+        // STATE
+        // ==========================================
+        let currentTrait: string | null = null
+
+        // ==========================================
+        // EVENT LISTENERS
+        // ==========================================
+        document.getElementById('trait')?.addEventListener('change', handleTraitChange)
+        document.getElementById('generate')?.addEventListener('click', handleGenerate)
+
+        // ==========================================
+        // TRAIT CHANGE HANDLER
+        // ==========================================
+        function handleTraitChange(e: Event) {
+          const target = e.target as HTMLSelectElement
+          currentTrait = target.value
           const container = document.getElementById('traitOptions')
+          const generateBtn = document.getElementById('generate') as HTMLButtonElement
+
+          if (!currentTrait) {
+            if (container) container.innerHTML = ''
+            if (generateBtn) generateBtn.disabled = true
+            return
+          }
+
+          // Render appropriate form
+          if (currentTrait === 'love_language') {
+            if (container) container.innerHTML = renderLoveLanguageForm()
+            setupLoveLanguageListeners()
+          } else if (currentTrait === 'attachment') {
+            if (container) container.innerHTML = renderAttachmentForm()
+          } else if (currentTrait === 'mindfulness') {
+            if (container) container.innerHTML = renderMindfulnessForm()
+          } else if (currentTrait === 'self_acceptance') {
+            if (container) container.innerHTML = renderSelfAcceptanceForm()
+          }
+
+          if (generateBtn) generateBtn.disabled = false
+        }
+
+        // ==========================================
+        // LOVE LANGUAGE FORM
+        // ==========================================
+        function renderLoveLanguageForm() {
+          return `
+          <div class="space-y-4 border-t pt-4">
+            <!-- Primary Love Language -->
+            <div class="space-y-3">
+              <h4 class="font-semibold text-gray-700">Primary Love Language</h4>
+              <div>
+                <label class="block mb-1 text-sm text-gray-600">Type</label>
+                <select id="llPrimary" class="w-full rounded border p-2">
+                  <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+                  <option value="QUALITY_TIME">Quality Time</option>
+                  <option value="ACTS_OF_SERVICE">Acts of Service</option>
+                  <option value="GIFTS">Gifts</option>
+                  <option value="PHYSICAL_TOUCH">Physical Touch</option>
+                </select>
+              </div>
+              <div id="primarySubtypes" class="grid grid-cols-2 gap-3">
+                <!-- Dynamic -->
+              </div>
+            </div>
+
+            <!-- Secondary Love Language -->
+            <div class="space-y-3 border-t pt-3">
+              <h4 class="font-semibold text-gray-700">Secondary (Optional)</h4>
+              <div>
+                <label class="block mb-1 text-sm text-gray-600">Type</label>
+                <select id="llSecondary" class="w-full rounded border p-2">
+                  <option value="">None</option>
+                  <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+                  <option value="QUALITY_TIME">Quality Time</option>
+                  <option value="ACTS_OF_SERVICE">Acts of Service</option>
+                  <option value="GIFTS">Gifts</option>
+                  <option value="PHYSICAL_TOUCH">Physical Touch</option>
+                </select>
+              </div>
+              <div id="secondarySubtypes" class="grid grid-cols-2 gap-3">
+                <!-- Dynamic -->
+              </div>
+            </div>
+
+            <!-- Distribution -->
+            <div class="border-t pt-3">
+              <label class="block mb-1 text-sm text-gray-600">Distribution Pattern</label>
+              <select id="llDistribution" class="w-full rounded border p-2">
+                <option value="DOMINANT">Dominant - Clear preference</option>
+                <option value="DUAL">Dual - Two equally important</option>
+                <option value="MULTIPLE">Multiple - Flexible</option>
+              </select>
+            </div>
+          </div>
+        `
+        }
+
+        function setupLoveLanguageListeners() {
+          document.getElementById('llPrimary')?.addEventListener('change', updatePrimarySubtypes)
+          document.getElementById('llSecondary')?.addEventListener('change', updateSecondarySubtypes)
+          updatePrimarySubtypes()
+        }
+
+        function updatePrimarySubtypes() {
+          const primaryElement = document.getElementById('llPrimary') as HTMLSelectElement
+          const primary = primaryElement?.value
+          const container = document.getElementById('primarySubtypes')
+          if (!container || !primary) return
+
+          if (primary === 'PHYSICAL_TOUCH') {
+            container.innerHTML =
+              '<p class="text-sm text-gray-500 col-span-2 italic">No subtypes for Physical Touch</p>'
+            return
+          }
+
+          const labels = LOVE_LANGUAGE_LABELS[primary]
+          if (!labels) return
+
+          container.innerHTML = `
+          <div>
+            <label class="block mb-1 text-xs text-gray-600">${labels.A}</label>
+            <input type="number" id="llPrimaryA" min="1" max="5" step="0.1" value="3.5" 
+                   class="w-full rounded border p-2 text-sm">
+          </div>
+          <div>
+            <label class="block mb-1 text-xs text-gray-600">${labels.B}</label>
+            <input type="number" id="llPrimaryB" min="1" max="5" step="0.1" value="3.5" 
+                   class="w-full rounded border p-2 text-sm">
+          </div>
+        `
+        }
+
+        function updateSecondarySubtypes() {
+          const secondaryElement = document.getElementById('llSecondary') as HTMLSelectElement
+          const secondary = secondaryElement?.value
+          const container = document.getElementById('secondarySubtypes')
           if (!container) return
 
-          container.innerHTML = ''
-          if (!trait) return
+          if (!secondary || secondary === 'PHYSICAL_TOUCH') {
+            container.innerHTML = ''
+            return
+          }
 
-          if (trait === 'attachment') {
-            container.innerHTML = `
+          const labels = LOVE_LANGUAGE_LABELS[secondary]
+          if (!labels) return
+
+          container.innerHTML = `
+          <div>
+            <label class="block mb-1 text-xs text-gray-600">${labels.A}</label>
+            <input type="number" id="llSecondaryA" min="1" max="5" step="0.1" value="3.0" 
+                   class="w-full rounded border p-2 text-sm">
+          </div>
+          <div>
+            <label class="block mb-1 text-xs text-gray-600">${labels.B}</label>
+            <input type="number" id="llSecondaryB" min="1" max="5" step="0.1" value="3.0" 
+                   class="w-full rounded border p-2 text-sm">
+          </div>
+        `
+        }
+
+        // ==========================================
+        // ATTACHMENT FORM
+        // ==========================================
+        function renderAttachmentForm() {
+          return `
+          <div class="space-y-4 border-t pt-4">
             <div>
-              <label class="block mb-2 font-medium">Primary Attachment Type</label>
-              <select id="attachmentType" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Primary Type</label>
+              <select id="attachmentType" class="w-full rounded border p-2">
                 <option value="ANXIOUS">Anxious</option>
                 <option value="AVOIDANT">Avoidant</option>
                 <option value="DISORGANIZED">Disorganized</option>
@@ -97,17 +295,17 @@ const pageDescription = 'Test reflection outputs and behavioral profiles across 
               </select>
             </div>
             <div>
-              <label class="block mb-2 font-medium">Primary Intensity</label>
-              <select id="intensity" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Intensity</label>
+              <select id="intensity" class="w-full rounded border p-2">
                 <option value="VERY_MILD">Very Mild</option>
                 <option value="MILD">Mild</option>
-                <option value="MODERATE">Moderate</option>
+                <option value="MODERATE" selected>Moderate</option>
                 <option value="STRONG">Strong</option>
               </select>
             </div>
             <div>
-              <label class="block mb-2 font-medium">Secondary Type (Optional)</label>
-              <select id="secondary" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Secondary (Optional)</label>
+              <select id="secondary" class="w-full rounded border p-2">
                 <option value="">None</option>
                 <option value="ANXIOUS">Anxious</option>
                 <option value="AVOIDANT">Avoidant</option>
@@ -116,118 +314,204 @@ const pageDescription = 'Test reflection outputs and behavioral profiles across 
               </select>
             </div>
             <div>
-              <label class="block mb-2 font-medium">Secondary Intensity</label>
-              <select id="secondaryIntensity" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Secondary Intensity</label>
+              <select id="secondaryIntensity" class="w-full rounded border p-2">
                 <option value="VERY_MILD">Very Mild</option>
-                <option value="MILD">Mild</option>
+                <option value="MILD" selected>Mild</option>
                 <option value="MODERATE">Moderate</option>
                 <option value="STRONG">Strong</option>
               </select>
             </div>
-          `
-          }
+          </div>
+        `
+        }
 
-          if (trait === 'loveLanguage') {
-            container.innerHTML = `
+        // ==========================================
+        // MINDFULNESS FORM
+        // ==========================================
+        function renderMindfulnessForm() {
+          return `
+          <div class="space-y-4 border-t pt-4">
             <div>
-              <label class="block mb-2 font-medium">Primary Love Language</label>
-              <select id="llPrimary" class="w-full border rounded p-2">
-                <option value="QUALITY_TIME">Quality Time</option>
-                <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
-                <option value="ACTS_OF_SERVICE">Acts of Service</option>
-                <option value="GIFTS">Gifts</option>
-                <option value="PHYSICAL_TOUCH">Physical Touch</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Secondary (Optional)</label>
-              <select id="llSecondary" class="w-full border rounded p-2">
-                <option value="">None</option>
-                <option value="QUALITY_TIME">Quality Time</option>
-                <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
-                <option value="ACTS_OF_SERVICE">Acts of Service</option>
-                <option value="GIFTS">Gifts</option>
-                <option value="PHYSICAL_TOUCH">Physical Touch</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Distribution</label>
-              <select id="llDistribution" class="w-full border rounded p-2">
-                <option value="DOMINANT">Dominant</option>
-                <option value="DUAL">Dual</option>
-                <option value="MULTIPLE">Multiple</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium">Expression Archetype</label>
-              <select id="llArchetype" class="w-full border rounded p-2">
-                <option value="VISIONARY">Visionary</option>
-                <option value="ARTIST">Artist</option>
-                <option value="HEALER">Healer</option>
-                <option value="TEACHER">Teacher</option>
-                <option value="CHILD">Child</option>
-              </select>
-            </div>
-          `
-          }
-
-          if (trait === 'mindfulness') {
-            container.innerHTML = `
-            <div>
-              <label class="block mb-2 font-medium">Mindfulness Level</label>
-              <select id="mindfulnessLevel" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Mindfulness Level</label>
+              <select id="mindfulnessLevel" class="w-full rounded border p-2">
                 <option value="LOW_MINDFULNESS">Low Mindfulness</option>
-                <option value="MODERATE_MINDFULNESS">Moderate Mindfulness</option>
+                <option value="MODERATE_MINDFULNESS" selected>Moderate Mindfulness</option>
                 <option value="GOOD_MINDFULNESS">Good Mindfulness</option>
                 <option value="HIGH_MINDFULNESS">High Mindfulness</option>
               </select>
             </div>
             <div>
-              <label class="block mb-2 font-medium">Awareness Level</label>
-              <select id="awarenessLevel" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Self-Awareness Level</label>
+              <select id="awarenessLevel" class="w-full rounded border p-2">
                 <option value="LOW_AWARENESS">Low Awareness</option>
-                <option value="MODERATE_AWARENESS">Moderate Awareness</option>
+                <option value="MODERATE_AWARENESS" selected>Moderate Awareness</option>
                 <option value="GOOD_AWARENESS">Good Awareness</option>
                 <option value="HIGH_AWARENESS">High Awareness</option>
               </select>
             </div>
-          `
-          }
+          </div>
+        `
+        }
 
-          if (trait === 'selfAcceptance') {
-            container.innerHTML = `
+        // ==========================================
+        // SELF-ACCEPTANCE FORM
+        // ==========================================
+        function renderSelfAcceptanceForm() {
+          return `
+          <div class="space-y-4 border-t pt-4">
             <div>
-              <label class="block mb-2 font-medium">Self-Acceptance Level</label>
-              <select id="saLevel" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Self-Acceptance Level</label>
+              <select id="saLevel" class="w-full rounded border p-2">
                 <option value="BEGINNING_SELF_ACCEPTANCE">Beginning Self-Acceptance</option>
-                <option value="DEVELOPING_SELF_ACCEPTANCE">Developing Self-Acceptance</option>
+                <option value="DEVELOPING_SELF_ACCEPTANCE" selected>Developing Self-Acceptance</option>
                 <option value="GROWING_SELF_ACCEPTANCE">Growing Self-Acceptance</option>
                 <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated Self-Acceptance</option>
               </select>
             </div>
             <div>
-              <label class="block mb-2 font-medium">Openness to Change (Optional)</label>
-              <select id="saOpenness" class="w-full border rounded p-2">
+              <label class="block mb-2 font-medium text-gray-700">Openness to Change (Optional)</label>
+              <select id="saOpenness" class="w-full rounded border p-2">
                 <option value="">None</option>
                 <option value="RESTING_PHASE">Resting Phase</option>
-                <option value="MIXED_FEELINGS">Mixed Feelings</option>
+                <option value="MIXED_FEELINGS" selected>Mixed Feelings</option>
                 <option value="READY_TO_GROW">Ready to Grow</option>
                 <option value="DEEP_EXPLORATION">Deep Exploration</option>
               </select>
             </div>
-          `
+          </div>
+        `
+        }
+
+        // ==========================================
+        // GENERATE HANDLER
+        // ==========================================
+        function handleGenerate() {
+          if (!currentTrait) return
+
+          const localeElement = document.getElementById('locale') as HTMLSelectElement
+          const locale = localeElement?.value || 'en'
+          const traitData = collectTraitData(currentTrait)
+
+          if (!traitData) {
+            alert('Please fill in all required fields')
+            return
+          }
+
+          let result: any = null
+          try {
+            if (currentTrait === 'love_language') {
+              // Load language data dynamically
+              import(`../trait-report-demo/i18n/${locale}/loveLanguage.json`)
+                .then((languageData) => {
+                  result = generateLoveLanguageReflection(traitData, languageData.default)
+                  if (result && result.userReport && result.behavioralProfile) {
+                    const userOutput = document.getElementById('userOutput')
+                    const behavioralOutput = document.getElementById('behavioralOutput')
+                    if (userOutput) userOutput.innerText = result.userReport
+                    if (behavioralOutput) behavioralOutput.innerText = result.behavioralProfile
+                  }
+                })
+                .catch((error) => {
+                  console.error('Failed to load language data:', error)
+                  alert('Error loading language data: ' + error.message)
+                })
+              return // Exit early since we're handling this asynchronously
+            } else if (currentTrait === 'attachment') {
+              result = generateAttachmentReflection(traitData, locale)
+            } else if (currentTrait === 'mindfulness') {
+              result = generateMindfulnessReflection(traitData, locale)
+            } else if (currentTrait === 'self_acceptance') {
+              result = generateSelfAcceptanceReflection(traitData, locale)
+            }
+
+            if (result && result.userReport && result.behavioralProfile) {
+              const userOutput = document.getElementById('userOutput')
+              const behavioralOutput = document.getElementById('behavioralOutput')
+              if (userOutput) userOutput.innerText = result.userReport
+              if (behavioralOutput) behavioralOutput.innerText = result.behavioralProfile
+            }
+          } catch (error) {
+            console.error('Generation error:', error)
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+            alert('Error generating reflection: ' + errorMessage)
           }
         }
 
-        function getTraitData() {
-          const trait = document.getElementById('trait')?.value
-          if (!trait) return null
+        // ==========================================
+        // DATA COLLECTION
+        // ==========================================
+        function collectTraitData(trait: string): any {
+          if (trait === 'love_language') {
+            const primaryElement = document.getElementById('llPrimary') as HTMLSelectElement
+            const secondaryElement = document.getElementById('llSecondary') as HTMLSelectElement
+            const distributionElement = document.getElementById('llDistribution') as HTMLSelectElement
+
+            const primary = primaryElement?.value
+            const secondary = secondaryElement?.value
+            const distribution = distributionElement?.value
+
+            if (!primary || !distribution) return null
+
+            const data: any = {
+              primary,
+              distribution,
+              secondary: secondary || null,
+            }
+
+            // Primary scores
+            if (primary !== 'PHYSICAL_TOUCH') {
+              const primaryAElement = document.getElementById('llPrimaryA') as HTMLInputElement
+              const primaryBElement = document.getElementById('llPrimaryB') as HTMLInputElement
+              const primaryA = parseFloat(primaryAElement?.value || '3.0')
+              const primaryB = parseFloat(primaryBElement?.value || '3.0')
+              const labels = LOVE_LANGUAGE_LABELS[primary]
+
+              if (labels) {
+                data.primaryScore = (primaryA + primaryB) / 2
+                data.primaryScores = {
+                  A: { score: primaryA, label: labels.A },
+                  B: { score: primaryB, label: labels.B },
+                }
+              }
+            } else {
+              data.primaryScore = 3.0
+              data.primaryScores = null
+            }
+
+            // Secondary scores
+            if (secondary && secondary !== 'PHYSICAL_TOUCH') {
+              const secondaryAElement = document.getElementById('llSecondaryA') as HTMLInputElement
+              const secondaryBElement = document.getElementById('llSecondaryB') as HTMLInputElement
+              const secondaryA = parseFloat(secondaryAElement?.value || '3.0')
+              const secondaryB = parseFloat(secondaryBElement?.value || '3.0')
+              const labels = LOVE_LANGUAGE_LABELS[secondary]
+
+              if (labels) {
+                data.secondaryScore = (secondaryA + secondaryB) / 2
+                data.secondaryScores = {
+                  A: { score: secondaryA, label: labels.A },
+                  B: { score: secondaryB, label: labels.B },
+                }
+              }
+            } else if (secondary === 'PHYSICAL_TOUCH') {
+              data.secondaryScore = 3.0
+              data.secondaryScores = null
+            }
+
+            return data
+          }
 
           if (trait === 'attachment') {
-            const primary = document.getElementById('attachmentType')?.value
-            const primaryIntensity = document.getElementById('intensity')?.value
-            const secondary = document.getElementById('secondary')?.value
-            const secondaryIntensity = document.getElementById('secondaryIntensity')?.value
+            const primaryElement = document.getElementById('attachmentType') as HTMLSelectElement
+            const primaryIntensityElement = document.getElementById('intensity') as HTMLSelectElement
+            const secondaryElement = document.getElementById('secondary') as HTMLSelectElement
+            const secondaryIntensityElement = document.getElementById('secondaryIntensity') as HTMLSelectElement
+
+            const primary = primaryElement?.value
+            const primaryIntensity = primaryIntensityElement?.value
+            const secondary = secondaryElement?.value
+            const secondaryIntensity = secondaryIntensityElement?.value
 
             if (!primary || !primaryIntensity) return null
 
@@ -239,84 +523,42 @@ const pageDescription = 'Test reflection outputs and behavioral profiles across 
             }
           }
 
-          if (trait === 'loveLanguage') {
-            const primary = document.getElementById('llPrimary')?.value
-            const secondary = document.getElementById('llSecondary')?.value
-            const distribution = document.getElementById('llDistribution')?.value
-            const expressionArchetype = document.getElementById('llArchetype')?.value
-            if (!primary) return null
-
-            return {
-              primary,
-              secondary: secondary || null,
-              distribution,
-              expressionArchetype,
-            }
-          }
-
           if (trait === 'mindfulness') {
-            const mindfulnessLevel = document.getElementById('mindfulnessLevel')?.value
-            const awarenessLevel = document.getElementById('awarenessLevel')?.value
+            const mindfulnessLevelElement = document.getElementById('mindfulnessLevel') as HTMLSelectElement
+            const awarenessLevelElement = document.getElementById('awarenessLevel') as HTMLSelectElement
+
+            const mindfulnessLevel = mindfulnessLevelElement?.value
+            const awarenessLevel = awarenessLevelElement?.value
+
             if (!mindfulnessLevel || !awarenessLevel) return null
+
             return {
               mindfulnessLevel,
               awarenessLevel,
             }
           }
 
-          if (trait === 'selfAcceptance') {
-            const level = document.getElementById('saLevel')?.value
-            const openness_to_change = document.getElementById('saOpenness')?.value
+          if (trait === 'self_acceptance') {
+            const levelElement = document.getElementById('saLevel') as HTMLSelectElement
+            const opennessElement = document.getElementById('saOpenness') as HTMLSelectElement
+
+            const level = levelElement?.value
+            const openness = opennessElement?.value
+
             if (!level) return null
+
             return {
               level,
-              openness_to_change: openness_to_change || null,
+              openness_to_change: openness || null,
             }
           }
 
           return null
         }
-
-        function generateAll() {
-          const trait = document.getElementById('trait')?.value
-          const locale = document.getElementById('locale')?.value || 'en'
-          const traitData = getTraitData()
-
-          if (!trait || !traitData) {
-            alert('Please select a trait and fill in all required fields')
-            return
-          }
-
-          try {
-            console.log('Generating reflection for:', trait, locale, traitData)
-            const result = generateTraitReflection(trait, traitData, locale)
-            console.log('Result:', result)
-
-            const reflectionsOutput = document.getElementById('reflectionsOutput')
-            const behavioralOutput = document.getElementById('behavioralOutput')
-
-            if (reflectionsOutput) {
-              reflectionsOutput.innerText = result.userReport
-            }
-
-            if (behavioralOutput) {
-              behavioralOutput.innerText = result.behavioralProfile
-            }
-          } catch (error) {
-            alert(`Error: ${error.message}`)
-            console.error(error)
-          }
-        }
-
-        // Hook up listeners
-        document.getElementById('trait')?.addEventListener('change', toggleTraitOptions)
-        document.getElementById('generateAll')?.addEventListener('click', generateAll)
-
-        console.log('Event listeners attached')
       })
       .catch((error) => {
-        console.error('Failed to load module:', error)
-        alert('Failed to load trait reflection module: ' + error.message)
+        console.error('Failed to load generators:', error)
+        alert('Failed to load trait generators. Please check the console.')
       })
   </script>
 </DefaultLayout>
