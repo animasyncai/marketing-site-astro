@@ -1,238 +1,112 @@
-You are an expert psychological assessment analyst.  
-You need to write a reflection-facing report for the user, and a structured analysis for your own internal behavior calibration.
+# Attachment Type
 
-Based on this attachment style test  
-{
-"evaluationInstructions": "\nTo evaluate this attachment type questionnaire:\n1. Calculate the average score for each attachment style (Anxious, Avoidant, Disorganized, Secure) by summing the ratings for the three statements in each category and dividing by 3.\n2. Determine the dominant attachment style based on the highest average score.\n3. Determine the second highest average score to identify the secondary attachment style.\n4. Determine the intensity level for both primary and secondary styles based on the average score range:\n - 1-2: VERY_MILD / \"Very Mild\" (Minimal traits of this attachment style)\n - 2-3: MILD / \"Mild\" (Low-moderate expression of this attachment style)\n - 3-4: MODERATE / \"Moderate\" (Noticeable traits of this attachment style)\n - 4-5: STRONG / \"Strong\" (Highly pronounced attachment style traits)\n5. The attachment styles are:\n - ANXIOUS / \"Anxious Attachment\" (Focus: fear of abandonment)\n - AVOIDANT / \"Avoidant Attachment\" (Focus: intimacy is threatening)\n - DISORGANIZED / \"Disorganized Attachment\" (Focus: conflict between desire for and fear of intimacy)\n - SECURE / \"Secure Attachment\" (Focus: trust and flexibility)\n6. When there's a tie or scores are very close (within 0.3 points) between attachment styles, consider the following:\n - If Secure is one of the tied scores, prioritize the non-Secure style as the primary type\n - If two non-Secure styles are tied, use the higher intensity as the primary type\n - In case of an exact tie in both score and intensity, prioritize in this order: Disorganized > Anxious > Avoidant > Secure\n",
-"questions": [
-{
-"id": "anxious_attachment",
-"description": "This scale assesses anxious attachment (focus: fear of abandonment)",
-"statements": [
-{
-"id": "anxious_1",
-"description": "When partner takes long to respond, fears being unwanted or abandoned. Higher scores indicate stronger anxious attachment tendencies."
-},
-{
-"id": "anxious_2",
-"description": "Needs frequent attention and reassurance to feel secure in relationships. Higher scores indicate stronger anxious attachment tendencies."
-},
-{
-"id": "anxious_3",
-"description": "Frequently doubts partner's love and commitment. Higher scores indicate stronger anxious attachment tendencies."
-}
-],
-"scale": {
-"labels": [
-{
-"value": 1,
-"description": "Completely untrue"
-},
-{
-"value": 2,
-"description": "More untrue than true"
-},
-{
-"value": 3,
-"description": "Neither true nor untrue"
-},
-{
-"value": 4,
-"description": "More true than untrue"
-},
-{
-"value": 5,
-"description": "Completely true"
-}
-]
-}
-},
-{
-"id": "avoidant_attachment",
-"description": "This scale assesses avoidant attachment (focus: intimacy is threatening)",
-"statements": [
-{
-"id": "avoidant_1",
-"description": "Difficulty expressing feelings, even with close people. Higher scores indicate stronger avoidant attachment tendencies."
-},
-{
-"id": "avoidant_2",
-"description": "Desires to withdraw when others seek emotional closeness. Higher scores indicate stronger avoidant attachment tendencies."
-},
-{
-"id": "avoidant_3",
-"description": "Values maintaining independence even in close relationships. Higher scores indicate stronger avoidant attachment tendencies."
-}
-],
-"scale": {
-"labels": [
-{
-"value": 1,
-"description": "Completely untrue"
-},
-{
-"value": 2,
-"description": "More untrue than true"
-},
-{
-"value": 3,
-"description": "Neither true nor untrue"
-},
-{
-"value": 4,
-"description": "More true than untrue"
-},
-{
-"value": 5,
-"description": "Completely true"
-}
-]
-}
-},
-{
-"id": "disorganized_attachment",
-"description": "This scale assesses disorganized attachment (focus: conflict between desire for and fear of intimacy)",
-"statements": [
-{
-"id": "disorganized_1",
-"description": "Fluctuates between strongly desiring and fearing closeness. Higher scores indicate stronger disorganized attachment tendencies."
-},
-{
-"id": "disorganized_2",
-"description": "Reacts intensely to conflicts - either shuts down or explodes. Higher scores indicate stronger disorganized attachment tendencies."
-},
-{
-"id": "disorganized_3",
-"description": "Wants closeness but struggles to fully trust others. Higher scores indicate stronger disorganized attachment tendencies."
-}
-],
-"scale": {
-"labels": [
-{
-"value": 1,
-"description": "Completely untrue"
-},
-{
-"value": 2,
-"description": "More untrue than true"
-},
-{
-"value": 3,
-"description": "Neither true nor untrue"
-},
-{
-"value": 4,
-"description": "More true than untrue"
-},
-{
-"value": 5,
-"description": "Completely true"
-}
-]
-}
-},
-{
-"id": "secure_attachment",
-"description": "This scale assesses secure attachment (focus: trust and flexibility)",
-"statements": [
-{
-"id": "secure_1",
-"description": "Maintains trust in relationship stability even during conflicts. Higher scores indicate stronger secure attachment tendencies."
-},
-{
-"id": "secure_2",
-"description": "Feels calm and accepted even when partner is emotionally distant. Higher scores indicate stronger secure attachment tendencies."
-},
-{
-"id": "secure_3",
-"description": "Can openly express feelings and listen to others, even with differing opinions. Higher scores indicate stronger secure attachment tendencies."
-}
-],
-"scale": {
-"labels": [
-{
-"value": 1,
-"description": "Completely untrue"
-},
-{
-"value": 2,
-"description": "More untrue than true"
-},
-{
-"value": 3,
-"description": "Neither true nor untrue"
-},
-{
-"value": 4,
-"description": "More true than untrue"
-},
-{
-"value": 5,
-"description": "Completely true"
-}
-]
-}
-}
-]
-}
+## Overview
 
-And this user input  
-[{"questionId":"anxious_attachment_anxious_1","value":"1"},{"questionId":"anxious_attachment_anxious_2","value":"2"},{"questionId":"anxious_attachment_anxious_3","value":"3"},{"questionId":"avoidant_attachment_avoidant_1","value":"2"},{"questionId":"avoidant_attachment_avoidant_2","value":"3"},{"questionId":"avoidant_attachment_avoidant_3","value":"4"},{"questionId":"disorganized_attachment_disorganized_1","value":"2"},{"questionId":"disorganized_attachment_disorganized_2","value":"3"},{"questionId":"disorganized_attachment_disorganized_3","value":"4"},{"questionId":"secure_attachment_secure_1","value":"5"},{"questionId":"secure_attachment_secure_2","value":"4"},{"questionId":"secure_attachment_secure_3","value":"3"}]
+This questionnaire assesses how you form emotional bonds and what you need to feel secure in relationships. Your attachment style shapes how you handle closeness, conflict, and connection.
 
-<user_report>
-For user:
+## Questions
 
-- Write a flowing, natural paragraph (75-100 words MAX - HARD LIMIT).
-- Use markdown formatting.
-- Create recognition without being pushy or using hard labels.
+### Anxious Attachment Questions
 
-<tone_of_voice>
-Use a **direct but not harsh, insightful but not judgmental tone**.
+_Focus: Fear of abandonment and need for reassurance_
 
-- Make specific behavioral observations they'll recognize
-- Avoid hard labels ("you are", "you always", "you never")
-- Use softer descriptive language ("you tend to", "something in you", "part of you")
-- Be precise but not aggressive
-- Create recognition that feels illuminating, not attacking
-  </tone_of_voice>
+**Question 1:** When my partner doesn't respond to messages quickly, I worry they're losing interest in me.
 
-- Build recognition through three integrated insights in one flowing paragraph:
-  - Start with how they handle relationship dynamics/conflict
-  - Flow into their comfort patterns with closeness/distance
-  - End with protective behavior and depth hint
+- Scale: Completely untrue → Completely true (1-5)
 
-- Use observational language connecting insights with natural transitions ("and," "but," "probably")
+**Question 2:** I need frequent attention and reassurance to feel secure in relationships.
 
-- End with one of these dynamic curiosity hooks:
-  - "...and that distance might be protecting something tender inside you."
-  - "...and your instinct for [independence/space/closeness] likely has roots worth understanding."
-  - "...and there's probably a reason why that [space/closeness] feels [protective/necessary]."
+- Scale: Completely untrue → Completely true (1-5)
 
-**WORD COUNT: 75-100 words maximum. Create flowing recognition, not structured analysis.**
-</user_report>
+**Question 3:** I often worry about whether my partner truly loves me.
 
-<psychologist_notes>
-For your own analysis as a psychologist:
+- Scale: Completely untrue → Completely true (1-5)
 
-- Write professional notes using this structure:
+### Avoidant Attachment Questions
 
-**Attachment Analysis**: Dominant and secondary styles with average scores
+_Focus: Discomfort with emotional intimacy_
 
-**Behavioral Markers**: What the consultant should notice in conversation: - How user discusses relationships - Response patterns to conflict or distance
+**Question 4:** I find it difficult to express my feelings, even with people I'm close to.
 
-- Language around independence vs. connection
+- Scale: Completely untrue → Completely true (1-5)
 
-**Relationship Dynamics**: Likely patterns in their relationships: - How they handle emotional demands - Common relationship tensions - Protective strategies they use
+**Question 5:** I feel uncomfortable when I’m asked to open up about my feelings and vulnerabilities.
 
-**Conversation Guidance**: Specific strategies for the consultant: - What topics to explore directly vs. carefully - How to frame relationship discussions - When to challenge vs. when to support
+- Scale: Completely untrue → Completely true (1-5)
 
-**Red Flags**: Warning signs that indicate stress beyond typical pattern
+**Question 6:** I value maintaining my independence, even in close relationships.
 
-Write in clear, conversational language as if briefing another consultant.
+- Scale: Completely untrue → Completely true (1-5)
 
-<interaction_approach>
-Based on attachment intensity levels: - If secure intensity ≥ 4: Safe to explore depth, challenge gently, focus on integration work - If anxious intensity ≥ 4: Prioritize warm tone, consistent presence, frequent reassurance
+### Disorganized Attachment Questions
 
-- If avoidant intensity ≥ 4: Respect pacing, avoid emotional flooding, honor need for space - If disorganized intensity ≥ 4: Hold contradictions calmly, model stability, go slowly
-  </interaction_approach>
-  </psychologist_notes>
+_Focus: Conflicted feelings about intimacy_
+
+**Question 7:** I feel conflicted between wanting closeness and fearing it at the same time.
+
+- Scale: Completely untrue → Completely true (1-5)
+
+**Question 8:** During conflicts, I either shut down completely or react very intensely.
+
+- Scale: Completely untrue → Completely true (1-5)
+
+**Question 9:** I want closeness but find it hard to fully trust others.
+
+- Scale: Completely untrue → Completely true (1-5)
+
+### Secure Attachment Questions
+
+_Focus: Trust and emotional flexibility_
+
+**Question 10:** I maintain trust in my relationships even during conflicts or disagreements.
+
+- Scale: Completely untrue → Completely true (1-5)
+
+**Question 11:** I feel calm and accepted even when my partner is emotionally distant or preoccupied.
+
+- Scale: Completely untrue → Completely true (1-5)
+
+**Question 12:** I can openly share my feelings and listen respectfully to others, even when we disagree.
+
+- Scale: Completely untrue → Completely true (1-5)
+
+### Evaluation Instructions
+
+### Step 1: Calculate Average Scores
+
+For each attachment style, add up the three question scores and divide by 3:
+
+- **Anxious Average** = (Question 1 + Question 2 + Question 3) ÷ 3
+- **Avoidant Average** = (Question 4 + Question 5 + Question 6) ÷ 3
+- **Disorganized Average** = (Question 7 + Question 8 + Question 9) ÷ 3
+- **Secure Average** = (Question 10 + Question 11 + Question 12) ÷ 3
+
+### Step 2: Determine Primary Type
+
+The attachment style with the highest average score is the primary type.
+
+### Step 3: Determine Secondary Type
+
+The attachment style with the second highest average score is the secondary type.
+
+### Step 4: Calculate Intensity Levels
+
+Based on the average score:
+
+- **1.0-2.0**: Very Mild (minimal traits)
+- **2.1-3.0**: Mild (low-moderate expression)
+- **3.1-4.0**: Moderate (noticeable traits)
+- **4.1-5.0**: Strong (highly pronounced traits)
+
+### Step 5: Handle Close Scores
+
+When scores are very close (within 0.3 points):
+
+- If Secure is tied with another style, prioritize the non-Secure style as primary
+- If two non-Secure styles are tied, use the higher intensity as primary
+- For exact ties, prioritize in this order: Disorganized > Anxious > Avoidant > Secure
+
+### Step 6: Validate Response Quality
+
+- Check for straight-lining (all answers the same value) - if detected, flag as potentially invalid
+- If flagged as invalid, suggest retaking the assessment

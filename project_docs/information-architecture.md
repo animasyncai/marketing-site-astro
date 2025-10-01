@@ -9,7 +9,7 @@ The goal of this document is to lay out content architecture and content itself 
 Main navigation consists of several menu elements (title / url / description for you) in the sidebar:
 
 - Reflection Companion / chat / AI consultant
-- Your Traits / traits / main page for trait questionnaires/cards
+- Your Traits / traits / main page for trait questionnaires/cards (described in `feature-traits.md`)
 - Inner Portraits / inner-portrait / Main page for all individual reports
 - Relational Portraits / relational-portrait / Main page for couple reports and partner sync
 - My Profile / profile / Displayed at the bottom of the sidebar - goes to profile settings
@@ -39,45 +39,6 @@ The Reflection Companion is the chat interface.
   - Success → “✨ Message sent. [X Sparks left]”
   - Low balance (<3 Sparks) → refill suggestion
   - At 0 Sparks → blocking prompt “✨ Time to Refill Sparks”
-
----
-
-## Your Traits
-
-[ LIST OF TRAIT CARDS IN A GRID ]
-
-Card structure:
-
-- Title
-- Description
-- User reflection access (permanent)
-- Completed date
-- Call to actions
-- Price (initial = free, retake after 30 days = 1 Spark)
-
-Cards:
-
-- **The Way You Stay Present**  
-  Understand how aware you are of your inner world and emotions. This reveals your relationship with mindfulness and your openness to personal growth.
-
-- **The Way You Hear Yourself**  
-  Discover how you treat yourself internally — the tone of your inner voice and how compassionately you meet your own emotions and experiences.
-
-- **The Way You Attach**  
-  Explore how you form emotional bonds and what you need to feel secure in relationships. Your attachment style shapes how you handle closeness, conflict, and connection.
-
-- **The Way You Love**  
-  Discover how you naturally express care and what makes you feel most loved. Understanding your love language helps you connect more deeply with others and communicate your needs clearly.
-
-CTAs on cards:
-
-- Start (when not done)
-- Check in again (when done)
-
-Notes:
-
-- If less than 30 days since last completion, show a notice discouraging early retake.
-- Retakes after 30 days → 1 Spark.
 
 ---
 

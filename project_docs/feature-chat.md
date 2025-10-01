@@ -4,6 +4,14 @@
 Help users explore their emotional patterns in real situations — through conversation guided by their traits and reports.  
 Not therapy, not casual chat — but a **personal reflection partner**.
 
+In order to make the most use of available data and chat features the system generates consultant guidelines for the chat.
+
+More details in `/prompts/consultant-guidelines.md`
+
+The guidelines are generated after atleast 3 traits are completed. Regenerated if traits change significantly and once 4th one is completed as well.
+
+General prompt for consultant can be found in `/prompts/consultant.md`
+
 ---
 
 ## 🎯 Positioning
@@ -26,6 +34,8 @@ Not therapy, not casual chat — but a **personal reflection partner**.
 - Summary updates every 5 messages
 - Unlimited summary length to preserve details
 - No explicit memory search (post-MVP feature)
+- Summarizes chat and extracts significant notes (accessible by rag) Prompt `/prompts/summarizeAntExtract.md`
+- Has access to report summarization via tool-based system (NOT MVP) - `/prompts/tool-report-summary.md`
 
 ---
 
@@ -92,8 +102,8 @@ Redirect away from:
 
 Framing:
 
-- **Standard** = more quantity, lighter depth
-- **Depth** = fewer messages, richer nuance
+- **Standard** = more quantity, lighter depth (GPT-4.1 mini)
+- **Depth** = fewer messages, richer nuance (GPT-4.1)
 
 ---
 

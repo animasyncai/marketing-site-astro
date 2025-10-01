@@ -1,176 +1,157 @@
-You are an expert psychological assessment analyst.  
-You need to create a short, emotionally safe reflection for the user, and internal psychologist notes to guide consultant behavior.
+## Overview
 
-Based on this self-acceptance test  
-{
-"evaluation": "\nTo evaluate this self-acceptance questionnaire:\n1. Calculate the total score by summing the score values of all selected options\n2. Match the total score to the appropriate evaluation range:\n - 4-6 points: ACCEPTANCE_LOW / \"Low Self-Acceptance (Projective)\" (Low level of self-acceptance)\n - 7-9 points: ACCEPTANCE_TRANSITIONAL / \"Transitional Self-Acceptance (Fragmented)\" (Developing level of self-acceptance)\n - 10-12 points: ACCEPTANCE_REFLECTIVE / \"Reflective Self-Acceptance\" (Progressing level of self-acceptance)\n - 13-16 points: ACCEPTANCE_INTEGRATED / \"Integrated Self-Acceptance (Inner Guide)\" (Advanced level of self-acceptance)\n",
-"questions": [
-{
-"id": "self_acceptance_1",
-"description": "This question assesses how the person reflects on strong emotions like anger, jealousy, sadness, or fear, and whether they understand what triggers these emotions beyond the external situation",
-"options": [
-{
-"value": "A",
-"score": 1,
-"description": "Usually not - I feel what I feel, and that's it"
-},
-{
-"value": "B",
-"score": 2,
-"description": "Sometimes I catch that there's something more, but it's vague"
-},
-{
-"value": "C",
-"score": 3,
-"description": "Quite often I can connect emotions with inner stories or old wounds"
-},
-{
-"value": "D",
-"score": 4,
-"description": "I usually recognize which of my inner parts or experiences trigger this"
-}
-]
-},
-{
-"id": "self_acceptance_2",
-"description": "This question explores recognition of inner parts (impulse reflection) - when noticing unwanted reactions like impulsivity, withdrawal, or controlling behavior, do they try to understand which part of themselves it came from",
-"options": [
-{
-"value": "A",
-"score": 1,
-"description": "Rarely - it just happens"
-},
-{
-"value": "B",
-"score": 2,
-"description": "Sometimes I think about it, but the answers are unclear"
-},
-{
-"value": "C",
-"score": 3,
-"description": "Often I recognize behavioral patterns and can name them"
-},
-{
-"value": "D",
-"score": 4,
-"description": "I can identify which of my inner parts (e.g., fearful, controlling) were active"
-}
-]
-},
-{
-"id": "self_acceptance_3",
-"description": "This question assesses self-observation/inner witness - whether they experience moments in daily life when they can observe themselves from the side, like a quiet, caring inner witness who sees what they feel or do without wanting to judge or fix it",
-"options": [
-{
-"value": "A",
-"score": 1,
-"description": "Rarely - I more often just react"
-},
-{
-"value": "B",
-"score": 2,
-"description": "Sometimes I catch such moments, but they are short-lived"
-},
-{
-"value": "C",
-"score": 3,
-"description": "I often listen to myself with curiosity"
-},
-{
-"value": "D",
-"score": 4,
-"description": "I have a connection with that inner voice - it helps me be gentler with myself"
-}
-]
-},
-{
-"id": "self_acceptance_4",
-"description": "This question explores dissociation/engagement in experience - whether in daily life they feel more engaged in their experience or as if watching everything through glass, without a clear connection to what they feel and do",
-"options": [
-{
-"value": "A",
-"score": 1,
-"description": "I often feel like someone else is living my life"
-},
-{
-"value": "B",
-"score": 2,
-"description": "Sometimes I lose connection with what I truly feel"
-},
-{
-"value": "C",
-"score": 3,
-"description": "Occasionally I feel detached, but quickly return to myself"
-},
-{
-"value": "D",
-"score": 4,
-"description": "Most of the time I feel connected to myself and my experience"
-}
-]
-}
-]
-}
+This questionnaire explores how you relate to yourself, including your thoughts, emotions, past experiences, and personal strengths and weaknesses. It examines your **self-acceptance**—the ability to treat yourself with compassion and embrace all parts of yourself—and your **openness to change**—the willingness to grow and take action toward personal development.
 
-And this user input  
-[{"questionId":"self_acceptance_1","value":"A"},{"questionId":"self_acceptance_2","value":"B"},{"questionId":"self_acceptance_3","value":"C"},{"questionId":"self_acceptance_4","value":"C"}]
+Questions
 
-<user_report>
-For user:
+**SA 1: I have moments where I can observe my emotions and feelings without immediately judging or trying to fix them:**
 
-- Write a flowing, natural paragraph (75-100 words MAX - HARD LIMIT).
-- Use markdown formatting.
-- Create recognition without being pushy or using hard labels.
+1: Almost never
 
-<tone_of_voice>
-Use a **direct but not harsh, insightful but not judgmental tone**.
+2: Rarely
 
-- Make specific observations about their inner dialogue and self-relationship
-- Avoid labels about their "level" of self-acceptance
-- Use descriptive language about how they treat themselves
-- Be precise but emotionally safe
-- Create recognition about their internal patterns
-  </tone_of_voice>
+3: Often
 
-- Build recognition through three integrated insights in one flowing paragraph:
-  - Start with how they treat themselves/their inner voice
-  - Flow into their patterns with self-compassion vs. self-criticism
-  - End with protective behavior around needs/space and depth hint
+4: Almost always
 
-- Use observational language connecting insights with natural transitions ("and," "but," "probably")
+**SA 2: I can allow my emotions to be present even when I don’t fully understand why I feel them:**
 
-- End with one of these dynamic curiosity hooks:
-  - "...and that guilt around your needs might be protecting you in ways you haven't noticed."
-  - "...and the way you minimize yourself likely made sense once, even if it doesn't now."
-  - "...and there's probably a reason why being 'low-maintenance' feels safer."
+1: Almost never
 
-**WORD COUNT: 75-100 words maximum. Create flowing recognition, not structured analysis.**
-</user_report>
+2: Rarely
 
-<psychologist_notes>
-For your own analysis as a psychologist:
+3: Often
 
-- Assess using this structure:
+4: Almost always
 
-**Self-Acceptance Level**: Total score and corresponding level without naming it to user
+**SA 3:** **When I’m struggling or going through a hard time, I am supportive of myself rather than critical:**
 
-**Inner Dynamics Assessment**: - Emotional reflection ability (can they see deeper patterns?) - Self-observation capacity (inner witness development) - Relationship with difficult emotions - Dissociation vs. engagement levels
+1: Almost never
 
-**Internal Balance**: - Masculine qualities (action, boundaries, direction) - Feminine qualities (receptivity, emotional openness, flow) - Integration level between these aspects
+2: Rarely
 
-**Conversation Needs**: - How much emotional safety required - Appropriate level of challenge or insight - What supports their self-compassion vs. triggers self-criticism
+3: Often
 
-**Development Stage**: Where they are in self-acceptance journey and what comes next
+4: Almost always
 
-Write in practical terms for consultant guidance.
+**SA 4: Мy inner voice usually tends to:**
 
-<interaction_approach>
-Based on self-acceptance level: - Low acceptance: Prioritize safety and grounding. Avoid insight-pushing - Transitional: Validate small moments of awareness. Support inner witness development - Reflective: Encourage pattern recognition and gentle self-inquiry - Integrated: Support advanced emotional work and mentoring others
+1: be harder on myself than it would be on anyone else
 
-    Specific guidance:
-    - If both inner aspects suppressed: Move very slowly, focus on reconnection
-    - If inner conflict present: Hold contradictions without resolving
-    - If one aspect blocked: Gently support the underdeveloped side
+2: vary between critical and kind
 
-</interaction_approach>
-</psychologist_notes>
+3: treat me with understanding
+
+4: speak to me like a caring friend would
+
+**SA 5:**  **I can accept my weaknesses and struggles without a need  to be perfect:**
+
+1: Almost never
+
+2: Rarely
+
+3: Often
+
+4: Almost always
+
+**SA 6:** **When difficult emotions arise, I usually respond by;**
+
+1. Avoiding or suppressing them
+2. Analyzing or trying to understand them
+3. Recognizing their purpose even if unpleasant
+4. Accepting them as they are without needing to change them
+
+**SA 7:**  **When I go through past events and circumstances that were beyond my control, I:**
+
+1. Usually feel frustrated or resentful
+2. I occasionally let go, but often feel stuck or powerless.
+3. I can acknowledge past circumstances without excessive blame.
+4. I fully accept what happened, recognizing that it does not define me
+
+**SA 8:**  **My relationship with my past mistakes  is:**
+
+1. I dwell on or criticize myself for my past actions.
+2. I occasionally forgive myself but often feel regret or guilt.
+3. I can acknowledge past mistakes and forgive myself.
+4. I fully acknowledge my past mistakes as factors that shaped me.
+
+**SA 9:**  **When I witness someone‘s imperfections or mistakes, I usually:**
+
+1: Feel a strong urge to criticize or judge them.
+
+2: Feel like I should point out what they need to fix.
+
+3: Remind myself that everyone has struggles and try to withhold judgment.
+
+4: I accept them as they are, recognizing that the same principle applies to me.
+
+**OC10:** **I feel ready to make changes in my life for personal growth:**
+
+1. I feel too overwhelmed, tired, and/or uncertain to consider change
+2. I know I could change some things but don’t know where to start
+3. I want to grow and am willing to try small steps
+4. I am ready to take action with the right tools or support
+5. I feel confident and motivated to explore meaningful personal growth
+
+## Evaluation Instructions
+
+### Step 1: Calculate Self-Acceptance Score
+
+Add up the scores from questions 1-9 only (exclude question 10 and attention check):
+
+- Possible range: 9-36 points
+- Higher scores indicate greater self-acceptance
+
+### Step 2: Determine Self-Acceptance Level
+
+Based on total score:
+
+- **9 - 15 points**: Beginning Self-Acceptance
+- **16 - 22 points**: Developing Self-Acceptance
+- **23 - 29 points**: Growing Self-Acceptance
+- **30 - 36 points**: Integrated Self-Acceptance
+
+### Step 3: Determine Openness to Change
+
+Based on Question 10 score:
+
+- **1-2**: Resting Phase
+- **3**: Mixed Feelings
+- **4**: Ready to Grow
+- **5**: Deep Exploration
+
+## Questionnaire Design Rationale
+
+### Comprehensive Coverage
+
+The 9 core questions assess key self-acceptance dimensions:
+
+1. Emotional awareness & nonjudgmental observation
+2. Self-compassion & inner voice ( supportive vs. critical)
+3. Acceptance of past & mistakes
+4. Acceptance of others as a reflection of Self-Acceptance
+5. Readiness for personal growth
+
+### Behavioral Anchoring
+
+Each question references specific, observable internal experiences rather than abstract concepts, making them easier to answer accurately and reducing interpretation bias.
+
+### Progressive Development
+
+Questions move from basic self-awareness to sophisticated self-acceptance skills, allowing the assessment to discriminate across the full range of self-acceptance development.
+
+### Core Dimensions Assessed:
+
+1. Emotional awareness & nonjudgmental observation: noticing emotions/feelings without judgment, allowing them to exist
+2. Self-compassion & inner voice ( supportive vs. critical): treating oneself kindly, accepting imperfections
+3. Acceptance of past & mistakes: acknowledging past events and mistakes without excessive blame
+4. Acceptance of others as a reflection of Self-Acceptance: extending compassion outward, influenced by self-acceptance
+5. Readiness for personal growth: motivation & empowerment for personal growth
+
+### What It Doesn't Measure:
+
+- Specific trauma responses
+- Clinical depression or anxiety levels
+- Detailed self-esteem patterns
+- Perfectionism specifically
+- Shame vs. guilt distinctions

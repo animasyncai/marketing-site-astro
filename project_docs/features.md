@@ -20,58 +20,7 @@ Every trait produces two outputs:
 1. **User-facing mini report** — a predefined reflection shown after completion and saved for ongoing reference.
 2. **Behavioral profile** — rich psychological context for reports/consultant
 
-**No individual interaction guidance** - consultant gets AI-generated integrated guidance instead.
-
----
-
-## Love Language
-
-- **Goal**: Identify primary and (optional) secondary love languages, plus archetypal expression styles.
-- **User-facing title**: _The Way You Love_
-- **Description**: _(to be generated)_
-- **Prompt**: `/traits/love-language.md`
-- **Example**: `/traits/love-language-example.md`
-
----
-
-## Attachment Type
-
-- **Goal**: Identify primary attachment style, intensity, and optional secondary style.
-- **User-facing title**: _The Way You Attach_
-- **Description**: _(to be generated)_
-- **Prompt**: `/traits/attachment-type.md`
-- **Example**: `/traits/attachment-type-example.md`
-
----
-
-## Mindfulness Level
-
-- **Goal**: Identify the user’s level of mindfulness and openness to change.
-- **User-facing title**: _The Way You Stay Present_
-- **Description**: _(to be generated)_
-- **Prompt**: `/traits/mindfulness-level.md`
-- **Example**: `/traits/mindfulness-level-example.md`
-
----
-
-## Self-Acceptance Level
-
-- **Goal**: Identify how the user accepts themselves and what narratives shape their self-view.
-- **User-facing title**: _The Way You Hear Yourself_
-- **Description**: _(to be generated)_
-- **Prompt**: `/traits/self-acceptance.md`
-- **Example**: `/traits/self-acceptance-example.md`
-
----
-
-## Predefined Reports & Change Evaluation
-
-- **Mini Reports** are fully predefined. When a user first completes a trait, they receive one of these pregenerated reflections. No AI is used.
-- **Progress Feedback**: When a user retakes a questionnaire, the system compares **labels only** (e.g. attachment = _Avoidant → Anxious_, or love language = _Words → Touch_).
-  - If the label is unchanged → show a predefined “stable” reflection.
-  - If the label has changed → show a predefined “changed” reflection specific to the transition.
-- This MVP approach avoids complex scoring logic and keeps costs low.
-- If a trait changes significantly, the system can also flag associated reports (e.g. Master Report) as **recommended to regenerate**.
+**No individual interaction guidance** - consultant gets AI-generated integrated guidance later instead.
 
 More details in `feature-traits.md`
 
@@ -123,13 +72,7 @@ More details in `feature-relational-portrait.md`
 ## 💬 Reflection Companion
 
 - Speaks in a warm, therapeutic-like tone — never clinical.
-- Adapts based on trait psychologist notes and report summaries.
+- Adapts based on user traits and consultant guidelines.
 - Ongoing use costs tokens (Sparks).
-- Summarizes chat and extracts significant notes, but that is currently experimental. Prompt `/prompts/summarizeAntExtract.md`
-- Has access to report summarization via tool-based system (200 word summary of the report) - `/prompts/tool-report-summary.md`
-- Main prompt `prompts/consultant.md` example with real data: `prompts/consultant-example.md`
 
-## Tools
-
-- Goal-setting and growth-oriented practices (planned)
-- Longitudinal insight graphs (future feature)
+More details in `feature-chat.md`
