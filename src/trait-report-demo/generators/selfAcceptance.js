@@ -29,20 +29,22 @@ export function generateSelfAcceptanceReflection(traitData, locale = 'en') {
         throw new Error(`Unknown self-acceptance level: ${level}`)
     }
 
-    // Build user reflection
+    // Build user reflection with proper paragraph breaks
     let userReport = bank.reflection
 
+    // Add openness modifier as separate paragraph if exists
     if (openness_to_change && t.opennessModifiers && t.opennessModifiers[openness_to_change]) {
         const modifier = t.opennessModifiers[openness_to_change].modifier
         if (modifier) {
-            userReport += ' ' + modifier
+            userReport += '\n\n' + modifier
         }
     }
 
-    // Behavioral profile always from English
+    // Behavioral profile ALWAYS from English only
     const enBank = translations.en.levels[level]
     let behavioralProfile = enBank.behavioralProfile
 
+    // Add behavioral addition from English only
     if (openness_to_change && translations.en.opennessModifiers && translations.en.opennessModifiers[openness_to_change]) {
         const behavioralAddition = translations.en.opennessModifiers[openness_to_change].behavioralAddition
         if (behavioralAddition) {
