@@ -1,96 +1,208 @@
 {
-  "loveLanguages": {
-    "QUALITY_TIME": {
-      "reflection": "You feel most loved and valued when someone gives you their full, undivided attention. It's not just about being in the same room—it's about that quality of presence where you feel like you're the only thing that matters in that moment. When someone puts away their phone, looks you in the eyes, and really listens to what you're saying, something inside you relaxes and feels secure. You show your love by creating these same kinds of meaningful moments for others: planning special experiences, being fully present during conversations, and making time for the people who matter to you. Distractions and interruptions during time together can feel particularly painful because they signal to you that other things are more important than your connection. You'd rather have thirty minutes of someone's complete attention than three hours of distracted half-presence, and something deeper might be driving that need for recognition.",
-      "secondaryBridge": {
-        "WORDS_OF_AFFIRMATION": "You also light up when words of care are spoken — not just presence, but being named within it.",
-        "ACTS_OF_SERVICE": "At the same time, actions that ease your load make shared time feel even more meaningful.",
-        "PHYSICAL_TOUCH": "Closeness feels strongest when time together is paired with touch.",
-        "GIFTS": "Even small gestures or surprises can add weight to the moments you share."
-      },
-      "behavioralProfile": "Feels most loved through undivided attention and shared experiences. Values presence over presents. May feel unloved when partners are distracted during time together. Interprets cancelled plans or rushed interactions as signs of low priority. Expresses love by creating meaningful experiences and being fully present with others."
-    },
+  "love_language": {
     "WORDS_OF_AFFIRMATION": {
-      "reflection": "Hearing genuine, specific words of appreciation, encouragement, and love fills your emotional tank in a way that nothing else quite can. You notice and remember the exact words people use when they express care for you, and these phrases can stay with you for days or even years, returning as sources of comfort and strength. You have a gift for noticing what's wonderful about the people you love and expressing it in ways that make them feel truly seen. Your compliments aren't just generic—they're specific, heartfelt observations about someone's character, efforts, or impact. Critical or harsh words can wound you more deeply than others might expect, while sincere praise and verbal appreciation can completely shift your mood and energy. You carry words close, because they remind you of what you mean to others, even when you forget it yourself, and there's probably a reason why appreciation feels so necessary.",
-      "secondaryBridge": {
-        "QUALITY_TIME": "It matters even more when those words are spoken during moments of full presence.",
-        "ACTS_OF_SERVICE": "They feel strongest when paired with actions that show the same care.",
-        "PHYSICAL_TOUCH": "Hearing words alongside touch makes them land in your body, not just your mind.",
-        "GIFTS": "Even small tokens can anchor the weight of words, making them last longer."
+      "reflection": {
+        "core": "Hearing genuine, specific words of appreciation, encouragement, and love fills your emotional tank in a way that nothing else quite can. You notice and remember the exact words people use when they express care for you, and these phrases can stay with you for days or even years, returning as sources of comfort and strength.",
+
+        "subtypeA": {
+          "emphasis": "You particularly value deep, meaningful conversations where ideas are explored and feelings are talked through.",
+          "behavioral": "You light up during in-depth dialogue and feel closest when someone engages with your thoughts and inner world through sustained conversation."
+        },
+
+        "subtypeB": {
+          "emphasis": "You especially need to hear explicit expressions of affection, appreciation, and encouragement.",
+          "behavioral": "Phrases like 'I love you,' 'you matter to me,' or 'I see what you did there' land deeply and shift your entire mood."
+        },
+
+        "balanced": "You appreciate both meaningful conversations and direct words of affection—sometimes you need dialogue, other times you just need to hear that you're valued.",
+
+        "closing": "Critical or harsh words can wound you more deeply than others might expect, while sincere praise and verbal appreciation can completely shift your mood and energy, and there's probably a reason why appreciation feels so necessary."
       },
-      "behavioralProfile": "Feels most loved through verbal recognition, encouragement, and appreciation. Remembers both positive and negative words long after they're spoken. May feel unloved when partners are silent or critical. Expresses love through compliments, encouragement, and verbal appreciation. Needs verbal reassurance during conflict or stress."
+
+      "behavioralProfile": {
+        "core": "Feels most loved through verbal recognition, encouragement, and appreciation. Remembers both positive and negative words long after they're spoken.",
+
+        "subtypeA": "Specifically values in-depth conversations and meaningful dialogue as primary expressions of care. May feel unloved when conversations remain superficial or partners avoid discussing feelings and inner experiences.",
+
+        "subtypeB": "Specifically values explicit verbal affirmations like 'I love you,' compliments about character, and spoken appreciation for efforts. May feel unloved when partners are silent or assume love is understood without being stated.",
+
+        "balanced": "Values both meaningful dialogue and direct verbal affirmation equally. Needs partners who can engage both conversationally and expressively.",
+
+        "universal": "May feel unloved when partners are silent or critical. Needs verbal reassurance during conflict or stress. Expresses love through compliments, encouragement, and verbal appreciation."
+      }
     },
+
+    "QUALITY_TIME": {
+      "reflection": {
+        "core": "You feel most loved and valued when someone gives you their full, undivided attention. It's not just about being in the same room—it's about that quality of presence where you feel like you're the only thing that matters in that moment.",
+
+        "subtypeA": {
+          "emphasis": "You particularly value shared activities and simply being together.",
+          "behavioral": "You feel closest when doing things side by side—cooking, walking, working on projects, or just existing in the same space without needing constant conversation."
+        },
+
+        "subtypeB": {
+          "emphasis": "You especially need focused, conscious attention where someone asks about your inner world and listens deeply.",
+          "behavioral": "When someone puts away their phone, looks you in the eyes, and really listens to what you're saying, something inside you relaxes and feels secure."
+        },
+
+        "balanced": "You appreciate both shared experiences and focused conversations—sometimes parallel presence is enough, other times you need that direct, attentive listening.",
+
+        "closing": "Distractions and interruptions during time together can feel particularly painful because they signal that other things are more important than your connection, and something deeper might be driving that need for recognition."
+      },
+
+      "behavioralProfile": {
+        "core": "Feels most loved through undivided attention and shared experiences. Values presence over presents.",
+
+        "subtypeA": "Specifically values shared activities, parallel presence, and doing things together. May feel unloved when partners are physically present but not engaged in shared experience or joint activities.",
+
+        "subtypeB": "Specifically values focused attention, eye contact, active listening, and conversations without distractions. May feel unloved when partners are physically present but mentally elsewhere or distracted by devices.",
+
+        "balanced": "Values both shared activities and focused conversation depending on context. Flexible in how quality time is expressed.",
+
+        "universal": "Interprets cancelled plans or rushed interactions as signs of low priority. May feel unloved during long-distance periods or when schedules don't align. Expresses love by creating meaningful experiences and being fully present with others."
+      }
+    },
+
     "ACTS_OF_SERVICE": {
-      "reflection": "You feel most loved when someone notices what you need and takes action to help, especially without being asked. There's something deeply meaningful to you about someone caring enough to lighten your load, solve a problem for you, or handle something that's been on your mind. You show your love through thoughtful actions—bringing someone their favorite coffee, handling an errand they've been dreading, or taking care of tasks that make their life easier. You have a radar for noticing what would be helpful and a natural instinct to step in and provide support. When someone makes promises but doesn't follow through with action, it can feel like they don't really care, even if their intentions are good. You'd rather receive help with something practical than hear a dozen compliments without any accompanying support, and that quiet step back likely serves a purpose you haven't fully explored.",
-      "secondaryBridge": {
-        "QUALITY_TIME": "It means even more when that help happens while being fully present with you.",
-        "WORDS_OF_AFFIRMATION": "When words of care match the actions, the reassurance runs deeper.",
-        "PHYSICAL_TOUCH": "Practical care paired with touch makes the support feel both tangible and tender.",
-        "GIFTS": "Even small thoughtful gestures can turn an action into a memory."
+      "reflection": {
+        "core": "You feel most loved when someone notices what you need and takes action to help, especially without being asked. There's something deeply meaningful to you about someone caring enough to lighten your load, solve a problem for you, or handle something that's been on your mind.",
+
+        "subtypeA": {
+          "emphasis": "You particularly value emotional and practical support during difficult moments.",
+          "behavioral": "When life gets hard, someone stepping in to help—whether by listening, problem-solving, or taking something off your plate—feels like love to you."
+        },
+
+        "subtypeB": {
+          "emphasis": "You especially appreciate when someone takes over ongoing responsibilities or duties.",
+          "behavioral": "When someone handles tasks that make daily life smoother—doing chores, running errands, managing logistics—it shows you they care about your wellbeing."
+        },
+
+        "balanced": "You appreciate both reactive support during challenges and proactive help with everyday responsibilities—sometimes you need someone to step in when things are hard, other times you need help with the regular stuff.",
+
+        "closing": "When someone makes promises but doesn't follow through with action, it can feel like they don't really care, even if their intentions are good, and that quiet step back likely serves a purpose you haven't fully explored."
       },
-      "behavioralProfile": "Feels most loved when others take action to help or support them. Values practical assistance over verbal declarations. May feel unloved when partners create more work or ignore their practical needs. Expresses love by doing helpful things without being asked. May struggle when partners don't appreciate their service-oriented efforts."
+
+      "behavioralProfile": {
+        "core": "Feels most loved when others take action to help or support them. Values practical assistance over verbal declarations.",
+
+        "subtypeA": "Specifically values responsive support during difficult times—someone stepping in to help during crisis, stress, or emotional challenges. May feel unloved when partners are absent or passive during hardship.",
+
+        "subtypeB": "Specifically values proactive help with responsibilities—someone taking over household tasks, errands, or duties without being asked. May feel unloved when partners create more work rather than lightening the load.",
+
+        "balanced": "Values both crisis support and everyday practical help depending on current needs. Flexible in how service is expressed.",
+
+        "universal": "May feel unloved when partners ignore practical needs or make promises without following through. Expresses love by doing helpful things without being asked. May struggle when partners don't appreciate their service-oriented efforts."
+      }
     },
+
     "GIFTS": {
-      "reflection": "Little surprises or thoughtful details carry weight for you — not because of their size, but because of the meaning behind them. Objects become reminders that you're held in mind, even when apart. They act as proof that you matter beyond the moment. A gift is more than an item — it's a symbol of being remembered, and that symbol lingers long after it's given. You express your love by giving carefully chosen presents that reflect your deep attention to what makes someone smile. You might be the person who remembers exactly what someone said they needed three weeks ago, or who finds the perfect small surprise that brightens their day. Forgotten special occasions or thoughtless gifts can feel particularly painful because they signal to you that someone wasn't paying attention to what matters to you, and something deeper might be driving that need for acknowledgment.",
-      "secondaryBridge": {
-        "QUALITY_TIME": "They mean even more when shared in a moment of full presence.",
-        "WORDS_OF_AFFIRMATION": "Words given with a gift make its meaning feel deeper.",
-        "ACTS_OF_SERVICE": "When paired with actions of care, a gesture becomes even more reassuring.",
-        "PHYSICAL_TOUCH": "Touch alongside a gift makes the care behind it feel embodied."
+      "reflection": {
+        "core": "Little surprises or thoughtful details carry weight for you—not because of their size or cost, but because of the meaning behind them. Objects become reminders that you're held in mind, even when apart. They act as proof that you matter beyond the moment.",
+
+        "subtypeA": {
+          "emphasis": "You particularly value precious, meaningful gifts that reflect deep attention.",
+          "behavioral": "When someone gives you something significant—whether valuable or deeply personal—it shows they understand what truly matters to you and invested thought into choosing it."
+        },
+
+        "subtypeB": {
+          "emphasis": "You especially appreciate small, frequent surprises and tokens of affection.",
+          "behavioral": "Little things—your favorite snack, a flower, a sticky note—feel like constant reminders that someone is thinking of you throughout their day."
+        },
+
+        "balanced": "You appreciate both meaningful gifts and small surprises—sometimes a big gesture matters, other times it's the little consistent tokens that fill your tank.",
+
+        "closing": "Forgotten special occasions or thoughtless gifts can feel particularly painful because they signal that someone wasn't paying attention to what matters to you, and something deeper might be driving that need for acknowledgment."
       },
-      "behavioralProfile": "Feels most loved through thoughtful gifts and meaningful tokens. Values the thought and effort behind gifts more than monetary value. May feel unloved when special occasions are forgotten or gifts feel thoughtless. Expresses love by giving carefully chosen presents and creating meaningful surprises. Keeps and treasures gifts as symbols of love."
+
+      "behavioralProfile": {
+        "core": "Feels most loved through thoughtful gifts and meaningful tokens. Values the thought and effort behind gifts more than monetary value.",
+
+        "subtypeA": "Specifically values precious, meaningful gifts that show deep understanding—significant presents for occasions or items that reflect detailed knowledge of preferences. May feel unloved when major occasions pass without meaningful gifts.",
+
+        "subtypeB": "Specifically values frequent small surprises and tokens—favorite treats, flowers, little notes. May feel unloved during long periods without any gift-giving gestures.",
+
+        "balanced": "Values both meaningful presents for special occasions and frequent small tokens depending on context. Flexible in gift expectations.",
+
+        "universal": "Keeps and treasures gifts as symbols of love. May feel unloved when special occasions are forgotten or gifts feel thoughtless. Expresses love by giving carefully chosen presents and creating meaningful surprises."
+      }
     },
+
     "PHYSICAL_TOUCH": {
-      "reflection": "Tenderness through touch helps you feel safe and wanted. It's a language that speaks directly to your body and heart. Physical closeness reassures you in ways words cannot. A hand held or a hug says more than conversation ever could. Contact — whether gentle or strong — becomes the clearest proof of belonging for you. You express love through appropriate physical affection, understanding instinctively that touch releases oxytocin and creates bonds that mere words cannot achieve. When you're stressed, upset, or feeling insecure, what you most need is appropriate physical comfort—someone to hold you, hug you, or simply be physically present and close. You're sensitive to the quality of touch, able to distinguish between perfunctory contact and genuine, loving physical connection, and there's probably a reason why being seen feels so necessary.",
-      "secondaryBridge": {
-        "QUALITY_TIME": "It feels even stronger when closeness happens during unrushed moments together.",
-        "WORDS_OF_AFFIRMATION": "Hearing care spoken while being held makes the words unforgettable.",
-        "ACTS_OF_SERVICE": "Actions paired with touch reassure you on both a practical and emotional level.",
-        "GIFTS": "Even a small gesture means more when given hand-to-hand, with contact to carry it."
+      "reflection": {
+        "core": "Tenderness through touch helps you feel safe and wanted. It's a language that speaks directly to your body and heart. Physical closeness reassures you in ways words cannot. A hand held or a hug says more than conversation ever could. Contact—whether gentle or strong—becomes the clearest proof of belonging for you.",
+
+        "closing": "When you're stressed, upset, or feeling insecure, what you most need is appropriate physical comfort—someone to hold you, hug you, or simply be physically present and close, and there's probably a reason why being seen feels so necessary."
       },
-      "behavioralProfile": "Feels most loved through appropriate physical affection and closeness. Interprets touch as primary indicator of emotional connection. May feel unloved when partners are physically distant or avoid casual touch. Expresses love through hugs, hand-holding, and physical comfort. Needs physical reassurance during emotional stress."
+
+      "behavioralProfile": {
+        "core": "Feels most loved through appropriate physical affection and closeness. Interprets touch as primary indicator of emotional connection.",
+
+        "universal": "May feel unloved when partners are physically distant or avoid casual touch. Expresses love through hugs, hand-holding, and physical comfort. Needs physical reassurance during emotional stress. Sensitive to quality of touch and can distinguish between perfunctory contact and genuine loving physical connection."
+      }
     }
   },
-  "expressionArchetypes": {
-    "VISIONARY": {
-      "description": "Expresses love through deep thinking, creating structure, and sharing insights. Offers guidance and wisdom as forms of care.",
-      "behavioralProfile": "Shows care by offering thoughtful insights, creating helpful frameworks, and sharing wisdom. May express love through strategic thinking, planning, or helping others see the bigger picture. Values intellectual connection and meaningful conversations as forms of intimacy."
-    },
-    "ARTIST": {
-      "description": "Expresses love through creativity, beauty, and aesthetic experiences. Shares care through artistic gestures and creative expression.",
-      "behavioralProfile": "Shows care through creative expressions, beautiful gestures, and aesthetic experiences. May express love through art, music, poetry, or creating beautiful environments. Values emotional connection through shared creative experiences and beauty."
-    },
-    "HEALER": {
-      "description": "Expresses love through helping, serving, and caring for others' wellbeing. Natural caregiver who shows care through nurturing actions.",
-      "behavioralProfile": "Shows care by attending to others' physical and emotional needs. Natural inclination to serve, help, and support. May express love through caregiving, healing practices, or creating safe spaces for others. Values being needed and useful to loved ones."
-    },
-    "TEACHER": {
-      "description": "Expresses love through sharing knowledge, inspiring growth, and helping others develop. Shows care by supporting others' learning and development.",
-      "behavioralProfile": "Shows care by teaching, mentoring, and supporting others' growth. May express love through sharing knowledge, inspiring development, or helping others reach their potential. Values intellectual and personal growth as expressions of care."
-    },
-    "CHILD": {
-      "description": "Expresses love through playfulness, spontaneity, and joyful connection. Brings lightness and fun as forms of care.",
-      "behavioralProfile": "Shows care through play, humor, and spontaneous joy. May express love through games, laughter, surprises, or creating fun experiences. Values lightheartedness and freedom as ways of connecting with others."
-    }
+
+  "secondaryBridges": {
+    "WOA_TO_QT_A": "Those words mean even more when shared during activities you do together.",
+    "WOA_TO_QT_B": "Those words mean even more during moments of undivided attention.",
+    "WOA_TO_AOS_A": "Those words land deepest when paired with support during hard times.",
+    "WOA_TO_AOS_B": "Those words feel strongest when matched by actions that ease your daily life.",
+    "WOA_TO_G_A": "Those words become tangible when accompanied by meaningful gifts.",
+    "WOA_TO_G_B": "Those words are reinforced by small, frequent tokens of care.",
+    "WOA_TO_PT": "Those words sink in deepest when paired with physical closeness.",
+
+    "QT_TO_WOA_A": "That presence feels complete when paired with meaningful conversation.",
+    "QT_TO_WOA_B": "That presence feels complete when paired with verbal expressions of care.",
+    "QT_TO_AOS_A": "That presence means more when someone also supports you during challenges.",
+    "QT_TO_AOS_B": "That presence means more when someone also helps with everyday tasks.",
+    "QT_TO_G_A": "That presence is enhanced by meaningful gifts during special moments.",
+    "QT_TO_G_B": "That presence is enhanced by small surprises along the way.",
+    "QT_TO_PT": "That presence feels most complete when physically close.",
+
+    "AOS_TO_WOA_A": "That help feels acknowledged when paired with meaningful dialogue.",
+    "AOS_TO_WOA_B": "That help feels acknowledged when paired with spoken appreciation.",
+    "AOS_TO_QT_A": "That help means more when shared during activities together.",
+    "AOS_TO_QT_B": "That help means more when given with focused attention.",
+    "AOS_TO_G_A": "That practical support pairs well with meaningful tokens.",
+    "AOS_TO_G_B": "That practical support pairs well with small surprises.",
+    "AOS_TO_PT": "That practical care feels most complete with physical affection.",
+
+    "G_TO_WOA_A": "Those tokens mean more when paired with meaningful conversation.",
+    "G_TO_WOA_B": "Those tokens mean more when paired with spoken appreciation.",
+    "G_TO_QT_A": "Those gifts matter more when given during shared activities.",
+    "G_TO_QT_B": "Those gifts matter more when given with focused attention.",
+    "G_TO_AOS_A": "Those tokens feel complete when paired with supportive actions.",
+    "G_TO_AOS_B": "Those tokens feel complete when paired with practical help.",
+    "G_TO_PT": "Those gifts are most meaningful when given with physical closeness.",
+
+    "PT_TO_WOA_A": "That physical closeness deepens during meaningful conversations.",
+    "PT_TO_WOA_B": "That physical closeness deepens when paired with spoken affection.",
+    "PT_TO_QT_A": "That physical closeness feels natural during shared activities.",
+    "PT_TO_QT_B": "That physical closeness pairs with focused, attentive presence.",
+    "PT_TO_AOS_A": "That physical comfort matters most during supportive moments.",
+    "PT_TO_AOS_B": "That physical comfort pairs with practical care and help.",
+    "PT_TO_G_A": "That physical affection pairs well with meaningful tokens.",
+    "PT_TO_G_B": "That physical affection is enhanced by small, thoughtful surprises."
   },
+
   "distributionPatterns": {
     "DOMINANT": {
-      "description": "Strongly prefers one primary love language with little secondary preference.",
-      "behavioralProfile": "Clear, consistent preference for one way of giving and receiving love. May struggle when partners express love differently. Benefits from partners who understand and can consistently provide their primary love language."
+      "userReflection": "One way of feeling loved stands out clearly above the rest for you. When this need is met, your tank is full. When it's not, other expressions of love may not quite reach you.",
+
+      "behavioralNote": "Clear, consistent preference for one primary love language. May struggle when partners express love differently. Benefits from partners who understand and consistently provide their primary language."
     },
+
     "DUAL": {
-      "description": "Balanced preference between two love languages with equal importance.",
-      "behavioralProfile": "Flexible in both giving and receiving love through two primary channels. May feel most loved when both languages are present. Can adapt to partners' preferences while maintaining own needs for both expressions."
+      "userReflection": "Two ways of feeling loved matter almost equally to you. You feel most complete and secure when both are present. One without the other can leave you only partially filled.",
+
+      "behavioralNote": "Balanced preference between two love languages with equal importance. Flexible in both giving and receiving love through two primary channels. May feel most loved when both languages are present. Can adapt to partners' preferences while maintaining own needs for both expressions."
     },
+
     "MULTIPLE": {
-      "description": "Appreciates love expressed through various languages without strong preference.",
-      "behavioralProfile": "Flexible and adaptable in love expression and reception. Can feel loved through many different approaches. May be good at meeting others' love language needs. Might sometimes lack clarity about own specific needs."
+      "userReflection": "You appreciate love expressed through various approaches without strong preference. This flexibility means you can feel loved in many ways, though it might also mean your needs aren't always as clear to others.",
+
+      "behavioralNote": "Flexible and adaptable in love expression and reception. Can feel loved through many different approaches. May be good at meeting others' love language needs. Might sometimes lack clarity about own specific needs or have difficulty communicating priorities to partners."
     }
-  },
-  "combinationProfiles": {
-    "WORDS_OF_AFFIRMATION_QUALITY_TIME_DUAL": "Needs both verbal recognition and undivided attention to feel fully loved. Benefits from conversations that combine presence with appreciation. May feel unloved when interactions are either rushed or silent.",
-    "ACTS_OF_SERVICE_WORDS_OF_AFFIRMATION_DUAL": "Feels loved through both practical help and verbal appreciation. Values when actions are acknowledged with words. May express love by doing helpful things while also offering encouragement.",
-    "PHYSICAL_TOUCH_QUALITY_TIME_DUAL": "Needs both physical closeness and focused attention. Feels most loved during uninterrupted time together with physical affection. May struggle with partners who are present but physically distant.",
-    "GIFTS_WORDS_OF_AFFIRMATION_DUAL": "Values both thoughtful gifts and verbal appreciation. Benefits when gifts come with meaningful words explaining their significance. May express love through carefully chosen presents with heartfelt notes."
   }
 }
