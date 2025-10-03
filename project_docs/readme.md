@@ -93,7 +93,13 @@ It is about **recognition, reflection, and connection.**
   - Typescript
   - Hosting: Vercel
 - Backend
-  - Next.js
+  - Node.js
+  - Express
+  - Typescript
+  - Pinecone (vector database)
+  - Langchain
+  - LangGraph
+  - LangSmith
   - OpenAi
   - MongoDB
   - Hosting: AWS
