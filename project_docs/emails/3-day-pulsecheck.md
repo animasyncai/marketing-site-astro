@@ -1,7 +1,10 @@
 **Subject:** Quick Withinly check-in (2 min)
+
 Hi [Name],
 Quick pulse check on your first 3 days:
+
 [Form link - 4 questions, 2 minutes]
+
 Thanks,
 Withinly Team
 
