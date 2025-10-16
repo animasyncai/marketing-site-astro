@@ -4,29 +4,85 @@ This document is a guide for how we will track user feedback and engagement.
 
 ## 🔑 Main Events
 
-Always attach necessary identifiers (`user_id`, `trait_type`, `report_type`, `message_pair_id`, etc.) to ensure context is preserved.
+Always attach necessary identifiers (`userId`, `traitId`, `reportType`, etc.) to ensure context is preserved.
 
-- **User Registered (source we will add later)**
-  `{ user_id, source }`
-- **Onboarding Completed (timers can be added in later stage, now just add event)**
-  `{ user_id, duration_sec, steps_completed }`
+### User Lifecycle Events
+
+- **User Registered**
+  `{ userId, source }`
+
+- **User Logged In**
+  `{ userId, source }`
+
+- **User Deleted**
+  `{ userId }`
+
+### Onboarding Events
+
+- **Onboarding Completed** ‼️
+  `{ userId, durationSeconds, startingPath, sparksRemaining }`
+  - `startingPath`: 'connection_map' | 'trust_safety' | 'inner_compass' | 'skip'
+  - `sparksRemaining`: Spark balance after onboarding (typically 4)
+
+### Trait Events
+
 - **Trait Completed** ‼️
-  `{ trait_type, result_label, user_id }`
+  `{ userId, traitId, results, totalTraitsCompleted }`
+  - `traitId`: 'attachment' | 'love_language' | 'mindfulness' | 'self_acceptance'
+  - `results`: Full object with primary, intensity, scores, etc.
+  - `totalTraitsCompleted`: Running count (1-4)
+
 - **Trait Retaken** ‼️
-  `{ trait_type, old_label, new_label, user_id }`
+  `{ userId, traitId, changed, costSparks, previousResults, currentResults }`
+  - `changed`: Boolean - did primary result change?
+  - `costSparks`: 0 (free after 30 days) or 1 (paid before 30 days)
+  - `previousResults`: Full results object from previous completion
+  - `currentResults`: Full results object from current completion
+
+### Report Events
+
 - **Report Generated** ‼️
-  `{ report_type, user_id, wi_tokens_spent, success: true/false }`
+  `{ userId, reportKey, reportType, tokensSpent, tokensRemaining }`
+  - `reportType`: 'inner_portrait' | 'relational_portrait' (distinguishes solo vs couple)
+  - `reportKey`: Unique identifier for specific report
+  - `tokensRemaining`: Spark balance after generation
 
-**NOT MVP:**
+### Spark Economy Events
 
-- **Chat Session Started**
-  `{ user_id, traits_available, has_reports }`
-- **Chat Session Ended** (Hybrid logic, see below)
-  `{ user_id, turns, duration_sec, avg_msg_length }`
+- **Sparks Deducted** ‼️
+  `{ userId, featureType, featureName, sparksSpent, sparksRemaining }`
+  - `featureType`: 'trait_retake' | 'basic_report' | 'premium_report' | 'chat_standard' | 'chat_depth'
+  - `featureName`: Report name (e.g., 'Conflict Compass') or null for chat/traits
+  - Unified event for all Spark spending across platform
+
+- **Sparks Low Warning** ‼️
+  `{ userId, sparksRemaining, actionAttempted }`
+  - Triggered when balance drops to 0-2 Sparks
+  - `actionAttempted`: What user tried to do when warning shown (or null)
+
+### Partner Sync Events
+
+- **Partner Invite Sent** ‼️
+  `{ userId }`
+
+- **Partner Invite Accepted** ‼️
+  `{ userId, partnerUserId }`
+  - `userId`: Person who accepted invite
+  - `partnerUserId`: Person who sent invite
+
+### Chat Events
+
+- **Chat Session**
+  `{ userId, turns, sessionLength, averageUserMessageLength, completedTraits }`
+  - Fired when session ends (navigation away or timeout)
+
+- **Chat Feedback**
+  `{ userId, conversationTurn, messageLength, primaryFeedback, secondaryFeedback }`
+  - Per-message feedback from user
 
 ---
 
-## 🔁 Hybrid Chat Session Logic (NOT MVP)
+## 🔁 Chat Session Logic
 
 A chat session is defined as the period of continuous conversation between a user and the AI.
 
@@ -39,7 +95,7 @@ A chat session is defined as the period of continuous conversation between a use
 - **Implementation notes**:
   - Use a background timer to detect inactivity.
   - Reset timer on every new message.
-  - If timer exceeds 15 minutes, fire `Chat Session Ended` event.
+  - If timer exceeds 15 minutes, fire `Chat Session` event.
   - If user reopens chat later, a new session starts.
 
 ```jsx
@@ -60,7 +116,6 @@ onNavigationAway() {
     endChatSession(reason="navigation");
   }
 }
-
 ```
 
 ---
@@ -85,43 +140,88 @@ Feedback should be contextual, quick, and lightweight.
 
 ```jsx
 // Registration & onboarding
-mixpanel.track('User Registered', { user_id, source: 'organic' })
-mixpanel.track('Onboarding Completed', { user_id, duration_sec: 120, steps_completed: 8 })
+mixpanel.track('User Registered', { userId, source: 'organic' })
+mixpanel.track('Onboarding Completed', {
+  userId,
+  durationSeconds: 240,
+  startingPath: 'connection_map',
+  sparksRemaining: 4
+})
 
 // Traits
-mixpanel.track('Trait Completed', { trait_type: 'attachment', result_label: 'anxious', user_id })
-mixpanel.track('Trait Retaken', { trait_type: 'attachment', old_label: 'anxious', new_label: 'secure', user_id })
+mixpanel.track('Trait Completed', {
+  userId,
+  traitId: 'attachment',
+  results: { primary: 'AVOIDANT', intensity: 'STRONG', ... },
+  totalTraitsCompleted: 2
+})
+
+mixpanel.track('Trait Retaken', {
+  userId,
+  traitId: 'attachment',
+  changed: true,
+  costSparks: 1,
+  previousResults: { ... },
+  currentResults: { ... }
+})
 
 // Reports
-mixpanel.track('Report Generated', { report_type: 'inner_portrait', user_id, wi_tokens_spent: 3, success: true })
-
-// Chat sessions (NOT MVP)
-mixpanel.track('Chat Session Started', {
-  user_id,
-  traits_available: ['love_language', 'attachment'],
-  has_reports: true,
+mixpanel.track('Report Generated', {
+  userId,
+  reportKey: 'inner_portrait_abc123',
+  reportType: 'inner_portrait',
+  tokensSpent: 3,
+  tokensRemaining: 5
 })
-mixpanel.track('Chat Session Ended', { user_id, turns: 12, duration_sec: 600, avg_msg_length: 110 })
+
+// Sparks
+mixpanel.track('Sparks Deducted', {
+  userId,
+  featureType: 'premium_report',
+  featureName: 'Conflict Compass',
+  sparksSpent: 3,
+  sparksRemaining: 5
+})
+
+mixpanel.track('Sparks Low Warning', {
+  userId,
+  sparksRemaining: 2,
+  actionAttempted: 'premium_report'
+})
+
+// Partner Sync
+mixpanel.track('Partner Invite Sent', { userId })
+mixpanel.track('Partner Invite Accepted', {
+  userId, // acceptor
+  partnerUserId // sender
+})
+
+// Chat sessions
+mixpanel.track('Chat Session', {
+  userId,
+  turns: 12,
+  sessionLength: 600,
+  averageUserMessageLength: 110,
+  completedTraits: ['love_language', 'attachment']
+})
 
 // Chat feedback
-mixpanel.track('Chat Response Reaction', {
-  user_id,
-  message_pair_id: 'msg_123_response_124',
-  primary_reaction: 'positive', // or 'negative'
-  response_length: 120,
-  time_to_react: 5000,
-  conversation_turn: 8,
-})
-
-mixpanel.track('Chat Response Detailed Reaction', {
-  user_id,
-  message_pair_id: 'msg_123_response_124',
-  primary_reaction: 'positive',
-  detailed_reaction: 'resonated',
-  time_to_detail: 2000,
-  conversation_turn: 8,
+mixpanel.track('Chat Feedback', {
+  userId,
+  conversationTurn: 8,
+  messageLength: 120,
+  primaryFeedback: 'positive', // or 'negative'
+  secondaryFeedback: 'resonated' // or null
 })
 ```
+
+---
+
+## 📊 Deprecated Events
+
+- **ChatTokenUsed** - Replaced by `Sparks Deducted` for unified Spark tracking
+
+---
 
 # TEXTS
 
@@ -129,11 +229,12 @@ mixpanel.track('Chat Response Detailed Reaction', {
 
 **Prompt text:**
 
-> “How accurate did this feel?”
+> "How accurate did this feel?"
 
 **Buttons:**
 
-- 👎 _Didn’t fit me_
+- 👎 _Didn't fit me_
+- 🤷 _Somewhat_
 - 👍 _Felt true_
 
 ---
@@ -142,7 +243,7 @@ mixpanel.track('Chat Response Detailed Reaction', {
 
 **Prompt text:**
 
-> “How insightful was this?”
+> "How insightful was this?"
 
 **Stars:**
 
@@ -158,7 +259,7 @@ mixpanel.track('Chat Response Detailed Reaction', {
 
 **Primary prompt (always visible):**
 
-> “Was this response helpful?”
+> "Was this response helpful?"
 
 **Buttons:**
 
@@ -186,7 +287,7 @@ After 2–3 key actions (like finishing first report or 3rd chat session):
 
 **Prompt text:**
 
-> “How helpful has Withinly been so far?”
+> "How helpful has Withinly been so far?"
 
 **Scale (1–5):**
 
