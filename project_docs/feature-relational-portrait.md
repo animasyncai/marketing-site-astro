@@ -38,10 +38,6 @@ At this stage, the feature is **romantic-only** — 1:1 connection with one part
    - **Conflict Compass (Couple Edition)** (future add-on)
      - Explores stress patterns, protective instincts, and repair strategies.
 
-4. **Upsell Path**
-   - After Snapshot → CTA: _“Unlock your full Relationship Compass”_.
-   - Premium reports require tokens; if one partner purchases, both accounts get access.
-
 ---
 
 ## 🧭 Naming Convention
@@ -108,8 +104,6 @@ Two personalized guides that help each partner understand their role in creating
 
 #### Conflict Compass (Couple Edition)
 
-_Future Report_
-
 A guide to your shared conflict patterns — what triggers tension between you, how each person protects themselves, and your unique path back to connection.
 
 - **Cost:** TBD
@@ -141,3 +135,40 @@ A guide to your shared conflict patterns — what triggers tension between you, 
 - Premium reports provide depth worth paying for
 - Partner who pays feels they're investing in the relationship
 - Non-paying partner gets value, creating gratitude and potential future conversion
+
+## Flow for invitation and acceptance
+
+When Sending Invite
+
+1. User enters email (no dropdown, no validation feedback)
+2. System checks silently:
+   If account exists → Send in-app notification + email
+   If no account → Send email with invitation to join + explanation
+
+3. User sees generic success: "Invitation sent to [email]"
+4. Once accepted the user sees account name and other inforamtion.
+
+Email templates:
+[couple-sync-account-exists.md](emails/couple-sync-account-exists.md)
+[couple-sync-no-account.md](emails/couple-sync-no-account.md)
+
+## User safety checks
+
+Before sending or accepting a partner sync we will show this modal:
+
+**Before You Connect With Your Partner**
+
+When you sync accounts:
+
+- Your individual traits and chat history stay private
+- Only couple insights (reports, snapshots) are visible to both of you
+- **If either of you unlinks, all couple reports are deleted** and both lose access
+- Use these insights to understand each other better, not to manipulate or control
+
+**Don't sync if:**
+
+- You feel pressured or coerced by your partner
+- Your relationship involves abuse or coercion
+- You're not comfortable sharing relationship insights
+
+[Cancel] [I Understand, Continue]

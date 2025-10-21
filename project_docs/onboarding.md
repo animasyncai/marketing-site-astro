@@ -1,4 +1,4 @@
-# Refined Onboarding Flow (Updated)
+# Onboarding Flow
 
 ---
 
@@ -15,14 +15,15 @@ Before we begin, choose the language that feels most natural for you.
 
 # Privacy & Agreement
 
-🔒 Your privacy is sacred here. Everything you share stays yours — and you can delete your data anytime. No one else will ever see your reflections unless you choose to.
+Before we begin, a few important things.
 
-Please take a moment to review how we keep you safe:
+Withinly helps you understand your emotional patterns through AI-guided reflection. We take your privacy seriously, but you should know: our AI processes your data to generate insights, and like any AI, it can sometimes make mistakes or misunderstand. You're responsible for how you use these insights.
 
-[Privacy Policy] (opens modal)  
-[Terms of Service] (opens modal)
+☐ I understand Withinly is not therapy and is for personal reflection only
+☐ I understand the AI can make mistakes and insights may not always be accurate
+☐ I agree to the [Terms of Service](terms-of-service.md) and [Privacy Policy](privacy-policy.md)
 
-[I feel safe, continue]
+[Continue] (button disabled until all checked)
 
 ---
 

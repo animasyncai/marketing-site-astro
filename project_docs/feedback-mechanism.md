@@ -255,7 +255,7 @@ mixpanel.track('Chat Feedback', {
 
 ---
 
-## 💬 Chat Feedback (NOT MVP)
+## 💬 Chat Feedback (Done in MVP)
 
 **Primary prompt (always visible):**
 
