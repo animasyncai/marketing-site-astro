@@ -1,0 +1,233 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, variables = {}, fallback = '') => {
+  return getTranslation(translations, key, variables, fallback)
+}
+
+// Page metadata
+const pageTitle = 'Terms of Service - Withinly'
+const pageDescription =
+  'Terms of Service for Withinly - a personal reflection tool that helps you understand your emotional patterns and relationship dynamics.'
+---
+
+<DefaultLayout title={pageTitle} description={pageDescription}>
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-12 text-center">
+      <h1 class="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">Terms of Service</h1>
+      <div class="text-sm text-gray-600">
+        <p><strong>Last updated:</strong> October 21, 2025</p>
+        <p><strong>Version:</strong> 1.0</p>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="text-content">
+      <div class="mb-8 rounded-lg bg-blue-50 p-6">
+        <h2>What Withinly Is (And Isn't)</h2>
+        <p>
+          Withinly is a <strong>personal reflection tool</strong> that helps you understand your emotional patterns and relationship
+          dynamics.
+        </p>
+
+        <h3>We are NOT:</h3>
+        <ul>
+          <li>A crisis intervention service</li>
+          <li>A mental health treatment provider</li>
+          <li>A replacement for therapy or professional help</li>
+          <li>A licensed counseling service</li>
+        </ul>
+
+        <div class="rounded-md bg-red-100 p-4">
+          <p>
+            <strong
+              >If you're in crisis or experiencing thoughts of self-harm, please contact a crisis hotline immediately:</strong
+            > 988 (US), 112 (EU), or text HOME to 741741.
+          </p>
+        </div>
+      </div>
+
+      <h2>By Using Withinly, You Agree To:</h2>
+
+      <h3>1. Use This Tool Responsibly</h3>
+      <ul>
+        <li>Be honest with yourself in your reflections — it helps you get accurate insights</li>
+        <li>Use this tool for personal growth and self-understanding</li>
+        <li>Understand this is <strong>not a substitute for therapy, medical advice, or crisis support</strong></li>
+        <li>Seek professional help if you're struggling with mental health, relationship crises, or safety concerns</li>
+      </ul>
+
+      <h3>2. Understand AI Limitations</h3>
+
+      <h4>Our AI consultant can:</h4>
+      <ul>
+        <li>Help you reflect on patterns and behaviors</li>
+        <li>Offer perspectives based on your trait data</li>
+        <li>Support your self-exploration journey</li>
+      </ul>
+
+      <h4>Our AI consultant can also:</h4>
+      <ul>
+        <li>Make mistakes or misunderstand what you're saying</li>
+        <li>Provide insights that don't resonate with you</li>
+        <li>Give advice that isn't helpful in your specific situation</li>
+        <li>Miss important context or nuance</li>
+      </ul>
+
+      <div class="rounded-lg bg-yellow-50 p-4">
+        <p>
+          <strong>You are responsible for</strong> all decisions you make based on insights from Withinly. We cannot be held
+          liable for any actions, relationship decisions, or life choices influenced by AI-generated content, reports, or
+          conversations.
+        </p>
+      </div>
+
+      <h3>3. Respect the Space</h3>
+      <ul>
+        <li>Speak respectfully, even to the AI — this space is for reflection, not abuse</li>
+        <li>Don't use Withinly to harm yourself or others</li>
+        <li>Don't share copyrighted content from reports without permission</li>
+        <li>Don't attempt to manipulate, exploit, or misuse the service</li>
+      </ul>
+
+      <div class="rounded-lg bg-gray-100 p-4">
+        <p>
+          <strong>We reserve the right to suspend or terminate accounts</strong> if we detect:
+        </p>
+        <ul>
+          <li>Suspicious activity (unusual login patterns, token abuse, automated usage)</li>
+          <li>Violations of these terms</li>
+          <li>Behavior that threatens the service or other users</li>
+        </ul>
+        <p>
+          <strong>Note:</strong> We don't monitor the content of your conversations (they're private), but we can see usage
+          patterns and system activity.
+        </p>
+      </div>
+
+      <h3>4. Understand Partner Sync</h3>
+      <p>When you connect with a partner:</p>
+      <ul>
+        <li>Only synthesized couple insights are visible to both of you</li>
+        <li>Your individual trait details and chat history remain private</li>
+        <li>
+          <strong>If either partner unlinks:</strong> Both lose access to couple reports, and that data is deleted
+        </li>
+        <li>Don't use Partner Sync to manipulate, coerce, or harm your partner</li>
+        <li>You're both responsible for how you use shared insights</li>
+      </ul>
+
+      <h3>5. Payment & Sparks</h3>
+      <ul>
+        <li><strong>Sparks are non-refundable</strong> once purchased</li>
+        <li>
+          Exception: If a technical error prevents report generation or chat usage, we'll restore your Sparks or issue a
+          refund at our discretion
+        </li>
+        <li><strong>If report generation fails:</strong> Your Sparks are NOT deducted</li>
+        <li><strong>If you delete your account:</strong> Unused Sparks are forfeited (no refunds)</li>
+        <li>We reserve the right to adjust Spark pricing with notice</li>
+      </ul>
+
+      <h3>6. Content & Intellectual Property</h3>
+      <ul>
+        <li>Reports, assessments, and AI-generated insights are for your personal use only</li>
+        <li>You may share your own reports privately (with partners, therapists, etc.)</li>
+        <li>Don't reproduce, distribute, or commercialize Withinly content without permission</li>
+        <li>The underlying assessment frameworks, prompts, and AI architecture are proprietary</li>
+      </ul>
+
+      <h3>7. Account & Data</h3>
+      <ul>
+        <li>You're responsible for maintaining account security</li>
+        <li>You can delete your account and data anytime through your profile</li>
+        <li>
+          We'll retain some data temporarily for legal, security, or fraud prevention purposes (see Privacy Policy)
+        </li>
+        <li>If you violate these terms, we may suspend or delete your account</li>
+      </ul>
+
+      <h3>8. Changes to Service & Terms</h3>
+      <ul>
+        <li>We may modify features, pricing, or these terms as Withinly evolves</li>
+        <li><strong>You'll be notified in-app</strong> when terms change and asked to accept the new version</li>
+        <li>Continued use after accepting updated terms means you agree to the changes</li>
+        <li>We'll never make changes designed to harm or exploit you</li>
+      </ul>
+
+      <hr />
+
+      <h2>Disclaimers & Limitations</h2>
+
+      <h4>No Guarantees:</h4>
+      <p>
+        We don't guarantee that Withinly will improve your relationships, resolve conflicts, or provide perfect
+        insights. Results vary by person.
+      </p>
+
+      <h4>AI-Generated Content:</h4>
+      <p>
+        All reports and consultant responses are generated by AI based on your inputs. They may contain errors,
+        misinterpretations, or content that doesn't apply to you.
+      </p>
+
+      <h4>Not Professional Advice:</h4>
+      <p>
+        Nothing on Withinly constitutes medical, psychological, legal, or professional advice. Always consult qualified
+        professionals for serious concerns.
+      </p>
+
+      <h4>Limitation of Liability:</h4>
+      <p>
+        To the fullest extent permitted by law, Withinly and its creators are not liable for any damages, decisions, or
+        outcomes resulting from your use of this service — including relationship decisions, emotional distress, or
+        actions taken based on AI insights.
+      </p>
+
+      <h4>Your Responsibility:</h4>
+      <p>
+        You use Withinly at your own risk. We provide tools for reflection; you decide how to use the insights you
+        receive.
+      </p>
+
+      <hr />
+
+      <h2>Contact & Concerns</h2>
+      <p>If something feels off, if you need help, or if you have questions about these terms:</p>
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:hello@withinly.app">hello@withinly.app</a>
+      </p>
+      <p>We care about your experience and will respond as quickly as we can.</p>
+
+      <hr />
+
+      <h2>Acceptance</h2>
+      <p>By creating an account or using Withinly, you confirm that:</p>
+      <ul>
+        <li>You've read and understood these Terms of Service</li>
+        <li>You're at least 16 years old (or the age of consent in your country)</li>
+        <li>You agree to use Withinly responsibly and in accordance with these terms</li>
+      </ul>
+
+      <div class="rounded-lg bg-red-50 p-4">
+        <p>
+          <strong>If you don't agree, please don't use Withinly.</strong>
+        </p>
+      </div>
+
+      <hr />
+
+      <div class="rounded-lg bg-gray-100 p-6 text-center">
+        <p>
+          We built this to help you reflect deeply, not to replace professional support. Use it wisely, and reach out
+          for real help when you need it.
+        </p>
+      </div>
+    </div>
+  </div>
+</DefaultLayout>
