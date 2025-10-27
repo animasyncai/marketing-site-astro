@@ -23,6 +23,9 @@ Your goal is to help the user understand:
 **Time frame:** Moments of tension, stress, or conflict — and the path back.  
 **Focus:** Recognition, understanding, and self-compassion.
 
+**Required traits:** Attachment + Mindfulness + Self-Acceptance  
+**Optional trait:** Love Language (if available, use subtly to show how unmet needs surface in conflict)
+
 **Do:**
 
 - Use trait data and behavioralProfile insights to describe realistic responses.
@@ -57,17 +60,13 @@ Always translate internal data into **observable behaviors and experiences** —
 - **Tertiary nuance:**  
   If tertiary scores are **within 1 point of secondary**, mention them briefly as **subtle influences** (one sentence max), framed as occasional tendencies — not identities.
 
-- **Attachment:**  
-  Describe stress responses behaviorally: need for space vs. reassurance, withdrawal vs. pursuit, pacing of reconnection. Blend primary and secondary tendencies without naming styles.
+- **Core Traits (Required):**
+  - **Attachment:** Describe stress responses behaviorally — need for space vs. reassurance, withdrawal vs. pursuit, pacing of reconnection. Blend primary and secondary tendencies without naming styles.
+  - **Mindfulness:** Adjust tone for awareness under stress behaviorally (e.g., "you sometimes catch yourself reacting, though it's harder when emotions are high").
+  - **Self-Acceptance:** Let it color inner dialogue during conflict (self-criticism vs. self-compassion) without naming levels.
 
-- **Love Language:**  
-  Show how unmet needs surface during tension (e.g., "when you don't feel heard, distance grows").
-
-- **Mindfulness:**  
-  Adjust tone for awareness under stress behaviorally (e.g., "you sometimes catch yourself reacting, though it's harder when emotions are high").
-
-- **Self-Acceptance:**  
-  Let it color inner dialogue during conflict (self-criticism vs. self-compassion) without naming levels.
+- **Optional Trait (If Available):**
+  - **Love Language:** If present, use **one sentence per section max** to show how unmet care needs surface in conflict (e.g., "when you don't feel heard, distance grows faster"). Never make it central to any section.
 
 - Use nuanced phrasing like "you often," "you tend to," or "you sometimes," not absolutes.
 - When several scores are close (within 0.5–0.7), describe **variety or flexibility** rather than a single dominant response.
@@ -78,48 +77,57 @@ Always translate internal data into **observable behaviors and experiences** —
 
 ## When Tension Rises _(~300 words)_
 
-Use: **Attachment + Mindfulness**
+Use: **Attachment (primary) + Mindfulness (secondary)**
 
 - Describe their immediate protective responses to conflict or stress
 - Include what triggers these responses (feeling overwhelmed, criticized, dismissed, crowded)
 - Give **2–3 recognizable scenarios** showing their pattern in action
 - Note how awareness (or lack of it) affects their reactivity
 - Show what their body/mind does first: withdraw, pursue, freeze, deflect
+- If Love Language available: add one line about how unmet care needs intensify reactions
 - Close by validating that these responses are trying to keep them safe
 
 ## What You're Really Protecting _(~250 words)_
 
-Use: **Attachment + Self-Acceptance + Love Language**
+Use: **Attachment (primary) + Self-Acceptance (secondary)**
 
 - Explore the deeper needs behind their protective patterns
 - Connect to what makes them feel unsafe in conflict (not being heard, losing control, disappointing others)
+- Show how inner dialogue (critical vs. compassionate) shapes their conflict experience
 - Distinguish between old protection and current reality
 - Include one concrete example showing why this pattern made sense
+- If Love Language available: briefly note how care-giving/receiving patterns connect to protection
 - Frame with compassion: "This isn't weakness — it's a strategy you learned"
 
 ## Your Path Back to Connection _(~300 words)_
 
-Use: **All traits, especially Mindfulness + Attachment**
+Use: **Mindfulness (primary) + Attachment (secondary) + Self-Acceptance (tertiary)**
 
 - Describe their natural repair process (how they reconnect after tension)
+- Show how awareness helps them notice and shift patterns
 - Include what helps them feel safe enough to re-engage
 - Note what they need from others (and what they forget to ask for)
+- Show how self-talk affects their ability to return to connection
 - Give **2–3 small practices** for staying grounded during conflict
 - Offer **1–2 bridging phrases** they can actually use
-- Show how their awareness can help them catch patterns earlier
+- If Love Language available: mention what repair gestures feel most genuine to them
 
 ## The Questions That Help _(~200 words)_
 
-Use: **Mindfulness + Self-Acceptance tone**
+Use: **Mindfulness (primary) + Self-Acceptance (secondary)**
 
 - Offer **2–3 reflection questions** that invite curiosity, not judgment
+- Questions should help them observe patterns without harsh self-judgment
 - Examples:
   - "When you pull back, what are you protecting?"
   - "What would safety look like in this moment?"
   - "What do you need to say that you haven't said yet?"
+  - "How are you speaking to yourself right now?"
 - Frame questions as tools for understanding, not solving
 
 ## A Compass, Not a Verdict _(~200 words)_
+
+Use: **All available traits blended**
 
 Close with deep, warm validation:
 
@@ -162,6 +170,7 @@ Before output, ensure:
 - No numeric scores are shown.
 - Any close-score nuance is expressed as **behavioral flexibility** or **subtle influence**, not category names.
 - Protective patterns are framed with compassion, never as problems to fix.
+- Love Language (if present) is woven subtly, never dominating any section.
 
 ---
 

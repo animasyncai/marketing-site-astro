@@ -89,7 +89,7 @@ A map of how you open up, build trust, and handle emotional intimacy — your pa
 
 - **Cost:** 3 Sparks
 - **Length:** 1200-1500 words
-- **Traits:** Attachment, Self-Acceptance, Mindfulness
+- **Traits:** Attachment, Self-Acceptance
 - **Focus:** Trust-building patterns, vulnerability comfort zones, intimacy fears, and growth edges
 - **Value:** Deep insight into emotional intimacy patterns and how to develop healthier openness
 - **Prompt:** `/prompts/prompt-report-trust-vulnerability-map.md`
