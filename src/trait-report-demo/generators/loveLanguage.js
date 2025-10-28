@@ -3,6 +3,15 @@
  * Independent, pluggable, reusable
  */
 
+import loveLanguageEN from '../i18n/en/loveLanguage.json'
+import loveLanguageLT from '../i18n/lt/loveLanguage.json'
+
+const translations = {
+    en: loveLanguageEN,
+    lt: loveLanguageLT
+}
+
+
 /**
  * Generate love language reflection
  * 
@@ -10,7 +19,7 @@
  * @param {object} languageData - JSON data structure for the language
  * @returns {object} { userReport: string, behavioralProfile: string }
  */
-export function generateLoveLanguageReflection(traitData, languageData) {
+export function generateLoveLanguageReflection(traitData, locale = 'en') {
     const {
         primary,
         primaryScores,
@@ -18,6 +27,9 @@ export function generateLoveLanguageReflection(traitData, languageData) {
         secondaryScores,
         distribution
     } = traitData
+
+    // Use localized data for user report
+    const languageData = translations[locale]
 
     const userReport = buildUserReflection(
         languageData,
@@ -28,8 +40,9 @@ export function generateLoveLanguageReflection(traitData, languageData) {
         distribution
     )
 
+    // Always use English for behavioral profile (for AI/consultants)
     const behavioralProfile = buildBehavioralProfile(
-        languageData,
+        translations.en,
         primary,
         primaryScores,
         secondary,

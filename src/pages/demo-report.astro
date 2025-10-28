@@ -471,22 +471,7 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
           let result: any = null
           try {
             if (currentTrait === 'love_language') {
-              // Load language data dynamically
-              import(`../trait-report-demo/i18n/${locale}/loveLanguage.json`)
-                .then((languageData) => {
-                  result = generateLoveLanguageReflection(traitData, languageData.default)
-                  if (result && result.userReport && result.behavioralProfile) {
-                    const userOutput = document.getElementById('userOutput')
-                    const behavioralOutput = document.getElementById('behavioralOutput')
-                    if (userOutput) userOutput.innerText = result.userReport
-                    if (behavioralOutput) behavioralOutput.innerText = result.behavioralProfile
-                  }
-                })
-                .catch((error) => {
-                  console.error('Failed to load language data:', error)
-                  alert('Error loading language data: ' + error.message)
-                })
-              return // Exit early since we're handling this asynchronously
+              result = generateLoveLanguageReflection(traitData, locale)
             } else if (currentTrait === 'attachment') {
               result = generateAttachmentReflection(traitData, locale)
             } else if (currentTrait === 'mindfulness') {

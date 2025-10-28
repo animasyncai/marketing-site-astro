@@ -1,35 +1,35 @@
 {
   "types": {
     "ANXIOUS": {
-      "reflection": "Jūs [tone:frequency] pastebite pokyčius žmonių dėmesyje ar balso tone, ir kai kas nors jaučiasi tolimas, jūsų širdis šiek tiek pagreitėja. Jūsų dalis siekia patikinimo — nori žinoti, kad vis dar esate svarbus, vis dar norimas. Kai kyla konfliktas, jūs [tone:likelihood] judėte link ryšio, o ne nuo jo, tikėdamiesi greitai pataisyti ir vėl prisijungti. Jūs pastebite mažus pokyčius, kurių kiti gali nepastebėti: trumpesnį pranešimą, išsiblaščiusį žvilgsnį, pasikeitusį įprastą šilumą. Šie momentai gali pasirodyti didesni nei yra, nes jūsų sistema yra subtiliai nustatyta aptikti grėsmes artumui. Jūsų širdis nori saugumo, ir kai jaučiatės nesaugiai dėl savo vietos, jūs [tone:frequency] ieškote patvirtinimo per žodžius, laiką ar dėmesį. Tai nėra pervartojimas — tai gili ryšio gebėjimo ir baimės prarasti tai, kas svarbu, išraiška.",
+      "reflection": "Jūs [tone:frequency] pastebite pokyčius žmonių dėmesyje ar balso tembre, ir kai kas nors atrodo tolstantis, širdis ima plakti greičiau. Jūsų dalis ieško patvirtinimo – nori žinoti, kad vis dar esate svarbus (-i), vis dar norimas (-a). Kai kyla konfliktas, jūs [tone:likelihood] judate link ryšio, o ne nuo jo, tikėdamiesi greitai pataisyti ir atkurti artumą. Pastebite mažus pokyčius, kurių kiti gali net nepastebėti: trumpesnį atsakymą, išsiblaškiusį žvilgsnį, pasikeitusį įprastą šilumos toną. Šie momentai gali atrodyti didesni, nei yra iš tikrųjų, nes jūsų sistema subtiliai nustatyta fiksuoti bet kokias artumo grėsmes. Jūsų širdis trokšta saugumo, ir kai kyla abejonių dėl savo vietos santykyje, jūs [tone:frequency] ieškote patvirtinimo per žodžius, laiką ar dėmesį. Tai nėra per jautrumas – tai išraiška jūsų gebėjimo giliai prisirišti ir baimės prarasti tai, kas jums brangu.",
       "secondaryBridge": {
-        "AVOIDANT": "Tuo pačiu metu kita jūsų dalis vertina erdvę, todėl artumas gali atrodyti painiai.",
-        "DISORGANIZED": "Kartu su tuo, kartais svyruojate tarp artumo siekimo ir atsitraukimo, o tai prideda dar vieną sudėtingumo sluoksnį.",
-        "SECURE": "Vis dėlto, taip pat nešate ramybės ir pasitikėjimo akimirkas, kurios padeda subalansuoti poreikį patikinimui."
+        "AVOIDANT": "Kartu dalis jūsų vertina erdvę, todėl artumas kartais gali atrodyti painus.",
+        "DISORGANIZED": "Kartais svyruojate tarp artumo siekimo ir atsitraukimo, o tai suteikia santykiams papildomo sudėtingumo.",
+        "SECURE": "Vis dėlto nešate ir stabilumo akimirkas – pasitikėjimą, kuris padeda subalansuoti jūsų poreikį patikinimui."
       }
     },
     "AVOIDANT": {
-      "reflection": "Kai emocijos kyla ar kas nors nori prisiartinti, jūs [tone:frequency] jaučiate trauką atsitraukti ir sukurti šiek tiek erdvės kvėpuoti. Kažkas jumyse vertina nepriklausomybę ir savarankiškumą, ypač kai santykiai tampa intensyvūs ar reikalaujantys. Jūs [tone:likelihood] sprendžiate konfliktą pasiėmę erdvės pagalvoti, o ne iš karto grimzdami į emocinius pokalbius. Tai ne todėl, kad jums nerūpi — tai todėl, kad jūs apdorojate dalykus kitaip. Jums reikia vietos išsiaiškinti savo mintis ir jausmus prieš galėdami jais pasidalyti. Kiti gali interpretuoti jūsų atsitraukimą kaip atmetimą, bet jums tai būdas išlikti įsitvirtinusiems ir išvengti perdėtos emocijų apkrovos. Jūs rodote rūpestį praktiškais, apgalvotais būdais, o ne per didelius emocinius gestus, ir tas atstumas galbūt saugo kažką trapaus jumyse.",
+      "reflection": "Kai emocijos stiprėja ar kas nors nori prisiartinti, jūs [tone:frequency] jaučiate poreikį atsitraukti ir susikurti šiek tiek erdvės kvėpuoti. Jūsų dalis vertina nepriklausomybę ir savarankiškumą, ypač kai santykiai tampa intensyvūs ar reikalaujantys. Jūs [tone:likelihood] sprendžiate konfliktus pasiimdami laiko apmąstyti, o ne iškart pasineriate į emocinius pokalbius. Tai ne todėl, kad jums nerūpi – tiesiog jūs apdorojate jausmus kitu tempu. Jums reikia erdvės, kad suprastumėte savo mintis ir jausmus prieš juos išsakydami. Kiti gali jūsų atsitraukimą interpretuoti kaip atstūmimą, bet jums tai būdas išlaikyti stabilumą ir išvengti emocinės perkrovos. Jūs rodote rūpestį veiksmuose – per apgalvotus, praktiškus gestus, o ne didelius emocinius išsiveržimus. Šis atstumas dažnai saugo jautresnę jūsų dalį.",
       "secondaryBridge": {
-        "ANXIOUS": "Tuo pačiu metu kita jūsų dalis ilgisi artumo, sukurdama traukimosi-stūmimo dinamiką jūsų santykiuose.",
-        "DISORGANIZED": "Yra momentų, kai jūs vienu metu norite ir priešinatės artumui, o tai daro ryšį nenuspėjamą.",
-        "SECURE": "Bet jūs taip pat rodote stabilumo ir pasitikėjimo ženklus, kurie kartais suminkština atstumą."
+        "ANXIOUS": "Kita jūsų dalis ilgisi artumo, todėl santykyje kartais kyla traukimosi ir artėjimo dinamika.",
+        "DISORGANIZED": "Yra momentų, kai vienu metu norite ir bijote artumo – tai gali paversti ryšį nenuspėjamu.",
+        "SECURE": "Tačiau kartu gebate rodyti pasitikėjimą ir stabilumą, kurie sušvelnina jūsų poreikį atsitraukti."
       }
     },
     "DISORGANIZED": {
-      "reflection": "Jūs [tone:frequency] atsiduriate įkalinti tarp noro būti artimesni ir baimės tuo pačiu metu. Vienu momentu galite siekti ryšio, o kitu — atsitraukti, jaučiantis sugluminti dėl to, ko iš tikrųjų norite. Kai įvyksta konfliktas, jūs [tone:likelihood] turite intensyvias reakcijas, kurios netgi jus pačius nustebina — kartais visiškai užsidarote, kitais atvejais reaguojate stipriau nei situacija atrodo reikalautų. Vyksta vidinė kova: viena jūsų dalis trokšta artimų santykių saugumo, o kita perspėja, kad per didelis artumas yra pavojingas. Tai gali padaryti jūsų reakcijas nenuspėjamas tiek jums patiems, tiek kitiems. Galite atsidurti išbandantys santykius — stumiantys, kad pamatytumėte, ar kas nors liks, ar traukiantys atgal, kad pamatytumėte, ar jie kovos už jus, ir tas atstumas galbūt saugo kažką trapaus jumyse.",
+      "reflection": "Jūs [tone:frequency] atsiduriate įstrigę tarp stipraus noro būti arčiau ir baimės tuo pačiu metu. Vieną akimirką siekiate artumo, o kitą – atsitraukiate, nes nesate tikri, ką iš tiesų jaučiate. Kai kyla konfliktas, jūs [tone:likelihood] reaguojate intensyviai – kartais užsidarote, kitais kartais reaguojate stipriau, nei situacija reikalauja. Viduje vyksta kova: viena jūsų dalis trokšta saugaus ryšio, o kita įspėja, kad artumas gali būti pavojingas. Tai gali padaryti jūsų reakcijas nenuspėjamas tiek jums, tiek aplinkiniams. Kartais galite nesąmoningai išbandyti santykius – atsitraukdami, kad pamatytumėte, ar žmogus jus seka, arba stumdami, kad pamatytumėte, ar liks. Šis elgesys kyla ne iš manipuliacijos, o iš gilaus troškimo suprasti, ar esate saugus (-i) ryšyje.",
       "secondaryBridge": {
-        "ANXIOUS": "Kartu su tuo, jūsų poreikis patikinimui gali sustiprinti svyravimus, kuriuos jaučiate.",
-        "AVOIDANT": "Jūs taip pat nešate poreikį erdvei, o tai gali pagilinti vidinį konfliktą dėl artumo.",
-        "SECURE": "Vis dėlto, taip pat yra tam tikro stabilumo jumyse — momentų, kai ramus pasitikėjimas prasiveržia."
+        "ANXIOUS": "Jūsų poreikis patikinimui gali sustiprinti svyravimus, kuriuos patiriate santykiuose.",
+        "AVOIDANT": "Kartu nešate ir poreikį erdvei, o tai dar labiau sustiprina vidinį konfliktą dėl artumo.",
+        "SECURE": "Tačiau jumyse taip pat slypi tam tikras stabilumas – ramybės ir pasitikėjimo akimirkos, kurios vis dažniau prasiveržia."
       }
     },
     "SECURE": {
-      "reflection": "Jūs [tone:frequency] prieinate prie santykių su pastoviu pasitikėjimu, kad viskas išsispręs, net kai būna kliūčių. Kai iškyla konfliktas, jūs [tone:likelihood] išliekate gana ramus ir galite bendrauti apie savo jausmus neprarasdami savo centro. Jums patogu tiek su artumu, tiek su nepriklausomybe — galite būti giliai susiję su kažkuo, vis dar išlaikydami savo individualumą. Jūs nepanikuojate, kai kam nors reikia erdvės, ir nejaučiate grėsmės, kai jie nori daugiau artumo. Jūsų emocinės reakcijos paprastai atitinka realią situaciją, o ne yra sustiprintos senų baimių ar žaizdų. Galite aiškiai išreikšti savo poreikius ir klausytis kitų be gynybinės pozicijos, ir jūsų instinktas dėl nepriklausomybės ir ryšio tikriausiai turi šaknis, vertas suprasti.",
+      "reflection": "Jūs [tone:frequency] prieinate prie santykių su nuolatiniu pasitikėjimu, kad viskas išsispręs, net kai kyla sunkumų. Kai atsiranda konfliktas, jūs [tone:likelihood] išliekate ramus (-i) ir gebate kalbėti apie jausmus neprarasdami vidinės pusiausvyros. Jums patogu tiek būti artume, tiek išlaikyti nepriklausomybę – galite būti giliai susiję, kartu išsaugodami individualumą. Jūs nepanikuojate, kai kitam reikia erdvės, ir nejaučiate grėsmės, kai žmogus nori daugiau artumo. Jūsų emocinės reakcijos paprastai atitinka situaciją, o ne kyla iš senų baimių ar žaizdų. Gebate aiškiai išsakyti poreikius ir klausytis kitų be gynybos. Jūsų gebėjimas derinti nepriklausomybę su artumu yra brandus ir įkvepiantis – tai stabilumo forma, kuria kiti gali pasitikėti.",
       "secondaryBridge": {
-        "ANXIOUS": "Tačiau kartais taip pat pastebite nerimus dėl artumo, kurie visiškai neišnyksta.",
-        "AVOIDANT": "Taip pat yra momentų, kai atstumas atrodo lengvesnis, net jei ryšys paprastai laimi.",
-        "DISORGANIZED": "Kartais vis dar svyruojate tarp traukimo artyn ir atsitraukimo, nors atsigaunate lengviau."
+        "ANXIOUS": "Kartais vis dar pastebite mažus nerimo ženklus, nors jie greitai praeina.",
+        "AVOIDANT": "Būna akimirkų, kai atstumas atrodo lengvesnis, nors artumas vis tiek lieka stipresnis pasirinkimas.",
+        "DISORGANIZED": "Retkarčiais vis dar svyruojate tarp artėjimo ir atsitraukimo, bet vis greičiau grįžtate į pusiausvyrą."
       }
     }
   },
@@ -40,15 +40,15 @@
     },
     "MILD": {
       "frequency": "kartais",
-      "likelihood": "gali"
+      "likelihood": "linkęs (-usi)"
     },
     "MODERATE": {
       "frequency": "dažnai",
-      "likelihood": "linkęs"
+      "likelihood": "paprastai"
     },
     "STRONG": {
-      "frequency": "reguliariai",
-      "likelihood": "paprastai"
+      "frequency": "dažniausiai",
+      "likelihood": "beveik visada"
     }
   }
 }
