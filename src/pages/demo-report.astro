@@ -331,27 +331,65 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
         // ==========================================
         function renderMindfulnessForm() {
           return `
-          <div class="space-y-4 border-t pt-4">
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Mindfulness Level</label>
-              <select id="mindfulnessLevel" class="w-full rounded border p-2">
-                <option value="LOW_MINDFULNESS">Low Mindfulness</option>
-                <option value="MODERATE_MINDFULNESS" selected>Moderate Mindfulness</option>
-                <option value="GOOD_MINDFULNESS">Good Mindfulness</option>
-                <option value="HIGH_MINDFULNESS">High Mindfulness</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Self-Awareness Level</label>
-              <select id="awarenessLevel" class="w-full rounded border p-2">
-                <option value="LOW_AWARENESS">Low Awareness</option>
-                <option value="MODERATE_AWARENESS" selected>Moderate Awareness</option>
-                <option value="GOOD_AWARENESS">Good Awareness</option>
-                <option value="HIGH_AWARENESS">High Awareness</option>
-              </select>
-            </div>
-          </div>
-        `
+  <div class="space-y-4 border-t pt-4">
+    <!-- Existing Level Selectors -->
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Mindfulness Level</label>
+      <select id="mindfulnessLevel" class="w-full rounded border p-2">
+        <option value="LOW_MINDFULNESS">Low Mindfulness</option>
+        <option value="MODERATE_MINDFULNESS" selected>Moderate Mindfulness</option>
+        <option value="GOOD_MINDFULNESS">Good Mindfulness</option>
+        <option value="HIGH_MINDFULNESS">High Mindfulness</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Self-Awareness Level</label>
+      <select id="awarenessLevel" class="w-full rounded border p-2">
+        <option value="LOW_AWARENESS">Low Awareness</option>
+        <option value="MODERATE_AWARENESS" selected>Moderate Awareness</option>
+        <option value="GOOD_AWARENESS">Good Awareness</option>
+        <option value="HIGH_AWARENESS">High Awareness</option>
+      </select>
+    </div>
+
+    <!-- NEW: Subscores Section -->
+    <div class="border-t pt-4">
+      <h4 class="font-semibold text-gray-700 mb-3">Subscores (1.0 - 4.0)</h4>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Present Awareness</label>
+          <input type="number" id="mPresentAwareness" min="1" max="4" step="0.1" value="2.5" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Daily noticing + practice</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Nonreactive Observing</label>
+          <input type="number" id="mNonreactiveObserving" min="1" max="4" step="0.1" value="2.8" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Observing without getting caught</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Response Flexibility</label>
+          <input type="number" id="mResponseFlexibility" min="1" max="4" step="0.1" value="3.0" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Pausing before reacting</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Internal State Awareness</label>
+          <input type="number" id="mInternalStateAwareness" min="1" max="4" step="0.1" value="2.3" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Differentiating thoughts/emotions/sensations</p>
+        </div>
+        <div class="col-span-2">
+          <label class="block mb-1 text-sm text-gray-600">Emotional Insight</label>
+          <input type="number" id="mEmotionalInsight" min="1" max="4" step="0.1" value="2.0" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Understanding meaning/triggers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
         }
 
         // ==========================================
@@ -359,28 +397,60 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
         // ==========================================
         function renderSelfAcceptanceForm() {
           return `
-          <div class="space-y-4 border-t pt-4">
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Self-Acceptance Level</label>
-              <select id="saLevel" class="w-full rounded border p-2">
-                <option value="BEGINNING_SELF_ACCEPTANCE">Beginning Self-Acceptance</option>
-                <option value="DEVELOPING_SELF_ACCEPTANCE" selected>Developing Self-Acceptance</option>
-                <option value="GROWING_SELF_ACCEPTANCE">Growing Self-Acceptance</option>
-                <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated Self-Acceptance</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Openness to Change (Optional)</label>
-              <select id="saOpenness" class="w-full rounded border p-2">
-                <option value="">None</option>
-                <option value="RESTING_PHASE">Resting Phase</option>
-                <option value="MIXED_FEELINGS" selected>Mixed Feelings</option>
-                <option value="READY_TO_GROW">Ready to Grow</option>
-                <option value="DEEP_EXPLORATION">Deep Exploration</option>
-              </select>
-            </div>
-          </div>
-        `
+  <div class="space-y-4 border-t pt-4">
+    <!-- Existing Level Selectors -->
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Self-Acceptance Level</label>
+      <select id="saLevel" class="w-full rounded border p-2">
+        <option value="BEGINNING_SELF_ACCEPTANCE">Beginning Self-Acceptance</option>
+        <option value="DEVELOPING_SELF_ACCEPTANCE" selected>Developing Self-Acceptance</option>
+        <option value="GROWING_SELF_ACCEPTANCE">Growing Self-Acceptance</option>
+        <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated Self-Acceptance</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Openness to Change (Optional)</label>
+      <select id="saOpenness" class="w-full rounded border p-2">
+        <option value="">None</option>
+        <option value="RESTING_PHASE">Resting Phase</option>
+        <option value="MIXED_FEELINGS" selected>Mixed Feelings</option>
+        <option value="READY_TO_GROW">Ready to Grow</option>
+        <option value="DEEP_EXPLORATION">Deep Exploration</option>
+      </select>
+    </div>
+
+    <!-- NEW: Subscores Section -->
+    <div class="border-t pt-4">
+      <h4 class="font-semibold text-gray-700 mb-3">Subscores (1.0 - 4.0)</h4>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Inner Voice</label>
+          <input type="number" id="saInnerVoice" min="1" max="4" step="0.1" value="2.3" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Self-talk & accepting imperfection</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Emotional Acceptance</label>
+          <input type="number" id="saEmotionalAcceptance" min="1" max="4" step="0.1" value="3.5" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Allowing feelings without fixing</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Past Acceptance</label>
+          <input type="number" id="saPastAcceptance" min="1" max="4" sep="0.1" value="2.0" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Accepting history & mistakes</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Compassion for Others</label>
+          <input type="number" id="saCompassionForOthers" min="1" max="4" step="0.1" value="3.0" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Extending acceptance outward</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
         }
 
         // ==========================================
@@ -527,6 +597,13 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
             const mindfulnessLevelElement = document.getElementById('mindfulnessLevel') as HTMLSelectElement
             const awarenessLevelElement = document.getElementById('awarenessLevel') as HTMLSelectElement
 
+            // Subscore elements
+            const presentAwarenessElement = document.getElementById('mPresentAwareness') as HTMLInputElement
+            const nonreactiveObservingElement = document.getElementById('mNonreactiveObserving') as HTMLInputElement
+            const responseFlexibilityElement = document.getElementById('mResponseFlexibility') as HTMLInputElement
+            const internalStateAwarenessElement = document.getElementById('mInternalStateAwareness') as HTMLInputElement
+            const emotionalInsightElement = document.getElementById('mEmotionalInsight') as HTMLInputElement
+
             const mindfulnessLevel = mindfulnessLevelElement?.value
             const awarenessLevel = awarenessLevelElement?.value
 
@@ -535,12 +612,29 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
             return {
               mindfulnessLevel,
               awarenessLevel,
+              subscores: {
+                presentAwareness: parseFloat(presentAwarenessElement?.value || '2.5'),
+                nonreactiveObserving: parseFloat(nonreactiveObservingElement?.value || '2.8'),
+                responseFlexibility: parseFloat(responseFlexibilityElement?.value || '3.0'),
+                internalStateAwareness: parseFloat(internalStateAwarenessElement?.value || '2.3'),
+                emotionalInsight: parseFloat(emotionalInsightElement?.value || '2.0'),
+                metadata: {
+                  scoreRange: { min: 1, max: 4 },
+                  thresholds: { low: 2.0, high: 3.0 },
+                },
+              },
             }
           }
 
           if (trait === 'self_acceptance') {
             const levelElement = document.getElementById('saLevel') as HTMLSelectElement
             const opennessElement = document.getElementById('saOpenness') as HTMLSelectElement
+
+            // Subscore elements
+            const innerVoiceElement = document.getElementById('saInnerVoice') as HTMLInputElement
+            const emotionalAcceptanceElement = document.getElementById('saEmotionalAcceptance') as HTMLInputElement
+            const pastAcceptanceElement = document.getElementById('saPastAcceptance') as HTMLInputElement
+            const compassionForOthersElement = document.getElementById('saCompassionForOthers') as HTMLInputElement
 
             const level = levelElement?.value
             const openness = opennessElement?.value
@@ -550,6 +644,16 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
             return {
               level,
               openness_to_change: openness || null,
+              subscores: {
+                innerVoice: parseFloat(innerVoiceElement?.value || '2.3'),
+                emotionalAcceptance: parseFloat(emotionalAcceptanceElement?.value || '3.5'),
+                pastAcceptance: parseFloat(pastAcceptanceElement?.value || '2.0'),
+                compassionForOthers: parseFloat(compassionForOthersElement?.value || '3.0'),
+                metadata: {
+                  scoreRange: { min: 1, max: 4 },
+                  thresholds: { low: 2.0, high: 3.0 },
+                },
+              },
             }
           }
 

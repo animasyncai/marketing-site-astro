@@ -26,5 +26,16 @@
     "DEEP_EXPLORATION": {
       "modifier": "Esi pasirengęs gilesniam savęs tyrinėjimui ir nori prasmingo vidinio darbo. Atvirai priimi iššūkius, įžvalgas ir pokyčius, kurie gali keisti tavo savęs supratimą."
     }
+  },
+  "notablePatterns": {
+    "emotionalAcceptanceHarshVoice": "Tu turi tikrą sugebėjimą priimti savo emocijas tokias, kokios jos yra. Tuo pačiu metu tavo vidinis balsas gali būti gana griežtas - ypač kai būna sunku. Šis kontrastas vertas švelnumo.",
+    "compassionForOthersNotSelf": "Tu greitai suteiki kitiems švelnumą ir supratimą. Tačiau su savimi - tas pats užuojautos ir kantrybės lygis nepasiekiamas. Ką duotum draugui, save pasiekia retai.",
+    "stuckInPast": "Tu gali priimti, ką jauti dabar. Bet praeities klaidos ir dalykų, kurių negalėjai kontroliuoti, vis dar jaučiasi sunkūs. Tas svoris nėra visiškai paleistas.",
+    "extremeHarshVoice": "Tavo vidinis balsas yra nuolat kritiškas - ypač kai būna sunku. Jis kalba taip, kaip niekada nekalbėtum su žmogumi, kurį myli.",
+    "pastPeaceNotPresentKindness": "Tu suradai taiką su praeitimi - klaidos ir aplinkybės nebėra našta. Tačiau šis atlaidumas dar neišsiverčia į tai, kaip šiandien su savimi kalbi.",
+    "cannotSitWithEmotions": "Leisti emocijoms būti tokioms, kokios jos yra - be poreikio jas ištaisyti, suprasti arba pakeisti - jaučiasi neįmanoma. Sėdėti su nemaloniu yra labai sunku.",
+    "compassionGapWithPast": "Tu lengvai supranti, kai kiti klysta - žinai, kad visi ko nors mokosi. Tačiau savo praeities klaidoms vis dar sunku atleisti. Tu laikaisi savęs kitokių standartų.",
+    "exceptionalIntegration": "Tu sukūrei kažką tikrai tvirto. Tu gali sėdėti su savo emocijomis, kalbėti su savimi švelniai net kai sunku, laikyti praeitį su supratimu ir tą patį šilumą skirti kitiems. Šis pagrindas tau tarnaus.",
+    "pervasiveStruggle": "Dabar būti maloniu sau jaučiasi tikrai sunku - visais būdais. Emocijos jaučiasi pribloškiančios, tavo vidinis balsas griežtas, praeitis sunkiai spaudžia, ir net šiluma kitiems yra sudėtinga. Tai nėra nesėkmė. Tai tavo pradžios taškas, ir tai gali keistis."
   }
 }

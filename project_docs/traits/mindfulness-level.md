@@ -136,6 +136,42 @@ Based on total self-awareness score:
 - **Reflective, conscious:** 10 – 12
 - **Deeply aware:** 13 – 16
 
+### Step 6: Calculate Subscores
+
+Subscores capture distinct dimensions across mindfulness and self-awareness:
+
+**presentAwareness** = avg(M1, (5-M2), M6)
+
+- Measures: Noticing in daily life + practice habit
+- Questions: Noticing emotions/sensations, autopilot (reversed), regular practice
+- Note: M2 reversed via (5-M2) since it measures negative behavior
+
+**nonreactiveObserving** = avg(M3, M4)
+
+- Measures: Observing without getting caught or resisting
+- Questions: Stepping back from busy thoughts, staying with experiences
+
+**responseFlexibility** = M5
+
+- Measures: Pausing before reacting when challenged
+- Questions: Observing reaction and responding mindfully
+
+**internalStateAwareness** = avg(SW7, SW8)
+
+- Measures: Differentiating thoughts, emotions, sensations
+- Questions: Noticing mind-body-emotion connections, differentiating internal states
+
+**emotionalInsight** = avg(SW9, SW10)
+
+- Measures: Understanding meaning and triggers behind emotions
+- Questions: Connecting emotions to needs, recognizing patterns/past triggers
+
+**Metadata:**
+
+- Score range: 1.0 - 4.0 (same as individual questions)
+- Thresholds: LOW < 2.0 | MODERATE 2.0-3.0 | HIGH > 3.0
+- Use: Enriches behavioral profiles with specific patterns (e.g., "understands emotions intellectually but misses them in real-time")
+
 ## Questionnaire Design Rationale
 
 ### Comprehensive Coverage

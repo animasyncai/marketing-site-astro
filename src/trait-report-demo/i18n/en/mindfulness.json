@@ -102,5 +102,47 @@
       "reflection": "You have developed an integrated awareness: you are consistently present and deeply insightful. You can notice emotions as they arise, understand their meaning, and respond with clarity and compassion.\n\nIn relationships, this allows you to meet others with empathy, authenticity, and balance, making your connections deeply supportive and nourishing. This is a powerful strength—your awareness flows naturally and supports your growth, relationships, and resilience.",
       "behavioralProfile": "Highly integrated awareness combining advanced mindfulness with sophisticated self-understanding. Can consistently access both observational and interpretive skills simultaneously. Shows mastery-level emotional intelligence and capacity for wise, compassionate responding in all areas of life."
     }
+  },
+  "notablePatterns": {
+    "intellectualVsRealtime": "You can understand your emotions and thoughts insightfully - but often only in hindsight, not as they happen. Being present with what's unfolding right now is still challenging.",
+    "observationWithoutAction": "You have a real capacity to observe your thoughts and feelings without getting tangled up. Yet when emotions run strong, you can still react automatically - that pause before responding is still developing.",
+    "mindBodyDisconnect": "You can name what you feel and understand what sits behind it. But the connection to body sensations - tension, heartbeat, breath - isn't always clear yet.",
+    "extremeLowPresence": "Much of your time is spent on autopilot - thoughts racing, days passing, inner experiences unnoticed. Pausing to feel what's happening here and now is rare.",
+    "presenceWithoutDepth": "You're quite present in the moment and can notice what's happening. You haven't yet connected these moments to deeper patterns - why you feel the way you feel.",
+    "exceptionalMindfulness": "You've developed something rare. You're present with life as it unfolds, can observe your mind without getting lost in it, pause before reacting, track what's happening inside you, and understand why you feel what you feel. This awareness will guide you.",
+    "minimalMindfulness": "You're spending most of life on autopilot right now. Days pass, thoughts race, emotions come and go mostly unnoticed. Your body's signals are faint, and understanding what sits behind feelings is unclear. This is a starting place, and awareness can grow from here."
+  },
+
+  "behavioralPatterns": {
+    "intellectualVsRealtime": "Can intellectually understand emotional patterns but misses them happening in real-time.",
+    "observationWithoutAction": "Can observe thoughts without getting caught but still reacts automatically when triggered.",
+    "awarenessWithoutIntegration": "Understands emotions conceptually but struggles to notice physical sensations and thought patterns as they arise.",
+    "practiceWithoutPresence": "May have formal practice but struggles with daily-life mindfulness.",
+    "presenceWithoutInsight": "Notices experiences in the moment but doesn't yet connect them to deeper patterns or needs.",
+    "bodyAwarenessGap": "Present with thoughts and emotions but less connected to bodily sensations.",
+    "reactiveUnderStress": "Can step back from thoughts in calm moments but loses this capacity when stressed or triggered.",
+    "insightWithoutAwareness": "Has conceptual understanding of emotions but limited real-time awareness of internal states.",
+    "observationWithoutFlexibility": "Can notice thoughts and feelings but response patterns remain automatic.",
+    "strongMindfulnessIntegration": "Strong integration of mindfulness across dimensions. Present awareness reliable, observation skills developed, response flexibility established, internal states differentiated clearly, and emotional insight sophisticated.",
+    "exceptionalMindfulness": "Exceptional mindfulness capacity. Present-moment awareness automatic, observation effortless, responses conscious and flexible, internal landscape mapped with precision, and emotional patterns understood deeply.",
+    "nearComplete": "Near-complete mindfulness development with one dimension still maturing. Overall capacity strong and reliable with clear path for continued refinement.",
+    "minimalMindfulness": "Mindfulness capacity limited across all dimensions. Autopilot dominant, observation difficult, reactivity high, internal states undifferentiated, and emotional insight minimal.",
+    "multipleDeficits": "Mindfulness challenged in multiple areas. One area of relative strength provides starting point but overall capacity remains significantly underdeveloped.",
+    "earlyStageAllAround": "Beginning mindfulness development from foundational level. Awareness skills underdeveloped across dimensions. Starting point for systematic practice and skill building.",
+    "balancedDevelopment": "Developing mindfulness evenly across dimensions. Growth consistent without major imbalances. Foundation building steadily with regular practice.",
+    "moderateMomentum": "Mindfulness developing well with clear momentum. All dimensions showing progress. Approaching strong capacity with continued practice.",
+    "stableMiddleRange": "Consistent moderate mindfulness across areas. Development stable though not yet automatic. Regular practice maintaining steady progress.",
+    "formalPracticeNoTransfer": "May have developed mindfulness skills through formal practice but struggles to bring awareness into daily life. Meditation cushion skills haven't fully transferred to real-world contexts.",
+    "naturalPresenceNoStructure": "Naturally present and aware in daily life without formal practice foundation. Presence is intuitive but lacks structure for deeper insight development.",
+    "bodySeparation": "Can understand emotions and their meanings but body awareness significantly disconnected. Lives primarily in head with limited somatic integration.",
+    "hyperVigilantObservation": "Highly developed observation capacity but limited present-moment grounding. May observe with anxiety-driven hypervigilance rather than relaxed awareness.",
+    "reactionGapDespiteAwareness": "Can be present and observe clearly but reactions remain automatic. Awareness doesn't yet translate into behavioral flexibility or conscious response.",
+    "insightWithoutFoundation": "Sophisticated emotional insight developed without strong foundational awareness. Understanding is intellectual or retrospective rather than grounded in real-time noticing.",
+    "presenceWithoutDifferentiation": "Present with experience but internal states remain undifferentiated. Notices something is happening but can't separate thoughts from emotions from sensations.",
+    "allButInsight": "Strong mindfulness skills across awareness and observation but limited insight into emotional meaning. Can notice and not react but doesn't understand what feelings are pointing toward.",
+    "bodyMindDissociation": "Understands emotions conceptually but body awareness severely limited. Marked dissociation between cognitive understanding and somatic experience.",
+    "flexibilityWithoutObservation": "Can pause and respond flexibly but observation skills underdeveloped. Flexibility comes from effort or technique rather than observational spaciousness.",
+    "presentButReactive": "Highly present and aware of unfolding experience but reactivity remains high. Notices everything but responds automatically without pause.",
+    "fragmentedAwareness": "Isolated area of mindfulness strength while other dimensions remain underdeveloped. Awareness fragmented rather than integrated across experience."
   }
 }

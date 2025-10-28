@@ -120,6 +120,36 @@ Based on Question 10 score:
 - **4**: Ready to Grow
 - **5**: Deep Exploration
 
+### Step 4: Calculate Subscores
+
+Subscores capture distinct behavioral dimensions within self-acceptance:
+
+**innerVoice** = avg(SA3, SA4, SA5)
+
+- Measures: Self-compassion vs. self-criticism, accepting imperfection
+- Questions: Support during hard times, tone of inner voice, accepting weaknesses
+
+**emotionalAcceptance** = avg(SA1, SA2, SA6)
+
+- Measures: Allowing emotions without judgment or fixing
+- Questions: Observing feelings, allowing unclear emotions, response to difficult emotions
+
+**pastAcceptance** = avg(SA7, SA8)
+
+- Measures: Accepting history and past mistakes
+- Questions: Relationship to uncontrollable past events, forgiving past mistakes
+
+**compassionForOthers** = SA9
+
+- Measures: Extending acceptance outward
+- Questions: Response to others' imperfections
+
+**Metadata:**
+
+- Score range: 1.0 - 4.0 (same as individual questions)
+- Thresholds: LOW < 2.0 | MODERATE 2.0-3.0 | HIGH > 3.0
+- Use: Enriches behavioral profiles with specific patterns (e.g., "accepts emotions but inner voice remains harsh")
+
 ## Questionnaire Design Rationale
 
 ### Comprehensive Coverage
