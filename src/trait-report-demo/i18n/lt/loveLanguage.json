@@ -2,205 +2,146 @@
   "love_language": {
     "WORDS_OF_AFFIRMATION": {
       "reflection": {
-        "core": "Girdėti nuoširdžius, konkrečius dėkingumo, paskatinimo ir meilės žodžius pripildo jūsų emocinį rezervuarą taip, kaip niekas kitas negali. Pastebite ir įsimenate tikslius žodžius, kuriuos žmonės naudoja išreikšdami rūpestį jums, ir šios frazės gali likti su jumis dienas ar net metus, grįždamos kaip komforto ir stiprybės šaltiniai.",
+        "core": "Girdėti nuoširdžius, konkrečius dėkingumo, paskatinimo ir meilės žodžius pripildo tavo vidinį rezervuarą taip, kaip niekas kitas. Pastebi ir įsimeni tikslius žodžius, kuriais žmonės išreiškia rūpestį – šios frazės išlieka su tavimi dienas ar net metus, sugrįždamos kaip šilumos ir stiprybės šaltinis.",
 
         "subtypeA": {
-          "emphasis": "Jums ypač svarbu gilūs, prasmingi pokalbiai, kai idėjos tyrinėjamos ir jausmai aptariami.",
-          "behavioral": "Sušvintate giliuose dialoguose ir jaučiatės artimiausiai, kai kas nors įsitraukia į jūsų mintis ir vidinį pasaulį per išlaikytą pokalbį."
+          "emphasis": "Tau ypač svarbūs gilūs, prasmingi pokalbiai, kai galima tyrinėti mintis ir kalbėtis apie jausmus.",
+          "behavioral": "Sužygi giliuose dialoguose ir jautiesi artimiausiai, kai kas nors nuoširdžiai įsitraukia į tavo mintis ir vidinį pasaulį per dėmesingą pokalbį."
         },
 
         "subtypeB": {
-          "emphasis": "Jums ypač reikia girdėti tiesiogines meilės, dėkingumo ir paskatinimo išraiškas.",
-          "behavioral": "Frazės kaip 'aš tave myliu', 'tu man svarbus' ar 'matau, ką čia padarei' paliečia giliai ir visiškai pakeičia jūsų nuotaiką."
+          "emphasis": "Tau itin reikalingi tiesioginiai meilės, dėkingumo ar paskatinimo žodžiai.",
+          "behavioral": "Frazės kaip „aš tave myliu“, „tu man svarbus (-i)“ ar „matau, kiek įdėjai pastangų“ tave paliečia giliai ir visiškai pakeičia nuotaiką."
         },
 
-        "balanced": "Vertinate tiek prasmingas kalbas, tiek tiesiogines meilės išraiškas — kartais jums reikia dialogo, kitais kartais tiesiog išgirsti, kad esate vertinamas.",
+        "balanced": "Vertini tiek prasmingas kalbas, tiek tiesiogines meilės išraiškas — kartais tau reikia dialogo, o kartais tiesiog išgirsti, kad esi vertinamas (-a).",
 
-        "closing": "Kritiniai ar griežti žodžiai gali jus sužeisti giliau nei kiti tikėtųsi, o nuoširdūs pagyrimai ir verbalinis dėkingumas gali visiškai pakeisti jūsų nuotaiką ir energiją, ir tikriausiai yra priežastis, kodėl vertinimas jaučiasi toks būtinas."
-      },
-
-      "behavioralProfile": {
-        "core": "Jaučiasi labiausiai mylimas per verbalų pripažinimą, paskatinimą ir dėkingumą. Prisimena tiek teigiamus, tiek neigiamus žodžius ilgai po to, kai jie ištariami.",
-
-        "subtypeA": "Specifiškai vertina išsamius pokalbius ir prasmingas kalbas kaip pagrindines rūpesčio išraiškas. Gali jaustis nemylimas, kai pokalbiai lieka paviršutiniški arba partneriai vengia aptarti jausmus ir vidinius išgyvenimus.",
-
-        "subtypeB": "Specifiškai vertina tiesiogines verbalias patvirtinimo išraiškas kaip 'aš tave myliu', komplimentus apie charakterį ir išreikštą dėkingumą už pastangas. Gali jaustis nemylimas, kai partneriai tyli arba laiko meilę savaime suprantama be jos išreiškimo.",
-
-        "balanced": "Vertina tiek prasmingas kalbas, tiek tiesiogines verbalias patvirtinimo išraiškas vienodai. Reikia partnerių, kurie gali įsitraukti tiek per pokalbius, tiek išraiškingai.",
-
-        "universal": "Gali jaustis nemylimas, kai partneriai tyli arba kritikuoja. Reikia verbalinio patikinimo per konfliktą ar stresą. Išreiškia meilę per komplimentus, paskatinimą ir verbalų dėkingumą."
+        "closing": "Kritiniai ar griežti žodžiai gali sužeisti giliau, nei kiti tikėtųsi, o nuoširdūs pagyrimai ir dėkingumo išraiškos gali akimirksniu pakeisti tavo būseną. Tikriausiai būtent todėl žodinis pripažinimas tau toks svarbus — jis primena, kad esi matomas ir mylimas toks, koks esi."
       }
     },
 
     "QUALITY_TIME": {
       "reflection": {
-        "core": "Jaučiatės labiausiai mylimas ir vertinamas, kai kas nors skiria jums visą savo nedalytą dėmesį. Tai ne tik būti tame pačiame kambaryje — tai ta buvimo kokybė, kai jaučiatės esąs vienintelis dalykas, kuris tuo momentu svarbu.",
+        "core": "Jautiesi labiausiai mylimas (-a) ir vertinamas (-a), kai kas nors skiria tau visą savo dėmesį. Tai ne tik buvimas tame pačiame kambaryje — svarbiausia buvimo kokybė, kai jauti, kad esi svarbiausias (-a) tą akimirką.",
 
         "subtypeA": {
-          "emphasis": "Jums ypač svarbu bendros veiklos ir tiesiog būti kartu.",
-          "behavioral": "Jaučiatės artimiausiai darant dalykus vienas šalia kito — gamindami, vaikščiodami, dirbdami projektus arba tiesiog būdami toje pačioje erdvėje be nuolatinio pokalbio poreikio."
+          "emphasis": "Tau ypač svarbios bendros veiklos ir tiesioginis buvimas kartu.",
+          "behavioral": "Jautiesi artimiausiai, kai kartu gaminate, vaikščiojate, dirbate ar tiesiog būnate toje pačioje erdvėje be poreikio nuolat kalbėtis."
         },
 
         "subtypeB": {
-          "emphasis": "Jums ypač reikia sutelkto, sąmoningo dėmesio, kai kas nors klausia apie jūsų vidinį pasaulį ir giliai klausosi.",
-          "behavioral": "Kai kas nors padeda telefoną, žiūri jums į akis ir tikrai klausosi, ką sakote, kažkas jumyse atsipalaiduoja ir jaučiasi saugiai."
+          "emphasis": "Tau labai reikia sutelkto, sąmoningo dėmesio – kai žmogus tikrai girdi ir domisi tavo vidiniu pasauliu.",
+          "behavioral": "Kai kas nors padeda telefoną, žiūri į akis ir nuoširdžiai klausosi, tavo kūnas atsipalaiduoja, o širdis jaučiasi saugi."
         },
 
-        "balanced": "Vertinate tiek bendrus išgyvenimus, tiek sutelktus pokalbius — kartais pakanka lygiagretaus buvimo, kitais kartais reikia to tiesioginio, dėmesingo klausymosi.",
+        "balanced": "Vertini tiek bendras veiklas, tiek sutelktus pokalbius. Kartais pakanka tylaus buvimo, kitais – atviro dėmesingo dialogo.",
 
-        "closing": "Trukdymai ir pertraukos bendro laiko metu gali jaustis ypač skausmingi, nes jie signalizuoja, kad kiti dalykai yra svarbesni už jūsų ryšį, ir kažkas giliau galbūt skatina tą pripažinimo poreikį."
-      },
-
-      "behavioralProfile": {
-        "core": "Jaučiasi labiausiai mylimas per nedalytą dėmesį ir bendrus išgyvenimus. Vertina buvimą labiau nei dovanas.",
-
-        "subtypeA": "Specifiškai vertina bendras veiklas, lygiagretų buvimą ir dalykų darymą kartu. Gali jaustis nemylimas, kai partneriai fiziškai dalyvauja, bet neįsitraukę į bendrą išgyvenimą ar bendras veiklas.",
-
-        "subtypeB": "Specifiškai vertina sutelktą dėmesį, akių kontaktą, aktyvų klausymąsi ir pokalbius be trukdymų. Gali jaustis nemylimas, kai partneriai fiziškai dalyvauja, bet psichiškai yra kitur arba išsiblaškę dėl prietaisų.",
-
-        "balanced": "Vertina tiek bendras veiklas, tiek sutelktą pokalbį priklausomai nuo konteksto. Lankstus kaip kokybiškas laikas išreiškiamas.",
-
-        "universal": "Interpretuoja atšauktus planus ar paskubėtas sąveikas kaip žemo prioriteto ženklus. Gali jaustis nemylimas per ilgos distancijos laikotarpius ar kai tvarkaraščiai nesutampa. Išreiškia meilę kurdamas prasmingas patirtis ir būdamas visiškai dalyvaujantis su kitais."
+        "closing": "Pertraukos ar išsiblaškymas bendro laiko metu gali žeisti labiau, nei kiti supranta, nes tau tai signalas, kad ryšys praranda prioritetą. Tau meilė — tai buvimas su žmogumi pilnai, be trukdžių."
       }
     },
 
     "ACTS_OF_SERVICE": {
       "reflection": {
-        "core": "Jaučiatės labiausiai mylimas, kai kas nors pastebi, ko jums reikia, ir imasi veiksmų padėti, ypač nepaprašius. Kažkas jums giliai prasminga apie tai, kad kam nors pakankamai rūpi palengvinti jūsų naštą, išspręsti problemą už jus ar pasirūpinti kažkuo, kas buvo jūsų galvoje.",
+        "core": "Jautiesi labiausiai mylimas (-a), kai kas nors pastebi tavo poreikius ir imasi veiksmų padėti, net nepaprašytas (-a). Tokie veiksmai tau reiškia daugiau nei žodžiai – jie parodo tikrą rūpestį ir dėmesingumą. Kai kas nors palengvina tavo dieną ar nuima dalį naštos, jauti, kad esi vertinamas (-a) ir ne vienas (-a).",
 
         "subtypeA": {
-          "emphasis": "Jums ypač svarbi emocinė ir praktinė parama sunkiais momentais.",
-          "behavioral": "Kai gyvenimas tampa sunkus, kas nors įsikišantis padėti — ar klausydamasis, spręsdamas problemas ar nuimdamas kažką nuo jūsų pečių — jaučiasi kaip meilė jums."
+          "emphasis": "Tau ypač svarbi emocinė ir praktinė parama sunkiais momentais.",
+          "behavioral": "Kai gyvenimas tampa sudėtingas, kas nors, kas įsikiša – išklauso, padeda išspręsti problemą ar tiesiog būna šalia – tau reiškia meilę."
         },
 
         "subtypeB": {
-          "emphasis": "Jums ypač patinka, kai kas nors perima nuolatines pareigas ar įsipareigojimus.",
-          "behavioral": "Kai kas nors tvarko užduotis, kurios padaro kasdienį gyvenimą sklandesniu — darydamas namų ruošą, tvarkydamas reikalus, tvarkydamas logiką — tai rodo jums, kad jiems rūpi jūsų gerovė."
+          "emphasis": "Tau svarbi pagalba kasdienybėje – kai kas nors perima atsakomybes ar palengvina rutiną.",
+          "behavioral": "Kai žmogus tvarko reikalus, ruošia, planuoja ar padeda be prašymo, tai tave giliai paliečia – tai tylus, bet aiškus meilės ženklas."
         },
 
-        "balanced": "Vertinate tiek reaktyvią paramą per iššūkius, tiek proaktyvią pagalbą su kasdienėmis pareigomis — kartais jums reikia, kad kas nors įsikištų, kai dalykai sunkūs, kitais kartais reikia pagalbos su įprastais dalykais.",
+        "balanced": "Vertini tiek paramą krizių metu, tiek pagalbą kasdieniuose reikaluose. Kartais reikia, kad kas nors įsikištų, o kartais – kad tiesiog palengvintų gyvenimą.",
 
-        "closing": "Kai kas nors duoda pažadus, bet nevykdo jų veiksmais, gali atrodyti, kad jiems iš tikrųjų nerūpi, net jei jų ketinimai geri, ir tas tylus žingsnis atgal tikriausiai tarnauja tikslui, kurio dar visiškai netyrinėjote."
-      },
-
-      "behavioralProfile": {
-        "core": "Jaučiasi labiausiai mylimas, kai kiti imasi veiksmų padėti ar paremti juos. Vertina praktišką pagalbą labiau nei verbalias deklaracijas.",
-
-        "subtypeA": "Specifiškai vertina reagavimo paramą sunkiais laikais — kai kas nors įsikiša padėti per krizę, stresą ar emocinius iššūkius. Gali jaustis nemylimas, kai partneriai yra nedalyvauja ar pasyvūs per sunkumus.",
-
-        "subtypeB": "Specifiškai vertina proaktyvią pagalbą su pareigomis — kai kas nors perima namų ruošos užduotis, reikalus ar pareigas nepaprašius. Gali jaustis nemylimas, kai partneriai sukuria daugiau darbo, o ne palengvina naštą.",
-
-        "balanced": "Vertina tiek krizės paramą, tiek kasdienę praktišką pagalbą priklausomai nuo esamų poreikių. Lankstus kaip paslauga išreiškiama.",
-
-        "universal": "Gali jaustis nemylimas, kai partneriai ignoruoja praktinius poreikius ar duoda pažadus nevykdydami jų. Išreiškia meilę darydamas naudingus dalykus nepaprašius. Gali susidurti su sunkumais, kai partneriai neįvertina jų paslaugų orientuotų pastangų."
+        "closing": "Kai pažadai lieka be veiksmų, tai skaudina, nes tau meilė matuojama ne ketinimais, o tuo, ką žmogus iš tikrųjų daro. Tikri veiksmai tau yra tikriausias rūpesčio įrodymas."
       }
     },
-
     "GIFTS": {
       "reflection": {
-        "core": "Mažos staigmenos ar apgalvotos detalės turi svorį jums — ne dėl jų dydžio ar kainos, bet dėl reikšmės už jų. Objektai tampa priminimais, kad esate mintyse, net kai esate atskirai. Jie veikia kaip įrodymas, kad svarbus už momentą.",
+        "core": "Mažos staigmenos ar apgalvotos dovanos tau turi reikšmę ne dėl vertės, o dėl minties, slypinčios už jų. Tokie gestai primena, kad esi žmogaus mintyse net tada, kai nesate kartu. Kiekviena dovana tampa tarsi emocinis simbolis – apčiuopiamas meilės ir dėmesio ženklas, kuris išlieka net po to, kai žodžiai pamirštami.",
 
         "subtypeA": {
-          "emphasis": "Jums ypač svarbios brangios, prasmingos dovanos, kurios atspindi gilų dėmesį.",
-          "behavioral": "Kai kas nors duoda jums kažką reikšmingo — ar vertinga, ar giliai asmenišką — tai rodo, kad jie supranta, kas iš tikrųjų svarbu jums, ir investavo mintį į pasirinkimą."
+          "emphasis": "Tau ypač svarbios prasmingos, apgalvotos dovanos, kurios atspindi tikrą supratimą apie tave.",
+          "behavioral": "Kai žmogus tau įteikia kažką asmeniško, kas atspindi tavo skonį ar istoriją, jauti, kad jis iš tiesų tave pažįsta ir vertina."
         },
 
         "subtypeB": {
-          "emphasis": "Jums ypač patinka mažos, dažnos staigmenos ir meilės ženklai.",
-          "behavioral": "Maži dalykai — jūsų mėgstamiausias užkandis, gėlė, lipni užrašų lapas — jaučiasi kaip nuolatiniai priminimai, kad kas nors galvoja apie jus per savo dieną."
+          "emphasis": "Tau patinka dažni, maži rūpesčio ženklai – gestai, kurie parodo, kad esi prisimenamas (-a).",
+          "behavioral": "Kai kas nors netikėtai atneša tavo mėgstamą užkandį, palieka mažą užrašą ar dovanėlę, tai priverčia nusišypsoti – nes tai primena, kad esi žmogaus mintyse."
         },
 
-        "balanced": "Vertinate tiek prasmingas dovanas, tiek mažas staigmenas — kartais svarbus didelis gestas, kitais kartais būtent mažos nuoseklios dovanos pripildo jūsų rezervuarą.",
+        "balanced": "Vertini tiek prasmingas, retesnes dovanas, tiek mažus kasdienius dėmesio gestus. Kartais reikšmę turi didesnis gestas, kitais – mažos, bet nuoširdžios smulkmenos.",
 
-        "closing": "Pamirštos ypatingos progos ar nemąstytos dovanos gali jaustis ypač skausmingi, nes jie signalizuoja, kad kas nors neatkreipė dėmesio į tai, kas jums svarbu, ir kažkas giliau galbūt skatina tą pripažinimo poreikį."
-      },
-
-      "behavioralProfile": {
-        "core": "Jaučiasi labiausiai mylimas per apgalvotas dovanas ir prasmingas dovanas. Vertina mintį ir pastangą už dovanų labiau nei piniginę vertę.",
-
-        "subtypeA": "Specifiškai vertina brangias, prasmingas dovanas, kurios rodo gilų supratimą — reikšmingas dovanas progoms ar daiktus, atspindinčius išsamią preferencijų žinojimą. Gali jaustis nemylimas, kai pagrindinės progos praeina be prasmingų dovanų.",
-
-        "subtypeB": "Specifiškai vertina dažnas mažas staigmenas ir ženklus — mėgstamiausius skanėstus, gėles, mažus užrašus. Gali jaustis nemylimas per ilgus laikotarpius be jokių dovanų davimo gestų.",
-
-        "balanced": "Vertina tiek prasmingas dovanas ypatingoms progoms, tiek dažnus mažus ženklus priklausomai nuo konteksto. Lankstus dovanų lūkesčiuose.",
-
-        "universal": "Laiko ir brangina dovanas kaip meilės simbolius. Gali jaustis nemylimas, kai ypatingos progos pamirštamos ar dovanos jaučiasi nemąstytos. Išreiškia meilę duodamas kruopščiai parinktus daiktus ir kurdamas prasmingas staigmenas."
+        "closing": "Pamirštos progos ar paviršutiniškos dovanos žeidžia ne dėl materialumo, o dėl dėmesio stokos. Tau dovana – tai būdas pasakyti: „Aš tave matau ir galvoju apie tave.“"
       }
     },
 
     "PHYSICAL_TOUCH": {
       "reflection": {
-        "core": "Švelnumas per prisilietimą padeda jums jaustis saugiai ir norimam. Tai kalba, kuri kalba tiesiogiai į jūsų kūną ir širdį. Fizinis artumas jus ramina būdais, kuriais žodžiai negali. Laikoma ranka ar apkabinimas sako daugiau nei bet kokia kalba. Kontaktas — švelniai ar stipriai — tampa aiškiausiu priklausymo įrodymu jums.",
+        "core": "Tau prisilietimas – tai kalba, kuria meilė išreiškiama tiesiai kūnui ir širdžiai. Per fizinį artumą jauti saugumą, švelnumą ir ryšį. Apkabinimas, rankos paspaudimas ar rankos laikymas perduoda tai, ko žodžiai kartais negali – tikrumą ir rūpestį.",
 
-        "closing": "Kai esate įtemptas, susirūpinęs ar jaučiatės nesaugiai, labiausiai jums reikia tinkamo fizinio komforto — kad kas nors jus laikytų, apkabintų ar tiesiog būtų fiziškai dalyvaujantis ir artimas, ir tikriausiai yra priežastis, kodėl būti matomiems jaučiasi toks būtinas."
-      },
-
-      "behavioralProfile": {
-        "core": "Jaučiasi labiausiai mylimas per tinkamą fizinę meilę ir artumą. Interpretuoja prisilietimą kaip pirminį emocinio ryšio rodiklį. Gali jaustis nemylimas, kai partneriai yra fiziškai tolimi arba vengia atsitiktinio prisilietimo. Išreiškia meilę per apkabinimus, rankų laikymą ir fizinį komfortą. Reikia fizinio patikinimo per emocinį stresą. Jautrus prisilietimo kokybei ir gali atskirti formalų kontaktą nuo nuoširdaus mylinčio fizinio ryšio."
+        "closing": "Kai jautiesi įsitempęs (-usi), neramus (-i) ar atitolęs (-usi), tau labiausiai reikia fizinio artumo – švelnaus prisilietimo, apkabinimo, buvimo šalia. Tai ne tik komfortas – tai būdas pasijusti matomu (-a), mylimu (-a) ir saugiu (-ia) žmogaus, kuris rūpi."
       }
     }
   },
-
   "secondaryBridges": {
-    "WOA_TO_QT_A": "Tie žodžiai reiškia dar daugiau, kai dalijamasi per veiklas, kurias darote kartu.",
-    "WOA_TO_QT_B": "Tie žodžiai reiškia dar daugiau per nedalyto dėmesio momentus.",
-    "WOA_TO_AOS_A": "Tie žodžiai paliečia giliausiai, kai suporuoti su parama sunkiais laikais.",
-    "WOA_TO_AOS_B": "Tie žodžiai jaučiasi stipriausi, kai atitinka veiksmai, kurie palengvina jūsų kasdienį gyvenimą.",
-    "WOA_TO_G_A": "Tie žodžiai tampa apčiuopiami, kai lydi prasmingas dovanos.",
-    "WOA_TO_G_B": "Tie žodžiai sustiprinami mažomis, dažnomis rūpesčio dovanomis.",
-    "WOA_TO_PT": "Tie žodžiai įsigeria giliausiai, kai suporuoti su fiziniu artumu.",
+    "WOA_TO_QT_A": "Tie žodžiai tampa dar gilesni, kai tariami per bendras akimirkas.",
+    "WOA_TO_QT_B": "Tie žodžiai labiau paliečia, kai jie pasakyti per pilno dėmesio momentą.",
+    "WOA_TO_AOS_A": "Tie žodžiai įgyja svorį, kai juos lydi pagalba ar palaikymas sunkiu metu.",
+    "WOA_TO_AOS_B": "Tie žodžiai tampa tikresni, kai juos sustiprina veiksmai, palengvinantys tavo kasdienybę.",
+    "WOA_TO_G_A": "Tie žodžiai tampa apčiuopiami, kai juos papildo prasminga dovana.",
+    "WOA_TO_G_B": "Tie žodžiai sustiprėja per mažus, dažnus rūpesčio ženklus.",
+    "WOA_TO_PT": "Tie žodžiai įgauna pilnatvę, kai juos lydi švelnus prisilietimas.",
 
-    "QT_TO_WOA_A": "Tas buvimas jaučiasi pilnas, kai suporuotas su prasmingu pokalbiu.",
-    "QT_TO_WOA_B": "Tas buvimas jaučiasi pilnas, kai suporuotas su verbaliais rūpesčio išreiškimais.",
-    "QT_TO_AOS_A": "Tas buvimas reiškia daugiau, kai kas nors taip pat palaiko jus per iššūkius.",
-    "QT_TO_AOS_B": "Tas buvimas reiškia daugiau, kai kas nors taip pat padeda su kasdienėmis užduotimis.",
-    "QT_TO_G_A": "Tas buvimas sustiprinamas prasmingomis dovanomis per ypatingus momentus.",
-    "QT_TO_G_B": "Tas buvimas sustiprinamas mažomis staigmenomis pakeliui.",
-    "QT_TO_PT": "Tas buvimas jaučiasi labiausiai pilnas, kai fiziškai artimi.",
+    "QT_TO_WOA_A": "Tas buvimas tampa gilesnis, kai jį lydi prasmingas pokalbis.",
+    "QT_TO_WOA_B": "Tas buvimas sustiprėja, kai jį papildo meilės žodžiai.",
+    "QT_TO_AOS_A": "Tas buvimas reiškia daugiau, kai kas nors padeda ar palaiko per iššūkius.",
+    "QT_TO_AOS_B": "Tas buvimas įgauna svorio, kai kartu sprendžiami kasdieniai dalykai.",
+    "QT_TO_G_A": "Tas laikas kartu tampa ypatingas, kai jį pažymi prasmingos dovanos.",
+    "QT_TO_G_B": "Tas buvimas įgauna šilumos per mažas, apgalvotas staigmenas.",
+    "QT_TO_PT": "Tas buvimas tampa pilnas, kai jį papildo fizinis artumas.",
 
-    "AOS_TO_WOA_A": "Ta pagalba jaučiasi pripažinta, kai suporuota su prasmingu dialogu.",
-    "AOS_TO_WOA_B": "Ta pagalba jaučiasi pripažinta, kai suporuota su išreikštu dėkingumu.",
-    "AOS_TO_QT_A": "Ta pagalba reiškia daugiau, kai dalijamasi per veiklas kartu.",
-    "AOS_TO_QT_B": "Ta pagalba reiškia daugiau, kai duodama su sutelktu dėmesiu.",
-    "AOS_TO_G_A": "Ta praktinė parama gerai dera su prasmingais ženklais.",
-    "AOS_TO_G_B": "Ta praktinė parama gerai dera su mažomis staigmenomis.",
-    "AOS_TO_PT": "Ta praktinė priežiūra jaučiasi labiausiai pilna su fizine meile.",
+    "AOS_TO_WOA_A": "Ta pagalba tampa dar reikšmingesnė, kai ją lydi dėkingi žodžiai.",
+    "AOS_TO_WOA_B": "Ta pagalba įgauna šilumos, kai žmogus išreiškia pripažinimą žodžiais.",
+    "AOS_TO_QT_A": "Ta pagalba tampa intymesnė, kai ji atliekama kartu, per bendrą laiką.",
+    "AOS_TO_QT_B": "Ta pagalba įgauna gylio, kai ją lydi pilnas dėmesys ir įsiklausymas.",
+    "AOS_TO_G_A": "Tas rūpestis dera su prasmingais simboliniais gestais.",
+    "AOS_TO_G_B": "Tas rūpestis gražiai papildomas mažomis staigmenomis.",
+    "AOS_TO_PT": "Ta pagalba tampa pilnesnė, kai ją lydi švelnus fizinis kontaktas.",
 
-    "G_TO_WOA_A": "Tie ženklai reiškia daugiau, kai suporuoti su prasmingu pokalbiu.",
-    "G_TO_WOA_B": "Tie ženklai reiškia daugiau, kai suporuoti su išreikštu dėkingumu.",
-    "G_TO_QT_A": "Tos dovanos reiškia daugiau, kai duodamos per bendras veiklas.",
-    "G_TO_QT_B": "Tos dovanos reiškia daugiau, kai duodamos su sutelktu dėmesiu.",
-    "G_TO_AOS_A": "Tie ženklai jaučiasi pilni, kai suporuoti su palaikančiais veiksmais.",
-    "G_TO_AOS_B": "Tie ženklai jaučiasi pilni, kai suporuoti su praktine pagalba.",
-    "G_TO_PT": "Tos dovanos yra labiausiai prasmingos, kai duodamos su fiziniu artumu.",
+    "G_TO_WOA_A": "Tos dovanos tampa dar reikšmingesnės, kai jas lydi nuoširdūs žodžiai.",
+    "G_TO_WOA_B": "Tos dovanos įgauna svorio, kai žmogus išreiškia dėkingumą žodžiais.",
+    "G_TO_QT_A": "Tos dovanos tampa ypatingos, kai įteikiamos per bendras akimirkas.",
+    "G_TO_QT_B": "Tos dovanos jaučiasi šiltesnės, kai jos įteikiamos su dėmesiu ir buvimu.",
+    "G_TO_AOS_A": "Tos dovanos įgyja prasmės, kai jas papildo realūs veiksmai.",
+    "G_TO_AOS_B": "Tos dovanos įgauna pilnatvės, kai jas lydi rūpestingas elgesys.",
+    "G_TO_PT": "Tos dovanos tampa švelnesnės, kai jas papildo fizinis artumas.",
 
-    "PT_TO_WOA_A": "Tas fizinis artumas gilinasi per prasmingas kalbas.",
-    "PT_TO_WOA_B": "Tas fizinis artumas gilinasi, kai suporuotas su išreikšta meile.",
-    "PT_TO_QT_A": "Tas fizinis artumas jaučiasi natūralus per bendras veiklas.",
-    "PT_TO_QT_B": "Tas fizinis artumas derinasi su sutelktu, dėmesingų buvimu.",
-    "PT_TO_AOS_A": "Tas fizinis komfortas reiškia daugiausiai per palaikančius momentus.",
-    "PT_TO_AOS_B": "Tas fizinis komfortas derinasi su praktine priežiūra ir pagalba.",
-    "PT_TO_G_A": "Ta fizinė meilė gerai dera su prasmingais ženklais.",
-    "PT_TO_G_B": "Ta fizinė meilė sustiprinamu mažomis, apgalvotomis staigmenomis."
+    "PT_TO_WOA_A": "Tas prisilietimas įgauna gylio, kai jį lydi prasmingas dialogas.",
+    "PT_TO_WOA_B": "Tas prisilietimas tampa dar šiltesnis, kai jį papildo meilės žodžiai.",
+    "PT_TO_QT_A": "Tas fizinis artumas atrodo natūralus, kai jis dalijamasi per bendras veiklas.",
+    "PT_TO_QT_B": "Tas fizinis artumas tampa intensyvesnis per pilno dėmesio akimirkas.",
+    "PT_TO_AOS_A": "Tas fizinis komfortas įgauna daugiau prasmės palaikančiuose momentuose.",
+    "PT_TO_AOS_B": "Tas fizinis ryšys gražiai dera su rūpestingais veiksmais.",
+    "PT_TO_G_A": "Tas prisilietimas tampa dar švelnesnis, kai jį lydi mažas, prasmingas ženklas.",
+    "PT_TO_G_B": "Tas prisilietimas įgauna šilumos, kai jį papildo maža, apgalvota staigmena."
   },
 
   "distributionPatterns": {
     "DOMINANT": {
-      "userReflection": "Vienas būdas jaustis mylimu aiškiai išsiskiria virš kitų jums. Kai šis poreikis patenkintas, jūsų rezervuaras pilnas. Kai ne, kitos meilės išraiškos gali visai nepasiekti jūsų.",
-
-      "behavioralNote": "Aiški, nuosekli vienos pagrindinės meilės kalbos pirmenybė. Gali susidurti su sunkumais, kai partneriai išreiškia meilę kitaip. Naudojasi iš partnerių, kurie supranta ir nuosekliai teikia jų pagrindinę kalbą."
+      "userReflection": "Vienas meilės būdas tau išsiskiria aiškiai. Kai šis poreikis patenkintas, jauti pilnatvę ir ramybę. Kai ne – kitos meilės formos tiesiog neprasiskverbia taip giliai.",
+      "behavioralNote": "Tavo meilės kalba turi aiškią kryptį. Svarbu, kad partneris ją atpažintų ir parodytų nuosekliai – tai tau suteikia saugumo."
     },
-
     "DUAL": {
-      "userReflection": "Du būdai jaustis mylimu reiškia beveik vienodai jums. Jaučiatės labiausiai pilni ir saugūs, kai abu yra. Vienas be kito gali palikti jus tik iš dalies pripildytus.",
-
-      "behavioralNote": "Subalansuota pirmenybė tarp dviejų meilės kalbų su lygia svarba. Lankstus tiek teikiant, tiek gaunant meilę per du pirminius kanalus. Gali jaustis labiausiai mylimas, kai abi kalbos yra. Gali prisitaikyti prie partnerių preferencijų, išlaikydamas savo poreikius abiem išraiškoms."
+      "userReflection": "Du meilės būdai tau beveik vienodai svarbūs. Tik kai abu egzistuoja kartu, jauti pilnatvę. Vienas be kito palieka tave pusiau pripildytą.",
+      "behavioralNote": "Tavo širdis kalba dviem kalbomis – esi lankstus (-i), bet tau svarbu, kad abu meilės būdai būtų pastebėti ir puoselėjami."
     },
-
     "MULTIPLE": {
-      "userReflection": "Vertinate meilę išreikštą per įvairius būdus be stipraus pasirinkimo. Šis lankstumas reiškia, kad galite jaustis mylimas daugeliu būdų, nors tai taip pat gali reikšti, kad jūsų poreikiai ne visada tokie aiškūs kitiems.",
-
-      "behavioralNote": "Lankstus ir prisitaikantis meilės išraiškoje ir priėmime. Gali jaustis mylimas per daugelį skirtingų būdų. Gali būti gerai tenkinantis kitų meilės kalbos poreikius. Kartais gali trūkti aiškumo apie savo specifinius poreikius ar susidurti su sunkumais komunikuojant prioritetus partneriams."
+      "userReflection": "Tau meilė pasireiškia įvairiais būdais – per žodžius, buvimą, veiksmus ar simbolinius gestus. Šis lankstumas leidžia tau jaustis mylimu (-a) daugybe formų, nors kartais kitiems gali būti sunku suprasti, ko iš tikrųjų labiausiai reikia.",
+      "behavioralNote": "Tu gebi priimti meilę skirtingais būdais, tačiau svarbu aiškiai išsakyti, kas tave labiausiai pripildo, kad santykiai būtų dar aiškesni ir tvirtesni."
     }
   }
 }
