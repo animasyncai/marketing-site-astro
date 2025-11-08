@@ -125,6 +125,25 @@
       "VERY_MILD_MODERATE": "Secondary pattern is the main influence on attachment behavior.",
       "VERY_MILD_MILD": "Minimal overall attachment patterns with slight tendencies.",
       "VERY_MILD_VERY_MILD": "Very minimal attachment patterns overall."
+    },
+    "patternDescriptions": {
+      "highInternalConflict": "Experiences push-pull tension between wanting closeness and needing distance.",
+      "strongRegulationCapacity": "Maintains emotional stability and calm even during relationship stress.",
+      "balancedButActivated": "Shows moderate levels across all patterns; ambivalent but not extreme.",
+      "pureAvoidantWithdrawal": "Maintains strong emotional distance through self-sufficiency and independence.",
+      "avoidantWithHiddenAnxiety": "Withdraws to stay safe, but underlying anxiety makes distance painful.",
+      "secureLeaningAvoidant": "Generally comfortable with distance but can stay open during difficulty.",
+      "defensiveShutdown": "Disengages under stress to prevent overload; needs calm time before reconnection.",
+      "pureAnxiousPursuit": "Actively seeks reassurance and reconnection when feeling insecure.",
+      "conflictedAnxious": "Desires closeness but sometimes pulls back when it feels overwhelming.",
+      "secureLeaningAnxious": "Usually manages anxiety well but seeks extra reassurance during stress.",
+      "reactivePursuit": "Reaches out urgently when feeling unseen; intensity masks fear of loss.",
+      "chaoticAnxious": "Swings between closeness and panic; connection feels both vital and threatening.",
+      "chaoticAvoidant": "Wants connection but withdraws unpredictably when it feels too close.",
+      "unstableRegulation": "Emotional responses shift rapidly; hard to predict what will help.",
+      "healingDisorganized": "Working toward more stable patterns; some push-pull remains but improving.",
+      "integratedSecure": "Balances closeness and autonomy; regains calm quickly after tension.",
+      "secureWithTendencies": "Generally secure with some anxious or avoidant leanings in specific situations."
     }
   }
 }

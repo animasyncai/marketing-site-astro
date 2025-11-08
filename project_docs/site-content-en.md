@@ -281,17 +281,44 @@ Recognition → Understanding → Language → Insight → Connection
 
 ## Common questions
 
-**Is this therapy?**
-No. Think of it as a mirror that helps you see your patterns more clearly. It draws on frameworks like attachment theory and love languages, but instead of boxing you into labels, it translates them into personal reflections you can actually feel and use.
+**Is this therapy?**  
+No. It's a reflection tool that helps you see your patterns clearly. If you need clinical support, work with a therapist.
 
-**What if I'm single?**
-Perfect. Understanding your patterns before your next relationship is incredibly valuable — it helps you choose better and show up differently.
+**What if I'm single?**  
+Perfect timing. Understanding your patterns now helps you choose better and show up differently in your next relationship.
 
-**How is this different from personality tests?**
-Tests give you a type. Withinly gives you a reflection — living narratives about how you show up in conflict, in closeness, and in how you love.
+**How is this different from personality tests?**  
+Tests sort you into types. Withinly shows you how you actually move—through conflict, closeness, care, and self-talk. You get behavioral patterns you'll recognize, not categories that limit you.
 
-**What about my privacy?**
-Everything stays private. Even with partner sync, only shared insights are visible — never your individual patterns or conversations.
+**What about my privacy?**  
+Everything stays private. Even with partner sync, only shared insights are visible—never your individual patterns or conversations.
 
-**Can this replace therapy?**
-No. If you're in crisis or dealing with serious mental-health challenges, please seek professional help. Withinly is for self-understanding, not treatment.
+**Can this replace therapy?**  
+No. If you're in crisis or dealing with serious mental health challenges, seek professional help. This is for reflection, not treatment.
+
+**Why don't I get my attachment type or love language?**  
+Because you deserve more than a label. You'll get specific behaviors you'll actually recognize—when they happen, why they make sense, and how they shape your relationships. Labels reduce. Patterns reveal.
+
+## Using Withinly // Portal FAQ
+
+**How do Sparks work?**  
+Sparks unlock steps. Traits and basic reports cost 1 Spark. Premium reports cost 3 Sparks. Chat costs 1 Spark for 20 messages (Standard mode) or 5 messages (Depth mode). You start with 5 free Sparks.
+
+**Can I retake traits?**  
+Yes, after 30 days. First take is free; retakes cost 1 Spark. Patterns shift as you grow—retaking shows what's changed.
+
+**I want to know my attachment type. Where is it?**  
+You won't find labels here—and that's intentional. Labels like "anxious" or "words of affirmation" lock you into categories. Your actual experience is more fluid.
+
+Instead, your reports describe specific behaviors: when you withdraw, what makes you feel safe, how stress changes how you connect. That's what actually helps you understand yourself and talk to partners or therapists.
+
+If you need research terms for context: Independence and withdrawal → "avoidant." Reassurance-seeking → "anxious." Push-pull dynamics → "disorganized." But the behavioral details matter more than the category name.
+
+**How do I share reports?**  
+Don't send the whole report—it's too much. Screenshot 1-2 sections that matter most and share those. For therapy, bring specific parts that connect to what you're working on.
+
+**What if my report doesn't make sense?**  
+Ask your Reflection Companion. It knows your patterns and can help you explore what specific sections mean for your life.
+
+**Can my partner see my traits?**  
+Not unless you explicitly share. Partner sync only reveals combined insights—never your individual data or conversations.

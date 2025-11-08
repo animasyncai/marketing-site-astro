@@ -284,46 +284,77 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
         // ==========================================
         function renderAttachmentForm() {
           return `
-          <div class="space-y-4 border-t pt-4">
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Primary Type</label>
-              <select id="attachmentType" class="w-full rounded border p-2">
-                <option value="ANXIOUS">Anxious</option>
-                <option value="AVOIDANT">Avoidant</option>
-                <option value="DISORGANIZED">Disorganized</option>
-                <option value="SECURE">Secure</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Intensity</label>
-              <select id="intensity" class="w-full rounded border p-2">
-                <option value="VERY_MILD">Very Mild</option>
-                <option value="MILD">Mild</option>
-                <option value="MODERATE" selected>Moderate</option>
-                <option value="STRONG">Strong</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Secondary (Optional)</label>
-              <select id="secondary" class="w-full rounded border p-2">
-                <option value="">None</option>
-                <option value="ANXIOUS">Anxious</option>
-                <option value="AVOIDANT">Avoidant</option>
-                <option value="DISORGANIZED">Disorganized</option>
-                <option value="SECURE">Secure</option>
-              </select>
-            </div>
-            <div>
-              <label class="block mb-2 font-medium text-gray-700">Secondary Intensity</label>
-              <select id="secondaryIntensity" class="w-full rounded border p-2">
-                <option value="VERY_MILD">Very Mild</option>
-                <option value="MILD" selected>Mild</option>
-                <option value="MODERATE">Moderate</option>
-                <option value="STRONG">Strong</option>
-              </select>
-            </div>
-          </div>
-        `
+  <div class="space-y-4 border-t pt-4">
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Primary Type</label>
+      <select id="attachmentType" class="w-full rounded border p-2">
+        <option value="ANXIOUS">Anxious</option>
+        <option value="AVOIDANT">Avoidant</option>
+        <option value="DISORGANIZED">Disorganized</option>
+        <option value="SECURE">Secure</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Intensity</label>
+      <select id="intensity" class="w-full rounded border p-2">
+        <option value="VERY_MILD">Very Mild</option>
+        <option value="MILD">Mild</option>
+        <option value="MODERATE" selected>Moderate</option>
+        <option value="STRONG">Strong</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Secondary (Optional)</label>
+      <select id="secondary" class="w-full rounded border p-2">
+        <option value="">None</option>
+        <option value="ANXIOUS">Anxious</option>
+        <option value="AVOIDANT">Avoidant</option>
+        <option value="DISORGANIZED">Disorganized</option>
+        <option value="SECURE">Secure</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-medium text-gray-700">Secondary Intensity</label>
+      <select id="secondaryIntensity" class="w-full rounded border p-2">
+        <option value="VERY_MILD">Very Mild</option>
+        <option value="MILD" selected>Mild</option>
+        <option value="MODERATE">Moderate</option>
+        <option value="STRONG">Strong</option>
+      </select>
+    </div>
+
+    <!-- NEW: Subscores Section -->
+    <div class="border-t pt-4">
+      <h4 class="font-semibold text-gray-700 mb-3">Subscores (1.0 - 5.0)</h4>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Protest Behavior</label>
+          <input type="number" id="aProtestBehavior" min="1" max="5" step="0.1" value="2.8" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Need for reassurance, urgency to reconnect</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Deactivation Strategy</label>
+          <input type="number" id="aDeactivationStrategy" min="1" max="5" step="0.1" value="4.2" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Emotional withdrawal & self-protection</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Push—Pull Pattern</label>
+          <input type="number" id="aPushPullPattern" min="1" max="5" step="0.1" value="2.6" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Conflict between approach & avoidance</p>
+        </div>
+        <div>
+          <label class="block mb-1 text-sm text-gray-600">Emotional Regulation</label>
+          <input type="number" id="aEmotionalRegulation" min="1" max="5" step="0.1" value="2.9" 
+                 class="w-full rounded border p-2 text-sm">
+          <p class="text-xs text-gray-500 mt-1">Ability to stay calm, trusting, and open</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
         }
 
         // ==========================================
@@ -480,11 +511,22 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
               result = generateSelfAcceptanceReflection(traitData, locale)
             }
 
-            if (result && result.userReport && result.behavioralProfile) {
+            if (result) {
               const userOutput = document.getElementById('userOutput')
               const behavioralOutput = document.getElementById('behavioralOutput')
+
               if (userOutput) userOutput.innerText = result.userReport
-              if (behavioralOutput) behavioralOutput.innerText = result.behavioralProfile
+
+              if (behavioralOutput) {
+                let behavioralText = result.behavioralProfile
+
+                // Add detected patterns if available (for attachment with subscores)
+                if (result.detectedPatterns && result.detectedPatterns.length > 0) {
+                  behavioralText += '\n\n---\n\n**Detected Patterns:** ' + result.detectedPatterns
+                }
+
+                behavioralOutput.innerText = behavioralText
+              }
             }
           } catch (error) {
             console.error('Generation error:', error)
@@ -492,7 +534,6 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
             alert('Error generating reflection: ' + errorMessage)
           }
         }
-
         // ==========================================
         // DATA COLLECTION
         // ==========================================
@@ -563,6 +604,12 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
             const secondaryElement = document.getElementById('secondary') as HTMLSelectElement
             const secondaryIntensityElement = document.getElementById('secondaryIntensity') as HTMLSelectElement
 
+            // Subscore elements
+            const protestBehaviorElement = document.getElementById('aProtestBehavior') as HTMLInputElement
+            const deactivationStrategyElement = document.getElementById('aDeactivationStrategy') as HTMLInputElement
+            const pushPullPatternElement = document.getElementById('aPushPullPattern') as HTMLInputElement
+            const emotionalRegulationElement = document.getElementById('aEmotionalRegulation') as HTMLInputElement
+
             const primary = primaryElement?.value
             const primaryIntensity = primaryIntensityElement?.value
             const secondary = secondaryElement?.value
@@ -570,14 +617,42 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
 
             if (!primary || !primaryIntensity) return null
 
-            return {
+            const data: any = {
               primary,
               primaryIntensity,
               secondary: secondary || null,
               secondaryIntensity: secondary ? secondaryIntensity : null,
             }
-          }
 
+            // Add subscores if elements exist
+            if (
+              protestBehaviorElement &&
+              deactivationStrategyElement &&
+              pushPullPatternElement &&
+              emotionalRegulationElement
+            ) {
+              const protestBehavior = parseFloat(protestBehaviorElement.value)
+              const deactivationStrategy = parseFloat(deactivationStrategyElement.value)
+              const pushPullPattern = parseFloat(pushPullPatternElement.value)
+              const emotionalRegulation = parseFloat(emotionalRegulationElement.value)
+
+              data.subscores = {
+                protestBehavior,
+                deactivationStrategy,
+                pushPullPattern,
+                emotionalRegulation,
+                metadata: {
+                  thresholdsVersion: 'v0.1',
+                  thresholds: {
+                    low: 2.5,
+                    high: 3.5,
+                  },
+                },
+              }
+            }
+
+            return data
+          }
           if (trait === 'mindfulness') {
             const mindfulnessLevelElement = document.getElementById('mindfulnessLevel') as HTMLSelectElement
             const awarenessLevelElement = document.getElementById('awarenessLevel') as HTMLSelectElement

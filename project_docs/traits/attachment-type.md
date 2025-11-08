@@ -2,111 +2,203 @@
 
 ## Overview
 
-This questionnaire assesses how you form emotional bonds and what you need to feel secure in relationships. Your attachment style shapes how you handle closeness, conflict, and connection.
+This trait measures how users form emotional bonds and what they need to feel secure.  
+It detects their dominant **attachment regulation strategies** — pursuit, withdrawal, mixed, or balanced.
 
-## Questions
+Attachment patterns shape how people handle closeness, conflict, and repair.  
+This data powers key parts of Withinly’s **reports** and **consultant tone adaptation**.
 
-### Anxious Attachment Questions
+---
 
-_Focus: Fear of abandonment and need for reassurance_
+## Questions (16 total)
 
-**Question 1:** When my partner doesn't respond to messages quickly, I worry they're losing interest in me.
+### Anxious Attachment
 
-- Scale: Completely untrue → Completely true (1-5)
+_Focus: fear of abandonment and pursuit behaviors_
 
-**Question 2:** I need frequent attention and reassurance to feel secure in relationships.
+1. When my partner doesn't respond to messages quickly, I worry they're losing interest in me.
+2. I need frequent attention and reassurance to feel secure in relationships.
+3. When I'm upset with someone I care about, I need to resolve it right away before I can move on.
+4. After conflicts or distance, I reach out multiple times until I feel reconnected.
 
-- Scale: Completely untrue → Completely true (1-5)
+### Avoidant Attachment
 
-**Question 3:** I often worry about whether my partner truly loves me.
+_Focus: discomfort with emotional intimacy and withdrawal strategies_
 
-- Scale: Completely untrue → Completely true (1-5)
+5. I find it difficult to express my feelings, even with people I'm close to.
+6. I feel uncomfortable when I'm asked to open up about my feelings and vulnerabilities.
+7. I'm more comfortable offering practical help than emotional support.
+8. After emotionally intense moments, I need significant time alone to recharge.
 
-### Avoidant Attachment Questions
+### Disorganized Attachment
 
-_Focus: Discomfort with emotional intimacy_
+_Focus: push–pull conflict — wanting closeness and fearing it_
 
-**Question 4:** I find it difficult to express my feelings, even with people I'm close to.
+9. **I find myself wanting more closeness, then feeling uncomfortable once I get it.**
+10. During conflicts, I either shut down completely or react very intensely.
+11. My feelings about closeness can shift rapidly—wanting connection one moment, needing distance the next.
+12. I sometimes push people away right after moments of deep connection or vulnerability.
 
-- Scale: Completely untrue → Completely true (1-5)
+### Secure Attachment
 
-**Question 5:** I feel uncomfortable when I’m asked to open up about my feelings and vulnerabilities.
+_Focus: trust, flexibility, and openness_
 
-- Scale: Completely untrue → Completely true (1-5)
+13. I maintain trust in my relationships even during conflicts or disagreements.
+14. **When my partner seems distant, I can give them space without worrying about our relationship.**
+15. I can stay open and curious during difficult relationship conversations without shutting down or becoming reactive.
+16. I can openly share my feelings and listen respectfully to others, even when we disagree.
 
-**Question 6:** I value maintaining my independence, even in close relationships.
+Scale: **1 = Completely untrue → 5 = Completely true**
 
-- Scale: Completely untrue → Completely true (1-5)
+---
 
-### Disorganized Attachment Questions
+## Evaluation Logic
 
-_Focus: Conflicted feelings about intimacy_
+### Step 1 – Attachment Type Averages
 
-**Question 7:** I feel conflicted between wanting closeness and fearing it at the same time.
+Anxious = (Q1 + Q2 + Q3 + Q4) / 4
+Avoidant = (Q5 + Q6 + Q7 + Q8) / 4
+Disorganized = (Q9 + Q10 + Q11 + Q12) / 4
+Secure = (Q13 + Q14 + Q15 + Q16) / 4
 
-- Scale: Completely untrue → Completely true (1-5)
+markdown
+Copy code
 
-**Question 8:** During conflicts, I either shut down completely or react very intensely.
+### Step 2 – Behavioral Subscores (averaged 1–5 scale)
 
-- Scale: Completely untrue → Completely true (1-5)
+| Subscore                  | Questions                 | Meaning                                    | Why it matters                                                        |
+| ------------------------- | ------------------------- | ------------------------------------------ | --------------------------------------------------------------------- |
+| **Protest Behavior**      | (Q2 + Q3 + Q4)/3          | Need for reassurance, urgency to reconnect | Captures hyperactivation — anxious & disorganized marker              |
+| **Deactivation Strategy** | (Q5 + Q6 + Q7 + Q8)/4     | Emotional withdrawal & self-protection     | Core of avoidant defense; key to tension and distance logic           |
+| **Push–Pull Pattern**     | (Q9 + Q11 + Q12)/3        | Conflict between approach & avoidance      | Identifies disorganized oscillation; used for chaos/healing detection |
+| **Emotional Regulation**  | (Q13 + Q14 + Q15 + Q16)/4 | Ability to stay calm, trusting, and open   | Anchors secure & “secure-leaning” logic                               |
 
-**Question 9:** I want closeness but find it hard to fully trust others.
+👉 Subscores are **internal only** (not shown to users).  
+They add nuance to reports and chat without overcomplicating the trait.
 
-- Scale: Completely untrue → Completely true (1-5)
+Thresholds (v0.3.1):  
+Low < 2.5 · Moderate 2.5–3.4 · High ≥ 3.5
 
-### Secure Attachment Questions
+---
 
-_Focus: Trust and emotional flexibility_
+### Step 3 – Primary / Secondary Type
 
-**Question 10:** I maintain trust in my relationships even during conflicts or disagreements.
+- Highest average → **Primary**
+- Second-highest → **Secondary**
 
-- Scale: Completely untrue → Completely true (1-5)
+### Step 4 – Intensity
 
-**Question 11:** I feel calm and accepted even when my partner is emotionally distant or preoccupied.
+| Average | Label     |
+| ------- | --------- |
+| 1.0–2.0 | Very Mild |
+| 2.1–3.0 | Mild      |
+| 3.1–4.0 | Moderate  |
+| 4.1–5.0 | Strong    |
 
-- Scale: Completely untrue → Completely true (1-5)
+### Step 5 – Tie Handling
 
-**Question 12:** I can openly share my feelings and listen respectfully to others, even when we disagree.
+If top two within 0.3:
 
-- Scale: Completely untrue → Completely true (1-5)
+- Secure + other → choose other
+- Two non-secure → higher intensity wins
+- Exact tie → priority = Disorganized > Anxious > Avoidant > Secure
 
-### Evaluation Instructions
+---
 
-### Step 1: Calculate Average Scores
+## Step 6 – Pattern Detection
 
-For each attachment style, add up the three question scores and divide by 3:
+### Pattern Rules (v0.1)
 
-- **Anxious Average** = (Question 1 + Question 2 + Question 3) ÷ 3
-- **Avoidant Average** = (Question 4 + Question 5 + Question 6) ÷ 3
-- **Disorganized Average** = (Question 7 + Question 8 + Question 9) ÷ 3
-- **Secure Average** = (Question 10 + Question 11 + Question 12) ÷ 3
+#### Avoidant Primary
 
-### Step 2: Determine Primary Type
+- High Deactivation + Low Protest → `pureAvoidantWithdrawal`
+- High Deactivation + Moderate Protest → `avoidantWithHiddenAnxiety`
+- Moderate Deactivation + High Regulation → `secureLeaningAvoidant`
+- High Deactivation + Low Regulation → `defensiveShutdown`
 
-The attachment style with the highest average score is the primary type.
+#### Anxious Primary
 
-### Step 3: Determine Secondary Type
+- High Protest + Low Deactivation → `pureAnxiousPursuit`
+- High Protest + Moderate Deactivation → `conflictedAnxious`
+- Moderate Protest + High Regulation → `secureLeaningAnxious`
+- High Protest + Low Regulation → `reactivePursuit`
 
-The attachment style with the second highest average score is the secondary type.
+#### Disorganized Primary
 
-### Step 4: Calculate Intensity Levels
+- High PushPull + High Protest → `chaoticAnxious`
+- High PushPull + High Deactivation → `chaoticAvoidant`
+- High PushPull + Low Regulation → `unstableRegulation`
+- Moderate PushPull + Moderate/High Regulation → `healingDisorganized`
 
-Based on the average score:
+#### Secure Primary
 
-- **1.0-2.0**: Very Mild (minimal traits)
-- **2.1-3.0**: Mild (low-moderate expression)
-- **3.1-4.0**: Moderate (noticeable traits)
-- **4.1-5.0**: Strong (highly pronounced traits)
+- Regulation ≥ 4.0 and others < 2.5 → `integratedSecure`
+- Regulation 3.5–3.9 and (Protest or Deactivation 2.5–3.4) → `secureWithTendencies`
 
-### Step 5: Handle Close Scores
+#### Cross-Type Patterns (global)
 
-When scores are very close (within 0.3 points):
+| Pattern                    | Logic                              | Use                                        |
+| -------------------------- | ---------------------------------- | ------------------------------------------ |
+| `highInternalConflict`     | Protest ≥ 3.5 & Deactivation ≥ 3.5 | Drives "push–pull tension" in reports/chat |
+| `strongRegulationCapacity` | Regulation ≥ 3.5 & others < 2.0    | Enables calm / stability tone              |
+| `balancedButActivated`     | All four ≈ 3.0 ± 0.5               | Triggers balanced but ambivalent narrative |
 
-- If Secure is tied with another style, prioritize the non-Secure style as primary
-- If two non-Secure styles are tied, use the higher intensity as primary
-- For exact ties, prioritize in this order: Disorganized > Anxious > Avoidant > Secure
+→ Patterns stored in detectedPatterns array (max 3):
 
-### Step 6: Validate Response Quality
+1. Cross-type pattern (only one can fire, mutually exclusive)
+2. Primary-type patterns (priority: defensive/reactive > conflicted > pure > leaning)
+3. Keep max 2 primary patterns
 
-- Check for straight-lining (all answers the same value) - if detected, flag as potentially invalid
-- If flagged as invalid, suggest retaking the assessment
+---
+
+## Step 7 – Behavioral Profile Generation
+
+Combine:
+
+- Primary + intensity
+- Secondary interaction
+- Subscore context
+- Detected patterns (if any)
+
+**Pattern Modifiers (examples – used as narrative building blocks):**
+| Name | Adds this nuance |
+|------|------------------|
+| `avoidantWithHiddenAnxiety` | "Withdraws to stay safe, but underlying anxiety makes distance painful." |
+| `reactivePursuit` | "Reaches out urgently when feeling unseen; intensity masks fear of loss." |
+| `defensiveShutdown` | "Disengages under stress to prevent overload; needs calm time before reconnection." |
+| `chaoticAnxious` | "Swings between closeness and panic; connection feels both vital and threatening." |
+| `integratedSecure` | "Balances closeness and autonomy; regains calm quickly after tension." |
+
+👉 Patterns are stored in the detectedPatterns array AND their behavioral
+implications are woven into the behavioralProfile text for AI to reference.
+
+---
+
+Note: Q1 measures anxious worry (cognitive) rather than protest behavior
+(behavioral), so it contributes to type score but not subscore. Similarly,
+Q10 measures conflict response extremes but not push-pull oscillation.
+
+## Example Data Structure
+
+```js
+attachment: {
+  "primary": "AVOIDANT",
+  "secondary": "SECURE",
+  "primaryIntensity": "MODERATE",
+  "secondaryIntensity": "MODERATE",
+  "maxScore": 5,
+  "primaryScore": 4,
+  "secondaryScore": 3.7,
+  allScores: { secure: 2.8, anxious: 3.1, avoidant: 4.2, disorganized: 2.9 },
+  subscores: {
+    protestBehavior: 2.8,
+    deactivationStrategy: 4.2,
+    pushPullPattern: 2.6,
+    emotionalRegulation: 2.9,
+    metadata: { thresholdsVersion: "v0.1", low: 2.5, high: 3.5 }
+  },
+  detectedPatterns: ["highInternalConflict", "avoidantWithHiddenAnxiety"],
+  behavioralProfile:
+    "Maintains strong emotional distance through self-sufficiency... (includes integrated pattern nuances)"
+}
+```

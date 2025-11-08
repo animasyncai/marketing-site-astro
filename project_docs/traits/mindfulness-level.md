@@ -7,21 +7,15 @@ Questions
 **M1: I notice my emotions and physical sensations as they happen throughout the day.**
 
 1: Almost never
-
 2: Rarely
-
 3: Often
-
 4: Almost always
 
 **М2:** **I find myself doing routine activities (eating, driving, walking) on "autopilot" without really paying attention to what I'm doing:**
 
 1: Almost never
-
 2: Rarely
-
 3: Often
-
 4: Almost always
 
 **М3:** **When my mind is busy or racing with thoughts, I :**
@@ -48,21 +42,15 @@ Questions
 **М6: I regularly practice activities that help me stay present, such as meditation, mindful breathing, or mindful walking:**
 
 1: Almost never
-
 2: Rarely
-
 3: Often
-
 4: Almost always
 
 **SW7 I notice the connection between arising physical sensations, emotions and thoughts:**
 
 1: Almost never
-
 2: Rarely
-
 3: Often
-
 4: Almost always
 
 **SW8:** **When I reflect on my inner experience, I can usually notice:**
@@ -79,7 +67,7 @@ Questions
 3. Sometimes connect them to a need (like being understood, safe, or valued)
 4. Often recognize clearly what the emotion is pointing to in me
 
-**SW10:** W**hen I experience strong emotions (like anger, fear, sorrow, or shame), I can usually connect them to the past experiences or patterns that trigger them**:
+**SW10:** **When I experience strong emotions (like anger, fear, sorrow, or shame), I can usually connect them to the past experiences or patterns that trigger them**:
 
 1: Almost never
 2: Rarely
