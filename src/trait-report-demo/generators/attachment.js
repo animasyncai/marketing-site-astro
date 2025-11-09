@@ -95,14 +95,13 @@ function generateBehavioralProfile(t, primary, primaryIntensity, secondary, seco
     }
 
     // Add pattern-based behavioral insights if patterns detected
-    if (detectedPatterns && detectedPatterns.length > 0 && t.patternDescriptions) {
-        const patternTexts = detectedPatterns
-            .map(pattern => t.patternDescriptions[pattern])
+    if (detectedPatterns && detectedPatterns.length > 0 && t.systematicCombinations ?.patternDescriptions) {
+        const patternDescriptions = detectedPatterns
+            .map(patternKey => t.systematicCombinations.patternDescriptions[patternKey])
             .filter(Boolean)
 
-        if (patternTexts.length > 0) {
-            alert(patternTexts);
-            behavioralProfile += ' ' + patternTexts.join(' ')
+        if (patternDescriptions.length > 0) {
+            behavioralProfile += ' ' + patternDescriptions.join(' ')
         }
     }
 

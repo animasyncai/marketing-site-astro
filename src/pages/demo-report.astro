@@ -79,6 +79,17 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
             <p class="text-gray-400 italic">Behavioral context will appear here...</p>
           </div>
         </div>
+
+        <!-- Detected Patterns -->
+        <div class="rounded-xl bg-purple-50 p-6 shadow">
+          <h3 class="mb-3 flex items-center gap-2 font-semibold text-purple-900">
+            <span class="text-xl">🔍</span>
+            Detected Patterns
+          </h3>
+          <div id="patternsOutput" class="min-h-[100px] text-sm leading-relaxed whitespace-pre-line text-purple-800">
+            <p class="text-gray-400 italic">Pattern keys will appear here...</p>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -514,18 +525,20 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
             if (result) {
               const userOutput = document.getElementById('userOutput')
               const behavioralOutput = document.getElementById('behavioralOutput')
+              const patternsOutput = document.getElementById('patternsOutput')
 
               if (userOutput) userOutput.innerText = result.userReport
 
               if (behavioralOutput) {
-                let behavioralText = result.behavioralProfile
+                behavioralOutput.innerText = result.behavioralProfile
+              }
 
-                // Add detected patterns if available (for attachment with subscores)
+              if (patternsOutput) {
                 if (result.detectedPatterns && result.detectedPatterns.length > 0) {
-                  behavioralText += '\n\n---\n\n**Detected Patterns:** ' + result.detectedPatterns
+                  patternsOutput.innerText = result.detectedPatterns.join(', ')
+                } else {
+                  patternsOutput.innerHTML = '<p class="text-gray-400 italic">No patterns detected</p>'
                 }
-
-                behavioralOutput.innerText = behavioralText
               }
             }
           } catch (error) {
