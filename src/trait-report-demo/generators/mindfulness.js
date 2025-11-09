@@ -39,8 +39,10 @@ export function generateMindfulnessReflection(traitData, locale = 'en') {
     behavioralProfile = `${enMindfulness.behavioralProfile} ${enAwareness.behavioralProfile}`
   }
 
+  let detectedPatterns = []
   if (subscores) {
     const behavioralPatternKeys = identifyBehavioralPatterns(subscores)
+    detectedPatterns = [...behavioralPatternKeys]
     const behavioralPatternTexts = behavioralPatternKeys.map((key) => tEN.behavioralPatterns?.[key]).filter(Boolean)
 
     if (behavioralPatternTexts.length > 0) {
@@ -51,12 +53,16 @@ export function generateMindfulnessReflection(traitData, locale = 'en') {
     if (notablePatternKey && t.notablePatterns?.[notablePatternKey]) {
       const prefix = locale === 'lt' ? '\n\nVienas dalykas, kurį verta pastebėti: ' : '\n\nOne thing to notice: '
       userReport += prefix + t.notablePatterns[notablePatternKey]
+      if (!detectedPatterns.includes(notablePatternKey)) {
+        detectedPatterns.push(notablePatternKey)
+      }
     }
   }
 
   return {
     userReport,
     behavioralProfile,
+    detectedPatterns,
   }
 }
 

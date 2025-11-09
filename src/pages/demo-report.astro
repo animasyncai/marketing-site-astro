@@ -527,15 +527,17 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
               const behavioralOutput = document.getElementById('behavioralOutput')
               const patternsOutput = document.getElementById('patternsOutput')
 
-              if (userOutput) userOutput.innerText = result.userReport
+              if (userOutput) userOutput.innerText = result.userReport || ''
 
               if (behavioralOutput) {
-                behavioralOutput.innerText = result.behavioralProfile
+                behavioralOutput.innerText = result.behavioralProfile || ''
               }
 
               if (patternsOutput) {
-                if (result.detectedPatterns && result.detectedPatterns.length > 0) {
-                  patternsOutput.innerText = result.detectedPatterns.join(', ')
+                // Ensure detectedPatterns exists and is an array
+                const patterns = result.detectedPatterns || []
+                if (Array.isArray(patterns) && patterns.length > 0) {
+                  patternsOutput.innerText = patterns.join(', ')
                 } else {
                   patternsOutput.innerHTML = '<p class="text-gray-400 italic">No patterns detected</p>'
                 }
