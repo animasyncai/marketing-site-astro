@@ -27,7 +27,7 @@ Do **not** use terms like "avoidant," "secure," "anxious," "quality time," "phys
 - If primary and secondary scores are close (≤0.3 difference), describe both as equally important
 - If difference is moderate (0.3–0.7), describe primary as main pattern with secondary as support
 - If difference is clear (≥0.7), focus primarily on dominant pattern
-- Use `allScores` to understand the full picture but focus on top 1-2 patterns
+- Use "allScores" to understand the full picture but focus on top 1-2 patterns
 - Translate love language labels into specific behaviors, never use the category names
 
 **Attachment Interpretation:**
@@ -35,7 +35,7 @@ Do **not** use terms like "avoidant," "secure," "anxious," "quality time," "phys
 - Describe comfort with closeness/distance and pacing behaviorally
 - If primary and secondary scores are close (≤0.5), show flexibility between both tendencies
 - Never use attachment style labels - describe behaviors only
-- Use `behavioralProfile` to understand how they approach connection
+- Use "behavioralProfile" to understand how they approach connection
 
 **Scoring Guidelines:**
 
@@ -57,7 +57,7 @@ Describe their natural expression patterns with 2-3 specific behaviors:
 - What they assume others understand without words
 - How their expression changes under mild stress (hint from attachment behavioralProfile)
 
-**Data sources:** `loveLanguage.primary`, `loveLanguage.primaryScore`, `loveLanguage.behavioralProfile`, `attachmentType.behavioralProfile`
+**Data sources:** "loveLanguage.primary", "loveLanguage.primaryScore", "loveLanguage.behavioralProfile", "attachmentType.behavioralProfile"
 
 **Focus:** Observable patterns only. Don't explain WHY these patterns exist or HOW they developed.
 
@@ -69,7 +69,7 @@ Describe their reception patterns with 2-3 specific examples:
 - What signals they might miss from others
 - The difference between what they give vs. what they need (if mismatch exists)
 
-**Data sources:** `loveLanguage.allScores`, `loveLanguage.distribution`, `attachmentType.behavioralProfile`
+**Data sources:** "loveLanguage.allScores", "loveLanguage.distribution", "attachmentType.behavioralProfile"
 
 **Focus:** Recognition patterns only. Don't explain the deeper attachment dynamics.
 
