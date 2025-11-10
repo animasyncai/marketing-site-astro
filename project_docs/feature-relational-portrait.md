@@ -1,80 +1,63 @@
-# 🔗 Partner Sync (Couple-Only, MVP Scope)
+# 🔗 Partner Sync (Couple Reports)
 
-Partner Sync is designed to connect **two partners** and generate couple-focused insights.  
+Partner Sync connects **two partners** and generates couple-focused insights.  
 At this stage, the feature is **romantic-only** — 1:1 connection with one partner at a time.
 
 ---
 
 ## 🔐 Consent & Privacy
 
-- The system becomes **aware of both partners’ traits**, but these traits are never directly shown to each other.
+- The system becomes **aware of both partners' traits**, but these traits are never directly shown to each other
 - Only shared outputs are visible:
   - Couple Snapshot (short reflection)
   - Couple Reports (premium, in-depth)
   - Any future couple-specific functionalities
-- Either partner may **unlink** at any time.
-- Abuse prevention: only **one free snapshot per unique sync**, and a cooldown period (e.g., 30 days) before re-syncing with a new partner.
+- Either partner may **unlink** at any time
+- **If either partner unlinks, all couple reports are deleted** and both lose access
+- Abuse prevention: only **one free snapshot per unique sync**, and a cooldown period (30 days) before re-syncing with a new partner
 
 ---
 
 ## 🌀 Flow
 
-1. **Invite & Connect**
-   - Partner A sends invite link or code.
-   - Partner B accepts → accounts become synced.
+### 1. Invite & Connect
 
-2. **Couple Snapshot (short, instant)**
-   - **Length**: 300–500 words.
-   - **Content**:
-     - Where partners’ traits overlap or differ (attachment, love language, mindfulness, self-acceptance).
-     - 1–2 likely friction points.
-     - 1–2 supportive behaviors or nudges.
-   - **Availability**: free with first sync.
-   - **Purpose**: immediate insight → builds trust → primes upsell.
+- Partner A sends invite link or code
+- Partner B accepts → accounts become synced
 
-3. **Premium Couple Reports**
-   - **Relationship Compass** (1000–1500 words, AI)
-     - Explores bonding, love expression, sensitivities, blind spots, and growth directions.
-   - **Conflict Compass (Couple Edition)** (future add-on)
-     - Explores stress patterns, protective instincts, and repair strategies.
+### 2. Couple Snapshot (Free)
+
+- **Length**: 350-400 words
+- **Content**:
+  - How partners' patterns overlap or differ
+  - One recognizable dynamic loop
+  - Subtle cues to notice
+  - Natural validation
+- **Availability**: Free with first sync
+- **Purpose**: Immediate recognition → builds trust → creates curiosity for premium
+
+### 3. Premium Couple Reports
+
+- **Relationship Compass** (1200-1500 words, personalized per partner)
+  - Daily connection, love expression, practical tools
+  - Two separate reports generated (one for each partner)
+- **Conflict Compass** (1200-1500 words, personalized per partner)
+  - Fight patterns, protective responses, repair strategies
+  - Two separate reports generated (one for each partner)
 
 ---
 
 ## 🧭 Naming Convention
 
-- **Inner Portraits** = solo reports (Basic, Full).
-- **Relational Portraits** = couple reports (require Partner Sync).
-  - Couple Snapshot → short, free/low cost, instant.
-  - Relationship Compass → premium, deep couple report.
-  - Conflict Compass → optional future expansion.
+- **Inner Portraits** = Solo reports (Basic, Full)
+- **Relational Portraits** = Couple reports (require Partner Sync)
+  - Couple Snapshot → short, free, recognition-focused
+  - Relationship Compass (Couple Edition) → premium, daily connection
+  - Conflict Compass (Couple Edition) → premium, fight patterns
 
 ---
 
-# 🔗 Partner Sync Input Rules
-
-### Free-Tier Reports (e.g., Couple Snapshot)
-
-- Input: **trait metadata only**
-  - Example: Attachment = Avoidant (score: high), Love Language = Words (primary), Mindfulness = Low, Self-Acceptance = Disconnected.
-- Excludes:
-  - PsychologistNotes (not generated yet)
-  - UserReports from traits (too shallow to be meaningful)
-- Purpose: Lightweight, quick reflection based on **raw profile**.
-
-### Premium Reports (e.g., Relationship Compass, Conflict Compass)
-
-- Input:
-  - Trait metadata
-  - PsychologistNotes (from prior premium reports or newly generated)
-- Excludes:
-  - Trait UserReports (replaced by richer psychologistNotes)
-- Purpose: Deep synthesis across traits for long-form couple insights.
-
----
-
-# Relational Portrait Reports
-
-**Purpose:** Reports generated when two partners sync their accounts. Focus on how individual patterns interact in relationship dynamics.
+## 📊 Report Architecture
 
 ### Free Report
 
@@ -83,11 +66,18 @@ At this stage, the feature is **romantic-only** — 1:1 connection with one part
 A first glimpse into how your patterns overlap and contrast — highlighting shared strengths and natural differences.
 
 - **Cost:** Free with first Partner Sync
-- **Length:** 300-500 words
-- **Input:** Trait metadata only (no psychologist notes)
-- **Focus:** Basic pattern alignment and differences
-- **Value:** Immediate recognition of relationship dynamics and hook for premium reports
-- **Prompt:** `/prompts/report-couple-snapshot.md`
+- **Length:** 350-400 words
+- **Input:** Both partners' trait metadata (attachment, love language, mindfulness, self-acceptance)
+- **Focus:** Pattern recognition and curiosity creation (no prescriptive solutions)
+- **Strategy:** Shows WHAT happens in their dynamic, creates curiosity about HOW to work with it
+- **Value:** Immediate recognition of relationship dynamics, creates desire for deeper understanding
+- **Prompt:** `/prompts/prompt-report-couple-snapshot.md`
+
+**Key Difference from Basic Solo Reports:**
+
+- Both partners see same content
+- Focus on relational patterns, not individual
+- Creates curiosity about couple dynamics specifically
 
 ### Premium Reports
 
@@ -96,65 +86,204 @@ A first glimpse into how your patterns overlap and contrast — highlighting sha
 Two personalized guides that help each partner understand their role in creating deeper connection with their specific partner.
 
 - **Cost:** 5-6 Sparks (generates two personalized reports)
-- **Focus:** How each person can love their partner better, relationship-specific behavioral changes, daily connection tools
-- **Length:** 1200-1500 words
-- **Input:** Both partners' trait metadata + psychologist notes
-- **Value:** Comprehensive guide to relationship patterns with actionable insights for both partners
-- **Prompt:** `/prompts/report-couple-relationship-compass.md`
+- **Length:** 1200-1500 words per partner
+- **Input:** Both partners' trait metadata + behavioral profiles
+- **Focus:**
+  - How each person can love their partner better
+  - Relationship-specific behavioral changes
+  - Daily connection tools for THIS couple
+  - Love language translation
+  - Intention-impact gaps
+- **Value:** Comprehensive guide to improving daily connection with actionable insights
+- **Prompt:** `/prompts/prompt-report-couple-relationship-compass.md`
+
+**Traits Used:**
+
+- **Primary:** Love Language (both partners - for translation)
+- **Secondary:** Attachment (both partners - for reception patterns)
+- **Supporting:** Mindfulness (awareness of impact), Self-Acceptance (optional, for tone)
+
+**Key Features:**
+
+- Each partner gets personalized version
+- Addresses "you" (Partner A) about connecting with "Partner B"
+- Vivid pattern descriptions
+- "Aha" insights about intention-impact gaps
+- Concrete daily rituals
+- Specific phrases to use
+
+**Territory:**
+
+- Daily life, before conflict
+- Proactive, preventative
+- Love expression and reception
+- NOT about fighting or repair
 
 #### Conflict Compass (Couple Edition)
 
 A guide to your shared conflict patterns — what triggers tension between you, how each person protects themselves, and your unique path back to connection.
 
-- **Cost:** TBD
-- **Length:** 1200-1500 words
+- **Cost:** 5-6 Sparks (generates two personalized reports)
+- **Length:** 1200-1500 words per partner
 - **Input:** Both partners' conflict-related traits and patterns
-- **Focus:** Couple-specific conflict cycles, triggers, and repair strategies
+- **Focus:**
+  - Fight cycle this couple creates
+  - How each person's protective responses affect the other
+  - Practical alternatives to usual patterns
+  - Phrases for de-escalation
+  - Repair strategies after fights
+  - Early warning signs
 - **Value:** Practical tools for fighting better and reconnecting faster
-- **Prompt:** `/prompts/report-couple-conflict-compass.md`
+- **Prompt:** `/prompts/prompt-report-couple-conflict-compass.md`
 
-## Relational Report Requirements
+**Traits Used:**
 
-**Privacy Protection:**
+- **Primary:** Attachment (both partners - for stress responses)
+- **Secondary:** Mindfulness (awareness under pressure), Self-Acceptance (inner dialogue)
+- **Optional:** Love Language (if available, shows how unmet needs surface in conflict)
+
+**Key Features:**
+
+- Each partner gets personalized version
+- Addresses "you" (Partner A) about fighting with "Partner B"
+- Vivid fight cycle description
+- Exceptional emotional intelligence
+- Small, sustainable shifts
+- Both validated, neither blamed
+
+**Territory:**
+
+- During/after conflict
+- Reactive, repair-focused
+- Stress responses and reconnection
+- NOT about daily communication or prevention
+
+---
+
+## 🎯 Report Differentiation
+
+### How They're Different
+
+| Report                   | Focus             | User Moment           | Both See Same?    |
+| ------------------------ | ----------------- | --------------------- | ----------------- |
+| **Couple Snapshot**      | Quick recognition | Curiosity/First sync  | Yes               |
+| **Relationship Compass** | Daily connection  | Disconnection (calm)  | No (personalized) |
+| **Conflict Compass**     | Fighting & repair | During/after conflict | No (personalized) |
+
+### Territory Protection
+
+**Snapshot** = Recognition without solutions  
+**Relationship Compass** = Daily life, NOT conflict  
+**Conflict Compass** = Conflict only, NOT daily life
+
+No overlap. Different moments. Different needs.
+
+---
+
+## 📋 Relational Report Requirements
+
+### Privacy Protection
 
 - Individual traits never shown directly to partner
-- Only synthesized couple insights are visible
+- Only synthesized couple insights visible
 - Either partner can unlink at any time
+- **Critical:** If unlinked, all couple reports deleted for both partners
 - Both partners get access if one pays for premium reports
 
-**Content Focus:**
+### Content Focus
 
 - How patterns complement or clash
 - Specific behavioral examples couples will recognize
 - Practical strategies for working with differences
 - Validation of both partners' perspectives
+- No blame, no pathology
 
-**Upsell Strategy:**
+### Quality Standards
 
-- Free Couple Snapshot creates immediate value and relationship curiosity
-- Premium reports provide depth worth paying for
-- Partner who pays feels they're investing in the relationship
-- Non-paying partner gets value, creating gratitude and potential future conversion
+**Match Solo Premium Quality:**
 
-## Flow for invitation and acceptance
+- Same behavioral specificity
+- Same emotional intelligence
+- Same "that's me/us" recognition
+- Same no-labels policy
+- Same natural narrative flow
 
-When Sending Invite
+**Relationship-Specific:**
+
+- Tailored to THIS couple's unique dynamic
+- Not template-driven
+- Uses both partners' actual patterns
+- Creates recognition for their specific rhythm
+
+### Data Handling
+
+**All Couple Reports Must:**
+
+- Use comprehensive data interpretation rules
+- Blend both partners' patterns intelligently
+- Handle close scores with nuance
+- Never expose system labels for either partner
+- Translate attachment/love language into behaviors
+
+**Edge Case Handling:**
+
+- High conflict dynamics (both disorganized >4.0)
+- Extreme mismatches (>3 point differences)
+- Low self-awareness patterns
+- Conflicting attachment styles
+
+---
+
+## 🚀 Upsell Strategy
+
+### Snapshot → Premium
+
+**Not Through Explicit CTAs:**
+
+- No "ready to explore more?" language
+- No mentions of premium reports
+- No "want to go deeper?" prompts
+
+**Through Quality & Depth Gaps:**
+
+- Shows clear patterns they'll recognize
+- Stops before explaining WHY
+- Stops before offering detailed solutions
+- Natural questions arise: "How do we work with this?"
+- Desire created through recognition, not selling
+
+### User Journey
+
+1. Complete Partner Sync
+2. Get free Couple Snapshot → "That's us!"
+3. Reflect on pattern → "But WHY do we do this? HOW can we change it?"
+4. Purchase Relationship Compass (if disconnected) OR Conflict Compass (if fighting)
+5. Get personalized guidance → actionable improvements
+6. Return for other premium report when different need arises
+
+---
+
+## 🔄 Flow for Invitation and Acceptance
+
+### When Sending Invite
 
 1. User enters email (no dropdown, no validation feedback)
 2. System checks silently:
-   If account exists → Send in-app notification + email
-   If no account → Send email with invitation to join + explanation
-
+   - If account exists → Send in-app notification + email
+   - If no account → Send email with invitation to join + explanation
 3. User sees generic success: "Invitation sent to [email]"
-4. Once accepted the user sees account name and other inforamtion.
+4. Once accepted, user sees partner's name and sync status
 
-Email templates:
-[couple-sync-account-exists.md](emails/couple-sync-account-exists.md)
-[couple-sync-no-account.md](emails/couple-sync-no-account.md)
+### Email Templates
 
-## User safety checks
+- `emails/couple-sync-account-exists.md`
+- `emails/couple-sync-no-account.md`
 
-Before sending or accepting a partner sync we will show this modal:
+---
+
+## ⚠️ User Safety Checks
+
+### Before Sync Modal
 
 **Before You Connect With Your Partner**
 
@@ -172,3 +301,116 @@ When you sync accounts:
 - You're not comfortable sharing relationship insights
 
 [Cancel] [I Understand, Continue]
+
+---
+
+## 🎨 Design Principles
+
+### For Free Reports (Snapshot)
+
+**Align with Basic Solo Reports:**
+
+- Show patterns (WHAT), not solutions (HOW)
+- Surface-level only
+- Create curiosity through depth gaps
+- No prescriptive guidance
+- Natural validation ending
+
+### For Premium Reports
+
+**Match Solo Premium Quality:**
+
+- Deep pattern recognition
+- Emotional intelligence and "aha" moments
+- Concrete, actionable guidance
+- Sustainable practices
+- Validates both perspectives
+
+**Unique to Couple Reports:**
+
+- Personalized to Partner A about Partner B
+- Shows how patterns interact
+- Intention-impact gaps
+- Relationship-specific solutions
+
+---
+
+## 📊 Success Metrics
+
+### Couple Reports Are Working When
+
+**Snapshot:**
+
+- Users say "that's exactly us!"
+- Both partners feel recognized
+- Natural curiosity about working with patterns
+- Premium conversion >15%
+
+**Premium Reports:**
+
+- Users try suggested practices
+- Report improvements in dynamic
+- Share with partners
+- Return for second report type
+- Screenshot key insights
+
+### Warning Signs
+
+- "This is too generic"
+- "One of us is blamed"
+- "Doesn't sound like us"
+- "We tried but nothing changed"
+
+---
+
+## 🔧 Technical Notes
+
+### Data Structure
+
+```json
+{
+  "partnerA": {
+    "name": "string",
+    "traits": {
+      "attachmentType": {...},
+      "loveLanguage": {...},
+      "mindfulness": {...},
+      "selfAcceptance": {...}
+    }
+  },
+  "partnerB": {
+    "name": "string",
+    "traits": {
+      "attachmentType": {...},
+      "loveLanguage": {...},
+      "mindfulness": {...},
+      "selfAcceptance": {...}
+    }
+  }
+}
+```
+
+### Report Generation
+
+**Snapshot:**
+
+- One report, both partners see same content
+- Generated once per sync
+
+**Relationship Compass & Conflict Compass:**
+
+- Two reports generated (one per partner)
+- Partner A's report addresses them about Partner B
+- Partner B's report addresses them about Partner A
+- Both access if one pays
+
+### Storage & Deletion
+
+- Couple reports stored separately from solo reports
+- If sync breaks, all couple reports deleted immediately
+- No recovery after deletion
+- Both partners lose access simultaneously
+
+---
+
+_This feature enables partners to understand their unique relational dynamics with the same quality and depth as solo Inner Portraits._

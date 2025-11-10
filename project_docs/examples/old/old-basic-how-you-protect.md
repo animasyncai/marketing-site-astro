@@ -1,0 +1,12 @@
+🛡️ How You Protect Your Heart
+Your Safety Instincts
+You often find yourself wanting to get close to others, but when emotions run high, you might suddenly pull back. You may notice a strong urge to share your feelings, yet when the conversation turns deep or intense, you hesitate or feel uneasy. Sometimes, you look for reassurance from people you trust, but at the same time, you worry about depending too much on them. This push and pull can show up most clearly during conflict or uncertainty. You might shut down or become overwhelmed, unsure whether to open up or protect yourself. These patterns create a quiet tension in your relationships—a mix of craving connection and guarding your heart. You may not always see how this shapes your interactions, but it’s a key part of how you seek safety and trust with others.
+
+How You Meet Yourself
+When life gets tough, you tend to feel your emotions right away and very strongly. You notice your reactions as they happen, but it’s not always clear what sets them off or what stories lie underneath. Sometimes, it feels like you’re watching your own life through a foggy window—present, but not fully connected. You might accept your feelings as they come, but you rarely pause to explore them with kindness or curiosity. When emotions are confusing or intense, you may find it hard to treat yourself gently. This means you often react to your feelings instead of reflecting on them. Your self-talk might be straightforward, but it lacks the warmth or understanding that helps build self-trust. Because it’s hard to be gentle with yourself, trusting others can also feel risky or uncertain.
+
+The Balance You Seek
+You walk a fine line between wanting to open up and needing to feel safe. You may let people in, but only so far—especially when things get emotional. One pattern that stands out is your tendency to step back just as things start to feel vulnerable. This creates boundaries that protect you, but sometimes these walls keep you from the closeness you want. The way you balance openness and protection shapes your relationships, sometimes leaving you feeling both connected and alone at the same time.
+
+Ready for Your Full Portrait?
+This glimpse reveals just one layer. Your complete Inner Portrait weaves together all your patterns — how your trust style connects with your love language, mindfulness, and conflict patterns to create the full picture of how you move through relationships and life.
