@@ -2,26 +2,26 @@
 
 ## Basic Reports
 
-**Purpose:** 400-600 word teasers that create desire for premium reports. Each previews specific premium content and ends with clear upsell path.
+**Purpose:** 400-500 word introductory reports that provide immediate value while naturally creating curiosity for premium content through depth gaps rather than explicit upselling.
 
 ### 1. How You Show & Need Love
 
 A glimpse into your communication patterns — how you express care, what you need to feel loved, and where misunderstandings happen.
 
 - **Cost:** 1 Spark
-- **Length:** 400-600 words
+- **Length:** 450-500 words
 - **Traits:** Love Language, Attachment
-- **Focus:** Basic love expression and reception patterns
+- **Focus:** Surface-level love expression and reception patterns
 - **Prompt:** `/prompts/prompt-report-basic-show-need-love.md`
 
 ### 2. How You Protect Your Heart
 
-A reflection on your emotional safety patterns — how you approach trust, what makes you feel secure, and how you handle vulnerability.
+A reflection on your emotional safety patterns — how you approach trust, what makes you feel secure, and how you treat yourself.
 
 - **Cost:** 1 Spark
-- **Length:** 400-600 words
+- **Length:** 450-500 words
 - **Traits:** Attachment, Self-Acceptance
-- **Focus:** Basic trust and emotional protection patterns
+- **Focus:** Surface-level trust and emotional protection patterns
 - **Prompt:** `/prompts/prompt-report-basic-how-you-protect.md`
 
 ## Basic Report Requirements
@@ -29,22 +29,32 @@ A reflection on your emotional safety patterns — how you approach trust, what 
 **Content Structure:**
 
 - Recognition-focused opening (2-3 specific behavioral patterns they'll recognize)
-- Brief exploration of why these patterns exist
-- Hint at deeper layers without revealing them
-- Clear CTA to specific premium report
+- Surface exploration of WHAT patterns exist (not WHY)
+- Natural validation ending (no CTAs or premium mentions)
 
 **Tone Guidelines:**
 
 - Direct behavioral observations
-- Avoid clinical language
-- Create curiosity about deeper patterns
-- End with "To explore the deeper patterns behind this..." + premium report CTA
+- Avoid clinical language and system labels
+- Create curiosity through depth gaps (show WHAT, not WHY/HOW)
+- End with natural validation, no upselling
 
-**Upsell Strategy:**
+**Depth Gap Strategy:**
 
-- Each basic report is like a teaser that creates curiosity for the premium reportss
-- Premium reports dive 3x deeper into the same psychological territory
-- Users should feel "I need to understand this better" after reading basic version
+- Show clear patterns users will recognize
+- Describe behaviors without explaining origins
+- Stop before offering solutions or strategies
+- Let natural questions arise without prompting
+- Quality content creates organic desire for more depth
+
+**What Creates Upgrade:**
+
+- Recognition builds trust in the system
+- Depth gaps make users wonder "but why?"
+- No strategies makes them want "how do I change?"
+- Surface patterns make them want full integration
+
+---
 
 ## Premium Reports
 
@@ -70,17 +80,17 @@ A personal guide to how you move through conflict — what unsettles you, what s
 - **Traits:** Attachment, Mindfulness, Self-Acceptance
 - **Focus:** Stress responses, conflict triggers, protection patterns, and repair strategies
 - **Value:** Practical guidance for navigating relationship tension and returning to safety
-- **Prompt:** `/prompts/prompt-report-conflict-map.md`
+- **Prompt:** `/prompts/prompt-report-conflict-compass.md`
 
 ### 3. Communication Decoder
 
-A guide to your communication patterns — how you express care, what patterns take over under stress, and what helps you return to authentic connection.
+A guide to your daily communication — how you express care, what you need to feel loved, and how to speak up before small disconnects become distance.
 
 - **Cost:** 3 Sparks
 - **Length:** 1200-1500 words
 - **Traits:** Love Language, Attachment, Mindfulness
-- **Focus:** Expression styles, reception needs, communication breakdown patterns, and repair strategies
-- **Value:** Practical tools for improving relationship communication and reducing misunderstandings
+- **Focus:** Expression styles, reception patterns, love language translation, and prevention strategies
+- **Value:** Practical tools for preventing disconnection and expressing needs clearly in daily life
 - **Prompt:** `/prompts/prompt-report-communication-decoder.md`
 
 ### 4. Trust & Vulnerability Map
@@ -89,7 +99,7 @@ A map of how you open up, build trust, and handle emotional intimacy — your pa
 
 - **Cost:** 3 Sparks
 - **Length:** 1200-1500 words
-- **Traits:** Attachment, Self-Acceptance
+- **Traits:** Attachment, Self-Acceptance, Mindfulness (optional)
 - **Focus:** Trust-building patterns, vulnerability comfort zones, intimacy fears, and growth edges
 - **Value:** Deep insight into emotional intimacy patterns and how to develop healthier openness
 - **Prompt:** `/prompts/prompt-report-trust-vulnerability-map.md`
@@ -117,3 +127,54 @@ A map of how you open up, build trust, and handle emotional intimacy — your pa
 - Worth referencing months later
 - Shareable with partners or therapists
 - Creates "I feel truly seen" moments
+
+---
+
+## Data Interpretation Rules
+
+All reports must follow these data handling guidelines:
+
+**Always Use:**
+
+- ✅ `behavioralProfile` text to understand patterns
+- ✅ Scores to determine emphasis and strength
+- ✅ Behavioral descriptions translated into user language
+
+**Never Expose:**
+
+- ❌ System labels (Avoidant, Secure, Quality Time, Physical Touch, etc.)
+- ❌ Level descriptors (Developing, Moderate, High, Low, etc.)
+- ❌ Numeric scores directly
+- ❌ Clinical terminology
+
+**Trait-Specific Guidelines:**
+
+- **Love Language:** Translate categories into specific behaviors, never use label names
+- **Attachment:** Describe comfort with closeness/distance behaviorally, never use style names
+- **Self-Acceptance:** Describe inner dialogue tone behaviorally, never use level labels
+- **Mindfulness:** Describe awareness capacity behaviorally, never use level labels
+
+---
+
+## Report Differentiation
+
+### Basic vs. Premium
+
+| Aspect          | Basic            | Premium                             |
+| --------------- | ---------------- | ----------------------------------- |
+| **Depth**       | WHAT you do      | WHY you do it + HOW to work with it |
+| **Behaviors**   | 4-6 observations | 8-12 observations + connections     |
+| **Origins**     | None             | Attachment development, patterns    |
+| **Strategies**  | None             | Concrete phrases, practices         |
+| **Integration** | Single focus     | Multiple traits interacting         |
+| **Length**      | 450-500 words    | 1200-1500 words                     |
+| **Upselling**   | None             | None                                |
+
+### Premium Report Territories
+
+- **Inner Portrait:** WHO you are across all contexts (identity integration)
+- **Conflict Compass:** Fighting and repair (reactive, during/after conflict)
+- **Communication Decoder:** Expression and connection (proactive, daily life)
+- **Trust & Vulnerability Map:** Intimacy and opening up (depth progression over time)
+
+Each premium report has distinct territory with no overlap. Users should never feel they're reading the same insights across reports.

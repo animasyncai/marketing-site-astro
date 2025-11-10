@@ -61,9 +61,6 @@ Avoidant = (Q5 + Q6 + Q7 + Q8) / 4
 Disorganized = (Q9 + Q10 + Q11 + Q12) / 4
 Secure = (Q13 + Q14 + Q15 + Q16) / 4
 
-markdown
-Copy code
-
 ### Step 2 – Behavioral Subscores (averaged 1–5 scale)
 
 | Subscore                  | Questions                 | Meaning                                    | Why it matters                                                        |

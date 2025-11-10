@@ -14,7 +14,7 @@ Memory System Documentation
 
 - Working memory: 10 most recent messages
 - Summary captures everything older than 10 messages
-- No separate significant_notes for users in MVP
+- No separate significant_notes for users in MVP, but it works in the background
 - Admin view includes significant_notes for testing
 
 ### Why This Approach
