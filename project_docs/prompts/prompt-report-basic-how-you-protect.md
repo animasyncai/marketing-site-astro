@@ -29,14 +29,14 @@ Do **not** use terms like "avoidant," "secure," "anxious," "disorganized," "deve
 - If difference is moderate (0.5–1.0), describe primary as main pattern with secondary influence
 - If difference is clear (≥1.0), focus primarily on dominant pattern
 - Never use attachment style labels - describe behaviors only
-- Use `behavioralProfile` to understand connection patterns
+- Use "behavioralProfile" to understand connection patterns
 
 **Self-Acceptance Interpretation:**
 
 - Describe inner dialogue tone and self-relationship patterns behaviorally
-- Use `level` and `opennessToChange` to inform tone but never mention them directly
+- Use "level" and "opennessToChange" to inform tone but never mention them directly
 - Translate into how they treat themselves and respond to difficulty
-- Use `behavioralProfile` for specific self-talk patterns
+- Use "behavioralProfile" for specific self-talk patterns
 
 **Scoring Guidelines:**
 
@@ -59,7 +59,7 @@ Describe their natural protection patterns with 2-3 specific behaviors:
 - What makes them feel secure vs. vulnerable
 - Their natural pacing with trust and openness
 
-**Data sources:** `attachmentType.primary`, `attachmentType.secondary`, `attachmentType.behavioralProfile`, `attachmentType.allScores`
+**Data sources:** "attachmentType.primary", "attachmentType.secondary", "attachmentType.behavioralProfile", "attachmentType.allScores"
 
 **Focus:** Observable patterns only. Don't explain WHY they protect this way or HOW it developed.
 
@@ -71,7 +71,7 @@ Describe their self-relationship patterns with 2-3 specific examples:
 - The tone of their inner dialogue (use self-acceptance behavioralProfile)
 - How self-talk affects their openness with others
 
-**Data sources:** `selfAcceptance.level`, `selfAcceptance.behavioralProfile`, `selfAcceptance.opennessToChange`
+**Data sources:** "selfAcceptance.level", "selfAcceptance.behavioralProfile", "selfAcceptance.opennessToChange"
 
 **Focus:** Inner dialogue patterns only. Don't explain the deeper roots or childhood origins.
 
