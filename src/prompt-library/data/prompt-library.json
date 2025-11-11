@@ -7,6 +7,7 @@
         "lt": "Kažkas ne taip, bet negaliu to įvardyti"
       },
       "contexts": ["You", "Couple", "Family"],
+      "category": "reflection",
       "criteria": {
         "matchType": "AND",
         "traits": []
@@ -20,6 +21,7 @@
         "lt": "Padėk man suprasti neseną konfliktą"
       },
       "contexts": ["You", "Couple", "Family"],
+      "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": []
@@ -33,6 +35,7 @@
         "lt": "Stipriai sureagavau į kažką ir nežinau kodėl"
       },
       "contexts": ["You", "Couple", "Family"],
+      "category": "selfAwareness",
       "criteria": {
         "matchType": "AND",
         "traits": []
@@ -46,6 +49,7 @@
         "lt": "Kodėl man reikia tiek daug partnero patvirtinimo?"
       },
       "contexts": ["Couple"],
+      "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -65,6 +69,7 @@
         "lt": "Kodėl aš atsitraukiu, kai tampame artimi?"
       },
       "contexts": ["Couple"],
+      "category": "reflection",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -84,6 +89,7 @@
         "lt": "Jie rodo, kad rūpi, bet vis tiek jaučiuosi nepastebėtas"
       },
       "contexts": ["Couple"],
+      "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -102,6 +108,7 @@
         "lt": "Tiek daug darau dėl jų, bet jaučiuosi neįvertintas"
       },
       "contexts": ["Couple"],
+      "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -120,6 +127,7 @@
         "lt": "Man reikia fizinio artumo, bet jie atrodo tolimi"
       },
       "contexts": ["Couple"],
+      "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -138,6 +146,7 @@
         "lt": "Padėk man sulėtinti ir pastebėti, kas vyksta viduje"
       },
       "contexts": ["You"],
+      "category": "selfAwareness",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -156,6 +165,7 @@
         "lt": "Kodėl aš taip griežtai vertinu save?"
       },
       "contexts": ["You", "Couple", "Family"],
+      "category": "selfAwareness",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -174,6 +184,7 @@
         "lt": "Kodėl aš taip griežtai vertinu save po mūsų ginčų?"
       },
       "contexts": ["Couple"],
+      "category": "selfAwareness",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -195,6 +206,7 @@
         "lt": "Man sunku išreikšti, ko man reikia"
       },
       "contexts": ["Couple"],
+      "category": "communication",
       "criteria": {
         "matchType": "OR",
         "traits": [
@@ -218,6 +230,7 @@
         "lt": "Mes kartojame tą patį ginčą vėl ir vėl"
       },
       "contexts": ["Couple"],
+      "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": []
@@ -231,6 +244,7 @@
         "lt": "Noriu būti šalia jų, bet nežinau kaip"
       },
       "contexts": ["Couple", "Family"],
+      "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": [
@@ -249,6 +263,7 @@
         "lt": "Pastaruoju metu jaučiuosi atsijungęs nuo savęs"
       },
       "contexts": ["You"],
+      "category": "selfAwareness",
       "criteria": {
         "matchType": "OR",
         "traits": [
@@ -263,6 +278,105 @@
         ]
       },
       "priority": 8
+    },
+    {
+      "id": 16,
+      "text": {
+        "en": "What patterns do I notice in my relationships?",
+        "lt": "Kokius modelius pastebiu savo santykiuose?"
+      },
+      "contexts": ["You", "Couple"],
+      "category": "reflection",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "mindfulness",
+            "labels": ["moderate", "high"]
+          }
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": 17,
+      "text": {
+        "en": "How can I express my needs without starting a fight?",
+        "lt": "Kaip galiu išreikšti savo poreikius neprasidedant ginčo?"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "OR",
+        "traits": [
+          {
+            "type": "attachment",
+            "labels": ["avoidant", "anxious"]
+          },
+          {
+            "type": "loveLanguage",
+            "labels": ["words"]
+          }
+        ]
+      },
+      "priority": 9
+    },
+    {
+      "id": 18,
+      "text": {
+        "en": "What am I learning about myself through this relationship?",
+        "lt": "Ką apie save mokausi per šiuos santykius?"
+      },
+      "contexts": ["Couple", "Family"],
+      "category": "selfAwareness",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "selfAcceptance",
+            "labels": ["moderate", "high"]
+          }
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": 19,
+      "text": {
+        "en": "I want to understand why we keep misunderstanding each other",
+        "lt": "Noriu suprasti, kodėl mes vis dar nesuprantame vienas kito"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "loveLanguage",
+            "labels": ["words", "time", "acts", "touch", "gifts"]
+          }
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": 20,
+      "text": {
+        "en": "What would it feel like to accept myself fully?",
+        "lt": "Kaip būtų priimti save visiškai?"
+      },
+      "contexts": ["You"],
+      "category": "selfAwareness",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "selfAcceptance",
+            "labels": ["low", "moderate"]
+          }
+        ]
+      },
+      "priority": 9
     }
   ]
 }

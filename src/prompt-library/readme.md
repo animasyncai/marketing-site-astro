@@ -1,158 +1,95 @@
-# Reflection Companion Prompt Library
+# Prompt Library System - Technical Documentation
 
-A complete prompt library system for Withinly's Reflection Companion feature, with filtering, testing, and editing tools.
+## Overview
 
-## 📁 File Structure
+A trait-based prompt filtering system for Withinly's Reflection Companion chat feature. Filters and prioritizes reflection prompts based on user's psychological traits (attachment, love language, mindfulness, self-acceptance) and conversation context.
+
+## Architecture
 
 ```
-src/
-├── prompt-library/
-│   ├── data/
-│   │   └── prompt-library.json          # Prompt data (15 starter prompts)
-│   ├── prompt-library.js                # Core filtering/matching logic
-│   └── prompt-library-demo.js           # Testing & editor utilities
-└── pages/
-    ├── prompt-library.astro             # Testing page
-    └── prompt-library-editor.astro      # Editor page
+src/prompt-library/
+├── data/prompt-library.json          # Prompt definitions (editable via editor UI)
+├── prompt-library.js                 # Core filtering logic (production module)
+└── prompt-library-demo.js            # Testing/editing utilities
+
+src/pages/
+├── prompt-library.astro              # Testing page (trait simulation + debugging)
+└── prompt-library-editor.astro       # Editor page (CRUD + validation)
 ```
 
-## 🎯 What Was Created
+## Data Flow
 
-### 1. Core Module (`prompt-library.js`)
-
-Ready-to-use module for Withinly integration:
-
-- **`mapTraitData(traitData)`** - Converts Withinly trait format to prompt format
-- **`getRelevantPrompts(traitData, context, locale, promptLibrary)`** - Returns all context-matching prompts
-- **`filterAndSortPrompts(prompts, traitData)`** - Adds badges, relevance scores, and sorting
-- **`validatePrompt(prompt)`** - Validates individual prompts
-- **`validatePromptLibrary(promptLibrary)`** - Validates entire library
-
-### 2. Demo Utilities (`prompt-library-demo.js`)
-
-Helper functions for testing and editing:
-
-- **LocalStorage management** - Load, save, reset prompts
-- **Import/Export** - JSON file handling
-- **Sample trait data** - 6 presets for testing
-- **Editor helpers** - CRUD operations
-- **Debugging** - Match explanation logic
-
-### 3. Testing Page (`prompt-library.astro`)
-
-Comprehensive testing interface:
-
-- Trait selector with presets
-- Context selector (You/Couple/Family)
-- Language toggle (EN/LT)
-- Chat window mockup
-- Prompt library panel
-- Debug panel with match explanations
-- Real-time filtering demonstration
-
-### 4. Editor Page (`prompt-library-editor.astro`)
-
-Full CRUD editor with:
-
-- Add, edit, delete, duplicate prompts
-- Multi-select for contexts and trait labels
-- Validation warnings
-- LocalStorage auto-save
-- Unsaved changes indicator
-- Import/Export JSON
-- Reset to default button
-
-### 5. Prompt Data (`prompt-library.json`)
-
-15 starter prompts covering:
-
-- **Universal** (3) - Always shown
-- **Attachment-based** (2) - Anxious, Avoidant
-- **Love Language-based** (3) - Words, Acts, Touch
-- **Mindfulness-based** (2) - Low/Moderate awareness
-- **Self-Acceptance-based** (2) - Self-criticism patterns
-- **Multi-trait** (3) - AND/OR logic combinations
-
-## 🚀 Integration into Withinly
-
-### Step 1: Copy Files
-
-```bash
-# Copy to your Withinly project:
-cp -r src/prompt-library/ YOUR_PROJECT/src/
-cp src/pages/prompt-library*.astro YOUR_PROJECT/src/pages/
+```
+User Trait Data (Withinly format)
+    ↓
+mapTraitData() - converts to internal format
+    ↓
+getRelevantPrompts() - filters by context (You/Couple/Family)
+    ↓
+filterAndSortPrompts() - matches traits, adds badges, sorts by relevance
+    ↓
+Render prompts with ✨ badges for high-priority matches
 ```
 
-### Step 2: Use in Reflection Companion
+## Core Integration (3 Lines)
 
 ```javascript
 import { getRelevantPrompts, filterAndSortPrompts } from './prompt-library/prompt-library.js'
-import promptLibraryData from './prompt-library/data/prompt-library.json'
+import promptData from './prompt-library/data/prompt-library.json'
 
 // In your chat component:
-function showPromptLibrary() {
-  // Get user's trait data
-  const userTraits = getUserTraitData() // Your existing function
-  const context = getChatContext() // "You", "Couple", or "Family"
-  const locale = getUserLocale() // "en" or "lt"
-
-  // Get all relevant prompts
-  const relevantPrompts = getRelevantPrompts(userTraits, context, locale, promptLibraryData.prompts)
-
-  // Filter and sort with badges
-  const prompts = filterAndSortPrompts(relevantPrompts, userTraits)
-
-  // Render prompts
-  prompts.forEach((prompt) => {
-    renderPromptCard({
-      text: prompt.text,
-      isHighPriority: prompt.isHighPriority, // Show ✨ badge
-      onClick: () => handlePromptClick(prompt.id, prompt.text),
-    })
-  })
-}
-
-function handlePromptClick(promptId, text) {
-  // Your callback - populate chat input with text
-  populateChatInput(text)
-}
+const relevant = getRelevantPrompts(userTraits, context, locale, promptData.prompts)
+const filtered = filterAndSortPrompts(relevant, userTraits)
+// filtered = array of prompts, sorted by relevance, with .isHighPriority flag for ✨ badges
 ```
 
-### Step 3: Styling Badges
+## Trait Data Format
 
-```javascript
-// High priority prompts get ✨ badge:
-{
-  prompt.isHighPriority && <span className="text-xl">✨</span>
-}
-
-// Or custom styling:
-;<div className={prompt.isHighPriority ? 'border-indigo-200 bg-indigo-50' : 'border-gray-200'}>{prompt.text}</div>
-```
-
-## 📊 Data Structure
-
-### Trait Data Input (from Withinly)
+### Input Format (Withinly)
 
 ```javascript
 {
   attachmentType: {
-    primary: "AVOIDANT",
-    primaryIntensity: "MODERATE"
+    primary: "AVOIDANT",              // ANXIOUS | AVOIDANT | SECURE | DISORGANIZED
+    secondary: "SECURE",              // optional
+    primaryIntensity: "MODERATE",     // VERY_MILD | MILD | MODERATE | STRONG
+    secondaryIntensity: "MODERATE",   // optional
+    // subscores, detectedPatterns, behavioralProfile - ignored but preserved for future use
   },
   loveLanguage: {
-    primary: "QUALITY_TIME"
+    primary: "QUALITY_TIME",          // QUALITY_TIME | WORDS_OF_AFFIRMATION | ACTS_OF_SERVICE | PHYSICAL_TOUCH | GIFTS
+    secondary: "PHYSICAL_TOUCH",      // optional
+    // additional fields preserved for future use
   },
   mindfulness: {
-    mindfulnessLevel: "MODERATE_MINDFULNESS"
+    mindfulnessLevel: "MODERATE_MINDFULNESS",  // LOW_MINDFULNESS | MODERATE_MINDFULNESS | GOOD_MINDFULNESS
+    // subscores, detectedPatterns - ignored but preserved
   },
   selfAcceptance: {
-    level: "DEVELOPING_SELF_ACCEPTANCE"
+    level: "DEVELOPING_SELF_ACCEPTANCE",  // BEGINNING_SELF_ACCEPTANCE | DEVELOPING_SELF_ACCEPTANCE | GROWING_SELF_ACCEPTANCE | INTEGRATED_SELF_ACCEPTANCE
+    // subscores, detectedPatterns - ignored but preserved
   }
 }
 ```
 
-### Prompt Structure
+### Mapped Format (Internal)
+
+```javascript
+{
+  attachment: {
+    primary: { label: "avoidant", intensity: "moderate" },
+    secondary: { label: "secure", intensity: "moderate" }  // optional
+  },
+  loveLanguage: {
+    primary: { label: "time" },
+    secondary: { label: "touch" }  // optional
+  },
+  mindfulness: { label: "moderate" },
+  selfAcceptance: { label: "moderate" }
+}
+```
+
+## Prompt Structure
 
 ```javascript
 {
@@ -161,215 +98,261 @@ function handlePromptClick(promptId, text) {
     en: "Why do I need so much reassurance from my partner?",
     lt: "Kodėl man reikia tiek daug partnero patvirtinimo?"
   },
-  contexts: ["Couple"],
+  contexts: ["Couple"],                    // "You" | "Couple" | "Family"
+  category: "communication",               // optional: "reflection" | "communication" | "selfAwareness"
   criteria: {
-    matchType: "AND", // or "OR"
+    matchType: "AND",                      // "AND" | "OR"
     traits: [
       {
-        type: "attachment",
-        labels: ["anxious"],
-        intensities: ["moderate", "strong"] // Optional
+        type: "attachment",                // attachment | loveLanguage | mindfulness | selfAcceptance
+        labels: ["anxious"],               // matches primary OR secondary
+        intensities: ["moderate", "strong"] // optional: only show if intensity matches
       }
     ]
   },
-  priority: 9
+  priority: 9  // 1-10, base relevance score
 }
 ```
 
-### Output from filterAndSortPrompts()
+## Matching Logic
+
+### Primary/Secondary Support
+
+- Attachment and love language support **primary and secondary** traits
+- A prompt matches if EITHER primary OR secondary satisfies requirements
+- Example: User has `primary: AVOIDANT, secondary: SECURE`
+  - Prompt requiring `["avoidant"]` → ✅ matches (primary)
+  - Prompt requiring `["secure"]` → ✅ matches (secondary)
+  - Prompt requiring `["anxious"]` → ❌ no match
+
+### Match Types
+
+- **AND**: All specified traits must match
+- **OR**: At least one trait must match
+- **Universal** (empty traits array): Always matches
+
+### Relevance Scoring
 
 ```javascript
-;[
-  {
-    id: 4,
-    text: 'Why do I need so much reassurance?',
-    isHighPriority: true, // Show ✨ badge
-    relevanceScore: 13, // For sorting
-    matchedTraits: 2, // How many traits matched
-    matches: true, // Whether it matched criteria
-    ...originalPromptData,
-  },
-]
+relevanceScore = priority + matchedTraits * 2
+isHighPriority = matches && matchedTraits > 0
 ```
 
-## 🧪 Testing
+## API Reference
 
-### Using the Testing Page
+### `getRelevantPrompts(traitData, context, locale, promptLibrary, categoryKeys = [])`
 
-1. Open `prompt-library.astro` in browser
-2. Select trait presets or customize:
-   - Attachment type & intensity
-   - Love language
-   - Mindfulness level
-   - Self-acceptance level
-3. Choose context (You/Couple/Family)
-4. Click "Explore Prompts" to see filtered results
-5. Check debug panel for match explanations
+Returns all prompts matching the context, with localized text. Optionally filters by categories.
 
-**Key Testing Scenarios:**
+- **traitData**: Withinly trait object
+- **context**: "You" | "Couple" | "Family"
+- **locale**: "en" | "lt" (falls back to EN if missing)
+- **promptLibrary**: Array of prompt objects
+- **categoryKeys**: Optional array of category keys to filter by (empty = all)
+- **Returns**: Array of prompts with `.text` as string
 
-- Anxious Attacher in Couple context → sees reassurance prompts
-- Avoidant Attacher in Couple context → sees "pulling away" prompts
-- Low mindfulness → sees "slow down" prompts
-- Universal prompts always show
+### `filterAndSortPrompts(prompts, traitData)`
 
-### Using the Editor Page
+Adds display metadata and sorts by relevance.
 
-1. Open `prompt-library-editor.astro` in browser
-2. Edit existing prompts or add new ones
-3. Changes save automatically to localStorage
-4. Export JSON when ready to deploy
-5. Import JSON to restore previous versions
+- **prompts**: Output from `getRelevantPrompts()`
+- **traitData**: Withinly trait object
+- **Returns**: Array with additional fields:
+  - `.isHighPriority` (boolean) - Show ✨ badge
+  - `.relevanceScore` (number) - For sorting
+  - `.matchedTraits` (number) - How many traits matched
+  - `.matches` (boolean) - Whether criteria matched
 
-## 🎨 Customization
+### `mapTraitData(traitData)`
 
-### Adding New Prompts
+Converts Withinly format to internal format. (Used internally, rarely needed externally)
 
-```javascript
-{
-  id: 16, // Use next available ID
-  text: {
-    en: "Your English text here",
-    lt: "Your Lithuanian text here"
-  },
-  contexts: ["You", "Couple"], // Can appear in multiple contexts
-  criteria: {
-    matchType: "AND", // All traits must match
-    traits: [
-      {
-        type: "attachment",
-        labels: ["anxious"],
-        intensities: ["strong"] // Optional: only show if high intensity
-      },
-      {
-        type: "mindfulness",
-        labels: ["low"] // Must also have low mindfulness
-      }
-    ]
-  },
-  priority: 8 // 1-10, higher = more important
-}
-```
+### `validatePrompt(prompt)` / `validatePromptLibrary(library)`
 
-### Trait Mapping Reference
+Validates prompt structure. Used by editor UI.
 
-```javascript
-// Attachment Types
-AVOIDANT → "avoidant"
-ANXIOUS → "anxious"
-SECURE → "secure"
-DISORGANIZED → "disorganized"
+### Category Functions
 
-// Love Languages
-QUALITY_TIME → "time"
-WORDS_OF_AFFIRMATION → "words"
-ACTS_OF_SERVICE → "acts"
-PHYSICAL_TOUCH → "touch"
-GIFTS → "gifts"
+#### `getCategoryKeys()`
 
-// Intensities
-VERY_MILD → "very_mild"
-MILD → "mild"
-MODERATE → "moderate"
-STRONG → "strong"
+Returns array of all available category keys: `["reflection", "communication", "selfAwareness"]`
 
-// Mindfulness
-LOW_MINDFULNESS → "low"
-MODERATE_MINDFULNESS → "moderate"
-GOOD_MINDFULNESS → "high"
+#### `getCategoryLabel(categoryKey, locale = 'en')`
 
-// Self-Acceptance
-BEGINNING_SELF_ACCEPTANCE → "low"
-DEVELOPING_SELF_ACCEPTANCE → "moderate"
-GROWING_SELF_ACCEPTANCE → "high"
-INTEGRATED_SELF_ACCEPTANCE → "god" // 😄
-```
+Gets translated category label.
 
-## 🔧 Advanced Usage
+- **categoryKey**: Category key (e.g., "reflection")
+- **locale**: "en" | "lt"
+- **Returns**: Translated label string
 
-### Creating Context-Specific Prompts
+#### `filterPromptsByCategory(prompts, categoryKeys = [])`
 
-```javascript
-// Shows only in Couple context:
-contexts: ['Couple']
+Filters prompts by category keys.
 
-// Shows in multiple contexts:
-contexts: ['You', 'Couple']
+- **prompts**: Array of prompt objects
+- **categoryKeys**: Array of category keys to filter by (empty = all)
+- **Returns**: Filtered array of prompts
 
-// Universal (all contexts):
-contexts: ['You', 'Couple', 'Family']
-```
+#### `groupPromptsByCategory(prompts, locale = 'en')`
 
-### Using OR Logic
+Groups prompts by category for display.
 
-```javascript
-// Show if user has EITHER avoidant attachment OR low words love language:
-criteria: {
-  matchType: "OR",
-  traits: [
-    { type: "attachment", labels: ["avoidant"] },
-    { type: "loveLanguage", labels: ["words"], intensities: ["low", "very_mild"] }
-  ]
-}
-```
+- **prompts**: Array of prompt objects
+- **locale**: Language code for category labels
+- **Returns**: Object with category keys as keys, each containing `{ key, label, prompts: [] }`
 
-### Universal Prompts
+## LocalStorage System
 
-```javascript
-// Always shows (no trait requirements):
-criteria: {
-  matchType: "AND",
-  traits: [] // Empty array = universal
-}
-```
+The editor page saves edits to `localStorage['prompt-library-edited']`. Both testing and editor pages automatically load from localStorage if edited version exists.
 
-## ⚠️ Important Notes
+**Flow:**
 
-1. **LocalStorage in Editor**: Changes are saved to browser localStorage. Export JSON to persist changes.
+1. User edits prompts in editor → auto-saves to localStorage
+2. Testing page loads edited version (shows blue indicator)
+3. User exports JSON → unsaved changes indicator clears
+4. Deploy: Replace `prompt-library.json` with exported file
 
-2. **Validation**: The editor shows validation warnings for:
-   - Missing translations
-   - Invalid contexts
-   - Invalid trait types
-   - Invalid match types
-   - Priority out of range
+**Reset:** Click "Reset to Default" to discard localStorage and use default prompts.
 
-3. **Badge Logic**: `isHighPriority = true` when:
-   - Prompt matches at least 1 trait
-   - Used to show ✨ badge
+## Content Management Workflow
 
-4. **Relevance Scoring**:
-   - Base = priority value
-   - +2 for each matched trait
-   - Higher score = shown first
+1. **Edit**: Open `prompt-library-editor.astro`
+2. **Add/Edit/Delete**: Use UI to manage prompts
+3. **Validate**: Red warnings show validation errors
+4. **Test**: Open `prompt-library.astro` to test filtering
+5. **Export**: Click "Export JSON" when ready
+6. **Deploy**: Replace `src/prompt-library/data/prompt-library.json`
 
-5. **Fallback**: If Lithuanian translation missing, falls back to English automatically.
+## Categories
 
-## 📝 Next Steps
+Prompts can optionally have a `category` field for organization and filtering:
 
-1. **Test thoroughly** with real user trait data
-2. **Expand library** to 30-50 prompts covering more scenarios
-3. **Add more languages** if needed (structure supports it)
-4. **A/B test** badge visibility and prompt ordering
-5. **Monitor metrics**:
-   - Click-through rate per prompt
-   - Which contexts use prompts most
-   - Which trait combinations trigger which prompts
+- **reflection** - General reflection prompts
+- **communication** - Communication-focused prompts
+- **selfAwareness** - Self-awareness and mindfulness prompts
 
-## 🤝 Team Workflow
+Categories support translations (en/lt) and can be used to filter prompts in both the editor and testing pages.
 
-1. **Content team**: Use editor to draft new prompts
-2. **Export JSON**: Click "Export JSON" when ready
-3. **Review**: Validate exported JSON file
-4. **Deploy**: Replace `prompt-library.json` in production
-5. **Test**: Use testing page to verify behavior
+## Validation Rules
 
-## 📚 API Reference
+Prompts must have:
 
-See inline JSDoc comments in `prompt-library.js` for detailed API documentation.
+- ✅ Numeric ID
+- ✅ `text.en` and `text.lt` translations
+- ✅ At least one context
+- ✅ Valid contexts: "You", "Couple", "Family"
+- ✅ Valid matchType: "AND" or "OR"
+- ✅ Valid trait types: "attachment", "loveLanguage", "mindfulness", "selfAcceptance"
+- ✅ Priority 1-10
+- ✅ Valid category (if provided): must be one of the defined category keys
+
+## Testing
+
+**Testing Page** (`prompt-library.astro`):
+
+- Simulates different trait combinations (6 presets)
+- Shows matched vs. total prompts
+- Debug panel explains why each prompt matched/didn't match
+- Displays mapped traits
+- Tests context switching
+- Tests language switching
+
+**Key Test Cases:**
+
+- Anxious attachment in Couple context → shows reassurance prompts
+- Avoidant attachment → shows "pulling away" prompts
+- Low mindfulness → shows awareness prompts
+- Secondary traits matching → prompts appear for both primary and secondary
+- Universal prompts → always visible
+
+## Performance
+
+- **Filtering**: O(n) where n = number of prompts (~15-50 typical)
+- **No async operations**: Synchronous filtering
+- **Bundle size**: ~8KB for 15 prompts + code
+- **Memoization**: Recommended for React (`useMemo` on filtered prompts)
+
+## Extensibility
+
+### Adding New Traits
+
+1. Add to `TRAIT_MAPPING` in `prompt-library.js`
+2. Update `mapTraitData()` function
+3. Update `EDITOR_OPTIONS` in `prompt-library-demo.js`
+4. Add to editor UI dropdowns
+
+### Adding New Languages
+
+1. Add to prompt `text` objects: `text.es`, `text.de`, etc.
+2. Update editor form with new textarea
+3. Validation automatically checks all languages
+
+### Adding Subscores/Advanced Matching
+
+The current system ignores subscores but preserves them in input data. To use:
+
+1. Extend `mapTraitData()` to map subscore fields
+2. Update `matchesTrait()` to check subscore conditions
+3. Add new criterion types to prompt structure
+
+## Production Checklist
+
+- [ ] Test with real user trait data
+- [ ] Validate all prompts (editor shows warnings)
+- [ ] Test context switching (You/Couple/Family)
+- [ ] Test language fallback (missing translations)
+- [ ] Test primary/secondary matching
+- [ ] Export JSON from editor
+- [ ] Replace default `prompt-library.json`
+- [ ] Clear localStorage after deployment (users reset automatically)
+- [ ] Monitor click-through rates per prompt
+
+## Troubleshooting
+
+**Prompts not showing:**
+
+- Check context matches user's current context
+- Check trait data is in correct format
+- Use testing page to debug filtering
+- Check browser console for errors
+
+**Edited prompts not loading:**
+
+- Ensure both pages use `loadPromptLibrary()` (not direct JSON import)
+- Check `localStorage['prompt-library-edited']` exists
+- Blue indicator should appear on testing page if using edited version
+
+**Unsaved changes indicator stuck:**
+
+- Export JSON to mark as saved
+- Or click "Reset to Default" to clear
+
+**Primary/secondary not working:**
+
+- Ensure trait data has `.primary` and `.secondary` fields
+- Check `mapTraitData()` output in testing page debug panel
+
+## Dependencies
+
+None. Pure JavaScript module, works with any framework (React, Vue, vanilla JS).
+
+## Browser Support
+
+- Modern browsers (ES6+)
+- LocalStorage required for editor functionality
+- Falls back gracefully if localStorage unavailable (uses default prompts)
 
 ---
 
-**Created**: November 2024  
-**Version**: 1.0.0  
-**Status**: MVP Ready ✅
+**Version**: 1.2.0  
+**Last Updated**: 2024-11-12  
+**Status**: Production Ready
+
+## Recent Updates (v1.2.0)
+
+- ✅ Added category support with filtering and grouping
+- ✅ Improved UI: checkboxes for filters and trait editing
+- ✅ Enhanced prompt selector styling with color-coded badges
+- ✅ Navigation links between testing and editor pages
+- ✅ Full support for secondary traits (attachment, love language)
+- ✅ Support for awareness levels (mindfulness) and openness to change (self-acceptance)

@@ -3,45 +3,49 @@
  * Handles language detection and routing without breaking existing functionality
  */
 
-import {
-    defineMiddleware
-} from 'astro:middleware'
-import {
-    DEFAULT_LANGUAGE,
-    getLocalizedPath
-} from './utils/i18n.js'
+import { defineMiddleware } from 'astro:middleware'
+import { DEFAULT_LANGUAGE, getLocalizedPath } from './utils/i18n.js'
 
 export const onRequest = defineMiddleware(async (context, next) => {
-    const {
-        url,
-        redirect
-    } = context
-    const pathname = url.pathname
+  const { url, redirect } = context
+  const pathname = url.pathname
 
-    // Simple password protection for demo report
-    // Protects /demo-report (and localized paths that end with it)
-    if (pathname.endsWith('/demo-report')) {
-        const rawCookie = context.cookies.get('demo_report_auth')
-        const authCookie = typeof rawCookie === 'string' ? rawCookie : (rawCookie && rawCookie.value)
-        if (authCookie === '1') {
-            return next()
-        }
+  // Password protection for protected pages
+  const protectedPages = [
+    { path: '/demo-report', cookie: 'demo_report_auth' },
+    { path: '/prompt-library', cookie: 'prompt_library_auth' },
+    { path: '/prompt-library-editor', cookie: 'prompt_library_auth' },
+  ]
 
-        const currentUrl = new URL(context.request.url)
-        const providedPassword = currentUrl.searchParams.get('password')
-        if (providedPassword === 'secret') {
-            // Set a lightweight auth cookie and redirect to clean URL
-            context.cookies.set('demo_report_auth', '1', {
-                path: '/',
-                httpOnly: true,
-                sameSite: 'Lax',
-                secure: url.protocol === 'https:'
-            })
-            currentUrl.searchParams.delete('password')
-            return redirect(currentUrl.pathname + (currentUrl.search ? `?${currentUrl.searchParams.toString()}` : ''), 302)
-        }
+  // Check if current path is protected
+  const protectedPage = protectedPages.find((page) => pathname.endsWith(page.path))
 
-        const html = `<!doctype html>
+  if (protectedPage) {
+    const rawCookie = context.cookies.get(protectedPage.cookie)
+    const authCookie = typeof rawCookie === 'string' ? rawCookie : rawCookie && rawCookie.value
+
+    if (authCookie === '1') {
+      // Already authenticated, continue
+      // (fall through to next() at end of middleware)
+    } else {
+      // Check for password in query params
+      const currentUrl = new URL(context.request.url)
+      const providedPassword = currentUrl.searchParams.get('password')
+
+      if (providedPassword === 'secret') {
+        // Set a lightweight auth cookie and redirect to clean URL
+        context.cookies.set(protectedPage.cookie, '1', {
+          path: '/',
+          httpOnly: true,
+          sameSite: 'Lax',
+          secure: url.protocol === 'https:',
+        })
+        currentUrl.searchParams.delete('password')
+        return redirect(currentUrl.pathname + (currentUrl.search ? `?${currentUrl.searchParams.toString()}` : ''), 302)
+      }
+
+      // Need password, show form
+      const html = `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -96,42 +100,43 @@ export const onRequest = defineMiddleware(async (context, next) => {
 </body>
 </html>`
 
-        return new Response(html, {
-            status: 401,
-            headers: {
-                'content-type': 'text/html; charset=utf-8',
-                'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
-            }
-        })
+      return new Response(html, {
+        status: 401,
+        headers: {
+          'content-type': 'text/html; charset=utf-8',
+          'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        },
+      })
     }
+  }
 
-    // Skip middleware for API routes and static assets
-    if (
-        pathname.startsWith('/api/') ||
-        pathname.startsWith('/_astro/') ||
-        pathname.includes('.') // Skip files with extensions (images, etc.)
-    ) {
-        return next()
-    }
-
-    // Handle root path redirect to include language prefix if needed
-    if (pathname === '/') {
-        // For now, keep English as default for root
-        // In production, you might want to redirect based on browser language
-        return next()
-    }
-
-    // Validate that the language is supported
-    const supportedLangs = ['en', 'lt']
-    if (pathname.startsWith('/lt/') || pathname.startsWith('/en/')) {
-        const lang = pathname.split('/')[1]
-        if (!supportedLangs.includes(lang)) {
-            // Redirect to default language
-            const newPath = getLocalizedPath(pathname.replace(`/${lang}`, ''), DEFAULT_LANGUAGE)
-            return redirect(newPath, 301)
-        }
-    }
-
-    // Continue with the request
+  // Skip middleware for API routes and static assets
+  if (
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_astro/') ||
+    pathname.includes('.') // Skip files with extensions (images, etc.)
+  ) {
     return next()
+  }
+
+  // Handle root path redirect to include language prefix if needed
+  if (pathname === '/') {
+    // For now, keep English as default for root
+    // In production, you might want to redirect based on browser language
+    return next()
+  }
+
+  // Validate that the language is supported
+  const supportedLangs = ['en', 'lt']
+  if (pathname.startsWith('/lt/') || pathname.startsWith('/en/')) {
+    const lang = pathname.split('/')[1]
+    if (!supportedLangs.includes(lang)) {
+      // Redirect to default language
+      const newPath = getLocalizedPath(pathname.replace(`/${lang}`, ''), DEFAULT_LANGUAGE)
+      return redirect(newPath, 301)
+    }
+  }
+
+  // Continue with the request
+  return next()
 })

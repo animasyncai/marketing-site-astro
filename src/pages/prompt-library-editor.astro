@@ -15,40 +15,50 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
         <p class="text-gray-600">Edit, add, and manage reflection prompts</p>
       </div>
 
-      <!-- Status & Actions -->
-      <div class="flex gap-3">
-        <div
-          id="unsavedIndicator"
-          class="hidden items-center gap-2 rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-2"
+      <!-- Navigation & Actions -->
+      <div class="flex items-center gap-3">
+        <a
+          href="/prompt-library"
+          class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
         >
-          <svg class="h-5 w-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-            ></path>
-          </svg>
-          <span class="text-sm font-medium text-yellow-800">Unsaved changes</span>
+          ← Test Prompts
+        </a>
+
+        <!-- Status & Actions -->
+        <div class="flex gap-3">
+          <div
+            id="unsavedIndicator"
+            class="hidden items-center gap-2 rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-2"
+          >
+            <svg class="h-5 w-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              ></path>
+            </svg>
+            <span class="text-sm font-medium text-yellow-800">Unsaved changes</span>
+          </div>
+
+          <button
+            id="resetBtn"
+            class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50"
+          >
+            Reset to Default
+          </button>
+
+          <button
+            id="importBtn"
+            class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50"
+          >
+            Import JSON
+          </button>
+
+          <button id="exportBtn" class="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+            Export JSON
+          </button>
         </div>
-
-        <button
-          id="resetBtn"
-          class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50"
-        >
-          Reset to Default
-        </button>
-
-        <button
-          id="importBtn"
-          class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50"
-        >
-          Import JSON
-        </button>
-
-        <button id="exportBtn" class="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
-          Export JSON
-        </button>
       </div>
     </div>
 
@@ -57,138 +67,157 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
       <!-- Warnings will be inserted here -->
     </div>
 
-    <!-- Main Layout -->
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-      <!-- Left: Prompt List -->
-      <div>
-        <div class="mb-4 rounded-lg bg-white shadow">
-          <div class="flex items-center justify-between border-b p-4">
-            <h2 class="text-lg font-semibold">Prompts (<span id="promptCount">0</span>)</h2>
-            <button id="addNewBtn" class="rounded-lg bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-700">
-              + Add New
-            </button>
-          </div>
-
-          <div id="promptList" class="max-h-[calc(100vh-300px)] divide-y overflow-y-auto">
-            <!-- Prompt items will be inserted here -->
-          </div>
-        </div>
+    <!-- Prompt List (Full Width) -->
+    <div class="rounded-lg bg-white shadow">
+      <div class="flex items-center justify-between border-b p-4">
+        <h2 class="text-lg font-semibold">Prompts (<span id="promptCount">0</span>)</h2>
+        <button id="addNewBtn" class="rounded-lg bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-700">
+          + Add New
+        </button>
       </div>
 
-      <!-- Right: Editor Form -->
-      <div class="sticky top-4 rounded-lg bg-white shadow">
-        <div class="border-b p-4">
+      <!-- Category Filter -->
+      <div class="border-b p-4">
+        <label class="mb-2 block text-xs font-medium text-gray-700">Filter by Category</label>
+        <div id="categoryFilter" class="flex flex-wrap gap-2">
+          <!-- Options will be populated by JavaScript -->
+        </div>
+        <button
+          id="clearCategoryFilter"
+          class="mt-2 rounded bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200"
+        >
+          Clear Filter
+        </button>
+      </div>
+
+      <div id="promptList" class="p-4">
+        <!-- Prompt items will be inserted here as grid -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Editor Modal (Outside main container) -->
+  <div id="editorModal" class="fixed inset-0 z-50 hidden">
+    <!-- Backdrop -->
+    <div id="editorModalBackdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <!-- Modal Content -->
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div
+        class="relative z-10 flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-lg bg-white shadow-xl"
+      >
+        <div class="flex items-center justify-between border-b bg-gray-50 p-4">
           <h2 class="text-lg font-semibold">
-            <span id="editorTitle">Select a prompt to edit</span>
+            <span id="editorTitle">Edit Prompt</span>
           </h2>
+          <button id="closeEditorModal" class="text-gray-500 hover:text-gray-700">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
         </div>
 
-        <div id="editorForm" class="hidden p-6">
-          <form id="promptForm" class="space-y-6">
-            <!-- ID (readonly) -->
-            <div>
-              <label class="mb-2 block text-sm font-medium text-gray-700">ID</label>
-              <input type="number" id="promptId" readonly class="w-full rounded-md border bg-gray-50 p-2" />
-            </div>
-
-            <!-- Translations -->
-            <div>
-              <label class="mb-2 block text-sm font-medium text-gray-700">
-                English Text <span class="text-red-500">*</span>
-              </label>
-              <textarea id="textEn" rows="2" class="w-full rounded-md border p-2" required></textarea>
-            </div>
-
-            <div>
-              <label class="mb-2 block text-sm font-medium text-gray-700">
-                Lithuanian Text <span class="text-red-500">*</span>
-              </label>
-              <textarea id="textLt" rows="2" class="w-full rounded-md border p-2" required></textarea>
-            </div>
-
-            <!-- Contexts -->
-            <div>
-              <label class="mb-2 block text-sm font-medium text-gray-700">
-                Contexts <span class="text-red-500">*</span>
-              </label>
-              <div class="space-y-2">
-                <label class="flex items-center space-x-2">
-                  <input type="checkbox" value="You" class="context-checkbox rounded" />
-                  <span>You</span>
+        <div class="flex-1 overflow-y-auto">
+          <div id="editorForm" class="hidden p-6">
+            <form id="promptForm" class="space-y-6">
+              <!-- Translations -->
+              <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                  English Text <span class="text-red-500">*</span>
                 </label>
-                <label class="flex items-center space-x-2">
-                  <input type="checkbox" value="Couple" class="context-checkbox rounded" />
-                  <span>Couple</span>
-                </label>
-                <label class="flex items-center space-x-2">
-                  <input type="checkbox" value="Family" class="context-checkbox rounded" />
-                  <span>Family</span>
-                </label>
+                <textarea id="textEn" rows="2" class="w-full rounded-md border p-2" required></textarea>
               </div>
-            </div>
 
-            <!-- Priority -->
-            <div>
-              <label class="mb-2 block text-sm font-medium text-gray-700"> Priority (1-10) </label>
-              <input type="number" id="priority" min="1" max="10" class="w-full rounded-md border p-2" />
-            </div>
+              <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                  Lithuanian Text <span class="text-red-500">*</span>
+                </label>
+                <textarea id="textLt" rows="2" class="w-full rounded-md border p-2" required></textarea>
+              </div>
 
-            <!-- Match Type -->
-            <div>
-              <label class="mb-2 block text-sm font-medium text-gray-700"> Trait Match Type </label>
-              <select id="matchType" class="w-full rounded-md border p-2">
-                <option value="AND">AND (all traits must match)</option>
-                <option value="OR">OR (any trait can match)</option>
-              </select>
-            </div>
+              <!-- Contexts -->
+              <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                  Contexts <span class="text-red-500">*</span>
+                </label>
+                <div class="flex flex-wrap gap-3">
+                  <label class="flex items-center space-x-2">
+                    <input type="checkbox" value="You" class="context-checkbox rounded" />
+                    <span>You</span>
+                  </label>
+                  <label class="flex items-center space-x-2">
+                    <input type="checkbox" value="Couple" class="context-checkbox rounded" />
+                    <span>Couple</span>
+                  </label>
+                  <label class="flex items-center space-x-2">
+                    <input type="checkbox" value="Family" class="context-checkbox rounded" />
+                    <span>Family</span>
+                  </label>
+                </div>
+              </div>
 
-            <!-- Trait Requirements -->
-            <div>
-              <div class="mb-3 flex items-center justify-between">
-                <label class="block text-sm font-medium text-gray-700"> Trait Requirements </label>
+              <!-- Category -->
+              <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">Category (optional)</label>
+                <select id="category" class="w-full rounded-md border p-2">
+                  <option value="">None</option>
+                </select>
+              </div>
+
+              <!-- Priority -->
+              <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700"> Priority (1-10) </label>
+                <input type="number" id="priority" min="1" max="10" class="w-full rounded-md border p-2" />
+              </div>
+
+              <!-- Match Type -->
+              <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700"> Trait Match Type </label>
+                <select id="matchType" class="w-full rounded-md border p-2">
+                  <option value="AND">AND (all traits must match)</option>
+                  <option value="OR">OR (any trait can match)</option>
+                </select>
+              </div>
+
+              <!-- Trait Requirements -->
+              <div>
+                <div class="mb-3 flex items-center justify-between">
+                  <label class="block text-sm font-medium text-gray-700"> Trait Requirements </label>
+                  <button
+                    type="button"
+                    id="addTraitBtn"
+                    class="rounded bg-indigo-100 px-3 py-1 text-sm text-indigo-700 hover:bg-indigo-200"
+                  >
+                    + Add Trait
+                  </button>
+                </div>
+                <div id="traitsContainer" class="space-y-3">
+                  <!-- Trait requirements will be inserted here -->
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex gap-3 border-t pt-4">
+                <button type="submit" class="flex-1 rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+                  Save Changes
+                </button>
                 <button
                   type="button"
-                  id="addTraitBtn"
-                  class="rounded bg-indigo-100 px-3 py-1 text-sm text-indigo-700 hover:bg-indigo-200"
+                  id="duplicateBtn"
+                  class="rounded-lg bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300"
                 >
-                  + Add Trait
+                  Duplicate
+                </button>
+                <button
+                  type="button"
+                  id="deleteBtn"
+                  class="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+                >
+                  Delete
                 </button>
               </div>
-              <div id="traitsContainer" class="space-y-3">
-                <!-- Trait requirements will be inserted here -->
-              </div>
-            </div>
-
-            <!-- Actions -->
-            <div class="flex gap-3 border-t pt-4">
-              <button type="submit" class="flex-1 rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
-                Save Changes
-              </button>
-              <button
-                type="button"
-                id="duplicateBtn"
-                class="rounded-lg bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300"
-              >
-                Duplicate
-              </button>
-              <button type="button" id="deleteBtn" class="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700">
-                Delete
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div id="editorPlaceholder" class="p-12 text-center text-gray-500">
-          <svg class="mx-auto mb-4 h-16 w-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-            ></path>
-          </svg>
-          <p>Select a prompt from the list to edit</p>
-          <p class="mt-2 text-sm">or click "Add New" to create one</p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -212,31 +241,95 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
         const defaultPromptLibrary = JSON.parse(dataScript?.textContent || '{}')
 
         // State
-        let prompts = []
-        let originalPrompts = []
-        let selectedPromptId = null
+        let prompts: any[] = []
+        let originalPrompts: any[] = []
+        let selectedPromptId: number | null = null
+        let selectedCategories: string[] = []
 
         // Initialize
         loadPrompts()
+        populateCategoryDropdowns()
         updatePromptList()
         updateValidation()
 
         // Event Listeners
-        document.getElementById('addNewBtn').addEventListener('click', addNewPrompt)
-        document.getElementById('exportBtn').addEventListener('click', exportPrompts)
-        document.getElementById('importBtn').addEventListener('click', () => {
-          document.getElementById('fileInput').click()
+        const addNewBtn = document.getElementById('addNewBtn')
+        const exportBtn = document.getElementById('exportBtn')
+        const importBtn = document.getElementById('importBtn')
+        const fileInput = document.getElementById('fileInput') as HTMLInputElement
+        const resetBtn = document.getElementById('resetBtn')
+        const promptForm = document.getElementById('promptForm')
+        const duplicateBtn = document.getElementById('duplicateBtn')
+        const deleteBtn = document.getElementById('deleteBtn')
+        const addTraitBtn = document.getElementById('addTraitBtn')
+
+        if (addNewBtn) addNewBtn.addEventListener('click', addNewPrompt)
+        if (exportBtn) exportBtn.addEventListener('click', exportPrompts)
+        if (importBtn) {
+          importBtn.addEventListener('click', () => {
+            if (fileInput) fileInput.click()
+          })
+        }
+        if (fileInput) fileInput.addEventListener('change', importPrompts)
+        if (resetBtn) resetBtn.addEventListener('click', resetPrompts)
+        if (promptForm) promptForm.addEventListener('submit', savePrompt)
+        if (duplicateBtn) duplicateBtn.addEventListener('click', duplicatePrompt)
+        if (deleteBtn) deleteBtn.addEventListener('click', deletePrompt)
+        if (addTraitBtn) addTraitBtn.addEventListener('click', addTraitRequirement)
+        document.getElementById('categoryFilter')?.addEventListener('change', (e) => {
+          if ((e.target as HTMLElement).classList.contains('category-filter-checkbox')) {
+            updatePromptList()
+          }
         })
-        document.getElementById('fileInput').addEventListener('change', importPrompts)
-        document.getElementById('resetBtn').addEventListener('click', resetPrompts)
-        document.getElementById('promptForm').addEventListener('submit', savePrompt)
-        document.getElementById('duplicateBtn').addEventListener('click', duplicatePrompt)
-        document.getElementById('deleteBtn').addEventListener('click', deletePrompt)
-        document.getElementById('addTraitBtn').addEventListener('click', addTraitRequirement)
+        document.getElementById('clearCategoryFilter')?.addEventListener('click', () => {
+          const checkboxes = document.querySelectorAll('.category-filter-checkbox') as NodeListOf<HTMLInputElement>
+          checkboxes.forEach((cb) => (cb.checked = false))
+          selectedCategories = []
+          updatePromptList()
+        })
 
         // Functions
+        function populateCategoryDropdowns() {
+          const categoryKeys = promptLib.getCategoryKeys()
+          const categorySelect = document.getElementById('category')
+          const categoryFilter = document.getElementById('categoryFilter')
+
+          // Populate category selector in form
+          if (categorySelect) {
+            categoryKeys.forEach((key) => {
+              const label = promptLib.getCategoryLabel(key, 'en')
+              const option = document.createElement('option')
+              option.value = key
+              option.textContent = label
+              categorySelect.appendChild(option)
+            })
+          }
+
+          // Populate category filter as checkboxes
+          if (categoryFilter) {
+            categoryKeys.forEach((key) => {
+              const label = promptLib.getCategoryLabel(key, 'en')
+              const labelEl = document.createElement('label')
+              labelEl.className =
+                'flex items-center space-x-2 cursor-pointer px-3 py-1.5 rounded border border-gray-200 hover:bg-gray-50'
+              const checkbox = document.createElement('input')
+              checkbox.type = 'checkbox'
+              checkbox.value = key
+              checkbox.className = 'rounded text-indigo-600 category-filter-checkbox'
+              const span = document.createElement('span')
+              span.className = 'text-xs text-gray-700'
+              span.textContent = label
+              labelEl.appendChild(checkbox)
+              labelEl.appendChild(span)
+              categoryFilter.appendChild(labelEl)
+            })
+          }
+        }
         function loadPrompts() {
-          const loaded = demoUtils.loadPromptLibrary(defaultPromptLibrary.prompts)
+          const loaded = demoUtils.loadPromptLibrary(defaultPromptLibrary.prompts) as {
+            prompts: any[]
+            isEdited: boolean
+          }
           prompts = loaded.prompts
           originalPrompts = JSON.parse(JSON.stringify(prompts))
           checkUnsavedChanges()
@@ -246,93 +339,180 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           const hasChanges = demoUtils.hasUnsavedChanges(prompts, originalPrompts)
           const indicator = document.getElementById('unsavedIndicator')
 
-          if (hasChanges) {
-            indicator.classList.remove('hidden')
-            indicator.classList.add('flex')
-          } else {
-            indicator.classList.add('hidden')
-            indicator.classList.remove('flex')
+          if (indicator) {
+            if (hasChanges) {
+              indicator.classList.remove('hidden')
+              indicator.classList.add('flex')
+            } else {
+              indicator.classList.add('hidden')
+              indicator.classList.remove('flex')
+            }
           }
         }
 
         function updatePromptList() {
           const container = document.getElementById('promptList')
-          document.getElementById('promptCount').textContent = prompts.length
+          if (!container) return
 
-          if (prompts.length === 0) {
-            container.innerHTML = '<div class="p-8 text-center text-gray-500">No prompts yet</div>'
+          // Get selected categories from filter checkboxes
+          const checkboxes = document.querySelectorAll(
+            '.category-filter-checkbox:checked'
+          ) as NodeListOf<HTMLInputElement>
+          selectedCategories = Array.from(checkboxes).map((cb) => cb.value)
+
+          // Filter prompts by category
+          let filteredPrompts: any[] = prompts
+          if (selectedCategories.length > 0) {
+            filteredPrompts = promptLib.filterPromptsByCategory(prompts, selectedCategories)
+          }
+
+          const promptCountEl = document.getElementById('promptCount')
+          if (promptCountEl) {
+            promptCountEl.textContent = `${filteredPrompts.length} / ${prompts.length}`
+          }
+
+          if (filteredPrompts.length === 0) {
+            container.innerHTML =
+              '<div class="p-8 text-center text-gray-500">No prompts match the selected categories</div>'
             return
           }
 
-          container.innerHTML = prompts
-            .map((prompt) => {
-              const validation = promptLib.validatePrompt(prompt)
-              const hasErrors = !validation.valid
+          // Format trait requirements for display
+          function formatTraitRequirements(traits: any[]) {
+            if (!traits || traits.length === 0) {
+              return '<span class="text-xs text-gray-500 italic">Universal</span>'
+            }
 
-              return `
-          <button
-            class="w-full text-left p-4 hover:bg-gray-50 transition-colors ${
-              selectedPromptId === prompt.id ? 'bg-indigo-50 border-l-4 border-indigo-600' : ''
-            }"
-            data-prompt-id="${prompt.id}"
-          >
-            <div class="flex items-start justify-between gap-2">
-              <div class="flex-1">
-                <div class="font-medium text-gray-900 mb-1">
-                  ${prompt.text.en || '(No English text)'}
-                </div>
-                <div class="text-xs text-gray-500">
-                  ID: ${prompt.id} • 
-                  Contexts: ${prompt.contexts.join(', ')} • 
-                  Priority: ${prompt.priority || 5}
-                  ${prompt.criteria.traits.length > 0 ? `• ${prompt.criteria.traits.length} traits` : ''}
-                </div>
+            return traits
+              .map((trait: any) => {
+                const parts: string[] = []
+                parts.push(`<span class="font-medium">${trait.type}</span>`)
+
+                if (trait.labels && trait.labels.length > 0) {
+                  const labelText = trait.labels.join(', ')
+                  parts.push(`<span class="text-gray-600">${labelText}</span>`)
+                }
+
+                if (trait.intensities && trait.intensities.length > 0) {
+                  const intensityText = trait.intensities.join(', ')
+                  parts.push(`<span class="text-gray-500 text-xs">(${intensityText})</span>`)
+                }
+
+                return `<div class="text-xs">${parts.join(' • ')}</div>`
+              })
+              .join('')
+          }
+
+          container.innerHTML = `
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                ${filteredPrompts
+                  .map((prompt: any) => {
+                    const validation = promptLib.validatePrompt(prompt) as { valid: boolean; errors?: any[] }
+                    const hasErrors = !validation.valid
+
+                    return `
+                      <button
+                        class="w-full text-left p-4 rounded-lg border-2 transition-all hover:border-indigo-400 hover:shadow-md ${
+                          selectedPromptId === prompt.id
+                            ? 'border-indigo-500 bg-indigo-50 shadow-md'
+                            : 'border-gray-200 bg-white'
+                        }"
+                        data-prompt-id="${prompt.id}"
+                      >
+                        <div class="space-y-2">
+                          <div class="flex items-start justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                              <div class="font-medium text-gray-900 text-sm leading-snug mb-2">
+                                ${prompt.text.en || '(No English text)'}
+                              </div>
+                            </div>
+                            ${
+                              hasErrors
+                                ? `
+                              <svg class="w-4 h-4 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                              </svg>
+                            `
+                                : ''
+                            }
+                          </div>
+                          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-mono text-xs">
+                              #${prompt.id}
+                            </span>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded bg-blue-50 text-blue-700">
+                              ${prompt.contexts.join(', ')}
+                            </span>
+                            ${
+                              prompt.category
+                                ? `
+                              <span class="inline-flex items-center px-2 py-0.5 rounded bg-purple-50 text-purple-700">
+                                ${promptLib.getCategoryLabel(prompt.category, 'en')}
+                              </span>
+                            `
+                                : ''
+                            }
+                            <span class="inline-flex items-center px-2 py-0.5 rounded bg-green-50 text-green-700">
+                              P${prompt.priority || 5}
+                            </span>
+                          </div>
+                          <div class="pt-2 border-t border-gray-100">
+                            ${formatTraitRequirements(prompt.criteria.traits)}
+                          </div>
+                        </div>
+                      </button>
+                    `
+                  })
+                  .join('')}
               </div>
-              ${
-                hasErrors
-                  ? `
-                <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-              `
-                  : ''
-              }
-            </div>
-          </button>
-        `
-            })
-            .join('')
+            `
 
           // Add click handlers
-          container.querySelectorAll('button').forEach((btn) => {
-            btn.addEventListener('click', () => {
-              const id = parseInt(btn.dataset.promptId)
+          container.querySelectorAll('button[data-prompt-id]').forEach((btn) => {
+            const button = btn as HTMLButtonElement
+            button.addEventListener('click', () => {
+              const id = parseInt(button.dataset.promptId || '0')
               selectPrompt(id)
             })
           })
         }
 
-        function selectPrompt(id) {
+        function selectPrompt(id: number) {
           selectedPromptId = id
-          const prompt = prompts.find((p) => p.id === id)
+          const prompt = prompts.find((p: any) => p.id === id)
 
           if (!prompt) return
 
-          // Update UI
-          document.getElementById('editorPlaceholder').classList.add('hidden')
-          document.getElementById('editorForm').classList.remove('hidden')
-          document.getElementById('editorTitle').textContent = `Edit Prompt #${id}`
+          // Show modal
+          const modal = document.getElementById('editorModal')
+          if (modal) {
+            modal.classList.remove('hidden')
+          }
 
-          // Fill form
-          document.getElementById('promptId').value = prompt.id
-          document.getElementById('textEn').value = prompt.text.en || ''
-          document.getElementById('textLt').value = prompt.text.lt || ''
-          document.getElementById('priority').value = prompt.priority || 5
-          document.getElementById('matchType').value = prompt.criteria.matchType || 'AND'
+          // Update UI
+          const editorForm = document.getElementById('editorForm')
+          if (editorForm) editorForm.classList.remove('hidden')
+
+          const editorTitle = document.getElementById('editorTitle')
+          if (editorTitle) editorTitle.textContent = `Edit Prompt #${id}`
+
+          // Fill form (ID is in title, no need for input field)
+          const textEn = document.getElementById('textEn') as HTMLTextAreaElement
+          const textLt = document.getElementById('textLt') as HTMLTextAreaElement
+          const category = document.getElementById('category') as HTMLSelectElement
+          const priority = document.getElementById('priority') as HTMLInputElement
+          const matchType = document.getElementById('matchType') as HTMLSelectElement
+
+          if (textEn) textEn.value = prompt.text.en || ''
+          if (textLt) textLt.value = prompt.text.lt || ''
+          if (category) category.value = prompt.category || ''
+          if (priority) priority.value = String(prompt.priority || 5)
+          if (matchType) matchType.value = prompt.criteria.matchType || 'AND'
 
           // Set contexts
           document.querySelectorAll('.context-checkbox').forEach((checkbox) => {
-            checkbox.checked = prompt.contexts.includes(checkbox.value)
+            const cb = checkbox as HTMLInputElement
+            cb.checked = prompt.contexts.includes(cb.value)
           })
 
           // Render trait requirements
@@ -342,8 +522,9 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           updatePromptList()
         }
 
-        function renderTraitRequirements(traits) {
+        function renderTraitRequirements(traits: any[]) {
           const container = document.getElementById('traitsContainer')
+          if (!container) return
 
           if (traits.length === 0) {
             container.innerHTML = '<p class="text-sm text-gray-500 italic">No trait requirements (universal prompt)</p>'
@@ -352,7 +533,7 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
 
           container.innerHTML = traits
             .map(
-              (trait, index) => `
+              (trait: any, index: number) => `
         <div class="border rounded-lg p-3 bg-gray-50" data-trait-index="${index}">
           <div class="flex justify-between items-start mb-3">
             <span class="text-sm font-medium text-gray-700">Trait ${index + 1}</span>
@@ -375,26 +556,36 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
             
             <div>
               <label class="block text-xs font-medium text-gray-600 mb-1">Labels (optional)</label>
-              <select multiple class="trait-labels w-full p-2 border rounded text-sm h-20">
+              <div class="flex flex-wrap gap-2 p-2 border rounded bg-white min-h-[3rem]">
                 ${getLabelsForType(trait.type)
                   .map(
                     (label) =>
-                      `<option value="${label}" ${trait.labels?.includes(label) ? 'selected' : ''}>${label}</option>`
+                      `<label class="flex items-center space-x-1 cursor-pointer">
+                        <input type="checkbox" value="${label}" class="trait-label-checkbox rounded text-indigo-600" ${
+                          trait.labels?.includes(label) ? 'checked' : ''
+                        } />
+                        <span class="text-xs text-gray-700">${label}</span>
+                      </label>`
                   )
                   .join('')}
-              </select>
+              </div>
             </div>
             
             <div>
               <label class="block text-xs font-medium text-gray-600 mb-1">Intensities (optional)</label>
-              <select multiple class="trait-intensities w-full p-2 border rounded text-sm h-20">
+              <div class="flex flex-wrap gap-2 p-2 border rounded bg-white min-h-[3rem]">
                 ${demoUtils.EDITOR_OPTIONS.intensities
                   .map(
                     (intensity) =>
-                      `<option value="${intensity}" ${trait.intensities?.includes(intensity) ? 'selected' : ''}>${intensity}</option>`
+                      `<label class="flex items-center space-x-1 cursor-pointer">
+                        <input type="checkbox" value="${intensity}" class="trait-intensity-checkbox rounded text-indigo-600" ${
+                          trait.intensities?.includes(intensity) ? 'checked' : ''
+                        } />
+                        <span class="text-xs text-gray-700">${intensity}</span>
+                      </label>`
                   )
                   .join('')}
-              </select>
+              </div>
             </div>
           </div>
         </div>
@@ -403,26 +594,41 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
             .join('')
 
           // Add event listeners
-          container.querySelectorAll('.trait-type').forEach((select, index) => {
-            select.addEventListener('change', () => {
-              // Update labels dropdown when type changes
-              const labelsSelect = container.querySelectorAll('.trait-labels')[index]
-              labelsSelect.innerHTML = getLabelsForType(select.value)
-                .map((label) => `<option value="${label}">${label}</option>`)
-                .join('')
+          if (container) {
+            container.querySelectorAll('.trait-type').forEach((select, index) => {
+              const selectEl = select as HTMLSelectElement
+              selectEl.addEventListener('change', () => {
+                // Update labels checkboxes when type changes
+                const traitElement = container.querySelectorAll('[data-trait-index]')[index] as HTMLElement
+                if (traitElement) {
+                  const labelsContainer = traitElement.querySelector('.flex.flex-wrap')
+                  if (labelsContainer) {
+                    labelsContainer.innerHTML = getLabelsForType(selectEl.value)
+                      .map(
+                        (label: string) => `<label class="flex items-center space-x-1 cursor-pointer">
+                        <input type="checkbox" value="${label}" class="trait-label-checkbox rounded text-indigo-600" />
+                        <span class="text-xs text-gray-700">${label}</span>
+                      </label>`
+                      )
+                      .join('')
+                  }
+                }
+              })
             })
-          })
 
-          container.querySelectorAll('.remove-trait-btn').forEach((btn, index) => {
-            btn.addEventListener('click', () => {
-              const prompt = prompts.find((p) => p.id === selectedPromptId)
-              prompt.criteria.traits.splice(index, 1)
-              renderTraitRequirements(prompt.criteria.traits)
+            container.querySelectorAll('.remove-trait-btn').forEach((btn, index) => {
+              btn.addEventListener('click', () => {
+                const prompt = prompts.find((p: any) => p.id === selectedPromptId)
+                if (prompt) {
+                  prompt.criteria.traits.splice(index, 1)
+                  renderTraitRequirements(prompt.criteria.traits)
+                }
+              })
             })
-          })
+          }
         }
 
-        function getLabelsForType(type) {
+        function getLabelsForType(type: string): string[] {
           return demoUtils.getLabelsForTraitType(type)
         }
 
@@ -439,27 +645,43 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           renderTraitRequirements(prompt.criteria.traits)
         }
 
-        function savePrompt(e) {
+        function savePrompt(e: Event) {
           e.preventDefault()
 
-          const prompt = prompts.find((p) => p.id === selectedPromptId)
+          const prompt = prompts.find((p: any) => p.id === selectedPromptId)
           if (!prompt) return
 
-          // Update basic fields
-          prompt.text.en = document.getElementById('textEn').value
-          prompt.text.lt = document.getElementById('textLt').value
-          prompt.priority = parseInt(document.getElementById('priority').value) || 5
-          prompt.criteria.matchType = document.getElementById('matchType').value
+          // Update basic fields (ID is read-only, stored in selectedPromptId)
+          const textEn = document.getElementById('textEn') as HTMLTextAreaElement
+          const textLt = document.getElementById('textLt') as HTMLTextAreaElement
+          const category = document.getElementById('category') as HTMLSelectElement
+          const priority = document.getElementById('priority') as HTMLInputElement
+          const matchType = document.getElementById('matchType') as HTMLSelectElement
+
+          if (textEn) prompt.text.en = textEn.value
+          if (textLt) prompt.text.lt = textLt.value
+          if (category) {
+            const categoryValue = category.value
+            prompt.category = categoryValue || null
+          }
+          if (priority) prompt.priority = parseInt(priority.value) || 5
+          if (matchType) prompt.criteria.matchType = matchType.value
 
           // Update contexts
-          prompt.contexts = Array.from(document.querySelectorAll('.context-checkbox:checked')).map((cb) => cb.value)
+          prompt.contexts = Array.from(document.querySelectorAll('.context-checkbox:checked')).map(
+            (cb) => (cb as HTMLInputElement).value
+          )
 
           // Update trait requirements
           const traitElements = document.querySelectorAll('#traitsContainer [data-trait-index]')
           prompt.criteria.traits = Array.from(traitElements).map((el) => {
-            const type = el.querySelector('.trait-type').value
-            const labels = Array.from(el.querySelector('.trait-labels').selectedOptions).map((o) => o.value)
-            const intensities = Array.from(el.querySelector('.trait-intensities').selectedOptions).map((o) => o.value)
+            const type = (el.querySelector('.trait-type') as HTMLSelectElement).value
+            const labelCheckboxes = el.querySelectorAll('.trait-label-checkbox:checked') as NodeListOf<HTMLInputElement>
+            const intensityCheckboxes = el.querySelectorAll(
+              '.trait-intensity-checkbox:checked'
+            ) as NodeListOf<HTMLInputElement>
+            const labels = Array.from(labelCheckboxes).map((cb) => cb.value)
+            const intensities = Array.from(intensityCheckboxes).map((cb) => cb.value)
 
             return {
               type,
@@ -476,6 +698,10 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
 
           // Show success
           showNotification('Saved successfully!')
+
+          // Close modal after save
+          const modal = document.getElementById('editorModal')
+          if (modal) modal.classList.add('hidden')
         }
 
         function addNewPrompt() {
@@ -487,6 +713,17 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           selectPrompt(nextId)
           checkUnsavedChanges()
         }
+
+        // Close modal handlers
+        const closeModal = () => {
+          const modal = document.getElementById('editorModal')
+          const form = document.getElementById('editorForm')
+          if (modal) modal.classList.add('hidden')
+          if (form) form.classList.add('hidden')
+        }
+
+        document.getElementById('closeEditorModal')?.addEventListener('click', closeModal)
+        document.getElementById('editorModalBackdrop')?.addEventListener('click', closeModal)
 
         function duplicatePrompt() {
           const prompt = prompts.find((p) => p.id === selectedPromptId)
@@ -506,11 +743,13 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
         function deletePrompt() {
           if (!confirm('Are you sure you want to delete this prompt?')) return
 
-          prompts = prompts.filter((p) => p.id !== selectedPromptId)
+          prompts = prompts.filter((p: any) => p.id !== selectedPromptId)
           selectedPromptId = null
 
-          document.getElementById('editorPlaceholder').classList.remove('hidden')
-          document.getElementById('editorForm').classList.add('hidden')
+          const modal = document.getElementById('editorModal')
+          if (modal) modal.classList.add('hidden')
+          const editorForm = document.getElementById('editorForm')
+          if (editorForm) editorForm.classList.add('hidden')
 
           demoUtils.savePromptLibrary(prompts)
           checkUnsavedChanges()
@@ -525,16 +764,24 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           showNotification('Exported successfully!')
         }
 
-        function importPrompts(e) {
-          const file = e.target.files[0]
+        function importPrompts(e: Event) {
+          const target = e.target as HTMLInputElement
+          const file = target.files?.[0]
           if (!file) return
 
           const reader = new FileReader()
           reader.onload = (event) => {
-            const result = demoUtils.importPromptLibrary(event.target.result)
+            const result = event.target?.result
+            if (typeof result !== 'string') return
 
-            if (!result.success) {
-              alert(`Import failed: ${result.error}`)
+            const importResult = demoUtils.importPromptLibrary(result) as {
+              success: boolean
+              prompts?: any[]
+              error?: string
+            }
+
+            if (!importResult.success) {
+              alert(`Import failed: ${importResult.error || 'Unknown error'}`)
               return
             }
 
@@ -542,23 +789,27 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
               return
             }
 
-            prompts = result.prompts
-            selectedPromptId = null
+            if (importResult.prompts) {
+              prompts = importResult.prompts
+              selectedPromptId = null
 
-            document.getElementById('editorPlaceholder').classList.remove('hidden')
-            document.getElementById('editorForm').classList.add('hidden')
+              const modal = document.getElementById('editorModal')
+              if (modal) modal.classList.add('hidden')
+              const editorForm = document.getElementById('editorForm')
+              if (editorForm) editorForm.classList.add('hidden')
 
-            demoUtils.savePromptLibrary(prompts)
-            originalPrompts = JSON.parse(JSON.stringify(prompts))
-            checkUnsavedChanges()
-            updatePromptList()
-            updateValidation()
+              demoUtils.savePromptLibrary(prompts)
+              originalPrompts = JSON.parse(JSON.stringify(prompts))
+              checkUnsavedChanges()
+              updatePromptList()
+              updateValidation()
 
-            showNotification('Imported successfully!')
+              showNotification('Imported successfully!')
+            }
           }
 
           reader.readAsText(file)
-          e.target.value = '' // Reset file input
+          target.value = '' // Reset file input
         }
 
         function resetPrompts() {
@@ -568,8 +819,10 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           originalPrompts = JSON.parse(JSON.stringify(prompts))
           selectedPromptId = null
 
-          document.getElementById('editorPlaceholder').classList.remove('hidden')
-          document.getElementById('editorForm').classList.add('hidden')
+          const modal = document.getElementById('editorModal')
+          if (modal) modal.classList.add('hidden')
+          const editorForm = document.getElementById('editorForm')
+          if (editorForm) editorForm.classList.add('hidden')
 
           checkUnsavedChanges()
           updatePromptList()
@@ -579,8 +832,9 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
         }
 
         function updateValidation() {
-          const validation = promptLib.validatePromptLibrary(prompts)
+          const validation = promptLib.validatePromptLibrary(prompts) as { valid: boolean; errors?: any[] }
           const container = document.getElementById('validationWarnings')
+          if (!container) return
 
           if (validation.valid) {
             container.classList.add('hidden')
@@ -597,13 +851,13 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
             <div class="flex-1">
               <h3 class="font-semibold text-red-800 mb-2">Validation Errors</h3>
               <div class="space-y-2">
-                ${validation.errors
+                ${(validation.errors || [])
                   .map(
-                    (err) => `
+                    (err: any) => `
                   <div class="text-sm">
                     <span class="font-medium">Prompt #${err.id}:</span>
                     <ul class="ml-4 mt-1 list-disc">
-                      ${err.errors.map((e) => `<li>${e}</li>`).join('')}
+                      ${(err.errors || []).map((e: string) => `<li>${e}</li>`).join('')}
                     </ul>
                   </div>
                 `
@@ -616,7 +870,7 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
       `
         }
 
-        function showNotification(message) {
+        function showNotification(message: string) {
           // Simple notification - could be enhanced
           const notification = document.createElement('div')
           notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50'

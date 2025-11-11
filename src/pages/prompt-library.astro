@@ -9,9 +9,17 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
 <DefaultLayout title={pageTitle} description={pageDescription}>
   <div class="container mx-auto max-w-7xl px-4 py-8">
     <!-- Header -->
-    <div class="mb-8">
-      <h1 class="mb-2 text-3xl font-bold text-gray-900">{pageTitle}</h1>
-      <p class="text-gray-600">Test how prompts are filtered based on traits and context</p>
+    <div class="mb-8 flex items-start justify-between">
+      <div>
+        <h1 class="mb-2 text-3xl font-bold text-gray-900">{pageTitle}</h1>
+        <p class="text-gray-600">Test how prompts are filtered based on traits and context</p>
+      </div>
+      <a
+        href="/prompt-library-editor"
+        class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+      >
+        Edit Prompts →
+      </a>
     </div>
 
     <!-- Trait Selectors (Above Chat) -->
@@ -54,7 +62,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
         </div>
 
         <!-- Language Selector -->
-        <div>
+        <div class="mb-4">
           <label class="mb-2 block text-xs font-medium text-gray-700">Language</label>
           <div class="flex flex-wrap gap-3">
             <label class="flex items-center space-x-1.5">
@@ -67,6 +75,18 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
             </label>
           </div>
         </div>
+
+        <!-- Data Source Toggle -->
+        <div>
+          <label class="mb-2 block text-xs font-medium text-gray-700">Data Source</label>
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" id="useLocalStorage" class="rounded text-indigo-600" />
+            <span class="text-sm">Use localStorage (if available)</span>
+          </label>
+          <div id="dataSourceIndicator" class="mt-2 hidden text-xs text-blue-600">
+            <span class="font-medium">📦 Using localStorage</span>
+          </div>
+        </div>
       </div>
 
       <!-- Trait Selectors (2/3 width) -->
@@ -76,60 +96,124 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           <!-- Attachment -->
           <div>
             <label class="mb-1 block text-xs font-medium text-gray-700">Attachment</label>
-            <select id="attachmentPrimary" class="mb-1 w-full rounded-md border p-1.5 text-sm">
-              <option value="ANXIOUS">Anxious</option>
-              <option value="AVOIDANT" selected>Avoidant</option>
-              <option value="SECURE">Secure</option>
-              <option value="DISORGANIZED">Disorganized</option>
-            </select>
-            <select id="attachmentIntensity" class="w-full rounded-md border p-1.5 text-sm">
-              <option value="VERY_MILD">Very Mild</option>
-              <option value="MILD">Mild</option>
-              <option value="MODERATE" selected>Moderate</option>
-              <option value="STRONG">Strong</option>
-            </select>
+            <div class="mb-2">
+              <label class="mb-0.5 block text-xs text-gray-600">Primary</label>
+              <select id="attachmentPrimary" class="mb-1 w-full rounded-md border p-1.5 text-sm">
+                <option value="">None</option>
+                <option value="ANXIOUS">Anxious</option>
+                <option value="AVOIDANT" selected>Avoidant</option>
+                <option value="SECURE">Secure</option>
+                <option value="DISORGANIZED">Disorganized</option>
+              </select>
+              <select id="attachmentIntensity" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="">None</option>
+                <option value="VERY_MILD">Very Mild</option>
+                <option value="MILD">Mild</option>
+                <option value="MODERATE" selected>Moderate</option>
+                <option value="STRONG">Strong</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-0.5 block text-xs text-gray-600">Secondary</label>
+              <select id="attachmentSecondary" class="mb-1 w-full rounded-md border p-1.5 text-sm">
+                <option value="" selected>None</option>
+                <option value="ANXIOUS">Anxious</option>
+                <option value="AVOIDANT">Avoidant</option>
+                <option value="SECURE">Secure</option>
+                <option value="DISORGANIZED">Disorganized</option>
+              </select>
+              <select id="attachmentSecondaryIntensity" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="" selected>None</option>
+                <option value="VERY_MILD">Very Mild</option>
+                <option value="MILD">Mild</option>
+                <option value="MODERATE">Moderate</option>
+                <option value="STRONG">Strong</option>
+              </select>
+            </div>
           </div>
 
           <!-- Love Language -->
           <div>
             <label class="mb-1 block text-xs font-medium text-gray-700">Love Language</label>
-            <select id="loveLanguage" class="w-full rounded-md border p-1.5 text-sm">
-              <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
-              <option value="QUALITY_TIME" selected>Quality Time</option>
-              <option value="ACTS_OF_SERVICE">Acts of Service</option>
-              <option value="PHYSICAL_TOUCH">Physical Touch</option>
-              <option value="GIFTS">Gifts</option>
-            </select>
+            <div class="mb-2">
+              <label class="mb-0.5 block text-xs text-gray-600">Primary</label>
+              <select id="loveLanguagePrimary" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="">None</option>
+                <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+                <option value="QUALITY_TIME" selected>Quality Time</option>
+                <option value="ACTS_OF_SERVICE">Acts of Service</option>
+                <option value="PHYSICAL_TOUCH">Physical Touch</option>
+                <option value="GIFTS">Gifts</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-0.5 block text-xs text-gray-600">Secondary</label>
+              <select id="loveLanguageSecondary" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="" selected>None</option>
+                <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+                <option value="QUALITY_TIME">Quality Time</option>
+                <option value="ACTS_OF_SERVICE">Acts of Service</option>
+                <option value="PHYSICAL_TOUCH">Physical Touch</option>
+                <option value="GIFTS">Gifts</option>
+              </select>
+            </div>
           </div>
 
           <!-- Mindfulness -->
           <div>
             <label class="mb-1 block text-xs font-medium text-gray-700">Mindfulness</label>
-            <select id="mindfulness" class="w-full rounded-md border p-1.5 text-sm">
-              <option value="LOW_MINDFULNESS">Low</option>
-              <option value="MODERATE_MINDFULNESS" selected>Moderate</option>
-              <option value="GOOD_MINDFULNESS">High</option>
-            </select>
+            <div class="mb-2">
+              <label class="mb-0.5 block text-xs text-gray-600">Mindfulness Level</label>
+              <select id="mindfulness" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="">None</option>
+                <option value="LOW_MINDFULNESS">Low</option>
+                <option value="MODERATE_MINDFULNESS" selected>Moderate</option>
+                <option value="GOOD_MINDFULNESS">High</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-0.5 block text-xs text-gray-600">Awareness Level</label>
+              <select id="awarenessLevel" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="" selected>None</option>
+                <option value="LOW_SELF_AWARENESS">Low</option>
+                <option value="MODERATE_SELF_AWARENESS">Moderate</option>
+                <option value="GOOD_SELF_AWARENESS">High</option>
+              </select>
+            </div>
           </div>
 
           <!-- Self-Acceptance -->
           <div>
             <label class="mb-1 block text-xs font-medium text-gray-700">Self-Acceptance</label>
-            <select id="selfAcceptance" class="w-full rounded-md border p-1.5 text-sm">
-              <option value="BEGINNING_SELF_ACCEPTANCE">Beginning</option>
-              <option value="DEVELOPING_SELF_ACCEPTANCE" selected>Developing</option>
-              <option value="GROWING_SELF_ACCEPTANCE">Growing</option>
-              <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated (God Mode)</option>
-            </select>
+            <div class="mb-2">
+              <label class="mb-0.5 block text-xs text-gray-600">Level</label>
+              <select id="selfAcceptance" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="">None</option>
+                <option value="BEGINNING_SELF_ACCEPTANCE">Beginning</option>
+                <option value="DEVELOPING_SELF_ACCEPTANCE" selected>Developing</option>
+                <option value="GROWING_SELF_ACCEPTANCE">Growing</option>
+                <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated (God Mode)</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-0.5 block text-xs text-gray-600">Openness to Change</label>
+              <select id="opennessToChange" class="w-full rounded-md border p-1.5 text-sm">
+                <option value="" selected>None</option>
+                <option value="RESISTANT">Resistant</option>
+                <option value="MIXED_FEELINGS">Mixed Feelings</option>
+                <option value="OPEN">Open</option>
+                <option value="EAGER">Eager</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Main Content Area -->
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+    <div class="space-y-6">
       <!-- Chat Preview & Debug -->
-      <div class="space-y-4 lg:col-span-3">
+      <div class="space-y-4">
         <!-- Chat Window Mockup -->
         <div class="rounded-lg bg-white shadow">
           <div class="border-b p-4">
@@ -180,7 +264,21 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                 </button>
               </div>
               <div class="p-6">
-                <div id="promptList" class="max-h-[60vh] space-y-3 overflow-y-auto">
+                <!-- Category Filter -->
+                <div class="mb-4 border-b pb-4">
+                  <label class="mb-2 block text-xs font-medium text-gray-700">Filter by Category</label>
+                  <div id="modalCategoryFilter" class="flex flex-wrap gap-2">
+                    <!-- Options will be populated by JavaScript -->
+                  </div>
+                  <button
+                    id="clearModalCategoryFilter"
+                    class="mt-2 w-full rounded bg-gray-100 px-2 py-1 text-xs text-gray-700 hover:bg-gray-200"
+                  >
+                    Clear Filter
+                  </button>
+                </div>
+
+                <div id="promptList" class="max-h-[50vh] space-y-4 overflow-y-auto">
                   <!-- Prompts will be inserted here -->
                 </div>
               </div>
@@ -250,29 +348,79 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
         const demoUtils = demoUtilsModule.default || demoUtilsModule
 
         const dataScript = document.getElementById('prompt-library-data')
-        const defaultPromptLibrary = JSON.parse(dataScript?.textContent || '{}')
+        const defaultPromptLibraryData = JSON.parse(dataScript?.textContent || '{}')
+        const defaultPromptLibrary = defaultPromptLibraryData.prompts || []
+
+        // Load prompt library (from localStorage if available, otherwise from JSON)
+        let promptLibrary = defaultPromptLibrary
+        let usingLocalStorage = false
+        const useLocalStorageToggle = document.getElementById('useLocalStorage') as HTMLInputElement
+        const dataSourceIndicator = document.getElementById('dataSourceIndicator')
+
+        function loadPromptData() {
+          const shouldUseLocalStorage = useLocalStorageToggle?.checked ?? true
+
+          if (shouldUseLocalStorage) {
+            const loaded = demoUtils.loadPromptLibrary(defaultPromptLibrary) as { prompts: any[]; isEdited: boolean }
+            promptLibrary = loaded.prompts
+            usingLocalStorage = loaded.isEdited
+
+            // Show indicator if using localStorage
+            if (usingLocalStorage && dataSourceIndicator) {
+              dataSourceIndicator.classList.remove('hidden')
+            } else if (dataSourceIndicator) {
+              dataSourceIndicator.classList.add('hidden')
+            }
+          } else {
+            // Force use JSON file
+            promptLibrary = defaultPromptLibrary
+            usingLocalStorage = false
+            if (dataSourceIndicator) {
+              dataSourceIndicator.classList.add('hidden')
+            }
+          }
+
+          updatePrompts()
+        }
 
         // State
         let currentTraits = {
           attachmentType: {
             primary: 'AVOIDANT',
+            secondary: null,
             primaryIntensity: 'MODERATE',
+            secondaryIntensity: null,
           },
           loveLanguage: {
             primary: 'QUALITY_TIME',
+            secondary: null,
           },
           mindfulness: {
             mindfulnessLevel: 'MODERATE_MINDFULNESS',
+            awarenessLevel: null,
           },
           selfAcceptance: {
             level: 'DEVELOPING_SELF_ACCEPTANCE',
+            opennessToChange: null,
           },
         }
         let currentContext = 'You'
         let currentLocale = 'en'
+        let selectedCategories: string[] = []
 
-        // Initialize
-        updatePrompts()
+        // Initialize: Check if localStorage has data and set toggle accordingly
+        const loadedCheck = demoUtils.loadPromptLibrary(defaultPromptLibrary) as { prompts: any[]; isEdited: boolean }
+        const hasLocalStorage = loadedCheck.isEdited
+        if (useLocalStorageToggle) {
+          useLocalStorageToggle.checked = hasLocalStorage
+          useLocalStorageToggle.addEventListener('change', loadPromptData)
+        }
+
+        // Initial load (after state is initialized)
+        loadPromptData()
+
+        // Populate category filter
+        populateCategoryFilter()
 
         // Event Listeners
         const presetSelector = document.getElementById('presetSelector') as HTMLSelectElement
@@ -313,6 +461,8 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
             const target = e.target as HTMLInputElement
             if (target?.value) {
               currentLocale = target.value
+              // Re-populate category filter with new locale
+              populateCategoryFilter()
               updatePrompts()
             }
           })
@@ -320,9 +470,14 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
 
         document.getElementById('attachmentPrimary')?.addEventListener('change', updateTraitsFromSelectors)
         document.getElementById('attachmentIntensity')?.addEventListener('change', updateTraitsFromSelectors)
-        document.getElementById('loveLanguage')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('attachmentSecondary')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('attachmentSecondaryIntensity')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('loveLanguagePrimary')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('loveLanguageSecondary')?.addEventListener('change', updateTraitsFromSelectors)
         document.getElementById('mindfulness')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('awarenessLevel')?.addEventListener('change', updateTraitsFromSelectors)
         document.getElementById('selfAcceptance')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('opennessToChange')?.addEventListener('change', updateTraitsFromSelectors)
 
         document.getElementById('showPromptsBtn')?.addEventListener('click', () => {
           const modal = document.getElementById('promptModal')
@@ -345,6 +500,23 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           if (selectedPrompt) selectedPrompt.classList.add('hidden')
         })
 
+        document.getElementById('modalCategoryFilter')?.addEventListener('change', (e) => {
+          if ((e.target as HTMLElement).classList.contains('modal-category-checkbox')) {
+            const checkboxes = document.querySelectorAll(
+              '.modal-category-checkbox:checked'
+            ) as NodeListOf<HTMLInputElement>
+            selectedCategories = Array.from(checkboxes).map((cb) => cb.value)
+            updatePrompts()
+          }
+        })
+
+        document.getElementById('clearModalCategoryFilter')?.addEventListener('click', () => {
+          const checkboxes = document.querySelectorAll('.modal-category-checkbox') as NodeListOf<HTMLInputElement>
+          checkboxes.forEach((cb) => (cb.checked = false))
+          selectedCategories = []
+          updatePrompts()
+        })
+
         // Mapped Traits Window Toggle
         document.getElementById('closeMappedTraits')?.addEventListener('click', () => {
           const window = document.getElementById('mappedTraitsWindow')
@@ -358,27 +530,39 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
         function updateTraitsFromSelectors() {
           const attachmentPrimary = document.getElementById('attachmentPrimary') as HTMLSelectElement
           const attachmentIntensity = document.getElementById('attachmentIntensity') as HTMLSelectElement
-          const loveLanguage = document.getElementById('loveLanguage') as HTMLSelectElement
+          const attachmentSecondary = document.getElementById('attachmentSecondary') as HTMLSelectElement
+          const attachmentSecondaryIntensity = document.getElementById(
+            'attachmentSecondaryIntensity'
+          ) as HTMLSelectElement
+          const loveLanguagePrimary = document.getElementById('loveLanguagePrimary') as HTMLSelectElement
+          const loveLanguageSecondary = document.getElementById('loveLanguageSecondary') as HTMLSelectElement
           const mindfulness = document.getElementById('mindfulness') as HTMLSelectElement
+          const awarenessLevel = document.getElementById('awarenessLevel') as HTMLSelectElement
           const selfAcceptance = document.getElementById('selfAcceptance') as HTMLSelectElement
+          const opennessToChange = document.getElementById('opennessToChange') as HTMLSelectElement
           const presetSelector = document.getElementById('presetSelector') as HTMLSelectElement
 
-          if (attachmentPrimary && attachmentIntensity && loveLanguage && mindfulness && selfAcceptance) {
+          if (attachmentPrimary && attachmentIntensity && loveLanguagePrimary && mindfulness && selfAcceptance) {
             currentTraits = {
               attachmentType: {
-                primary: attachmentPrimary.value,
-                primaryIntensity: attachmentIntensity.value,
+                primary: (attachmentPrimary.value || null) as string | null,
+                secondary: (attachmentSecondary?.value || null) as string | null,
+                primaryIntensity: (attachmentIntensity.value || null) as string | null,
+                secondaryIntensity: (attachmentSecondaryIntensity?.value || null) as string | null,
               },
               loveLanguage: {
-                primary: loveLanguage.value,
+                primary: (loveLanguagePrimary.value || null) as string | null,
+                secondary: (loveLanguageSecondary?.value || null) as string | null,
               },
               mindfulness: {
-                mindfulnessLevel: mindfulness.value,
+                mindfulnessLevel: (mindfulness.value || null) as string | null,
+                awarenessLevel: (awarenessLevel?.value || null) as string | null,
               },
               selfAcceptance: {
-                level: selfAcceptance.value,
+                level: (selfAcceptance.value || null) as string | null,
+                opennessToChange: (opennessToChange?.value || null) as string | null,
               },
-            }
+            } as typeof currentTraits
             if (presetSelector) presetSelector.value = ''
             updatePrompts()
           }
@@ -387,24 +571,70 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
         function updateTraitSelectors() {
           const attachmentPrimary = document.getElementById('attachmentPrimary') as HTMLSelectElement
           const attachmentIntensity = document.getElementById('attachmentIntensity') as HTMLSelectElement
-          const loveLanguage = document.getElementById('loveLanguage') as HTMLSelectElement
+          const attachmentSecondary = document.getElementById('attachmentSecondary') as HTMLSelectElement
+          const attachmentSecondaryIntensity = document.getElementById(
+            'attachmentSecondaryIntensity'
+          ) as HTMLSelectElement
+          const loveLanguagePrimary = document.getElementById('loveLanguagePrimary') as HTMLSelectElement
+          const loveLanguageSecondary = document.getElementById('loveLanguageSecondary') as HTMLSelectElement
           const mindfulness = document.getElementById('mindfulness') as HTMLSelectElement
+          const awarenessLevel = document.getElementById('awarenessLevel') as HTMLSelectElement
           const selfAcceptance = document.getElementById('selfAcceptance') as HTMLSelectElement
+          const opennessToChange = document.getElementById('opennessToChange') as HTMLSelectElement
 
           if (attachmentPrimary) {
-            attachmentPrimary.value = currentTraits.attachmentType?.primary || 'SECURE'
+            attachmentPrimary.value = currentTraits.attachmentType?.primary || ''
           }
           if (attachmentIntensity) {
-            attachmentIntensity.value = currentTraits.attachmentType?.primaryIntensity || 'MODERATE'
+            attachmentIntensity.value = currentTraits.attachmentType?.primaryIntensity || ''
           }
-          if (loveLanguage) {
-            loveLanguage.value = currentTraits.loveLanguage?.primary || 'QUALITY_TIME'
+          if (attachmentSecondary) {
+            attachmentSecondary.value = currentTraits.attachmentType?.secondary || ''
+          }
+          if (attachmentSecondaryIntensity) {
+            attachmentSecondaryIntensity.value = currentTraits.attachmentType?.secondaryIntensity || ''
+          }
+          if (loveLanguagePrimary) {
+            loveLanguagePrimary.value = currentTraits.loveLanguage?.primary || ''
+          }
+          if (loveLanguageSecondary) {
+            loveLanguageSecondary.value = currentTraits.loveLanguage?.secondary || ''
           }
           if (mindfulness) {
-            mindfulness.value = currentTraits.mindfulness?.mindfulnessLevel || 'MODERATE_MINDFULNESS'
+            mindfulness.value = currentTraits.mindfulness?.mindfulnessLevel || ''
+          }
+          if (awarenessLevel) {
+            awarenessLevel.value = currentTraits.mindfulness?.awarenessLevel || ''
           }
           if (selfAcceptance) {
-            selfAcceptance.value = currentTraits.selfAcceptance?.level || 'DEVELOPING_SELF_ACCEPTANCE'
+            selfAcceptance.value = currentTraits.selfAcceptance?.level || ''
+          }
+          if (opennessToChange) {
+            opennessToChange.value = currentTraits.selfAcceptance?.opennessToChange || ''
+          }
+        }
+
+        function populateCategoryFilter() {
+          const categoryKeys = promptLib.getCategoryKeys()
+          const categoryFilter = document.getElementById('modalCategoryFilter')
+
+          if (categoryFilter) {
+            categoryFilter.innerHTML = ''
+            categoryKeys.forEach((key) => {
+              const label = promptLib.getCategoryLabel(key, currentLocale)
+              const labelEl = document.createElement('label')
+              labelEl.className = 'flex items-center space-x-2 cursor-pointer px-2 py-1 rounded hover:bg-gray-50'
+              const checkbox = document.createElement('input')
+              checkbox.type = 'checkbox'
+              checkbox.value = key
+              checkbox.className = 'rounded text-indigo-600 modal-category-checkbox'
+              const span = document.createElement('span')
+              span.className = 'text-xs text-gray-700'
+              span.textContent = label
+              labelEl.appendChild(checkbox)
+              labelEl.appendChild(span)
+              categoryFilter.appendChild(labelEl)
+            })
           }
         }
 
@@ -414,7 +644,8 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
             currentTraits,
             currentContext,
             currentLocale,
-            defaultPromptLibrary.prompts
+            promptLibrary,
+            selectedCategories
           )
 
           // Filter and sort
@@ -458,30 +689,47 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
             return
           }
 
-          container.innerHTML = prompts
+          // Group prompts by category
+          const grouped = promptLib.groupPromptsByCategory(prompts, currentLocale)
+
+          // Render grouped prompts as grid
+          container.innerHTML = Object.values(grouped)
             .map(
-              (prompt: any) => `
-        <button
-          class="w-full text-left p-4 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${
-            prompt.isHighPriority ? 'border-indigo-200 bg-indigo-50' : 'border-gray-200'
-          }"
-          data-prompt-id="${prompt.id}"
-          data-prompt-text="${prompt.text}"
-        >
-          <div class="flex items-start gap-2">
-            ${prompt.isHighPriority ? '<span class="text-xl">✨</span>' : ''}
-            <p class="flex-1 ${prompt.isHighPriority ? 'font-medium' : ''}">${prompt.text}</p>
+              (group: any) => `
+        <div class="mb-6">
+          <h3 class="mb-3 text-sm font-semibold text-gray-700 border-b pb-2">${group.label}</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            ${group.prompts
+              .map(
+                (prompt: any) => `
+              <button
+                class="w-full text-left p-3 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${
+                  prompt.isHighPriority ? 'border-indigo-200 bg-indigo-50' : 'border-gray-200'
+                }"
+                data-prompt-id="${prompt.id}"
+                data-prompt-text="${prompt.text}"
+              >
+                <div class="flex items-start gap-2">
+                  ${prompt.isHighPriority ? '<span class="text-xl flex-shrink-0">✨</span>' : ''}
+                  <div class="flex-1 min-w-0">
+                    <p class="${prompt.isHighPriority ? 'font-medium' : ''} text-sm leading-snug">${prompt.text}</p>
+                    ${
+                      prompt.matchedTraits > 0
+                        ? `
+                      <div class="mt-2 text-xs text-gray-500">
+                        Matches ${prompt.matchedTraits} trait${prompt.matchedTraits > 1 ? 's' : ''} • P${prompt.priority}
+                      </div>
+                    `
+                        : ''
+                    }
+                  </div>
+                </div>
+              </button>
+            `
+              )
+              .join('')}
           </div>
-          ${
-            prompt.matchedTraits > 0
-              ? `
-            <div class="mt-2 text-xs text-gray-500">
-              Matches ${prompt.matchedTraits} trait${prompt.matchedTraits > 1 ? 's' : ''} • Priority: ${prompt.priority} • Score: ${prompt.relevanceScore}
-            </div>
-          `
-              : ''
-          }
-        </button>
+        </div>
       `
             )
             .join('')
@@ -515,7 +763,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
             .slice(0, 10)
             .map((prompt: any) => {
               // Get the original prompt with text object for explainMatch
-              const originalPrompt = defaultPromptLibrary.prompts.find((p: any) => p.id === prompt.id) || prompt
+              const originalPrompt = promptLibrary.find((p: any) => p.id === prompt.id) || prompt
               const explanation: any = demoUtils.explainMatch(originalPrompt, currentTraits, mappedTraits)
 
               // Use prompt.text (string) if explanation.promptText is undefined
