@@ -1,56 +1,49 @@
-First, thank you for your openness and willingness to look inward. It takes real courage to pause and reflect on your patterns. This report is not a verdict or a label. It’s a starting point—a way to see yourself more clearly and with more understanding. Every person has patterns. Here’s what we’re beginning to see in yours.
+Welcome, tok
+Thank you for your openness in exploring your inner world. It takes real courage to look at your patterns with honesty and curiosity. This report isn’t a final answer or a label—it’s a starting point. Every person has ways they connect, care, and meet themselves. Here, you’ll find a reflection of yours—something to return to, share, and build on as you grow.
 
 Your Way of Connecting
-You tend to value your independence in relationships. You’re most comfortable when you have space to be yourself, and you don’t like feeling pressured to open up before you’re ready. At the same time, you have a solid foundation of security. You can connect emotionally when the situation feels safe and when you don’t sense demands or expectations that feel too heavy.
+You approach relationships with a strong sense of independence. You’re most comfortable when you have space to be yourself, and you value partners and friends who respect your boundaries. At the same time, you’re capable of genuine closeness, especially when you don’t feel pressured or rushed. You tend to open up more when you sense that your autonomy is honored.
 
-Your attachment style is a blend: you lean toward avoidant patterns, but you also have secure traits. This means you’re able to enjoy closeness, but only when it doesn’t threaten your sense of autonomy. You’re not someone who needs constant reassurance or attention. Instead, you appreciate partners who respect your boundaries and who don’t take distance personally.
+When it comes to showing care, you’re drawn to shared experiences and focused attention. You feel most connected during meaningful conversations or when spending uninterrupted time together. Physical closeness—like a hug or a gentle touch—also feels natural and affirming for you, especially when it happens in a relaxed, mutual way. Words matter too, but you’re most moved by presence: someone truly listening, or simply being with you without distraction.
 
-When it comes to love, you express and receive it most deeply through shared time and physical presence. Quality time is your primary love language, and you score equally high on physical touch. For you, love is about being together—doing things side by side, having focused conversations, and feeling someone’s presence. You notice when someone listens to you fully or when they make time just for you. Physical touch, like a hug or a hand on your shoulder, also means a lot. Words and gifts matter less; you care more about actions and presence than about verbal affirmations or material things.
+Imagine a weekend afternoon: you and a close friend are side by side, each reading your own book, occasionally sharing thoughts. This quiet togetherness feels just as meaningful as a deep conversation. Or picture yourself with a partner—walking together, hands brushing, sharing observations about the world. These moments of shared presence and gentle touch are where you feel most at ease.
 
-Imagine this: You’re spending a quiet evening with someone you care about. You’re both doing your own thing—maybe reading or working on a project—but you’re in the same room. There’s no pressure to talk, but you know you can reach out and connect if you want to. Later, you share a meal and talk about your day. There’s a sense of ease and comfort. This is where you feel most at home: together, but not crowded.
+You’re attentive to the needs of others, but you may hesitate to initiate closeness if you sense expectations or demands. If someone pushes for more than you’re ready to give, you might pull back—not out of disinterest, but to protect your sense of self. Sometimes, this can lead to misunderstandings. For example, a friend might interpret your need for space as distance, when in reality, it’s your way of recharging and staying authentic.
 
-Sometimes, though, your need for space can be misunderstood. If a partner wants more closeness or reassurance than you naturally give, you might feel overwhelmed or even pull back. This isn’t about not caring—it’s about protecting your own sense of safety. You may struggle when someone interprets your independence as distance or lack of interest. In those moments, it can help to remember that your way of loving is valid, even if it looks different from someone else’s.
+You also notice subtle shifts in others’ moods and respond with quiet support—offering to spend time together or simply being present. You’re less likely to express care through grand gestures or gifts; instead, you show up in small, consistent ways. When someone truly sees and accepts your need for both closeness and independence, you relax and let your guard down.
 
-Your pattern creates a unique dynamic: you’re able to offer stability and calm, but you also need partners who understand that your need for space is not a rejection. When you find that balance, you can build deep, lasting connections.
+If you’ve ever felt misunderstood for needing time alone, or found yourself wishing others would just “be” with you instead of trying to fix things, you’re not alone. These patterns are part of how you protect your energy and build trust. They’re not flaws—they’re your way of staying true to yourself while connecting with others.
 
 The Way You Meet Yourself
-You’re developing a real capacity for self-awareness and presence. You can notice your thoughts and feelings, especially when things are calm or when you’re reminded to check in with yourself. In those moments, you’re able to step back and observe what’s happening inside you. You might notice tension in your body, a shift in your mood, or a pattern in your thinking. This ability to pause and reflect is a strength, even if it’s not always consistent.
+Your relationship with your inner world is marked by genuine curiosity and a desire to grow. You’re able to notice your thoughts and feelings, especially when life is calm. In these moments, you can step back, observe your reactions, and even challenge your inner critic. You might catch yourself thinking, “Why am I feeling this way?” or “Is this really true about me?”
 
-When stress hits, though, it’s harder for you to stay present. Old habits take over. You might lose touch with your observer self and get swept up in self-criticism or worry. Your inner dialogue can be harsh at times, especially when you feel like you’ve made a mistake or let someone down. The inner critic is still strong, but you’re starting to challenge it. There are moments when you can talk to yourself with more compassion, reminding yourself that everyone struggles and that growth is a process.
+However, when stress rises, it becomes harder to maintain this awareness. Old patterns—like self-judgment or harsh inner talk—can take over. You might replay mistakes in your mind, or question whether you’re doing enough. Yet, even in these moments, there’s a part of you that wants to understand, not just criticize. You’re learning to offer yourself the same patience you give others, though it’s still a work in progress.
 
-You’re genuinely curious about your inner world. You want to understand why you react the way you do, and you’re open to learning new ways of relating to yourself. You’re not afraid to ask hard questions or to look at uncomfortable truths. This curiosity is a sign of real readiness for change.
+Picture a time when you made a small error at work. Your first reaction might be frustration or self-blame. But after a pause, you notice these feelings and remind yourself that everyone slips up. Sometimes, you even talk back to your inner critic: “It’s okay. I can learn from this.”
 
-You benefit from structure—practices that help you check in with yourself regularly, like journaling, meditation, or even just pausing to notice your breath. When you have these anchors, you’re better able to stay connected to yourself, even when things get tough. You also respond well to concrete suggestions and accountability. If you set a goal or make a plan, you’re likely to follow through, especially if you can see your progress over time.
+Or imagine a day when emotions feel overwhelming. You might initially try to push them aside, focusing on tasks or distractions. Later, when things quiet down, you reflect on what happened and why. This ability to circle back—to revisit your feelings with curiosity—is a quiet strength. It shows your readiness to grow and your willingness to meet yourself, even when it’s uncomfortable.
 
-Self-acceptance is still a work in progress for you. You can see your patterns and even name them, but it’s not always easy to be kind to yourself about them. You might judge yourself for not being further along or for slipping back into old habits. It’s important to remember that self-acceptance isn’t about liking everything you see—it’s about being honest and gentle with yourself, even when things are messy. You’re already moving in that direction, and every small step counts.
+You benefit from reminders to slow down and check in with yourself. When you do, you’re able to see your patterns more clearly and respond with greater kindness. You’re not always consistent, but you’re motivated to keep trying. Over time, you’re building a more compassionate inner dialogue—one that balances honesty with understanding.
 
 The Push and Pull Within
-One of your strengths is your ability to reflect. Even when you’re struggling, you can step back and ask, “What’s really going on here?” This awareness helps you catch yourself before you spiral too far into self-criticism or withdrawal. It also gives you the chance to choose a different response, even if it’s just a small shift.
+One of your greatest strengths is your ability to notice your needs for space and connection before they become overwhelming. You often sense when you’re reaching your limit and can step back to recharge, which helps you avoid burnout in relationships and daily life.
 
-At the same time, there’s a tension between your desire for connection and your need for independence. You want to be close to others, but you also worry about losing yourself or being overwhelmed. When someone gets too close or asks for more than you’re ready to give, you might pull back—not because you don’t care, but because you need to protect your own space. This push and pull can create confusion, both for you and for the people around you.
+At the same time, there’s a tension between your desire for closeness and your tendency to question your own worthiness. When someone gets close, you might wonder if you truly deserve their attention, leading you to pull away just as intimacy is building. This push and pull can be confusing, both for you and for those who care about you.
 
-Here are a couple of questions to keep in mind as you move forward:
+Reflection questions to consider:
 
-When you notice yourself pulling away, what are you protecting? What would it take to feel safe enough to stay present?
-How do you talk to yourself when you make a mistake or feel vulnerable? What would it sound like to respond with the same kindness you offer to others?
-Staying curious about these questions can help you find more balance between connection and autonomy.
+When you notice yourself needing space, what are you protecting?
+How do you speak to yourself after a setback or mistake?
+These questions aren’t meant to fix anything—they’re invitations to understand yourself more deeply.
 
 What Your Patterns Reveal
-Your patterns show up in many areas of your life. In relationships, you’re steady and reliable, but you need space to recharge. You’re not likely to get caught up in drama or emotional highs and lows. Instead, you bring a sense of calm and stability. This can be a real gift to the people around you, especially those who value consistency.
+In daily life, your patterns show up in subtle but consistent ways. In relationships, you’re the person who values quality time over quantity. You’d rather have one meaningful conversation than a dozen surface-level interactions. Under stress, you might withdraw to process your feelings, returning when you feel more centered.
 
-Under stress, you might retreat into yourself. You may become more critical or less able to see the bigger picture. This is when your old habits are most likely to show up—pulling away from others, doubting your worth, or getting stuck in negative self-talk. But even then, you have the tools to come back to yourself. You know how to pause, reflect, and start again.
+At work or in creative projects, you’re thoughtful and deliberate. You prefer to reflect before acting, and you appreciate environments where you can work independently but still feel connected to a team. When making decisions, you weigh your options carefully, sometimes second-guessing yourself if you feel uncertain.
 
-One pattern that repeats is your tendency to value presence over words. You notice when someone is really there with you, paying attention and sharing space. You’re less moved by grand gestures or verbal affirmations. This can surprise people who expect love to look a certain way. But for you, love is quiet, steady, and grounded in shared experience.
-
-You may not always see how much progress you’ve made. It’s easy to focus on what’s missing or what still feels hard. But the fact that you’re reading this report, reflecting on your patterns, and looking for ways to grow is a sign of real strength. You’re not stuck—you’re evolving, even when it doesn’t feel like it.
+A surprising truth: your need for both independence and connection is not a contradiction—it’s a sign of your complexity. You’re learning to honor both, even when they seem at odds. The patterns that once protected you are now helping you build a more balanced, authentic life.
 
 A Space to Return To
-You’ve just taken a close look at the ways you connect, protect, need, and express yourself. These patterns aren’t fixed. They’re a map—a way to understand who you are when no one’s watching, and who you might become when you feel truly seen.
+These reflections are a beginning, not a definition. Your patterns are unique to you, shaped by your experiences and your hopes for the future. Whenever you feel uncertain or want to reconnect with yourself, come back to this report. Let it remind you of your strengths, your growth, and your capacity for both independence and closeness.
 
-This report isn’t here to define you. It’s here to help you understand yourself, especially the parts you’ve had to set aside to fit in or to be loved. Inside you, there are instincts that guide you, hopes you carry, and strength in your sensitivity. Your experience is real and valid.
-
-Whenever you feel lost or unsure, come back to these reflections. They don’t expire. They deepen with time and with each new insight you gain.
-
-You are not a fixed pattern. You are a person still growing.
-
-And I’ll be here when your next question arises.
+You are not a fixed pattern. You are a person in motion—growing, learning, and becoming more yourself every day. When you need a reminder of who you are beneath the noise, these words will be here. You deserve understanding, from yourself and from others. And you are always worth returning to.

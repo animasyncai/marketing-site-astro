@@ -1,0 +1,636 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import defaultPromptLibrary from '../prompt-library/data/prompt-library.json'
+
+const pageTitle = 'Prompt Library Editor'
+const pageDescription = 'Edit, add, and manage reflection prompts'
+---
+
+<DefaultLayout title={pageTitle} description={pageDescription}>
+  <div class="container mx-auto max-w-7xl px-4 py-8">
+    <!-- Header -->
+    <div class="mb-8 flex items-start justify-between">
+      <div>
+        <h1 class="mb-2 text-3xl font-bold text-gray-900">{pageTitle}</h1>
+        <p class="text-gray-600">Edit, add, and manage reflection prompts</p>
+      </div>
+
+      <!-- Status & Actions -->
+      <div class="flex gap-3">
+        <div
+          id="unsavedIndicator"
+          class="hidden items-center gap-2 rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-2"
+        >
+          <svg class="h-5 w-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            ></path>
+          </svg>
+          <span class="text-sm font-medium text-yellow-800">Unsaved changes</span>
+        </div>
+
+        <button
+          id="resetBtn"
+          class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50"
+        >
+          Reset to Default
+        </button>
+
+        <button
+          id="importBtn"
+          class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50"
+        >
+          Import JSON
+        </button>
+
+        <button id="exportBtn" class="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+          Export JSON
+        </button>
+      </div>
+    </div>
+
+    <!-- Validation Warnings -->
+    <div id="validationWarnings" class="mb-6 hidden">
+      <!-- Warnings will be inserted here -->
+    </div>
+
+    <!-- Main Layout -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <!-- Left: Prompt List -->
+      <div>
+        <div class="mb-4 rounded-lg bg-white shadow">
+          <div class="flex items-center justify-between border-b p-4">
+            <h2 class="text-lg font-semibold">Prompts (<span id="promptCount">0</span>)</h2>
+            <button id="addNewBtn" class="rounded-lg bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-700">
+              + Add New
+            </button>
+          </div>
+
+          <div id="promptList" class="max-h-[calc(100vh-300px)] divide-y overflow-y-auto">
+            <!-- Prompt items will be inserted here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Editor Form -->
+      <div class="sticky top-4 rounded-lg bg-white shadow">
+        <div class="border-b p-4">
+          <h2 class="text-lg font-semibold">
+            <span id="editorTitle">Select a prompt to edit</span>
+          </h2>
+        </div>
+
+        <div id="editorForm" class="hidden p-6">
+          <form id="promptForm" class="space-y-6">
+            <!-- ID (readonly) -->
+            <div>
+              <label class="mb-2 block text-sm font-medium text-gray-700">ID</label>
+              <input type="number" id="promptId" readonly class="w-full rounded-md border bg-gray-50 p-2" />
+            </div>
+
+            <!-- Translations -->
+            <div>
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                English Text <span class="text-red-500">*</span>
+              </label>
+              <textarea id="textEn" rows="2" class="w-full rounded-md border p-2" required></textarea>
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Lithuanian Text <span class="text-red-500">*</span>
+              </label>
+              <textarea id="textLt" rows="2" class="w-full rounded-md border p-2" required></textarea>
+            </div>
+
+            <!-- Contexts -->
+            <div>
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Contexts <span class="text-red-500">*</span>
+              </label>
+              <div class="space-y-2">
+                <label class="flex items-center space-x-2">
+                  <input type="checkbox" value="You" class="context-checkbox rounded" />
+                  <span>You</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                  <input type="checkbox" value="Couple" class="context-checkbox rounded" />
+                  <span>Couple</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                  <input type="checkbox" value="Family" class="context-checkbox rounded" />
+                  <span>Family</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Priority -->
+            <div>
+              <label class="mb-2 block text-sm font-medium text-gray-700"> Priority (1-10) </label>
+              <input type="number" id="priority" min="1" max="10" class="w-full rounded-md border p-2" />
+            </div>
+
+            <!-- Match Type -->
+            <div>
+              <label class="mb-2 block text-sm font-medium text-gray-700"> Trait Match Type </label>
+              <select id="matchType" class="w-full rounded-md border p-2">
+                <option value="AND">AND (all traits must match)</option>
+                <option value="OR">OR (any trait can match)</option>
+              </select>
+            </div>
+
+            <!-- Trait Requirements -->
+            <div>
+              <div class="mb-3 flex items-center justify-between">
+                <label class="block text-sm font-medium text-gray-700"> Trait Requirements </label>
+                <button
+                  type="button"
+                  id="addTraitBtn"
+                  class="rounded bg-indigo-100 px-3 py-1 text-sm text-indigo-700 hover:bg-indigo-200"
+                >
+                  + Add Trait
+                </button>
+              </div>
+              <div id="traitsContainer" class="space-y-3">
+                <!-- Trait requirements will be inserted here -->
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex gap-3 border-t pt-4">
+              <button type="submit" class="flex-1 rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                id="duplicateBtn"
+                class="rounded-lg bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300"
+              >
+                Duplicate
+              </button>
+              <button type="button" id="deleteBtn" class="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700">
+                Delete
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div id="editorPlaceholder" class="p-12 text-center text-gray-500">
+          <svg class="mx-auto mb-4 h-16 w-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+            ></path>
+          </svg>
+          <p>Select a prompt from the list to edit</p>
+          <p class="mt-2 text-sm">or click "Add New" to create one</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden File Input -->
+  <input type="file" id="fileInput" accept=".json" class="hidden" />
+
+  <!-- Scripts -->
+  <script type="application/json" id="prompt-library-data" set:html={JSON.stringify(defaultPromptLibrary)} />
+  <script>
+    // ==========================================
+    // IMPORT MODULES
+    // ==========================================
+    Promise.all([import('../prompt-library/prompt-library.js'), import('../prompt-library/prompt-library-demo.js')])
+      .then(([promptLibModule, demoUtilsModule]) => {
+        const promptLib = promptLibModule.default || promptLibModule
+        const demoUtils = demoUtilsModule.default || demoUtilsModule
+
+        const dataScript = document.getElementById('prompt-library-data')
+        const defaultPromptLibrary = JSON.parse(dataScript?.textContent || '{}')
+
+        // State
+        let prompts = []
+        let originalPrompts = []
+        let selectedPromptId = null
+
+        // Initialize
+        loadPrompts()
+        updatePromptList()
+        updateValidation()
+
+        // Event Listeners
+        document.getElementById('addNewBtn').addEventListener('click', addNewPrompt)
+        document.getElementById('exportBtn').addEventListener('click', exportPrompts)
+        document.getElementById('importBtn').addEventListener('click', () => {
+          document.getElementById('fileInput').click()
+        })
+        document.getElementById('fileInput').addEventListener('change', importPrompts)
+        document.getElementById('resetBtn').addEventListener('click', resetPrompts)
+        document.getElementById('promptForm').addEventListener('submit', savePrompt)
+        document.getElementById('duplicateBtn').addEventListener('click', duplicatePrompt)
+        document.getElementById('deleteBtn').addEventListener('click', deletePrompt)
+        document.getElementById('addTraitBtn').addEventListener('click', addTraitRequirement)
+
+        // Functions
+        function loadPrompts() {
+          const loaded = demoUtils.loadPromptLibrary(defaultPromptLibrary.prompts)
+          prompts = loaded.prompts
+          originalPrompts = JSON.parse(JSON.stringify(prompts))
+          checkUnsavedChanges()
+        }
+
+        function checkUnsavedChanges() {
+          const hasChanges = demoUtils.hasUnsavedChanges(prompts, originalPrompts)
+          const indicator = document.getElementById('unsavedIndicator')
+
+          if (hasChanges) {
+            indicator.classList.remove('hidden')
+            indicator.classList.add('flex')
+          } else {
+            indicator.classList.add('hidden')
+            indicator.classList.remove('flex')
+          }
+        }
+
+        function updatePromptList() {
+          const container = document.getElementById('promptList')
+          document.getElementById('promptCount').textContent = prompts.length
+
+          if (prompts.length === 0) {
+            container.innerHTML = '<div class="p-8 text-center text-gray-500">No prompts yet</div>'
+            return
+          }
+
+          container.innerHTML = prompts
+            .map((prompt) => {
+              const validation = promptLib.validatePrompt(prompt)
+              const hasErrors = !validation.valid
+
+              return `
+          <button
+            class="w-full text-left p-4 hover:bg-gray-50 transition-colors ${
+              selectedPromptId === prompt.id ? 'bg-indigo-50 border-l-4 border-indigo-600' : ''
+            }"
+            data-prompt-id="${prompt.id}"
+          >
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex-1">
+                <div class="font-medium text-gray-900 mb-1">
+                  ${prompt.text.en || '(No English text)'}
+                </div>
+                <div class="text-xs text-gray-500">
+                  ID: ${prompt.id} • 
+                  Contexts: ${prompt.contexts.join(', ')} • 
+                  Priority: ${prompt.priority || 5}
+                  ${prompt.criteria.traits.length > 0 ? `• ${prompt.criteria.traits.length} traits` : ''}
+                </div>
+              </div>
+              ${
+                hasErrors
+                  ? `
+                <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              `
+                  : ''
+              }
+            </div>
+          </button>
+        `
+            })
+            .join('')
+
+          // Add click handlers
+          container.querySelectorAll('button').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const id = parseInt(btn.dataset.promptId)
+              selectPrompt(id)
+            })
+          })
+        }
+
+        function selectPrompt(id) {
+          selectedPromptId = id
+          const prompt = prompts.find((p) => p.id === id)
+
+          if (!prompt) return
+
+          // Update UI
+          document.getElementById('editorPlaceholder').classList.add('hidden')
+          document.getElementById('editorForm').classList.remove('hidden')
+          document.getElementById('editorTitle').textContent = `Edit Prompt #${id}`
+
+          // Fill form
+          document.getElementById('promptId').value = prompt.id
+          document.getElementById('textEn').value = prompt.text.en || ''
+          document.getElementById('textLt').value = prompt.text.lt || ''
+          document.getElementById('priority').value = prompt.priority || 5
+          document.getElementById('matchType').value = prompt.criteria.matchType || 'AND'
+
+          // Set contexts
+          document.querySelectorAll('.context-checkbox').forEach((checkbox) => {
+            checkbox.checked = prompt.contexts.includes(checkbox.value)
+          })
+
+          // Render trait requirements
+          renderTraitRequirements(prompt.criteria.traits || [])
+
+          // Update list highlight
+          updatePromptList()
+        }
+
+        function renderTraitRequirements(traits) {
+          const container = document.getElementById('traitsContainer')
+
+          if (traits.length === 0) {
+            container.innerHTML = '<p class="text-sm text-gray-500 italic">No trait requirements (universal prompt)</p>'
+            return
+          }
+
+          container.innerHTML = traits
+            .map(
+              (trait, index) => `
+        <div class="border rounded-lg p-3 bg-gray-50" data-trait-index="${index}">
+          <div class="flex justify-between items-start mb-3">
+            <span class="text-sm font-medium text-gray-700">Trait ${index + 1}</span>
+            <button type="button" class="text-red-600 hover:text-red-700 remove-trait-btn">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Type</label>
+              <select class="trait-type w-full p-2 border rounded text-sm">
+                ${demoUtils.EDITOR_OPTIONS.traitTypes
+                  .map((type) => `<option value="${type}" ${trait.type === type ? 'selected' : ''}>${type}</option>`)
+                  .join('')}
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Labels (optional)</label>
+              <select multiple class="trait-labels w-full p-2 border rounded text-sm h-20">
+                ${getLabelsForType(trait.type)
+                  .map(
+                    (label) =>
+                      `<option value="${label}" ${trait.labels?.includes(label) ? 'selected' : ''}>${label}</option>`
+                  )
+                  .join('')}
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Intensities (optional)</label>
+              <select multiple class="trait-intensities w-full p-2 border rounded text-sm h-20">
+                ${demoUtils.EDITOR_OPTIONS.intensities
+                  .map(
+                    (intensity) =>
+                      `<option value="${intensity}" ${trait.intensities?.includes(intensity) ? 'selected' : ''}>${intensity}</option>`
+                  )
+                  .join('')}
+              </select>
+            </div>
+          </div>
+        </div>
+      `
+            )
+            .join('')
+
+          // Add event listeners
+          container.querySelectorAll('.trait-type').forEach((select, index) => {
+            select.addEventListener('change', () => {
+              // Update labels dropdown when type changes
+              const labelsSelect = container.querySelectorAll('.trait-labels')[index]
+              labelsSelect.innerHTML = getLabelsForType(select.value)
+                .map((label) => `<option value="${label}">${label}</option>`)
+                .join('')
+            })
+          })
+
+          container.querySelectorAll('.remove-trait-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+              const prompt = prompts.find((p) => p.id === selectedPromptId)
+              prompt.criteria.traits.splice(index, 1)
+              renderTraitRequirements(prompt.criteria.traits)
+            })
+          })
+        }
+
+        function getLabelsForType(type) {
+          return demoUtils.getLabelsForTraitType(type)
+        }
+
+        function addTraitRequirement() {
+          const prompt = prompts.find((p) => p.id === selectedPromptId)
+          if (!prompt) return
+
+          prompt.criteria.traits.push({
+            type: 'attachment',
+            labels: [],
+            intensities: [],
+          })
+
+          renderTraitRequirements(prompt.criteria.traits)
+        }
+
+        function savePrompt(e) {
+          e.preventDefault()
+
+          const prompt = prompts.find((p) => p.id === selectedPromptId)
+          if (!prompt) return
+
+          // Update basic fields
+          prompt.text.en = document.getElementById('textEn').value
+          prompt.text.lt = document.getElementById('textLt').value
+          prompt.priority = parseInt(document.getElementById('priority').value) || 5
+          prompt.criteria.matchType = document.getElementById('matchType').value
+
+          // Update contexts
+          prompt.contexts = Array.from(document.querySelectorAll('.context-checkbox:checked')).map((cb) => cb.value)
+
+          // Update trait requirements
+          const traitElements = document.querySelectorAll('#traitsContainer [data-trait-index]')
+          prompt.criteria.traits = Array.from(traitElements).map((el) => {
+            const type = el.querySelector('.trait-type').value
+            const labels = Array.from(el.querySelector('.trait-labels').selectedOptions).map((o) => o.value)
+            const intensities = Array.from(el.querySelector('.trait-intensities').selectedOptions).map((o) => o.value)
+
+            return {
+              type,
+              ...(labels.length > 0 && { labels }),
+              ...(intensities.length > 0 && { intensities }),
+            }
+          })
+
+          // Save to localStorage
+          demoUtils.savePromptLibrary(prompts)
+          checkUnsavedChanges()
+          updatePromptList()
+          updateValidation()
+
+          // Show success
+          showNotification('Saved successfully!')
+        }
+
+        function addNewPrompt() {
+          const nextId = demoUtils.getNextId(prompts)
+          const newPrompt = demoUtils.createEmptyPrompt(nextId)
+          prompts.push(newPrompt)
+
+          updatePromptList()
+          selectPrompt(nextId)
+          checkUnsavedChanges()
+        }
+
+        function duplicatePrompt() {
+          const prompt = prompts.find((p) => p.id === selectedPromptId)
+          if (!prompt) return
+
+          const nextId = demoUtils.getNextId(prompts)
+          const duplicated = demoUtils.duplicatePrompt(prompt, nextId)
+          prompts.push(duplicated)
+
+          updatePromptList()
+          selectPrompt(nextId)
+          checkUnsavedChanges()
+
+          showNotification('Prompt duplicated!')
+        }
+
+        function deletePrompt() {
+          if (!confirm('Are you sure you want to delete this prompt?')) return
+
+          prompts = prompts.filter((p) => p.id !== selectedPromptId)
+          selectedPromptId = null
+
+          document.getElementById('editorPlaceholder').classList.remove('hidden')
+          document.getElementById('editorForm').classList.add('hidden')
+
+          demoUtils.savePromptLibrary(prompts)
+          checkUnsavedChanges()
+          updatePromptList()
+          updateValidation()
+
+          showNotification('Prompt deleted')
+        }
+
+        function exportPrompts() {
+          demoUtils.exportPromptLibrary(prompts)
+          showNotification('Exported successfully!')
+        }
+
+        function importPrompts(e) {
+          const file = e.target.files[0]
+          if (!file) return
+
+          const reader = new FileReader()
+          reader.onload = (event) => {
+            const result = demoUtils.importPromptLibrary(event.target.result)
+
+            if (!result.success) {
+              alert(`Import failed: ${result.error}`)
+              return
+            }
+
+            if (!confirm('This will replace all current prompts. Continue?')) {
+              return
+            }
+
+            prompts = result.prompts
+            selectedPromptId = null
+
+            document.getElementById('editorPlaceholder').classList.remove('hidden')
+            document.getElementById('editorForm').classList.add('hidden')
+
+            demoUtils.savePromptLibrary(prompts)
+            originalPrompts = JSON.parse(JSON.stringify(prompts))
+            checkUnsavedChanges()
+            updatePromptList()
+            updateValidation()
+
+            showNotification('Imported successfully!')
+          }
+
+          reader.readAsText(file)
+          e.target.value = '' // Reset file input
+        }
+
+        function resetPrompts() {
+          if (!confirm('Reset to default prompts? This will discard all changes.')) return
+
+          prompts = demoUtils.resetPromptLibrary(defaultPromptLibrary.prompts)
+          originalPrompts = JSON.parse(JSON.stringify(prompts))
+          selectedPromptId = null
+
+          document.getElementById('editorPlaceholder').classList.remove('hidden')
+          document.getElementById('editorForm').classList.add('hidden')
+
+          checkUnsavedChanges()
+          updatePromptList()
+          updateValidation()
+
+          showNotification('Reset to default')
+        }
+
+        function updateValidation() {
+          const validation = promptLib.validatePromptLibrary(prompts)
+          const container = document.getElementById('validationWarnings')
+
+          if (validation.valid) {
+            container.classList.add('hidden')
+            return
+          }
+
+          container.classList.remove('hidden')
+          container.innerHTML = `
+        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <div class="flex-1">
+              <h3 class="font-semibold text-red-800 mb-2">Validation Errors</h3>
+              <div class="space-y-2">
+                ${validation.errors
+                  .map(
+                    (err) => `
+                  <div class="text-sm">
+                    <span class="font-medium">Prompt #${err.id}:</span>
+                    <ul class="ml-4 mt-1 list-disc">
+                      ${err.errors.map((e) => `<li>${e}</li>`).join('')}
+                    </ul>
+                  </div>
+                `
+                  )
+                  .join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+        }
+
+        function showNotification(message) {
+          // Simple notification - could be enhanced
+          const notification = document.createElement('div')
+          notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50'
+          notification.textContent = message
+          document.body.appendChild(notification)
+
+          setTimeout(() => {
+            notification.remove()
+          }, 2000)
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load prompt library modules:', error)
+        alert('Failed to load prompt library. Please check the console.')
+      })
+  </script>
+</DefaultLayout>

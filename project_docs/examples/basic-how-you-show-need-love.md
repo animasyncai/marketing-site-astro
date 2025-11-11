@@ -1,24 +1,8 @@
-💌 How You Show & Need Love
 The Way You Give
-You show love by being present. You make time for people you care about, and you give them your full attention. When you’re with someone, you listen closely and focus on what they’re saying. You enjoy sharing activities, whether it’s a walk, a meal, or just sitting together. You believe that being together, without distractions, is one of the best ways to show you care.
-
-Physical closeness is also important to you. You might reach out for a hug, hold hands, or offer a gentle touch. These small gestures come naturally when you feel close to someone. You assume that your presence and attention are clear signs of your affection. You expect others to notice when you make time for them or listen deeply.
-
-Your approach to caring is shaped by a generally secure and trusting attitude. You’re comfortable giving love and don’t usually worry about how it will be received. When things get stressful, you might pull back a little, needing space to recharge. But most of the time, you balance closeness and independence well.
+You tend to express care by being fully present with those you value. When you want to show someone they matter, you often set aside distractions and give them your undivided attention. You might invite people to share activities with you, whether that's a quiet conversation, a shared meal, or simply spending time together without an agenda. Your way of showing affection often includes small gestures of closeness, like a reassuring touch or sitting side by side. You usually assume that your presence and focus are clear signs of your care, and you may expect others to pick up on these signals without needing to say much. When life gets a bit stressful, you might pull back slightly, needing space to recharge before re-engaging. Even then, you tend to return to connection once you feel ready, balancing your need for independence with your desire to be close.
 
 What You Need to Feel Loved
-You feel most loved when someone gives you their undivided attention. If a friend or partner puts away their phone and really listens, you notice. Shared experiences matter to you. You remember the times when someone made an effort to spend time with you, even if it was something simple.
+You recognize love most clearly when someone offers you their full attention and makes time just for you. Long, meaningful conversations or shared experiences help you feel valued. You notice when someone listens deeply or remembers small details from your talks. Physical closeness, like a gentle touch or a warm hug, also reassures you. While you appreciate kind words and helpful actions, you might overlook them if they aren't paired with genuine presence. Sometimes, if someone expresses care through gifts or by doing things for you without spending time together, you may not feel as connected. There's a subtle difference between what you give and what you need: you often offer your presence and attention, but you also long for others to initiate closeness and make you feel chosen in return.
 
-Physical touch is another way you recognize love. A warm hug or a gentle touch can mean more to you than words. You might not always say what you need, but you notice when someone is physically present and attentive.
-
-Because you’re usually secure, you don’t need constant reassurance. But during tough times, you might want a little more space. If someone crowds you or pushes for closeness when you’re stressed, you may pull away. You need a balance between togetherness and independence.
-
-Where Wires Get Crossed
-Sometimes, people miss your signals. You might think your presence and attention are obvious signs of love, but others may look for words or gifts instead. If someone doesn’t value quality time or touch as much as you do, you could feel unappreciated.
-
-You may also expect others to give you space when you need it, but not everyone understands this. If someone tries to help by talking or doing things for you when you want quiet, you might feel misunderstood. Your calm, steady way of showing care can be mistaken for distance if someone expects more obvious displays.
-
-One key insight: You communicate care through presence and touch, but you may not always say what you need. This can lead to small misunderstandings, especially with people who show love differently.
-
-Ready to Decode More?
-This is just the surface. Your full Communication Decoder reveals how your love patterns interact with stress, conflict, and different relationship stages — plus specific strategies for bridging communication gaps and helping others understand your unique way of caring.
+Where Understanding Begins
+You likely recognize that you value quality moments over grand gestures. One pattern you might notice is your tendency to show love by being there, quietly and consistently, rather than through words or elaborate surprises. At times, this can lead to a disconnect if others express care in ways you don't easily notice, or if you need space and they interpret it as distance. Your natural rhythm is to move between togetherness and independence, finding comfort in both. These are the patterns you bring to connection. They're neither right nor wrong — they're yours. And understanding them is the first step toward expressing yourself more clearly.

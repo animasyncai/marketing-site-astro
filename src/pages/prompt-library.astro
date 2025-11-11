@@ -1,0 +1,578 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import defaultPromptLibrary from '../prompt-library/data/prompt-library.json'
+
+const pageTitle = 'Prompt Library Testing'
+const pageDescription = 'Test how prompts are filtered based on traits and context'
+---
+
+<DefaultLayout title={pageTitle} description={pageDescription}>
+  <div class="container mx-auto max-w-7xl px-4 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="mb-2 text-3xl font-bold text-gray-900">{pageTitle}</h1>
+      <p class="text-gray-600">Test how prompts are filtered based on traits and context</p>
+    </div>
+
+    <!-- Trait Selectors (Above Chat) -->
+    <div class="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <!-- Settings Panel (1/3 width) -->
+      <div class="rounded-lg bg-white p-4 shadow">
+        <h2 class="mb-3 text-sm font-semibold">Settings</h2>
+
+        <!-- Preset Selector -->
+        <div class="mb-4">
+          <label class="mb-2 block text-xs font-medium text-gray-700">Quick Presets</label>
+          <select id="presetSelector" class="w-full rounded-md border p-2 text-sm">
+            <option value="">Custom</option>
+            <option value="anxiousAttacher">Anxious Attacher</option>
+            <option value="avoidantAttacher">Avoidant Attacher</option>
+            <option value="secureAndAware">Secure & Aware</option>
+            <option value="beginner">Beginner (Low Awareness)</option>
+            <option value="actsOfService">Acts of Service</option>
+            <option value="minimal">Minimal Traits</option>
+          </select>
+        </div>
+
+        <!-- Context Selector -->
+        <div class="mb-4">
+          <label class="mb-2 block text-xs font-medium text-gray-700">Context</label>
+          <div class="flex flex-wrap gap-3">
+            <label class="flex items-center space-x-1.5">
+              <input type="radio" name="context" value="You" checked class="text-indigo-600" />
+              <span class="text-sm">You</span>
+            </label>
+            <label class="flex items-center space-x-1.5">
+              <input type="radio" name="context" value="Couple" class="text-indigo-600" />
+              <span class="text-sm">Couple</span>
+            </label>
+            <label class="flex items-center space-x-1.5">
+              <input type="radio" name="context" value="Family" class="text-indigo-600" />
+              <span class="text-sm">Family</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Language Selector -->
+        <div>
+          <label class="mb-2 block text-xs font-medium text-gray-700">Language</label>
+          <div class="flex flex-wrap gap-3">
+            <label class="flex items-center space-x-1.5">
+              <input type="radio" name="language" value="en" checked class="text-indigo-600" />
+              <span class="text-sm">English</span>
+            </label>
+            <label class="flex items-center space-x-1.5">
+              <input type="radio" name="language" value="lt" class="text-indigo-600" />
+              <span class="text-sm">Lithuanian</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trait Selectors (2/3 width) -->
+      <div class="rounded-lg bg-white p-4 shadow lg:col-span-2">
+        <h2 class="mb-3 text-sm font-semibold">Traits</h2>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <!-- Attachment -->
+          <div>
+            <label class="mb-1 block text-xs font-medium text-gray-700">Attachment</label>
+            <select id="attachmentPrimary" class="mb-1 w-full rounded-md border p-1.5 text-sm">
+              <option value="ANXIOUS">Anxious</option>
+              <option value="AVOIDANT" selected>Avoidant</option>
+              <option value="SECURE">Secure</option>
+              <option value="DISORGANIZED">Disorganized</option>
+            </select>
+            <select id="attachmentIntensity" class="w-full rounded-md border p-1.5 text-sm">
+              <option value="VERY_MILD">Very Mild</option>
+              <option value="MILD">Mild</option>
+              <option value="MODERATE" selected>Moderate</option>
+              <option value="STRONG">Strong</option>
+            </select>
+          </div>
+
+          <!-- Love Language -->
+          <div>
+            <label class="mb-1 block text-xs font-medium text-gray-700">Love Language</label>
+            <select id="loveLanguage" class="w-full rounded-md border p-1.5 text-sm">
+              <option value="WORDS_OF_AFFIRMATION">Words of Affirmation</option>
+              <option value="QUALITY_TIME" selected>Quality Time</option>
+              <option value="ACTS_OF_SERVICE">Acts of Service</option>
+              <option value="PHYSICAL_TOUCH">Physical Touch</option>
+              <option value="GIFTS">Gifts</option>
+            </select>
+          </div>
+
+          <!-- Mindfulness -->
+          <div>
+            <label class="mb-1 block text-xs font-medium text-gray-700">Mindfulness</label>
+            <select id="mindfulness" class="w-full rounded-md border p-1.5 text-sm">
+              <option value="LOW_MINDFULNESS">Low</option>
+              <option value="MODERATE_MINDFULNESS" selected>Moderate</option>
+              <option value="GOOD_MINDFULNESS">High</option>
+            </select>
+          </div>
+
+          <!-- Self-Acceptance -->
+          <div>
+            <label class="mb-1 block text-xs font-medium text-gray-700">Self-Acceptance</label>
+            <select id="selfAcceptance" class="w-full rounded-md border p-1.5 text-sm">
+              <option value="BEGINNING_SELF_ACCEPTANCE">Beginning</option>
+              <option value="DEVELOPING_SELF_ACCEPTANCE" selected>Developing</option>
+              <option value="GROWING_SELF_ACCEPTANCE">Growing</option>
+              <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated (God Mode)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <!-- Chat Preview & Debug -->
+      <div class="space-y-4 lg:col-span-3">
+        <!-- Chat Window Mockup -->
+        <div class="rounded-lg bg-white shadow">
+          <div class="border-b p-4">
+            <h2 class="text-lg font-semibold">Chat Preview</h2>
+          </div>
+          <div class="min-h-[200px] bg-gray-50 p-6">
+            <div class="mb-4 text-center text-gray-500">
+              <p class="mb-2">No messages yet</p>
+              <button
+                id="showPromptsBtn"
+                class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
+              >
+                <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                  ></path>
+                </svg>
+                Explore Prompts
+              </button>
+            </div>
+            <div id="selectedPrompt" class="hidden">
+              <div class="rounded-lg border-2 border-indigo-200 bg-white p-4">
+                <p class="text-gray-700" id="selectedPromptText"></p>
+                <button id="clearPrompt" class="mt-2 text-sm text-gray-500 hover:text-gray-700">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompt Library Modal -->
+        <div id="promptModal" class="fixed inset-0 z-50 hidden">
+          <!-- Backdrop -->
+          <div id="modalBackdrop" class="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
+
+          <!-- Modal Content -->
+          <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="relative z-10 max-h-[80vh] w-full max-w-2xl rounded-lg bg-white shadow-xl">
+              <div class="flex items-center justify-between border-b p-4">
+                <h2 class="text-lg font-semibold">Choose a Prompt</h2>
+                <button id="closePanel" class="text-gray-500 hover:text-gray-700">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="p-6">
+                <div id="promptList" class="max-h-[60vh] space-y-3 overflow-y-auto">
+                  <!-- Prompts will be inserted here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Debug Panel -->
+        <div class="rounded-lg bg-white shadow">
+          <div class="border-b px-3 py-2">
+            <h2 class="text-sm font-semibold">Debug Info</h2>
+          </div>
+          <div class="p-3">
+            <!-- Stats -->
+            <div class="mb-3 grid grid-cols-3 gap-2">
+              <div class="text-center">
+                <div class="text-xl font-bold text-indigo-600" id="totalPrompts">0</div>
+                <div class="text-xs text-gray-600">Total</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-bold text-green-600" id="matchedPrompts">0</div>
+                <div class="text-xs text-gray-600">Matches</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-bold text-purple-600" id="priorityPrompts">0</div>
+                <div class="text-xs text-gray-600">Priority ✨</div>
+              </div>
+            </div>
+
+            <!-- Detailed Explanations -->
+            <div>
+              <h3 class="mb-2 text-xs font-semibold">Match Explanations</h3>
+              <div id="explanations" class="max-h-64 space-y-2 overflow-y-auto">
+                <!-- Explanations will be inserted here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mapped Traits Debug Window (Floating, Closable) -->
+  <div id="mappedTraitsWindow" class="fixed bottom-4 left-4 z-40 w-80 rounded-lg border bg-white shadow-lg">
+    <div class="flex items-center justify-between border-b bg-gray-50 px-3 py-2">
+      <h3 class="text-xs font-semibold">Mapped Traits</h3>
+      <button id="closeMappedTraits" class="text-gray-400 hover:text-gray-600">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="max-h-64 overflow-y-auto p-3">
+      <pre id="mappedTraits" class="overflow-x-auto rounded bg-gray-50 p-2 text-xs leading-tight"></pre>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="application/json" id="prompt-library-data" set:html={JSON.stringify(defaultPromptLibrary)} />
+  <script>
+    // ==========================================
+    // IMPORT MODULES
+    // ==========================================
+    Promise.all([import('../prompt-library/prompt-library.js'), import('../prompt-library/prompt-library-demo.js')])
+      .then(([promptLibModule, demoUtilsModule]) => {
+        const promptLib = promptLibModule.default || promptLibModule
+        const demoUtils = demoUtilsModule.default || demoUtilsModule
+
+        const dataScript = document.getElementById('prompt-library-data')
+        const defaultPromptLibrary = JSON.parse(dataScript?.textContent || '{}')
+
+        // State
+        let currentTraits = {
+          attachmentType: {
+            primary: 'AVOIDANT',
+            primaryIntensity: 'MODERATE',
+          },
+          loveLanguage: {
+            primary: 'QUALITY_TIME',
+          },
+          mindfulness: {
+            mindfulnessLevel: 'MODERATE_MINDFULNESS',
+          },
+          selfAcceptance: {
+            level: 'DEVELOPING_SELF_ACCEPTANCE',
+          },
+        }
+        let currentContext = 'You'
+        let currentLocale = 'en'
+
+        // Initialize
+        updatePrompts()
+
+        // Event Listeners
+        const presetSelector = document.getElementById('presetSelector') as HTMLSelectElement
+        presetSelector?.addEventListener('change', (e) => {
+          const target = e.target as HTMLSelectElement
+          if (target?.value) {
+            const presetKey = target.value as keyof typeof demoUtils.SAMPLE_TRAITS
+            if (demoUtils.SAMPLE_TRAITS[presetKey]) {
+              const preset = demoUtils.SAMPLE_TRAITS[presetKey]
+              // Ensure all required trait properties are present
+              if (preset.traits) {
+                const presetTraits = preset.traits as any
+                currentTraits = {
+                  attachmentType: presetTraits.attachmentType || currentTraits.attachmentType,
+                  loveLanguage: presetTraits.loveLanguage || currentTraits.loveLanguage,
+                  mindfulness: presetTraits.mindfulness || currentTraits.mindfulness,
+                  selfAcceptance: presetTraits.selfAcceptance || currentTraits.selfAcceptance,
+                }
+                updateTraitSelectors()
+                updatePrompts()
+              }
+            }
+          }
+        })
+
+        document.querySelectorAll('input[name="context"]').forEach((radio) => {
+          radio.addEventListener('change', (e) => {
+            const target = e.target as HTMLInputElement
+            if (target?.value) {
+              currentContext = target.value
+              updatePrompts()
+            }
+          })
+        })
+
+        document.querySelectorAll('input[name="language"]').forEach((radio) => {
+          radio.addEventListener('change', (e) => {
+            const target = e.target as HTMLInputElement
+            if (target?.value) {
+              currentLocale = target.value
+              updatePrompts()
+            }
+          })
+        })
+
+        document.getElementById('attachmentPrimary')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('attachmentIntensity')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('loveLanguage')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('mindfulness')?.addEventListener('change', updateTraitsFromSelectors)
+        document.getElementById('selfAcceptance')?.addEventListener('change', updateTraitsFromSelectors)
+
+        document.getElementById('showPromptsBtn')?.addEventListener('click', () => {
+          const modal = document.getElementById('promptModal')
+          if (modal) modal.classList.remove('hidden')
+        })
+
+        document.getElementById('closePanel')?.addEventListener('click', () => {
+          const modal = document.getElementById('promptModal')
+          if (modal) modal.classList.add('hidden')
+        })
+
+        // Close modal on backdrop click
+        document.getElementById('modalBackdrop')?.addEventListener('click', () => {
+          const modal = document.getElementById('promptModal')
+          if (modal) modal.classList.add('hidden')
+        })
+
+        document.getElementById('clearPrompt')?.addEventListener('click', () => {
+          const selectedPrompt = document.getElementById('selectedPrompt')
+          if (selectedPrompt) selectedPrompt.classList.add('hidden')
+        })
+
+        // Mapped Traits Window Toggle
+        document.getElementById('closeMappedTraits')?.addEventListener('click', () => {
+          const window = document.getElementById('mappedTraitsWindow')
+          if (window) window.classList.add('hidden')
+        })
+
+        // Show mapped traits window button (can be added to UI if needed)
+        // For now, it's visible by default, can be hidden programmatically
+
+        // Functions
+        function updateTraitsFromSelectors() {
+          const attachmentPrimary = document.getElementById('attachmentPrimary') as HTMLSelectElement
+          const attachmentIntensity = document.getElementById('attachmentIntensity') as HTMLSelectElement
+          const loveLanguage = document.getElementById('loveLanguage') as HTMLSelectElement
+          const mindfulness = document.getElementById('mindfulness') as HTMLSelectElement
+          const selfAcceptance = document.getElementById('selfAcceptance') as HTMLSelectElement
+          const presetSelector = document.getElementById('presetSelector') as HTMLSelectElement
+
+          if (attachmentPrimary && attachmentIntensity && loveLanguage && mindfulness && selfAcceptance) {
+            currentTraits = {
+              attachmentType: {
+                primary: attachmentPrimary.value,
+                primaryIntensity: attachmentIntensity.value,
+              },
+              loveLanguage: {
+                primary: loveLanguage.value,
+              },
+              mindfulness: {
+                mindfulnessLevel: mindfulness.value,
+              },
+              selfAcceptance: {
+                level: selfAcceptance.value,
+              },
+            }
+            if (presetSelector) presetSelector.value = ''
+            updatePrompts()
+          }
+        }
+
+        function updateTraitSelectors() {
+          const attachmentPrimary = document.getElementById('attachmentPrimary') as HTMLSelectElement
+          const attachmentIntensity = document.getElementById('attachmentIntensity') as HTMLSelectElement
+          const loveLanguage = document.getElementById('loveLanguage') as HTMLSelectElement
+          const mindfulness = document.getElementById('mindfulness') as HTMLSelectElement
+          const selfAcceptance = document.getElementById('selfAcceptance') as HTMLSelectElement
+
+          if (attachmentPrimary) {
+            attachmentPrimary.value = currentTraits.attachmentType?.primary || 'SECURE'
+          }
+          if (attachmentIntensity) {
+            attachmentIntensity.value = currentTraits.attachmentType?.primaryIntensity || 'MODERATE'
+          }
+          if (loveLanguage) {
+            loveLanguage.value = currentTraits.loveLanguage?.primary || 'QUALITY_TIME'
+          }
+          if (mindfulness) {
+            mindfulness.value = currentTraits.mindfulness?.mindfulnessLevel || 'MODERATE_MINDFULNESS'
+          }
+          if (selfAcceptance) {
+            selfAcceptance.value = currentTraits.selfAcceptance?.level || 'DEVELOPING_SELF_ACCEPTANCE'
+          }
+        }
+
+        function updatePrompts() {
+          // Get relevant prompts
+          const relevantPrompts = promptLib.getRelevantPrompts(
+            currentTraits,
+            currentContext,
+            currentLocale,
+            defaultPromptLibrary.prompts
+          )
+
+          // Filter and sort
+          const filteredPrompts = promptLib.filterAndSortPrompts(relevantPrompts, currentTraits)
+
+          // Update stats
+          const totalPromptsEl = document.getElementById('totalPrompts')
+          const matchedPromptsEl = document.getElementById('matchedPrompts')
+          const priorityPromptsEl = document.getElementById('priorityPrompts')
+
+          if (totalPromptsEl) totalPromptsEl.textContent = String(relevantPrompts.length)
+          if (matchedPromptsEl) {
+            matchedPromptsEl.textContent = String(
+              filteredPrompts.filter((p) => p.matches && p.matchedTraits > 0).length
+            )
+          }
+          if (priorityPromptsEl) {
+            priorityPromptsEl.textContent = String(filteredPrompts.filter((p) => p.isHighPriority).length)
+          }
+
+          // Update mapped traits display
+          const mappedTraits = promptLib.mapTraitData(currentTraits)
+          const mappedTraitsEl = document.getElementById('mappedTraits')
+          if (mappedTraitsEl) {
+            mappedTraitsEl.textContent = JSON.stringify(mappedTraits, null, 2)
+          }
+
+          // Render prompt list
+          renderPromptList(filteredPrompts)
+
+          // Render explanations
+          renderExplanations(filteredPrompts, mappedTraits)
+        }
+
+        function renderPromptList(prompts: any[]) {
+          const container = document.getElementById('promptList')
+          if (!container) return
+
+          if (prompts.length === 0) {
+            container.innerHTML = '<p class="text-gray-500 text-center">No prompts available for this context</p>'
+            return
+          }
+
+          container.innerHTML = prompts
+            .map(
+              (prompt: any) => `
+        <button
+          class="w-full text-left p-4 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${
+            prompt.isHighPriority ? 'border-indigo-200 bg-indigo-50' : 'border-gray-200'
+          }"
+          data-prompt-id="${prompt.id}"
+          data-prompt-text="${prompt.text}"
+        >
+          <div class="flex items-start gap-2">
+            ${prompt.isHighPriority ? '<span class="text-xl">✨</span>' : ''}
+            <p class="flex-1 ${prompt.isHighPriority ? 'font-medium' : ''}">${prompt.text}</p>
+          </div>
+          ${
+            prompt.matchedTraits > 0
+              ? `
+            <div class="mt-2 text-xs text-gray-500">
+              Matches ${prompt.matchedTraits} trait${prompt.matchedTraits > 1 ? 's' : ''} • Priority: ${prompt.priority} • Score: ${prompt.relevanceScore}
+            </div>
+          `
+              : ''
+          }
+        </button>
+      `
+            )
+            .join('')
+
+          // Add click handlers
+          container.querySelectorAll('button').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const text = btn.dataset.promptText
+              const selectedPromptText = document.getElementById('selectedPromptText')
+              const selectedPrompt = document.getElementById('selectedPrompt')
+              const modal = document.getElementById('promptModal')
+
+              if (selectedPromptText && text) {
+                selectedPromptText.textContent = text
+              }
+              if (selectedPrompt) {
+                selectedPrompt.classList.remove('hidden')
+              }
+              if (modal) {
+                modal.classList.add('hidden')
+              }
+            })
+          })
+        }
+
+        function renderExplanations(prompts: any[], mappedTraits: any) {
+          const container = document.getElementById('explanations')
+          if (!container) return
+
+          container.innerHTML = prompts
+            .slice(0, 10)
+            .map((prompt: any) => {
+              // Get the original prompt with text object for explainMatch
+              const originalPrompt = defaultPromptLibrary.prompts.find((p: any) => p.id === prompt.id) || prompt
+              const explanation: any = demoUtils.explainMatch(originalPrompt, currentTraits, mappedTraits)
+
+              // Use prompt.text (string) if explanation.promptText is undefined
+              const promptText = explanation?.promptText || prompt.text || 'Unknown prompt'
+              const finalResult = explanation?.finalResult || false
+              const universal = explanation?.universal || false
+              const matchType = explanation?.matchType || 'AND'
+              const traitChecks = explanation?.traitChecks || []
+
+              return `
+          <div class="border rounded p-2 text-xs ${finalResult ? 'border-green-200 bg-green-50' : 'border-gray-200'}">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-medium text-xs truncate flex-1 mr-2">${promptText}</h4>
+              <span class="text-xs px-1.5 py-0.5 rounded flex-shrink-0 ${
+                finalResult ? 'bg-green-200 text-green-800' : 'bg-gray-200 text-gray-700'
+              }">
+                ${finalResult ? '✓' : '✗'}
+              </span>
+            </div>
+            
+            ${
+              universal
+                ? `
+              <p class="text-xs text-gray-600">Universal prompt</p>
+            `
+                : `
+              <div class="text-xs text-gray-600 mb-1">
+                Type: <span class="font-mono">${matchType}</span>
+              </div>
+              <div class="space-y-1">
+                ${traitChecks
+                  .map(
+                    (check: any) => `
+                  <div class="flex items-start gap-1.5 text-xs">
+                    <span class="${check.matches ? 'text-green-600' : 'text-gray-400'} flex-shrink-0">
+                      ${check.matches ? '✓' : '✗'}
+                    </span>
+                    <div class="flex-1 min-w-0">
+                      <div class="font-medium truncate">${check.traitType || 'Unknown'}</div>
+                      <div class="text-xs text-gray-600 truncate">${check.reason || 'No reason'}</div>
+                    </div>
+                  </div>
+                `
+                  )
+                  .join('')}
+              </div>
+            `
+            }
+          </div>
+        `
+            })
+            .join('')
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load prompt library modules:', error)
+        alert('Failed to load prompt library. Please check the console.')
+      })
+  </script>
+</DefaultLayout>
