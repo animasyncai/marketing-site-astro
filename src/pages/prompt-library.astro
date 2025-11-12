@@ -246,6 +246,19 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           </div>
         </div>
 
+        <!-- Recommended Prompts Section -->
+        <div class="rounded-lg bg-white shadow">
+          <div class="border-b p-4">
+            <h2 class="text-lg font-semibold">Recommended Prompts</h2>
+            <p class="mt-1 text-sm text-gray-600">Top 3 most relevant prompts based on your traits</p>
+          </div>
+          <div class="p-4">
+            <div id="recommendedPrompts" class="space-y-3">
+              <!-- Top 3 prompts will be inserted here -->
+            </div>
+          </div>
+        </div>
+
         <!-- Prompt Library Modal -->
         <div id="promptModal" class="fixed inset-0 z-50 hidden">
           <!-- Backdrop -->
@@ -293,7 +306,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           </div>
           <div class="p-3">
             <!-- Stats -->
-            <div class="mb-3 grid grid-cols-3 gap-2">
+            <div class="mb-3 grid grid-cols-4 gap-2">
               <div class="text-center">
                 <div class="text-xl font-bold text-indigo-600" id="totalPrompts">0</div>
                 <div class="text-xs text-gray-600">Total</div>
@@ -303,8 +316,12 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                 <div class="text-xs text-gray-600">Matches</div>
               </div>
               <div class="text-center">
-                <div class="text-xl font-bold text-purple-600" id="priorityPrompts">0</div>
-                <div class="text-xs text-gray-600">Priority ✨</div>
+                <div class="text-xl font-bold text-yellow-600" id="primaryPrompts">0</div>
+                <div class="text-xs text-gray-600">Primary 🌟</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-bold text-blue-600" id="secondaryPrompts">0</div>
+                <div class="text-xs text-gray-600">Secondary ⭐</div>
               </div>
             </div>
 
@@ -654,7 +671,8 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           // Update stats
           const totalPromptsEl = document.getElementById('totalPrompts')
           const matchedPromptsEl = document.getElementById('matchedPrompts')
-          const priorityPromptsEl = document.getElementById('priorityPrompts')
+          const primaryPromptsEl = document.getElementById('primaryPrompts')
+          const secondaryPromptsEl = document.getElementById('secondaryPrompts')
 
           if (totalPromptsEl) totalPromptsEl.textContent = String(relevantPrompts.length)
           if (matchedPromptsEl) {
@@ -662,9 +680,15 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
               filteredPrompts.filter((p) => p.matches && p.matchedTraits > 0).length
             )
           }
-          if (priorityPromptsEl) {
-            priorityPromptsEl.textContent = String(filteredPrompts.filter((p) => p.isHighPriority).length)
+          if (primaryPromptsEl) {
+            primaryPromptsEl.textContent = String(filteredPrompts.filter((p) => p.isPrimaryMatch).length)
           }
+          if (secondaryPromptsEl) {
+            secondaryPromptsEl.textContent = String(filteredPrompts.filter((p) => p.isSecondaryMatch).length)
+          }
+
+          // Update recommended prompts (top 3)
+          updateRecommendedPrompts(currentTraits, currentContext, currentLocale, promptLibrary)
 
           // Update mapped traits display
           const mappedTraits = promptLib.mapTraitData(currentTraits)
@@ -678,6 +702,73 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
 
           // Render explanations
           renderExplanations(filteredPrompts, mappedTraits)
+        }
+
+        function updateRecommendedPrompts(traitData: any, context: string, locale: string, promptLibrary: any[]) {
+          const container = document.getElementById('recommendedPrompts')
+          if (!container) return
+
+          // Get top 3 recommended prompts
+          const topPrompts = promptLib.getTopRelevantPrompts(traitData, context, locale, promptLibrary, 3)
+
+          if (topPrompts.length === 0) {
+            container.innerHTML = '<p class="text-sm text-gray-500 text-center">No recommended prompts available</p>'
+            return
+          }
+
+          container.innerHTML = topPrompts
+            .map((prompt: any) => {
+              const badge = prompt.isPrimaryMatch ? '🌟' : prompt.isSecondaryMatch ? '⭐' : ''
+              const badgeLabel = prompt.isPrimaryMatch
+                ? 'Primary match'
+                : prompt.isSecondaryMatch
+                  ? 'Secondary match'
+                  : ''
+              const borderClass = prompt.isPrimaryMatch
+                ? 'border-yellow-300 bg-yellow-50'
+                : prompt.isSecondaryMatch
+                  ? 'border-blue-300 bg-blue-50'
+                  : 'border-gray-200 bg-gray-50'
+
+              return `
+            <button
+              class="w-full text-left p-4 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${borderClass}"
+              data-prompt-id="${prompt.id}"
+              data-prompt-text="${prompt.text}"
+            >
+              <div class="flex items-start gap-3">
+                ${badge ? `<span class="text-2xl flex-shrink-0">${badge}</span>` : ''}
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <p class="font-medium text-sm leading-snug">${prompt.text}</p>
+                  </div>
+                  <div class="flex items-center gap-3 text-xs text-gray-500">
+                    ${badgeLabel ? `<span class="font-medium">${badgeLabel}</span>` : ''}
+                    ${prompt.matchedTraits > 0 ? `<span>Matches ${prompt.matchedTraits} trait${prompt.matchedTraits > 1 ? 's' : ''}</span>` : ''}
+                    <span>Priority ${prompt.priority}</span>
+                  </div>
+                </div>
+              </div>
+            </button>
+          `
+            })
+            .join('')
+
+          // Add click handlers
+          container.querySelectorAll('button').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const text = btn.dataset.promptText
+              const selectedPromptText = document.getElementById('selectedPromptText')
+              const selectedPrompt = document.getElementById('selectedPrompt')
+
+              if (selectedPromptText && text) {
+                selectedPromptText.textContent = text
+              }
+              if (selectedPrompt) {
+                selectedPrompt.classList.remove('hidden')
+              }
+            })
+          })
         }
 
         function renderPromptList(prompts: any[]) {
@@ -700,19 +791,25 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           <h3 class="mb-3 text-sm font-semibold text-gray-700 border-b pb-2">${group.label}</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             ${group.prompts
-              .map(
-                (prompt: any) => `
+              .map((prompt: any) => {
+                const badge = prompt.isPrimaryMatch ? '🌟' : prompt.isSecondaryMatch ? '⭐' : ''
+                const hasBadge = prompt.isPrimaryMatch || prompt.isSecondaryMatch
+                const borderClass = prompt.isPrimaryMatch
+                  ? 'border-yellow-200 bg-yellow-50'
+                  : prompt.isSecondaryMatch
+                    ? 'border-blue-200 bg-blue-50'
+                    : 'border-gray-200'
+
+                return `
               <button
-                class="w-full text-left p-3 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${
-                  prompt.isHighPriority ? 'border-indigo-200 bg-indigo-50' : 'border-gray-200'
-                }"
+                class="w-full text-left p-3 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${borderClass}"
                 data-prompt-id="${prompt.id}"
                 data-prompt-text="${prompt.text}"
               >
                 <div class="flex items-start gap-2">
-                  ${prompt.isHighPriority ? '<span class="text-xl flex-shrink-0">✨</span>' : ''}
+                  ${hasBadge ? `<span class="text-xl flex-shrink-0">${badge}</span>` : ''}
                   <div class="flex-1 min-w-0">
-                    <p class="${prompt.isHighPriority ? 'font-medium' : ''} text-sm leading-snug">${prompt.text}</p>
+                    <p class="${hasBadge ? 'font-medium' : ''} text-sm leading-snug">${prompt.text}</p>
                     ${
                       prompt.matchedTraits > 0
                         ? `
@@ -726,7 +823,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                 </div>
               </button>
             `
-              )
+              })
               .join('')}
           </div>
         </div>

@@ -28,10 +28,14 @@ getRelevantPrompts() - filters by context (You/Couple/Family)
     ↓
 filterAndSortPrompts() - matches traits, adds badges, sorts by relevance
     ↓
-Render prompts with ✨ badges for high-priority matches
+Render prompts with 🌟 (primary) or ⭐ (secondary) badges
+
+OR use getTopRelevantPrompts() for top 3 recommendations
 ```
 
-## Core Integration (3 Lines)
+## Core Integration
+
+### Get All Relevant Prompts
 
 ```javascript
 import { getRelevantPrompts, filterAndSortPrompts } from './prompt-library/prompt-library.js'
@@ -40,7 +44,20 @@ import promptData from './prompt-library/data/prompt-library.json'
 // In your chat component:
 const relevant = getRelevantPrompts(userTraits, context, locale, promptData.prompts)
 const filtered = filterAndSortPrompts(relevant, userTraits)
-// filtered = array of prompts, sorted by relevance, with .isHighPriority flag for ✨ badges
+// filtered = array of prompts, sorted by relevance
+// Use .isPrimaryMatch for 🌟 badge, .isSecondaryMatch for ⭐ badge
+```
+
+### Get Top 3 Recommended Prompts
+
+```javascript
+import { getTopRelevantPrompts } from './prompt-library/prompt-library.js'
+import promptData from './prompt-library/data/prompt-library.json'
+
+// Get top 3 most relevant prompts (regardless of category):
+const topPrompts = getTopRelevantPrompts(userTraits, context, locale, promptData.prompts, 3)
+// Returns top 3 prompts sorted by: Primary > Secondary > Basic > Priority
+// Use .isPrimaryMatch for 🌟 badge, .isSecondaryMatch for ⭐ badge
 ```
 
 ## Trait Data Format
@@ -131,12 +148,23 @@ const filtered = filterAndSortPrompts(relevant, userTraits)
 - **OR**: At least one trait must match
 - **Universal** (empty traits array): Always matches
 
-### Relevance Scoring
+### Relevance Scoring & Prioritization
+
+Prompts are sorted by the following priority order:
+
+1. **Primary trait matches** (🌟 glowing star) - Matches user's primary traits
+2. **Secondary trait matches** (⭐ regular star) - Matches user's secondary traits
+3. **Universal prompts** - No trait requirements
+4. **Priority score** - Within each group, sorted by `priority + matchedTraits * 2`
 
 ```javascript
 relevanceScore = priority + matchedTraits * 2
-isHighPriority = matches && matchedTraits > 0
+isPrimaryMatch = matches && hasPrimaryMatch // Show 🌟 badge
+isSecondaryMatch = matches && hasSecondaryMatch && !hasPrimaryMatch // Show ⭐ badge
+isHighPriority = isPrimaryMatch || isSecondaryMatch // Legacy support
 ```
+
+**Note**: Secondary trait matches are now recommended and will appear in top results with ⭐ badge.
 
 ## API Reference
 
@@ -153,15 +181,43 @@ Returns all prompts matching the context, with localized text. Optionally filter
 
 ### `filterAndSortPrompts(prompts, traitData)`
 
-Adds display metadata and sorts by relevance.
+Adds display metadata and sorts by relevance. Prioritization: Primary > Secondary > Basic > Priority score.
 
 - **prompts**: Output from `getRelevantPrompts()`
 - **traitData**: Withinly trait object
 - **Returns**: Array with additional fields:
-  - `.isHighPriority` (boolean) - Show ✨ badge
-  - `.relevanceScore` (number) - For sorting
+  - `.isPrimaryMatch` (boolean) - Show 🌟 badge (primary trait match)
+  - `.isSecondaryMatch` (boolean) - Show ⭐ badge (secondary trait match)
+  - `.isHighPriority` (boolean) - Legacy support (true if primary or secondary match)
+  - `.relevanceScore` (number) - For sorting within priority groups
   - `.matchedTraits` (number) - How many traits matched
   - `.matches` (boolean) - Whether criteria matched
+
+### `getTopRelevantPrompts(traitData, context, locale, promptLibrary, limit = 3)`
+
+Gets top N most relevant prompts based on user traits, regardless of category. Returns the most relevant prompts sorted by priority (Primary > Secondary > Basic > Priority score).
+
+- **traitData**: User's trait data (raw from Withinly)
+- **context**: "You" | "Couple" | "Family"
+- **locale**: "en" | "lt" (falls back to EN if missing)
+- **promptLibrary**: Array of prompt objects
+- **limit**: Number of top prompts to return (default: 3)
+- **Returns**: Top N prompts with same metadata as `filterAndSortPrompts()`
+
+**Example:**
+
+```javascript
+import { getTopRelevantPrompts } from './prompt-library.js'
+import promptData from './prompt-library/data/prompt-library.json'
+
+const topPrompts = getTopRelevantPrompts(userTraits, 'Couple', 'en', promptData.prompts, 3)
+
+// Display with badges:
+topPrompts.forEach((prompt) => {
+  const badge = prompt.isPrimaryMatch ? '🌟' : prompt.isSecondaryMatch ? '⭐' : ''
+  console.log(`${badge} ${prompt.text}`)
+})
+```
 
 ### `mapTraitData(traitData)`
 
@@ -344,11 +400,20 @@ None. Pure JavaScript module, works with any framework (React, Vue, vanilla JS).
 
 ---
 
-**Version**: 1.2.0  
-**Last Updated**: 2024-11-12  
+**Version**: 1.3.0  
+**Last Updated**: 2024-12-XX  
 **Status**: Production Ready
 
-## Recent Updates (v1.2.0)
+## Recent Updates
+
+### v1.3.0
+
+- ✅ Added `getTopRelevantPrompts()` API method for top 3 recommendations
+- ✅ Enhanced prioritization: Primary matches (🌟) > Secondary matches (⭐) > Basic > Priority
+- ✅ Secondary trait matches now recommended and displayed with ⭐ badge
+- ✅ Updated sorting algorithm to prioritize primary over secondary matches
+
+### v1.2.0
 
 - ✅ Added category support with filtering and grouping
 - ✅ Improved UI: checkboxes for filters and trait editing

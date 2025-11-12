@@ -301,10 +301,10 @@ export function mapTraitData(traitData) {
  *
  * @param {Object} userTrait - User's mapped trait
  * @param {Object} promptTrait - Prompt's trait requirement
- * @returns {boolean} True if trait matches
+ * @returns {Object} { matches: boolean, matchType: 'primary' | 'secondary' | 'basic' | null }
  */
 function matchesTrait(userTrait, promptTrait) {
-  if (!userTrait) return false
+  if (!userTrait) return { matches: false, matchType: null }
 
   // Helper to check a single trait value against requirements
   const checkTraitValue = (traitValue) => {
@@ -331,49 +331,52 @@ function matchesTrait(userTrait, promptTrait) {
   if (userTrait.primary) {
     // Check primary first
     if (checkTraitValue(userTrait.primary)) {
-      return true
+      return { matches: true, matchType: 'primary' }
     }
 
     // If primary doesn't match, check secondary (if present)
     if (userTrait.secondary && checkTraitValue(userTrait.secondary)) {
-      return true
+      return { matches: true, matchType: 'secondary' }
     }
 
-    return false
+    return { matches: false, matchType: null }
   }
 
   // Check if this is mindfulness with .mindfulness and .awareness
+  // For mindfulness, .mindfulness is considered primary, .awareness is secondary
   if (userTrait.mindfulness || userTrait.awareness) {
-    // Check mindfulness level
+    // Check mindfulness level (primary)
     if (userTrait.mindfulness && checkTraitValue(userTrait.mindfulness)) {
-      return true
+      return { matches: true, matchType: 'primary' }
     }
 
-    // Check awareness level
+    // Check awareness level (secondary)
     if (userTrait.awareness && checkTraitValue(userTrait.awareness)) {
-      return true
+      return { matches: true, matchType: 'secondary' }
     }
 
-    return false
+    return { matches: false, matchType: null }
   }
 
   // Check if this is selfAcceptance with .level and .openness
+  // For selfAcceptance, .level is considered primary, .openness is secondary
   if (userTrait.level || userTrait.openness) {
-    // Check acceptance level
+    // Check acceptance level (primary)
     if (userTrait.level && checkTraitValue(userTrait.level)) {
-      return true
+      return { matches: true, matchType: 'primary' }
     }
 
-    // Check openness to change
+    // Check openness to change (secondary)
     if (userTrait.openness && checkTraitValue(userTrait.openness)) {
-      return true
+      return { matches: true, matchType: 'secondary' }
     }
 
-    return false
+    return { matches: false, matchType: null }
   }
 
   // Fallback for simple structure (shouldn't reach here with new structure)
-  return checkTraitValue(userTrait)
+  const matches = checkTraitValue(userTrait)
+  return { matches, matchType: matches ? 'basic' : null }
 }
 
 /**
@@ -381,42 +384,49 @@ function matchesTrait(userTrait, promptTrait) {
  *
  * @param {Object} mappedTraits - User's mapped traits
  * @param {Object} criteria - Prompt's criteria
- * @returns {Object} { matches: boolean, matchedTraits: number }
+ * @returns {Object} { matches: boolean, matchedTraits: number, hasPrimaryMatch: boolean, hasSecondaryMatch: boolean }
  */
 function matchesCriteria(mappedTraits, criteria) {
   if (!criteria.traits || criteria.traits.length === 0) {
     // Universal prompt - no trait requirements
-    return { matches: true, matchedTraits: 0 }
+    return { matches: true, matchedTraits: 0, hasPrimaryMatch: false, hasSecondaryMatch: false }
   }
 
   const matchType = criteria.matchType || 'AND'
   let matchedCount = 0
+  let hasPrimaryMatch = false
+  let hasSecondaryMatch = false
 
   for (const promptTrait of criteria.traits) {
     const userTrait = mappedTraits[promptTrait.type]
-    const matches = matchesTrait(userTrait, promptTrait)
+    const { matches, matchType: traitMatchType } = matchesTrait(userTrait, promptTrait)
 
     if (matches) {
       matchedCount++
+      if (traitMatchType === 'primary') {
+        hasPrimaryMatch = true
+      } else if (traitMatchType === 'secondary') {
+        hasSecondaryMatch = true
+      }
     }
 
     if (matchType === 'AND' && !matches) {
       // AND logic: all must match
-      return { matches: false, matchedTraits: matchedCount }
+      return { matches: false, matchedTraits: matchedCount, hasPrimaryMatch, hasSecondaryMatch }
     }
 
     if (matchType === 'OR' && matches) {
       // OR logic: at least one must match
-      return { matches: true, matchedTraits: matchedCount }
+      return { matches: true, matchedTraits: matchedCount, hasPrimaryMatch, hasSecondaryMatch }
     }
   }
 
   if (matchType === 'AND') {
     // All traits matched
-    return { matches: true, matchedTraits: matchedCount }
+    return { matches: true, matchedTraits: matchedCount, hasPrimaryMatch, hasSecondaryMatch }
   } else {
     // OR logic: no traits matched
-    return { matches: false, matchedTraits: 0 }
+    return { matches: false, matchedTraits: 0, hasPrimaryMatch: false, hasSecondaryMatch: false }
   }
 }
 
@@ -453,6 +463,7 @@ export function getRelevantPrompts(traitData, context, locale, promptLibrary, ca
 /**
  * Filters and sorts prompts based on trait matching and priority
  * Adds display metadata like badges and relevance scores
+ * Prioritization: Primary matches > Secondary matches > Basic (universal) > Priority score
  *
  * @param {Array} prompts - Prompts from getRelevantPrompts()
  * @param {Object} traitData - User's trait data (raw from Withinly)
@@ -463,7 +474,8 @@ export function getRelevantPrompts(traitData, context, locale, promptLibrary, ca
  *   {
  *     id: 4,
  *     text: "Why do I need so much reassurance?",
- *     isHighPriority: true,  // Show ✨ badge
+ *     isPrimaryMatch: true,      // Show 🌟 badge
+ *     isSecondaryMatch: false,
  *     relevanceScore: 0.95,
  *     matchedTraits: 2,
  *     ...originalPromptData
@@ -474,7 +486,10 @@ export function filterAndSortPrompts(prompts, traitData) {
   const mappedTraits = mapTraitData(traitData)
 
   const enrichedPrompts = prompts.map((prompt) => {
-    const { matches, matchedTraits } = matchesCriteria(mappedTraits, prompt.criteria)
+    const { matches, matchedTraits, hasPrimaryMatch, hasSecondaryMatch } = matchesCriteria(
+      mappedTraits,
+      prompt.criteria,
+    )
 
     // Calculate relevance score
     // Universal prompts (no criteria) get base priority
@@ -483,21 +498,83 @@ export function filterAndSortPrompts(prompts, traitData) {
     const traitBonus = matchedTraits * 2
     const relevanceScore = matches && matchedTraits > 0 ? baseRelevance + traitBonus : baseRelevance
 
-    // High priority badge if:
-    // - Matches at least 1 trait with high intensity or multiple traits
-    const isHighPriority = matches && matchedTraits > 0
+    // Determine match type flags
+    const isPrimaryMatch = matches && hasPrimaryMatch
+    const isSecondaryMatch = matches && hasSecondaryMatch && !hasPrimaryMatch
 
     return {
       ...prompt,
       matches,
       matchedTraits,
       relevanceScore,
-      isHighPriority,
+      isPrimaryMatch,
+      isSecondaryMatch,
+      // Legacy support - keep isHighPriority for backwards compatibility
+      isHighPriority: isPrimaryMatch || isSecondaryMatch,
     }
   })
 
-  // Sort by relevance score (highest first)
-  return enrichedPrompts.sort((a, b) => b.relevanceScore - a.relevanceScore)
+  // Sort by priority: Primary > Secondary > Basic (universal) > Priority score
+  return enrichedPrompts.sort((a, b) => {
+    // Primary matches first
+    if (a.isPrimaryMatch && !b.isPrimaryMatch) return -1
+    if (!a.isPrimaryMatch && b.isPrimaryMatch) return 1
+
+    // Secondary matches second
+    if (a.isSecondaryMatch && !b.isSecondaryMatch) return -1
+    if (!a.isSecondaryMatch && b.isSecondaryMatch) return 1
+
+    // Then by relevance score (highest first)
+    return b.relevanceScore - a.relevanceScore
+  })
+}
+
+// ============================================================================
+// TOP RECOMMENDATIONS
+// ============================================================================
+
+/**
+ * Gets top N most relevant prompts based on user traits
+ * Returns the most relevant prompts regardless of category
+ *
+ * @param {Object} traitData - User's trait data (raw from Withinly)
+ * @param {string} context - Current context: "You" | "Couple" | "Family"
+ * @param {string} locale - Language code: "en" | "lt"
+ * @param {Array} promptLibrary - Array of prompt objects
+ * @param {number} limit - Number of top prompts to return (default: 3)
+ * @returns {Array} Top N most relevant prompts, sorted by priority
+ *
+ * Example output:
+ * [
+ *   {
+ *     id: 4,
+ *     text: "Why do I need so much reassurance?",
+ *     isPrimaryMatch: true,      // Show 🌟 badge
+ *     isSecondaryMatch: false,
+ *     relevanceScore: 13,
+ *     matchedTraits: 1,
+ *     ...originalPromptData
+ *   },
+ *   {
+ *     id: 5,
+ *     text: "Why do I pull away when things get close?",
+ *     isPrimaryMatch: false,
+ *     isSecondaryMatch: true,    // Show ⭐ badge
+ *     relevanceScore: 11,
+ *     matchedTraits: 1,
+ *     ...originalPromptData
+ *   },
+ * ]
+ */
+export function getTopRelevantPrompts(traitData, context, locale, promptLibrary, limit = 3) {
+  // Get all relevant prompts for the context
+  const relevant = getRelevantPrompts(traitData, context, locale, promptLibrary)
+
+  // Filter and sort by trait matching
+  const filtered = filterAndSortPrompts(relevant, traitData)
+
+  // Return top N prompts
+  return filtered.slice(0, limit)
 }
 
 // ============================================================================
@@ -607,6 +684,7 @@ export default {
   mapTraitData,
   getRelevantPrompts,
   filterAndSortPrompts,
+  getTopRelevantPrompts,
   validatePrompt,
   validatePromptLibrary,
   TRAIT_MAPPING,
@@ -616,3 +694,36 @@ export default {
   filterPromptsByCategory,
   groupPromptsByCategory,
 }
+
+// ============================================================================
+// RECOMMENDED PROMPTS
+// ============================================================================
+//
+// To get the top 3 most relevant prompts for a user:
+//
+// ```js
+// import { getTopRelevantPrompts } from './prompt-library.js';
+// import promptData from './prompt-library/data/prompt-library.json';
+//
+// const topPrompts = getTopRelevantPrompts(
+//   userTraits,
+//   'Couple',  // or 'You' | 'Family'
+//   'en',      // or 'lt'
+//   promptData.prompts,
+//   3          // optional, defaults to 3
+// );
+//
+// // Display with badges:
+// topPrompts.forEach(prompt => {
+//   const badge = prompt.isPrimaryMatch ? '🌟' :
+//                 prompt.isSecondaryMatch ? '⭐' : '';
+//   console.log(`${badge} ${prompt.text}`);
+// });
+// ```
+//
+// Prioritization order:
+// 1. Primary trait matches (🌟 glowing star)
+// 2. Secondary trait matches (⭐ regular star)
+// 3. Universal prompts (no trait requirements)
+// 4. Priority score (within each group)
+//

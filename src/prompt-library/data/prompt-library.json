@@ -1,46 +1,18 @@
 {
   "prompts": [
     {
-      "id": 1,
+      "id": 13,
       "text": {
-        "en": "Something feels off but I can't name it",
-        "lt": "Kažkas ne taip, bet negaliu to įvardyti"
+        "en": "We keep having the same argument over and over",
+        "lt": "Mes kartojame tą patį ginčą vėl ir vėl"
       },
-      "contexts": ["You", "Couple", "Family"],
-      "category": "reflection",
-      "criteria": {
-        "matchType": "AND",
-        "traits": []
-      },
-      "priority": 7
-    },
-    {
-      "id": 2,
-      "text": {
-        "en": "Help me understand a recent conflict",
-        "lt": "Padėk man suprasti neseną konfliktą"
-      },
-      "contexts": ["You", "Couple", "Family"],
+      "contexts": ["Couple"],
       "category": "communication",
       "criteria": {
         "matchType": "AND",
         "traits": []
       },
       "priority": 8
-    },
-    {
-      "id": 3,
-      "text": {
-        "en": "I reacted strongly to something and I'm not sure why",
-        "lt": "Stipriai sureagavau į kažką ir nežinau kodėl"
-      },
-      "contexts": ["You", "Couple", "Family"],
-      "category": "selfAwareness",
-      "criteria": {
-        "matchType": "AND",
-        "traits": []
-      },
-      "priority": 7
     },
     {
       "id": 4,
@@ -63,39 +35,23 @@
       "priority": 9
     },
     {
-      "id": 5,
+      "id": 15,
       "text": {
-        "en": "Why do I pull away when things get close?",
-        "lt": "Kodėl aš atsitraukiu, kai tampame artimi?"
+        "en": "I feel disconnected from myself lately",
+        "lt": "Pastaruoju metu jaučiuosi atsijungęs nuo savęs"
       },
-      "contexts": ["Couple"],
-      "category": "reflection",
+      "contexts": ["You"],
+      "category": "selfAwareness",
       "criteria": {
-        "matchType": "AND",
+        "matchType": "OR",
         "traits": [
           {
-            "type": "attachment",
-            "labels": ["avoidant"],
-            "intensities": ["moderate", "strong"]
-          }
-        ]
-      },
-      "priority": 9
-    },
-    {
-      "id": 6,
-      "text": {
-        "en": "They show they care but I still feel unseen",
-        "lt": "Jie rodo, kad rūpi, bet vis tiek jaučiuosi nepastebėtas"
-      },
-      "contexts": ["Couple"],
-      "category": "communication",
-      "criteria": {
-        "matchType": "AND",
-        "traits": [
+            "type": "mindfulness",
+            "labels": ["low"]
+          },
           {
-            "type": "loveLanguage",
-            "labels": ["words"]
+            "type": "selfAcceptance",
+            "labels": ["low"]
           }
         ]
       },
@@ -121,23 +77,60 @@
       "priority": 8
     },
     {
-      "id": 8,
+      "id": 1,
       "text": {
-        "en": "I need physical closeness but they seem distant",
-        "lt": "Man reikia fizinio artumo, bet jie atrodo tolimi"
+        "en": "Something feels off but I can't name it",
+        "lt": "Kažkas ne taip, bet negaliu to įvardyti"
       },
-      "contexts": ["Couple"],
-      "category": "communication",
+      "contexts": ["You", "Couple", "Family"],
+      "category": "reflection",
+      "criteria": {
+        "matchType": "AND",
+        "traits": []
+      },
+      "priority": 7
+    },
+    {
+      "id": 20,
+      "text": {
+        "en": "What would it feel like to accept myself fully?",
+        "lt": "Kaip būtų priimti save visiškai?"
+      },
+      "contexts": ["You"],
+      "category": "selfAwareness",
       "criteria": {
         "matchType": "AND",
         "traits": [
           {
-            "type": "loveLanguage",
-            "labels": ["touch"]
+            "type": "selfAcceptance",
+            "labels": ["low", "moderate"]
           }
         ]
       },
-      "priority": 8
+      "priority": 9
+    },
+    {
+      "id": 17,
+      "text": {
+        "en": "How can I express my needs without starting a fight?",
+        "lt": "Kaip galiu išreikšti savo poreikius neprasidedant ginčo?"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "OR",
+        "traits": [
+          {
+            "type": "attachment",
+            "labels": ["avoidant", "anxious"]
+          },
+          {
+            "type": "loveLanguage",
+            "labels": ["words"]
+          }
+        ]
+      },
+      "priority": 9
     },
     {
       "id": 9,
@@ -159,23 +152,57 @@
       "priority": 7
     },
     {
-      "id": 10,
+      "id": 5,
       "text": {
-        "en": "Why am I so hard on myself?",
-        "lt": "Kodėl aš taip griežtai vertinu save?"
+        "en": "Why do I pull away when things get close?",
+        "lt": "Kodėl aš atsitraukiu, kai tampame artimi?"
       },
-      "contexts": ["You", "Couple", "Family"],
-      "category": "selfAwareness",
+      "contexts": ["Couple"],
+      "category": "reflection",
       "criteria": {
         "matchType": "AND",
         "traits": [
           {
-            "type": "selfAcceptance",
-            "labels": ["low", "moderate"]
+            "type": "attachment",
+            "labels": ["avoidant"],
+            "intensities": ["moderate", "strong"]
           }
         ]
       },
+      "priority": 9
+    },
+    {
+      "id": 2,
+      "text": {
+        "en": "Help me understand a recent conflict",
+        "lt": "Padėk man suprasti neseną konfliktą"
+      },
+      "contexts": ["You", "Couple", "Family"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "AND",
+        "traits": []
+      },
       "priority": 8
+    },
+    {
+      "id": 16,
+      "text": {
+        "en": "What patterns do I notice in my relationships?",
+        "lt": "Kokius modelius pastebiu savo santykiuose?"
+      },
+      "contexts": ["You", "Couple"],
+      "category": "reflection",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "mindfulness",
+            "labels": ["moderate", "high"]
+          }
+        ]
+      },
+      "priority": 7
     },
     {
       "id": 11,
@@ -198,6 +225,77 @@
         ]
       },
       "priority": 9
+    },
+    {
+      "id": 8,
+      "text": {
+        "en": "I need physical closeness but they seem distant",
+        "lt": "Man reikia fizinio artumo, bet jie atrodo tolimi"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "loveLanguage",
+            "labels": ["touch"]
+          }
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": 6,
+      "text": {
+        "en": "They show they care but I still feel unseen",
+        "lt": "Jie rodo, kad rūpi, bet vis tiek jaučiuosi nepastebėtas"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "loveLanguage",
+            "labels": ["words"]
+          }
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": 14,
+      "text": {
+        "en": "I want to be there for them but don't know how",
+        "lt": "Noriu būti šalia jų, bet nežinau kaip"
+      },
+      "contexts": ["Couple", "Family"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "mindfulness",
+            "labels": ["low", "moderate"]
+          }
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": 3,
+      "text": {
+        "en": "I reacted strongly to something and I'm not sure why",
+        "lt": "Stipriai sureagavau į kažką ir nežinau kodėl"
+      },
+      "contexts": ["You", "Couple", "Family"],
+      "category": "selfAwareness",
+      "criteria": {
+        "matchType": "AND",
+        "traits": []
+      },
+      "priority": 7
     },
     {
       "id": 12,
@@ -224,102 +322,23 @@
       "priority": 7
     },
     {
-      "id": 13,
+      "id": 10,
       "text": {
-        "en": "We keep having the same argument over and over",
-        "lt": "Mes kartojame tą patį ginčą vėl ir vėl"
+        "en": "Why am I so hard on myself?",
+        "lt": "Kodėl aš taip griežtai vertinu save?"
       },
-      "contexts": ["Couple"],
-      "category": "communication",
-      "criteria": {
-        "matchType": "AND",
-        "traits": []
-      },
-      "priority": 8
-    },
-    {
-      "id": 14,
-      "text": {
-        "en": "I want to be there for them but don't know how",
-        "lt": "Noriu būti šalia jų, bet nežinau kaip"
-      },
-      "contexts": ["Couple", "Family"],
-      "category": "communication",
+      "contexts": ["You", "Couple", "Family"],
+      "category": "selfAwareness",
       "criteria": {
         "matchType": "AND",
         "traits": [
           {
-            "type": "mindfulness",
+            "type": "selfAcceptance",
             "labels": ["low", "moderate"]
           }
         ]
       },
-      "priority": 7
-    },
-    {
-      "id": 15,
-      "text": {
-        "en": "I feel disconnected from myself lately",
-        "lt": "Pastaruoju metu jaučiuosi atsijungęs nuo savęs"
-      },
-      "contexts": ["You"],
-      "category": "selfAwareness",
-      "criteria": {
-        "matchType": "OR",
-        "traits": [
-          {
-            "type": "mindfulness",
-            "labels": ["low"]
-          },
-          {
-            "type": "selfAcceptance",
-            "labels": ["low"]
-          }
-        ]
-      },
       "priority": 8
-    },
-    {
-      "id": 16,
-      "text": {
-        "en": "What patterns do I notice in my relationships?",
-        "lt": "Kokius modelius pastebiu savo santykiuose?"
-      },
-      "contexts": ["You", "Couple"],
-      "category": "reflection",
-      "criteria": {
-        "matchType": "AND",
-        "traits": [
-          {
-            "type": "mindfulness",
-            "labels": ["moderate", "high"]
-          }
-        ]
-      },
-      "priority": 7
-    },
-    {
-      "id": 17,
-      "text": {
-        "en": "How can I express my needs without starting a fight?",
-        "lt": "Kaip galiu išreikšti savo poreikius neprasidedant ginčo?"
-      },
-      "contexts": ["Couple"],
-      "category": "communication",
-      "criteria": {
-        "matchType": "OR",
-        "traits": [
-          {
-            "type": "attachment",
-            "labels": ["avoidant", "anxious"]
-          },
-          {
-            "type": "loveLanguage",
-            "labels": ["words"]
-          }
-        ]
-      },
-      "priority": 9
     },
     {
       "id": 18,
@@ -360,23 +379,208 @@
       "priority": 8
     },
     {
-      "id": 20,
+      "id": 21,
       "text": {
-        "en": "What would it feel like to accept myself fully?",
-        "lt": "Kaip būtų priimti save visiškai?"
+        "en": "I have a secure side but still worry about being abandoned",
+        "lt": "Turiu saugią pusę, bet vis tiek nerimauju dėl apleidimo"
       },
-      "contexts": ["You"],
+      "contexts": ["Couple"],
+      "category": "reflection",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "attachment",
+            "labels": ["anxious"],
+            "intensities": ["mild", "moderate"]
+          }
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": 22,
+      "text": {
+        "en": "My secondary love language isn't being met and it's affecting us",
+        "lt": "Mano antrinė meilės kalba nėra patenkinta ir tai mus veikia"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "OR",
+        "traits": [
+          {
+            "type": "loveLanguage",
+            "labels": ["time", "words", "acts", "touch", "gifts"]
+          }
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": 23,
+      "text": {
+        "en": "I'm aware of my patterns but struggle to change them",
+        "lt": "Suprantu savo modelius, bet man sunku juos keisti"
+      },
+      "contexts": ["You", "Couple"],
       "category": "selfAwareness",
       "criteria": {
         "matchType": "AND",
         "traits": [
+          {
+            "type": "mindfulness",
+            "labels": ["moderate", "high"]
+          },
           {
             "type": "selfAcceptance",
             "labels": ["low", "moderate"]
           }
         ]
       },
-      "priority": 9
+      "priority": 8
+    },
+    {
+      "id": 24,
+      "text": {
+        "en": "Sometimes I feel avoidant even though I'm mostly secure",
+        "lt": "Kartais jaučiuosi vengiantis, nors dažniausiai esu saugus"
+      },
+      "contexts": ["Couple"],
+      "category": "reflection",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "attachment",
+            "labels": ["avoidant"],
+            "intensities": ["very_mild", "mild"]
+          }
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": 25,
+      "text": {
+        "en": "I understand my partner's needs intellectually but struggle emotionally",
+        "lt": "Suprantu partnerio poreikius intelektualiai, bet sunku emociškai"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "mindfulness",
+            "labels": ["moderate", "high"]
+          },
+          {
+            "type": "selfAcceptance",
+            "labels": ["low", "moderate"]
+          }
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": 26,
+      "text": {
+        "en": "My secondary attachment style shows up when I'm stressed",
+        "lt": "Mano antrinis prisirišimo stilius pasireiškia, kai esu įsitempęs"
+      },
+      "contexts": ["Couple", "Family"],
+      "category": "selfAwareness",
+      "criteria": {
+        "matchType": "OR",
+        "traits": [
+          {
+            "type": "attachment",
+            "labels": ["anxious", "avoidant", "disorganized"]
+          }
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": 27,
+      "text": {
+        "en": "I'm open to change but resistant when it actually happens",
+        "lt": "Esu atviras pokyčiams, bet priešinuosi, kai jie iš tikrųjų įvyksta"
+      },
+      "contexts": ["You", "Couple"],
+      "category": "selfAwareness",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "selfAcceptance",
+            "labels": ["moderate", "high"]
+          }
+        ]
+      },
+      "priority": 8
+    },
+    {
+      "id": 28,
+      "text": {
+        "en": "I know what I need but my secondary love language confuses me",
+        "lt": "Žinau, ko man reikia, bet mano antrinė meilės kalba mane glumina"
+      },
+      "contexts": ["Couple"],
+      "category": "communication",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "loveLanguage",
+            "labels": ["time", "words", "acts", "touch", "gifts"]
+          },
+          {
+            "type": "mindfulness",
+            "labels": ["low", "moderate"]
+          }
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": 29,
+      "text": {
+        "en": "I have good self-awareness but my awareness of others is lower",
+        "lt": "Turiu gerą savitikrą, bet kitų suvokimas man silpnesnis"
+      },
+      "contexts": ["Couple", "Family"],
+      "category": "selfAwareness",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "mindfulness",
+            "labels": ["moderate", "high"]
+          }
+        ]
+      },
+      "priority": 7
+    },
+    {
+      "id": 30,
+      "text": {
+        "en": "My mixed feelings about change are creating tension",
+        "lt": "Mano mišrios jausmų apie pokyčius sukuria įtampą"
+      },
+      "contexts": ["You", "Couple"],
+      "category": "selfAwareness",
+      "criteria": {
+        "matchType": "AND",
+        "traits": [
+          {
+            "type": "selfAcceptance",
+            "labels": ["moderate", "high"]
+          }
+        ]
+      },
+      "priority": 8
     }
   ]
 }
