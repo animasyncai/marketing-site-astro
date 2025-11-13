@@ -20,10 +20,16 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- Preload critical fonts -->
+    <!-- Optimized font loading -->
+    <!-- Preconnect to Google Fonts for faster DNS resolution and connection setup -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Load fonts with display=swap to prevent FOIT (Flash of Invisible Text) -->
+    <!-- This ensures text is visible immediately with fallback fonts, then swaps when custom fonts load -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&family=David+Libre:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -33,7 +39,7 @@ const {
     <script src="https://cdn.usefathom.com/script.js" data-site="BJECGCIG" defer></script>
     <!-- / Fathom -->
   </head>
-  <body class="bg-white font-sans text-gray-900 antialiased">
+  <body class="bg-white text-gray-900 antialiased">
     <Header />
     <main id="main-content" class="min-h-screen">
       <slot />
@@ -55,10 +61,17 @@ const {
     border-radius: 4px;
   }
 
-  /* Clean typography */
+  /* Optimized typography and font rendering */
   body {
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
+  }
+
+  /* Ensure smooth font rendering for all text */
+  /* Font smoothing is already applied in _general.scss, but ensuring it's set here for consistency */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 </style>

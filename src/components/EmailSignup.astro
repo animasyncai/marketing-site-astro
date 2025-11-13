@@ -83,10 +83,11 @@ const successId = `${formId}-success`
 
         <button
           type="submit"
-          class="signup-button flex h-11 min-w-[140px] items-center justify-center gap-2 rounded-lg bg-purple-600 px-6 font-medium text-white transition-colors hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="signup-button inline-flex h-11 min-w-[140px] items-center justify-center gap-2 rounded-lg px-6 font-medium !text-white transition-all duration-150 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <span class="button-text">
-            {buttonText || t('signup.submitButton', 'Get Early Access')}
+          <span class="button-text inline-flex items-center gap-2">
+            <Icon name="lucide:heart" class="h-4 w-4" />
+            <span>{buttonText || t('signup.submitButton', 'Get Early Access')}</span>
           </span>
           <span class="button-loading hidden items-center gap-2">
             <Icon name="lucide:loader-2" class="h-4 w-4 animate-spin" />
@@ -116,8 +117,7 @@ const successId = `${formId}-success`
     </div>
 
     <!-- Privacy notice -->
-    <p class="flex items-center justify-center gap-1 text-center text-xs text-white">
-      <Icon name="lucide:shield-check" class="h-3 w-3" />
+    <p class="text-center text-sm text-gray-700 font-medium">
       {t('signup.privacy', 'We respect your privacy and never spam.')}
     </p>
 
@@ -411,3 +411,18 @@ const successId = `${formId}-success`
   document.addEventListener('astro:before-swap', cleanupFormHandlers);
   document.addEventListener('astro:page-load', initializeFormHandlers);
 </script>
+
+<style>
+  /* Match header button primary style exactly */
+  .signup-button {
+    background-color: var(--button-primary-bg);
+  }
+
+  .signup-button:hover {
+    background-color: var(--button-primary-hover);
+  }
+
+  .signup-button:active {
+    background-color: var(--color-primary-800);
+  }
+</style>

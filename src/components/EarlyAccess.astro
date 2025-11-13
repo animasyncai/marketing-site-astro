@@ -1,0 +1,281 @@
+---
+/**
+ * EarlyAccess Component
+ *
+ * @description Early access signup section with translations support
+ */
+
+import EmailSignup from './EmailSignup.astro'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+
+// Get translations for current language
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string, fallback = '') => {
+  return getTranslation(translations, key, {}, fallback)
+}
+---
+
+<section
+  id="early-access"
+  class:list={[className, 'early-access-gradient-bg py-20']}
+  aria-labelledby="early-access-headline"
+>
+  <!-- Enhanced background effects -->
+  <div class="early-access-dot-pattern absolute inset-0" aria-hidden="true"></div>
+
+  <!-- Floating animated shapes -->
+  <div class="early-access-floating-shapes">
+    <div class="early-access-shape-1" aria-hidden="true"></div>
+    <div class="early-access-shape-2" aria-hidden="true"></div>
+    <div class="early-access-shape-3" aria-hidden="true"></div>
+    <div class="early-access-shape-4" aria-hidden="true"></div>
+  </div>
+
+  <div class="early-access-content mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 id="early-access-headline" class="early-access-text-shadow mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
+      {t('earlyAccess.headline')}
+    </h2>
+    <p class="mb-12 text-xl leading-relaxed text-gray-700">
+      {t('earlyAccess.description')}
+    </p>
+
+    <!-- Early access signup form -->
+    <div class="mx-auto mb-12 max-w-md">
+      <EmailSignup
+        variant="hero"
+        showLabels={false}
+        class="[&_input]:border-gray-200 [&_input]:bg-white [&_input]:text-gray-900 [&_input]:placeholder:text-gray-500"
+        placeholder={t('signup.emailPlaceholder')}
+        buttonText={t('earlyAccess.cta')}
+      />
+    </div>
+
+    <!-- Urgency message -->
+    <p class="text-sm text-gray-600 italic">
+      {t('earlyAccess.urgency')}
+    </p>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+
+  // Early access section - pastel gradient background (emotional health friendly)
+  .early-access-gradient-bg {
+    position: relative;
+    background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 25%, #e0e7ff 50%, #dbeafe 75%, #fef3c7 100%);
+    overflow: hidden;
+  }
+
+  .early-access-gradient-bg::before {
+    position: absolute;
+    top: -100px;
+    right: 0;
+    bottom: -100px;
+    left: 0;
+    transform: scale(1.3);
+    animation: earlyAccessFloat 22s ease-in-out infinite;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+    content: '';
+  }
+
+  .early-access-gradient-bg::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    animation: earlyAccessShimmer 10s ease-in-out infinite;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+    content: '';
+  }
+
+  // Dot pattern overlay (different from hero's grid)
+  .early-access-dot-pattern {
+    opacity: 0.5;
+    background-image: radial-gradient(circle at 2px 2px, rgba(139, 92, 246, 0.12) 1.5px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  // Floating shapes container
+  .early-access-floating-shapes {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  // Unique floating shapes with pastel colors and animations
+  .early-access-shape-1 {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    filter: blur(45px);
+    animation: earlyAccessShapeFloat1 16s ease-in-out infinite;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(196, 181, 253, 0.1));
+    width: 140px;
+    height: 140px;
+  }
+
+  .early-access-shape-2 {
+    position: absolute;
+    top: 55%;
+    right: 20%;
+    filter: blur(55px);
+    animation: earlyAccessShapeFloat2 19s ease-in-out infinite;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(165, 180, 252, 0.1));
+    width: 180px;
+    height: 180px;
+  }
+
+  .early-access-shape-3 {
+    position: absolute;
+    bottom: 25%;
+    left: 25%;
+    filter: blur(35px);
+    animation: earlyAccessShapeFloat3 13s ease-in-out infinite;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(196, 181, 253, 0.12));
+    width: 100px;
+    height: 100px;
+  }
+
+  .early-access-shape-4 {
+    position: absolute;
+    top: 35%;
+    right: 35%;
+    filter: blur(40px);
+    animation: earlyAccessShapeFloat4 15s ease-in-out infinite;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.1));
+    width: 120px;
+    height: 120px;
+  }
+
+  // Animations
+  @keyframes earlyAccessFloat {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg) scale(1.3);
+    }
+    33% {
+      transform: translateY(-25px) rotate(1.5deg) scale(1.35);
+    }
+    66% {
+      transform: translateY(15px) rotate(-1.5deg) scale(1.25);
+    }
+  }
+
+  @keyframes earlyAccessShimmer {
+    0%,
+    100% {
+      transform: translateX(-100%) skewX(-15deg);
+    }
+    50% {
+      transform: translateX(100%) skewX(-15deg);
+    }
+  }
+
+  @keyframes earlyAccessShapeFloat1 {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+    25% {
+      transform: translateY(-35px) translateX(25px) scale(1.15);
+    }
+    50% {
+      transform: translateY(-15px) translateX(-20px) scale(0.85);
+    }
+    75% {
+      transform: translateY(-25px) translateX(15px) scale(1.08);
+    }
+  }
+
+  @keyframes earlyAccessShapeFloat2 {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+    30% {
+      transform: translateY(30px) translateX(-25px) scale(1.25);
+    }
+    60% {
+      transform: translateY(-20px) translateX(30px) scale(0.75);
+    }
+    90% {
+      transform: translateY(15px) translateX(-15px) scale(1.12);
+    }
+  }
+
+  @keyframes earlyAccessShapeFloat3 {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+    40% {
+      transform: translateY(-25px) translateX(20px) scale(1.2);
+    }
+    80% {
+      transform: translateY(20px) translateX(-30px) scale(0.8);
+    }
+  }
+
+  @keyframes earlyAccessShapeFloat4 {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+    20% {
+      transform: translateY(25px) translateX(-20px) scale(1.15);
+    }
+    50% {
+      transform: translateY(-30px) translateX(25px) scale(0.85);
+    }
+    80% {
+      transform: translateY(12px) translateX(-8px) scale(1.08);
+    }
+  }
+
+  // Content positioning
+  .early-access-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  .early-access-text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  // Accessibility improvements
+  @media (prefers-reduced-motion: reduce) {
+    .early-access-gradient-bg::before,
+    .early-access-gradient-bg::after,
+    .early-access-shape-1,
+    .early-access-shape-2,
+    .early-access-shape-3,
+    .early-access-shape-4 {
+      animation: none;
+    }
+  }
+
+  // Focus management
+  h2:focus {
+    outline: 2px solid rgba(139, 92, 246, 0.5);
+    outline-offset: 4px;
+    border-radius: var(--radius-s);
+  }
+</style>

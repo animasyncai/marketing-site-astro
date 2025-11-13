@@ -3,10 +3,6 @@ import { Icon } from 'astro-icon/components'
 
 interface Props {
   /**
-   * Whether to load the image eagerly or lazily
-   */
-  loading?: 'eager' | 'lazy'
-  /**
    * Size variant
    */
   size?: 'sm' | 'md' | 'lg'
@@ -16,16 +12,16 @@ interface Props {
   variant?: 'default' | 'header'
 }
 
-const { loading = 'eager', size = 'md', variant = 'default' } = Astro.props
+const { size = 'md', variant = 'default' } = Astro.props
 
 // Size configurations
 const sizeConfig = {
-  sm: { iconSize: 'w-6 h-6', textSize: 'text-lg' },
-  md: { iconSize: 'w-8 h-8', textSize: 'text-xl' },
-  lg: { iconSize: 'w-10 h-10', textSize: 'text-2xl' },
+  sm: { iconSize: 'w-6 h-6' },
+  md: { iconSize: 'w-8 h-8' },
+  lg: { iconSize: 'w-10 h-10' },
 }
 
-const { iconSize, textSize } = sizeConfig[size]
+const { iconSize } = sizeConfig[size]
 
 // Style variants
 const isHeader = variant === 'header'
@@ -50,5 +46,5 @@ const isHeader = variant === 'header'
   </div>
 
   <!-- Brand name -->
-  <span class={`font-bold ${textSize} tracking-tight`}> Withinly </span>
+  <span class={`font-bold text-2xl tracking-tight font-heading`}> Withinly </span>
 </a>

@@ -13,13 +13,14 @@ import HowItWorks from '../../components/HowItWorks.astro'
 // import DifferentiatorSection from '../../components/DifferentiatorSection.astro'
 import TriedBeforeSection from '../../components/TriedBeforeSection.astro'
 import FeatureComparison from '../../components/FeatureComparison.astro'
-import TestimonialSlider from '../../components/TestimonialSlider.astro'
+// TestimonialSlider kept in codebase for reference but not used on page
+// import TestimonialSlider from '../../components/TestimonialSlider.astro'
 // TrustSignals kept in codebase for reference but not used on page
 // import TrustSignals from '../../components/TrustSignals.astro'
-import WhyWithinly from '../../components/WhyWithinly.astro'
-import EmailSignup from '../../components/EmailSignup.astro'
+// WhyWithinly kept in codebase for reference but not used on page
+// import WhyWithinly from '../../components/WhyWithinly.astro'
 import FAQ from '../../components/FAQ.astro'
-import { Icon } from 'astro-icon/components'
+import EarlyAccess from '../../components/EarlyAccess.astro'
 import { getTranslationsFromUrl, getTranslation } from '../../utils/useTranslation.js'
 
 // Get translations for current language
@@ -61,51 +62,7 @@ const pageDescription = t('meta.defaultDescription')
   <FAQ headline={t('faq.headline')} items={(translations as any).faq?.items || []} />
 
   <!-- Early Access Section -->
-  <section
-    id="early-access"
-    class="bg-gradient-to-br from-violet-600 to-blue-600 py-20 text-white"
-    aria-labelledby="early-access-headline"
-  >
-    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-      <h2 id="early-access-headline" class="mb-4 text-3xl font-bold sm:text-4xl">
-        {t('earlyAccess.headline')}
-      </h2>
-      <p class="mb-10 text-xl leading-relaxed text-violet-100">
-        {t('earlyAccess.description')}
-      </p>
-
-      <!-- Early access signup form -->
-      <div class="mx-auto mb-10 max-w-md">
-        <EmailSignup
-          variant="hero"
-          showLabels={false}
-          class="[&_button]:bg-white [&_button]:text-violet-600 [&_button]:hover:bg-gray-50 [&_input]:bg-white/90 [&_input]:text-gray-900 [&_input]:placeholder:text-gray-500"
-          placeholder={t('signup.emailPlaceholder')}
-          buttonText={t('earlyAccess.cta')}
-        />
-      </div>
-
-      <!-- Benefits list -->
-      <div class="mb-8 hidden">
-        <h3 class="mb-6 text-lg font-semibold text-violet-100">{t('earlyAccess.benefits.title')}</h3>
-        <div class="grid gap-3 text-left sm:grid-cols-2">
-          {
-            (translations as any).earlyAccess?.benefits?.items?.map((benefit: string) => (
-              <div class="flex items-center gap-3 text-violet-100">
-                <Icon name="lucide:check-circle" class="h-5 w-5 flex-shrink-0 text-violet-300" />
-                <span class="text-sm">{benefit}</span>
-              </div>
-            )) || []
-          }
-        </div>
-      </div>
-
-      <!-- Urgency message -->
-      <p class="text-sm text-violet-200 italic">
-        {t('earlyAccess.urgency')}
-      </p>
-    </div>
-  </section>
+  <EarlyAccess />
 </DefaultLayout>
 
 <style lang="scss">
@@ -114,48 +71,6 @@ const pageDescription = t('meta.defaultDescription')
   // Spacing between sections
   section + section {
     margin-top: 0;
-  }
-
-  // Early access section enhancements
-  #early-access {
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      animation: starfield 20s linear infinite;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
-      background-size: 200px 200px;
-      pointer-events: none;
-      content: '';
-    }
-  }
-
-  @keyframes starfield {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-200px);
-    }
-  }
-
-  // Accessibility improvements
-  @media (prefers-reduced-motion: reduce) {
-    #early-access::before {
-      animation: none;
-    }
-  }
-
-  // Benefits grid responsive improvements
-  .grid.gap-3 {
-    @include breakpoint(s) {
-      grid-template-columns: 1fr;
-    }
   }
 
   // Focus management

@@ -32,13 +32,13 @@ const testimonials: Array<{ quote: string; author: string }> = Array.isArray(
 ---
 
 <section
-  class:list={[className, 'bg-gradient-to-br from-gray-50 to-purple-50/30 py-24']}
+  class:list={[className, 'bg-gradient-to-br from-gray-50 to-purple-50/30 py-20']}
   aria-labelledby="tried-before-headline"
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- Header -->
-    <div class="mb-16 text-center">
-      <h2 id="tried-before-headline" class="mb-6 text-4xl font-bold text-gray-900 sm:text-5xl">
+    <div class="mb-12 text-center">
+      <h2 id="tried-before-headline" class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
         {t('triedBefore.headline', "You've Tried to Understand Yourself Before")}
       </h2>
       <p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
@@ -52,10 +52,10 @@ const testimonials: Array<{ quote: string; author: string }> = Array.isArray(
     </div>
 
     <!-- Main content -->
-    <div class="mx-auto max-w-4xl space-y-12">
+    <div class="mx-auto max-w-4xl space-y-8">
       <!-- Key insight -->
       <div class="text-center">
-        <p class="mb-6 text-xl font-semibold text-gray-900 sm:text-2xl">
+        <p class="font-heading mb-6 text-xl font-semibold text-gray-900 sm:text-2xl">
           {t('triedBefore.insight', "What you've been missing is a reflection that speaks your language.")}
         </p>
         <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-700">

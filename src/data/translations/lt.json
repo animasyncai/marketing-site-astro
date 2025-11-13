@@ -1,16 +1,16 @@
 {
   "meta": {
     "siteName": "Withinly",
-    "tagline": "Atpažink modelius, kurie formuoja tavo ryšius",
+    "tagline": "Pamatyk modelius, kurie formuoja tavo ryšius",
     "defaultTitle": "Suprask savo santykių modelius ir vidinį pasaulį",
-    "defaultDescription": "Withinly padeda atpažinti, kaip mezgi ryšius su savimi ir kitais. Remiasi prisirišimo teorija, meilės kalbomis ir sąmoningumu — psichologiją paverčia asmeniniais atspindžiais, kuriuos iš tikrųjų gali pajusti.",
-    "keywords": "savistaba, santykiai, asmeninis augimas, emocinis intelektas, prisirišimo teorija, meilės kalbos, sąmoningumas, konfliktų modeliai"
+    "defaultDescription": "Švelnios refleksijos, padedančios pamatyti savo modelius, suprasti reakcijas ir lengviau, aiškiau naviguoti santykiuose.",
+    "keywords": "savirefleksija, santykiai, emocinis sąmoningumas, emociniai modeliai, emocinis intelektas, ryšio modeliai, bendravimo modeliai"
   },
   "navigation": {
     "home": "Pradžia",
     "howItWorks": "Kaip tai veikia",
     "features": "Kodėl Withinly",
-    "pricing": "Kainodara",
+    "pricing": "Kaina",
     "earlyAccess": "Ankstyva prieiga",
     "couples": "Poroms",
     "contact": "Kontaktai",
@@ -75,7 +75,7 @@
     },
     "step4": {
       "title": "Prisijunk",
-      "description": "Kai būsi pasiruošęs, pakviesk ir partnerį. Tavo refleksijos lieka privačios — bendrinami tik įžvalgų taškai, kurie padeda pamatyti, kur sutampate, kur prasilenkiate ir kaip rasti bendrą ritmą."
+      "description": "Kai būsi pasiruošęs (-usi), pakviesk ir partnerį. Tavo refleksijos lieka privačios — bendrinami tik įžvalgų taškai, kurie padeda pamatyti, kur sutampate, kur prasilenkiate ir kaip rasti bendrą ritmą."
     }
   },
   "whyWithinly": {
@@ -124,7 +124,7 @@
   },
   "triedBefore": {
     "headline": "Jau bandei suprasti save",
-    "intro": "Esi nagrinėjęs tokius dalykus kaip prisirišimo stiliai, bendravimo įpročiai ar meilės kalbos. Teoriškai viskas aišku — bet daug sunkiau pamatyti, kaip tai iš tiesų pasireiškia realiose situacijose.",
+    "intro": "Teko nagrinėti tokius dalykus kaip prisirišimo stiliai, bendravimo įpročiai ar meilės kalbos. Teoriškai viskas aišku — bet daug sunkiau pamatyti, kaip tai iš tiesų pasireiškia realiose situacijose.",
     "insight": "Ko trūko — tai refleksijos, kalbančios tavo kalba.",
     "description": "Withinly psichologines idėjas paverčia kažkuo pažįstamu ir konkrečiu — momentais, kuriuose atpažinsi savo pačių modelius.",
     "testimonials": [
@@ -139,7 +139,7 @@
     ]
   },
   "pricing": {
-    "headline": "Sąžiningas mainas už prasmingas įžvalgas",
+    "headline": "Sąžininga kaina už prasmingas įžvalgas",
     "subheadline": "",
     "free": {
       "title": "Pradžia – nemokama",
@@ -168,7 +168,7 @@
   },
   "earlyAccess": {
     "headline": "Būk tarp pirmųjų, kurie aiškiai pamatys savo modelius",
-    "description": "Atveriame Withinly mažai ankstyvajai grupei. Prisijunk prie uždaro beta ir būk tarp pirmųjų tyrinėtojų.",
+    "description": "Atveriame Withinly mažai ankstyvajai grupei. Prisijunk prie produkto beta testavimo ir būk tarp pirmųjų tyrinėtojų.",
     "cta": "Noriu išbandyti",
     "benefits": {
       "title": "Kaip ankstyvas narys gausi:",

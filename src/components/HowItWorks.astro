@@ -58,12 +58,12 @@ const journey = [
 ]
 ---
 
-<section id="how-it-works" class:list={[className, 'py-24 bg-gradient-to-br from-gray-50 to-blue-50/30']} aria-labelledby="how-it-works-headline">
+<section id="how-it-works" class:list={[className, 'py-20 bg-gradient-to-br from-gray-50 to-blue-50/30']} aria-labelledby="how-it-works-headline">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Header -->
     <div class="text-center mb-12">
-      <h2 id="how-it-works-headline" class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+      <h2 id="how-it-works-headline" class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
         {t('howItWorks.headline')}
       </h2>
       {t('howItWorks.subheadline') && (
@@ -79,7 +79,7 @@ const journey = [
       <div class="hidden lg:block absolute top-11 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-200 via-purple-200 via-green-200 to-indigo-200 opacity-60" aria-hidden="true"></div>
       
       <!-- Journey steps -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {journey.map((step, index) => (
           <div class="group relative" data-step={step.number}>
             

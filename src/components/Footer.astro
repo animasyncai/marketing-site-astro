@@ -10,8 +10,8 @@ const t = (key: string, variables = {}, fallback = '') => {
 }
 ---
 
-<footer class="bg-gray-900 text-white">
-  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+<footer class="footer-bg border-t border-neutral-500/20">
+  <div class="footer-content mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <!-- Main footer content -->
     <div class="flex flex-col items-center justify-between gap-8 lg:flex-row">
       <!-- Brand section -->
@@ -19,24 +19,71 @@ const t = (key: string, variables = {}, fallback = '') => {
         <div class="mb-4 flex justify-center text-center md:justify-start">
           <Logo size="md" />
         </div>
-        <p class="max-w-md text-base leading-relaxed text-gray-300">
+        <p class="max-w-md text-base leading-relaxed">
           {t('footer.tagline')}
         </p>
       </div>
 
       <!-- Legal & Language -->
       <div class="flex flex-col items-center gap-6 text-sm sm:flex-row">
-        <a href="/privacy" class="text-gray-300 transition-colors hover:text-white">{t('footer.privacy')}</a>
-        <a href="/terms" class="text-gray-300 transition-colors hover:text-white">{t('footer.terms')}</a>
+        <a href="/privacy" class="transition-colors hover:opacity-80">{t('footer.privacy')}</a>
+        <a href="/terms" class="transition-colors hover:opacity-80">{t('footer.terms')}</a>
         <LanguagePicker variant="toggle" />
       </div>
     </div>
 
     <!-- Bottom bar -->
     <div
-      class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-6 text-sm text-gray-400 sm:flex-row"
+      class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-neutral-500/30 pt-6 text-sm opacity-80 sm:flex-row"
     >
       <p>{t('footer.copyright')}</p>
     </div>
   </div>
 </footer>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+
+  // Footer with darker background for strong contrast after pastel EarlyAccess section
+  // Uses darker neutral tones with subtle purple undertones to match site design
+  .footer-bg {
+    position: relative;
+    background: linear-gradient(135deg, #475569 0%, #334155 50%, #475569 100%); // neutral-600 to neutral-700 gradient
+
+    // Subtle purple overlay to match brand colors
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      content: '';
+    }
+  }
+
+  // Ensure content appears above background overlay
+  .footer-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Update text colors for better contrast on darker background
+  .footer-bg {
+    color: #f1f5f9; // neutral-100 for main text
+
+    p {
+      color: #e2e8f0; // neutral-200 for paragraphs
+    }
+
+    a {
+      color: #cbd5e1; // neutral-300 for links
+
+      &:hover {
+        color: #f1f5f9; // neutral-100 on hover
+      }
+    }
+  }
+</style>
