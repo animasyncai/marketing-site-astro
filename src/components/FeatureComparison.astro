@@ -34,7 +34,7 @@ const freeFeatures: string[] = Array.isArray(pricingData?.free?.features) ? pric
 const premiumFeatures: string[] = Array.isArray(pricingData?.premium?.features) ? pricingData.premium.features : []
 ---
 
-<section id="pricing" class:list={[className, 'bg-gray-50 py-20']}>
+<section id="pricing" class:list={[className, 'pricing-section-bg py-20']}>
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 text-center">
       <h2 class="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -114,3 +114,32 @@ const premiumFeatures: string[] = Array.isArray(pricingData?.premium?.features) 
     </p>
   </div>
 </section>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+
+  // Pricing section with subtle purple gradient to stand out
+  .pricing-section-bg {
+    position: relative;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #faf5ff 100%);
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      content: '';
+    }
+  }
+
+  // Ensure content appears above background overlay
+  #pricing > div {
+    position: relative;
+    z-index: 1;
+  }
+</style>
