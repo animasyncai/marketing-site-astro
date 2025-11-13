@@ -16,14 +16,14 @@ interface Props {
 const { class: className } = Astro.props
 
 // Get translations for current language
-const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const translations = (await getTranslationsFromUrl(Astro.url.pathname)) as Record<string, any>
 const t = (key: string, fallback = '') => {
   return getTranslation(translations, key, {}, fallback)
 }
 
 // Get differentiator data from translations
-const dontOfferItems = translations.different?.dontOffer?.items || []
-const doOfferItems = translations.different?.doOffer?.items || []
+const dontOfferItems = (translations.different?.dontOffer?.items || []) as string[]
+const doOfferItems = (translations.different?.doOffer?.items || []) as string[]
 ---
 
 <section id="features" class:list={[className, 'bg-white py-20']}>
@@ -44,7 +44,7 @@ const doOfferItems = translations.different?.doOffer?.items || []
         </div>
         <ul class="space-y-3">
           {
-            dontOfferItems.map((item) => (
+            dontOfferItems.map((item: string) => (
               <li class="flex items-center gap-3 text-red-700">
                 <Icon name="lucide:x" class="h-4 w-4 flex-shrink-0" />
                 <span>{item}</span>
@@ -62,7 +62,7 @@ const doOfferItems = translations.different?.doOffer?.items || []
         </div>
         <ul class="space-y-3">
           {
-            doOfferItems.map((item) => (
+            doOfferItems.map((item: string) => (
               <li class="flex items-center gap-3 text-green-700">
                 <Icon name="lucide:check" class="h-4 w-4 flex-shrink-0" />
                 <span>{item}</span>

@@ -41,40 +41,50 @@ General prompt for consultant can be found in `/prompts/consultant.md`
 
 ## ✨ Reflection Prompt System
 
-**Goal:** Prevent “hello/hi” usage and guide users into meaningful exploration.
+**Status:** ✅ Implemented (see `/src/prompt-library/` for technical docs)
+
+**Goal:** Prevent "hello/hi" usage and guide users into meaningful exploration through trait-based prompt filtering.
 
 ### UX Flow
 
 - **First Time (Empty Chat):**
   - Show 3–4 curated prompts as clickable cards
-  - Message: “Let’s explore a real situation from your life. Choose what resonates:”
+  - Message: "Let's explore a real situation from your life. Choose what resonates:"
   - User clicks → prompt fills input → they can edit/send
 
 - **Ongoing Chat:**
   - Floating ✨ button always visible
-  - Opens prompt library, filtered by user’s traits
+  - Opens prompt library, filtered by user's traits
   - Prompts populate input field on select
 
-### Prompt Types
+### How It Works
 
-1. **Universal** → Always shown
-   - “Something feels off but I can’t name it”
-   - “Help me understand a recent conflict”
+The system filters ~15 reflection prompts based on:
 
-2. **Trait-Type Based** → Based on attachment / love language
-   - “Why do I need so much reassurance?” (anxious)
-   - “They show they care but I still feel unseen” (words love language)
+- **User's traits**: Attachment, love language, mindfulness, self-acceptance
+- **Context**: You (solo) vs. Couple vs. Family
+- **Match type**: Primary traits (🌟) get priority, secondary traits (⭐) also shown
 
-3. **Trait-Level Based** → Based on mindfulness / self-acceptance
-   - “Help me slow down and notice what’s happening inside”
-   - “Why am I so hard on myself?”
+**Matching Logic:**
 
-### Filtering Logic
+- Supports both primary AND secondary trait values (e.g., primary: avoidant, secondary: secure)
+- Mindfulness includes both mindfulness level + awareness level
+- Self-acceptance includes both acceptance level + openness to change
+- Prompts match if EITHER primary OR secondary/sub-field satisfies criteria
+- Universal prompts always shown to everyone
 
-- Always show universal prompts
-- Highlight prompts for primary traits (✨ badge)
-- Show secondary traits and levels unbadged
-- Hide irrelevant prompts
+**Example:**
+
+- User has anxious attachment (primary) → sees "Why do I need so much reassurance?" 🌟
+- User has avoidant attachment (secondary) → sees "Why do I pull away?" ⭐
+- Everyone sees "Something feels off but I can't name it" (universal)
+
+### Content Management
+
+- **Editor UI** at `/pages/prompt-library-editor.astro` for adding/editing prompts
+- **Testing page** at `/pages/prompt-library.astro` for validating filtering
+- Changes save to localStorage for testing, export to JSON for deployment
+- System validates prompt structure automatically
 
 ---
 
@@ -110,21 +120,21 @@ Framing:
 ## 🎨 User Experience
 
 - **Opening Prompts Examples:**
-  - “Help me understand a recent conflict”
-  - “Why do I react this way when…”
-  - “How can I communicate this need better?”
+  - "Help me understand a recent conflict"
+  - "Why do I react this way when…"
+  - "How can I communicate this need better?"
 
 - **Pro Toggle:**
   - Switch between Mini (default) and Pro Depth (premium quality)
-  - Clear Spark usage shown (“20 msgs” vs “5 msgs per Spark”)
+  - Clear Spark usage shown ("20 msgs" vs "5 msgs per Spark")
 
 - **Feedback & Balance:**
-  - Always show sparks left (“✨ 7 Sparks remaining”)
+  - Always show sparks left ("✨ 7 Sparks remaining")
   - Low balance (<3 Sparks) triggers refill suggestion
 
 - Under chat window show the following:
-  Mini mode: “✨ You’re in Mini mode — 20 messages per Spark. 14 left on this Spark.”
-  Depth mode: “✨ Depth mode — 5 richer messages per Spark. 3 left on this Spark.”
+  Mini mode: "✨ You're in Mini mode — 20 messages per Spark. 14 left on this Spark."
+  Depth mode: "✨ Depth mode — 5 richer messages per Spark. 3 left on this Spark."
 
 ---
 
@@ -139,7 +149,7 @@ Framing:
 
 ## ⚠️ MVP Constraints
 
-**Won’t Do:**
+**Won't Do:**
 
 - Label psychological styles explicitly
 - Provide therapy or crisis support

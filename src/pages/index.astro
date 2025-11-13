@@ -11,12 +11,14 @@ import OpeningHook from '../components/OpeningHook.astro'
 import HowItWorks from '../components/HowItWorks.astro'
 // DifferentiatorSection kept in codebase for reference but not used on page
 // import DifferentiatorSection from '../components/DifferentiatorSection.astro'
-import ForCouplesSection from '../components/ForCouplesSection.astro'
+import TriedBeforeSection from '../components/TriedBeforeSection.astro'
 import FeatureComparison from '../components/FeatureComparison.astro'
-import TestimonialSlider from '../components/TestimonialSlider.astro'
+// TestimonialSlider kept in codebase for reference but not used on this page
+// import TestimonialSlider from '../components/TestimonialSlider.astro'
 // TrustSignals kept in codebase for reference but not used on page
 // import TrustSignals from '../components/TrustSignals.astro'
-import WhyWithinly from '../components/WhyWithinly.astro'
+// WhyWithinly kept in codebase for reference but not used on this page
+// import WhyWithinly from '../components/WhyWithinly.astro'
 import EmailSignup from '../components/EmailSignup.astro'
 import FAQ from '../components/FAQ.astro'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
@@ -43,16 +45,16 @@ const pageDescription = t('meta.defaultDescription')
   <HowItWorks />
 
   <!-- Why Withinly -->
-  <WhyWithinly />
+  <!-- <WhyWithinly /> -->
 
-  <!-- For couples section -->
-  <ForCouplesSection />
+  <!-- Tried before section -->
+  <TriedBeforeSection />
 
   <!-- Pricing/Features Comparison -->
   <FeatureComparison showPricing={false} />
 
   <!-- Testimonials -->
-  <TestimonialSlider autoPlay={false} />
+  <!-- <TestimonialSlider autoPlay={false} /> -->
 
   <!-- Trust & Safety (kept for reference; not rendered) -->
 

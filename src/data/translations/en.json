@@ -25,67 +25,57 @@
     "closeMenu": "Close menu"
   },
   "hero": {
-    "headline": "See the patterns that shape your relationships",
-    "subheadline": "Discover how you attach, love, and respond to closeness and conflict — in language that finally makes sense.",
+    "headline": "You're not broken. You're patterned.",
+    "subheadline": "Finally understand why you pull away when someone gets close, why small fights feel big, or why it’s hard to say what you need.",
     "ctaPrimary": "Get Early Access",
     "ctaSecondary": "How It Works",
-    "tagline": "You’re not broken — you’re patterned. Patterns can be understood.",
+    "tagline": "Private reflections that turn your patterns into language you can use.",
     "trustSignals": {
-      "privacy": "Complete Privacy",
-      "instant": "Quick Insights",
-      "humanCentered": "Human-Centered AI"
+      "deeper": "Deeper than a quiz",
+      "lighter": "Lighter than therapy",
+      "private": "Completely private"
     }
   },
   "hook": {
-    "headline": "Do these feel familiar?",
-    "description": "Withinly turns these patterns into words you can use — no labels, no quick fixes, just clear recognition.",
-    "bullets": [
-      "You pull away when someone needs closeness",
-      "You give advice when comfort was needed",
-      "Small fights feel outsized",
-      "You wonder if you’re too much — or not enough"
-    ],
-    "quote": "It’s not about what’s wrong with you. It’s about understanding what makes sense about you."
+    "headline": "What You'll Discover",
+    "tagline": "No labels. No diagnoses. Just clear recognition.",
+    "discoveries": [
+      {
+        "title": "Language for patterns you've always felt but never named",
+        "description": "\"I shut down when things get intense\" stops being a flaw - it becomes a pattern you can recognize and work with."
+      },
+      {
+        "title": "Clarity about how you connect and disconnect",
+        "description": "See how you show care, handle conflict, protect yourself, and what you need to feel safe."
+      },
+      {
+        "title": "A private reflection space just for you",
+        "description": "Explore real situations and notice your habits in daily life with guidance that feels human and safe."
+      },
+      {
+        "title": "Understanding of how your patterns meet",
+        "description": "If you have a partner, discover where you align, where you miss, and how to meet in the middle."
+      }
+    ]
   },
   "howItWorks": {
-    "headline": "Understand yourself at your own pace",
-    "subheadline": "Reflection unfolds step by step. Each layer connects to the next, and your AI companion remembers your patterns so you can notice them in daily life.",
-    "atAGlance": {
-      "title": "At a glance",
-      "items": [
-        "3–5 minutes to your first reflection",
-        "No labels or diagnoses — just recognition",
-        "Private by default (even with partner sync)",
-        "Free to start; pay only when you go deeper"
-      ]
-    },
-    "phase1": "Start Here",
-    "phase2": "Understand",
-    "phase3": "Explore",
-    "phase4": "Grow",
+    "headline": "How Withinly Works",
+    "subheadline": "",
     "step1": {
-      "title": "Notice your patterns",
-      "description": "Short, psychology-informed questions reveal how you connect and relate to yourself.",
-      "emotion": "Recognition"
+      "title": "Reflect",
+      "description": "Answer a few thoughtful questions about how you connect with yourself and others. They reveal the patterns beneath your reactions."
     },
     "step2": {
-      "title": "Get your first reflection",
-      "description": "A personal narrative weaves your signals into something coherent. See why you react the way you do.",
-      "emotion": "Language"
+      "title": "Understand",
+      "description": "Your answers become a warm, personal reflection that explains your emotional patterns in clear, everyday language."
     },
     "step3": {
-      "title": "Talk it through",
-      "description": "Your AI companion reflects your patterns back in real situations — like a wise friend.",
-      "emotion": "Insight"
+      "title": "Explore",
+      "description": "When something real comes up, ask your reflection companion what’s happening underneath. It responds like a wise friend who remembers your patterns."
     },
     "step4": {
-      "title": "Go deeper when ready",
-      "description": "Unlock richer portraits on conflict, trust, and communication — or explore how your patterns meet with a partner.",
-      "emotion": "Connection"
-    },
-    "insight": {
-      "title": "Your pace is the right pace",
-      "description": "Some days you’ll dive deep; other days you’ll just check in. Withinly adapts and remembers where you’ve been."
+      "title": "Connect",
+      "description": "When you're ready, invite your partner. Your reflections stay private — only shared insights reveal where you align, where you miss, and how to meet in the middle."
     }
   },
   "whyWithinly": {
@@ -132,53 +122,49 @@
       }
     ]
   },
-  "couples": {
-    "badge": "For Couples",
-    "headline": "See how your patterns meet",
-    "subheadline": "One link. Two private spaces. One shared map.",
-    "description1": "Sync with your partner to see where you align, where you miss, and how to meet in the middle.",
-    "coupleSnapshots": {
-      "title": "Couple Insights",
-      "description": "Start with a free glimpse. Unlock deeper insights together if you're ready."
-    },
-    "testimonial": {
-      "quote": "We stopped asking who’s right and started noticing our rhythm. Naming our patterns took the heat out of conflict and gave us a way to meet in the middle.",
-      "author": "Maya & Luis"
-    },
-    "cta": "Get Early Access",
-    "highlights": [
-      "Private by default — only shared insights are visible",
-      "One purchase unlocks couple insights for both partners",
-      "Actionable guidance that helps you meet in the middle"
+  "triedBefore": {
+    "headline": "You've Tried to Understand Yourself Before",
+    "intro": "You've explored ideas like attachment styles, communication habits, and love languages. They made sense in theory — but it's harder to see how they show up in real moments.",
+    "insight": "What you've been missing is a reflection that speaks your language.",
+    "description": "Withinly turns psychological ideas into something familiar and specific — moments you'll recognize from your own patterns.",
+    "testimonials": [
+      {
+        "quote": "For the first time, I could really name what I do when things get tense.",
+        "author": "Early access member"
+      },
+      {
+        "quote": "Seeing our shared rhythm made everything feel less personal and more understandable.",
+        "author": "Maya & Luis"
+      }
     ]
   },
   "pricing": {
     "headline": "Fair exchange for meaningful insights",
     "subheadline": "",
     "free": {
-      "title": "Free to Start",
+      "title": "Free to start",
       "period": "forever",
       "features": [
         "Discover your patterns",
         "Get your first personal reflection",
-        "Try conversations with your AI companion",
+        "Try conversations with your reflection companion",
         "First Couple Glimpse is free",
-        "Explore what’s possible"
+        "Explore Withinly at your own pace"
       ]
     },
     "premium": {
-      "title": "Pay as You Go with Sparks ✨",
+      "title": "Simple pricing later",
       "price": "",
       "period": "",
       "features": [
-        "Sparks are tokens for deeper insights",
-        "Dive into detailed portraits when you're ready",
-        "Unlimited conversations",
-        "Partner sync for joint insights",
-        "Only pay for what matters to you"
+        "Early access includes a generous amount of free insights",
+        "Go deeper only if and when something feels meaningful",
+        "No subscriptions",
+        "No hidden fees",
+        "Pay only for what you choose to unlock"
       ]
     },
-    "tagline": "Pricing announced at launch. No subscriptions required — just pay for insights that matter."
+    "tagline": "Pricing launches later. No commitment required — explore freely, with complete control over what you pay for."
   },
   "earlyAccess": {
     "headline": "Be among the first to see your patterns clearly",
@@ -198,7 +184,7 @@
   },
   "footer": {
     "tagline": "Launching soon in English and Lithuanian",
-    "copyright": "© 2025 Withinly. All rights reserved.",
+    "copyright": "© 2025 Withinly • Private • Insightful • Yours",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "contact": "Contact"
@@ -230,19 +216,19 @@
     "items": [
       {
         "question": "Is this therapy?",
-        "answer": "No. Withinly is a reflection tool — like a mirror for your patterns. It's about recognition, not treatment. If you're in crisis, please seek professional help."
+        "answer": "No. Withinly helps you see your patterns — therapy helps you heal. Many therapists love when clients bring this kind of clarity."
       },
       {
         "question": "What if I'm single?",
-        "answer": "Perfect. Understanding yourself before your next relationship is one of the best ways to grow. You don't need a partner to use Withinly."
+        "answer": "Perfect. Understanding your patterns now changes how you show up later."
       },
       {
         "question": "How private is this?",
-        "answer": "Your reflections stay yours. Even in partner sync, only shared insights are visible — never your private answers or chats."
+        "answer": "Your reflections stay yours. Even with partner sync, only shared insights are visible — never your individual answers or conversations."
       },
       {
-        "question": "How much does it cost?",
-        "answer": "Starting reflections are free. If you want to go deeper, you'll use Sparks (credits). In beta, pricing is flexible while we learn from users — you won't have to commit to subscriptions."
+        "question": "How much will Withinly cost?",
+        "answer": "You can start exploring for free. During early access, you'll receive a generous amount of insights to try the full experience. When we launch, deeper reflections and advanced features will be available as small, optional one-time purchases. No subscriptions. No hidden fees. You only pay for what feels meaningful to you."
       }
     ]
   }

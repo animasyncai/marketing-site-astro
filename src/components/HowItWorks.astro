@@ -7,7 +7,6 @@
  */
 
 import { Icon } from 'astro-icon/components'
-import Button from './Button.astro'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 interface Props {
@@ -22,44 +21,36 @@ const t = (key: string, fallback = '') => {
   return getTranslation(translations, key, {}, fallback)
 }
 
-// Journey phases with emotional resonance
+// Journey steps
 const journey = [
   {
-    phase: t('howItWorks.phase1'),
     title: t('howItWorks.step1.title'),
     description: t('howItWorks.step1.description'),
-    emotion: t('howItWorks.step1.emotion'),
-    icon: 'lucide:compass',
+    icon: 'lucide:brain',
     gradient: 'from-blue-100 to-blue-200',
     iconColor: 'text-blue-600',
     number: 1,
   },
   {
-    phase: t('howItWorks.phase2'),
     title: t('howItWorks.step2.title'),
     description: t('howItWorks.step2.description'),
-    emotion: t('howItWorks.step2.emotion'),
-    icon: 'lucide:heart',
+    icon: 'lucide:book-open',
     gradient: 'from-purple-100 to-purple-200',
     iconColor: 'text-primary',
     number: 2,
   },
   {
-    phase: t('howItWorks.phase3'),
     title: t('howItWorks.step3.title'),
     description: t('howItWorks.step3.description'),
-    emotion: t('howItWorks.step3.emotion'),
-    icon: 'lucide:message-circle',
+    icon: 'lucide:message-square',
     gradient: 'from-green-100 to-green-200',
     iconColor: 'text-green-600',
     number: 3,
   },
   {
-    phase: t('howItWorks.phase4'),
     title: t('howItWorks.step4.title'),
     description: t('howItWorks.step4.description'),
-    emotion: t('howItWorks.step4.emotion'),
-    icon: 'lucide:trending-up',
+    icon: 'lucide:users',
     gradient: 'from-indigo-100 to-indigo-200',
     iconColor: 'text-indigo-600',
     number: 4,
@@ -70,32 +61,17 @@ const journey = [
 <section id="how-it-works" class:list={[className, 'py-24 bg-gradient-to-br from-gray-50 to-blue-50/30']} aria-labelledby="how-it-works-headline">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Header with emotional framing -->
-    <div class="text-center mb-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
       <h2 id="how-it-works-headline" class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
         {t('howItWorks.headline')}
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        {t('howItWorks.subheadline')}
-      </p>
+      {t('howItWorks.subheadline') && (
+        <p class="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          {t('howItWorks.subheadline')}
+        </p>
+      )}
     </div>
-
-          <!-- At a glance -->
-      <div class="mx-auto mb-20 max-w-4xl">
-        <h3 class="mb-4 text-center text-lg font-semibold text-gray-900 hidden">
-          {t('howItWorks.atAGlance.title')}
-        </h3>
-        <ul class="grid grid-cols-2 gap-3 text-sm text-gray-700 sm:grid-cols-2 md:grid-cols-4">
-          {
-            (translations as any).howItWorks?.atAGlance?.items?.map((item: string) => (
-              <li class="flex items-center gap-2 rounded-lg bg-white/70 px-3 py-2 ring-1 ring-gray-200/60">
-                <Icon name="lucide:check" class="h-4 w-4 text-green-600" />
-                <span class="leading-snug">{item}</span>
-              </li>
-            )) || []
-          }
-        </ul>
-      </div>
 
     <!-- Journey visualization -->
     <div class="relative">     
@@ -107,9 +83,9 @@ const journey = [
         {journey.map((step, index) => (
           <div class="group relative" data-step={step.number}>
             
-            <!-- Phase indicator -->
+            <!-- Step indicator -->
             <div class="text-center mb-6">
-              <div class="inline-block mb-3 relative">
+              <div class="inline-block mb-4 relative">
                 <div class={`w-20 h-20 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 relative z-10`}>
                   <Icon name={step.icon} class={`w-10 h-10 ${step.iconColor}`} />
                 </div>
@@ -119,10 +95,6 @@ const journey = [
                   {step.number}
                 </div>
               </div>
-              
-              <div class="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
-                {step.phase}
-              </div>
             </div>
 
             <!-- Content -->
@@ -131,15 +103,9 @@ const journey = [
                 {step.title}
               </h3>
               
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-gray-600 leading-relaxed text-base">
                 {step.description}
               </p>
-              
-              <!-- Emotional note -->
-              <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/70 rounded-full text-sm text-gray-500 border border-gray-200/50">
-                <Icon name="lucide:heart" class="w-3 h-3 text-pink-400" />
-                <span class="italic font-medium">{step.emotion}</span>
-              </div>
             </div>
 
             <!-- Step connector for mobile/tablet -->
@@ -154,35 +120,6 @@ const journey = [
       </div>
     </div>
 
-    <!-- Bottom insight section -->
-    <div class="text-center mt-20">
-      <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 max-w-4xl mx-auto">
-        <div class="flex items-center justify-center mb-4">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl flex items-center justify-center">
-            <Icon name="lucide:lightbulb" class="w-6 h-6 text-primary" />
-          </div>
-        </div>
-        
-        <h3 class="text-2xl font-semibold text-gray-900 mb-4">
-          {t('howItWorks.insight.title')}
-        </h3>
-        
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6">
-          {t('howItWorks.insight.description')}
-        </p>
-        
-        <!-- Call to action -->
-        <Button 
-          href="#early-access" 
-          variant="primary" 
-          size="lg" 
-          icon="lucide:arrow-right"
-          iconPosition="right"
-        >
-          {t('howItWorks.cta', 'Join Early Access')}
-        </Button>
-      </div>
-    </div>
 
   </div>
 </section>

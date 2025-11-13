@@ -14,7 +14,7 @@ interface Props {
 const { class: className, variant = 'toggle' } = Astro.props
 
 // Get current language
-const currentLanguage = getLanguageFromUrl(Astro.url.pathname)
+const currentLanguage = getLanguageFromUrl(Astro.url.pathname) as keyof typeof SUPPORTED_LANGUAGES
 const currentLangData = SUPPORTED_LANGUAGES[currentLanguage]
 
 // Get the clean path for language switching

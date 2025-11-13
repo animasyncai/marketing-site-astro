@@ -34,14 +34,14 @@ const t = (key: string, fallback = '') => {
     <div class="pt-20 pb-16 lg:pt-32 lg:pb-24">
       <div class="mx-auto max-w-4xl text-center">
         <!-- Main headline -->
-        <h1 class="hero-text-shadow mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+        <h1 class="hero-text-shadow mt-0 mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           <span class="text-gray-900">
             {t('hero.headline')}
           </span>
         </h1>
 
         <!-- Subheadline -->
-        <p class="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-gray-600 sm:text-xl">
+        <p class="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-600 sm:text-xl">
           {t('hero.subheadline')}
         </p>
 
@@ -57,37 +57,37 @@ const t = (key: string, fallback = '') => {
               />
             </div>
           ) : (
-            <div class="hero-glow mb-12 flex flex-col items-center justify-center gap-4 rounded-2xl p-4 sm:flex-row">
+            <div class="hero-glow mb-8 flex flex-col items-center justify-center gap-4 rounded-2xl p-4 sm:flex-row">
               <Button href="#early-access" size="lg" variant="primary" icon="lucide:mail">
                 {t('hero.ctaPrimary')}
               </Button>
-              <Button href="#how-it-works" size="lg" variant="secondary" icon="lucide:badge-question-mark">
+              {/* <Button class="hidden"href="#how-it-works" size="lg" variant="secondary" icon="lucide:badge-question-mark">
                 {t('hero.ctaSecondary')}
-              </Button>
+              </Button> */}
             </div>
           )
         }
 
+        <!-- Tagline -->
+        <p class="mx-auto mb-6 max-w-lg text-sm text-gray-500 italic">
+          {t('hero.tagline')}
+        </p>
+
         <!-- Trust indicators -->
         <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
           <div class="flex items-center gap-2">
+            <Icon name="lucide:layers" class="h-4 w-4 text-blue-500" />
+            <span>{t('hero.trustSignals.deeper')}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="lucide:feather" class="h-4 w-4 text-purple-500" />
+            <span>{t('hero.trustSignals.lighter')}</span>
+          </div>
+          <div class="flex items-center gap-2">
             <Icon name="lucide:shield-check" class="h-4 w-4 text-green-500" />
-            <span>{t('hero.trustSignals.privacy')}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <Icon name="lucide:zap" class="h-4 w-4 text-yellow-500" />
-            <span>{t('hero.trustSignals.instant')}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <Icon name="lucide:heart" class="h-4 w-4 text-red-500" />
-            <span>{t('hero.trustSignals.humanCentered')}</span>
+            <span>{t('hero.trustSignals.private')}</span>
           </div>
         </div>
-
-        <!-- Tagline -->
-        <p class="mx-auto mt-8 max-w-md text-sm text-gray-500 italic">
-          {t('hero.tagline')}
-        </p>
       </div>
     </div>
   </div>
