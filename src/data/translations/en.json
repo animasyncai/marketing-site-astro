@@ -2,8 +2,8 @@
   "meta": {
     "siteName": "Withinly",
     "tagline": "See the patterns that shape your connections",
-    "defaultTitle": "Understand Your Patterns and the Way You Connect",
-    "defaultDescription": "Gentle reflections that help you see your patterns, understand your reactions, and navigate relationships with more clarity and ease.",
+    "defaultTitle": "Understand Your Relationship Patterns and Inner World",
+    "defaultDescription": "Gentle reflections that help you see your patterns, understand your reactions, and feel safer and clearer in your relationships.",
     "keywords": "relationship patterns, self-awareness, emotional patterns, personal reflections, emotional intelligence, relationship clarity, communication patterns"
   },
   "navigation": {
@@ -26,10 +26,10 @@
   },
   "hero": {
     "headline": "You're not broken. You're patterned.",
-    "subheadline": "Finally understand why you pull away when someone gets close, why small fights feel big, or why it’s hard to say what you need.",
+    "subheadline": "Understand why it feels hard to feel safe, open up fully, or stay yourself in a relationship — and what your patterns are quietly trying to protect.",
     "ctaPrimary": "Get Early Access",
     "ctaSecondary": "How It Works",
-    "tagline": "Private reflections that turn your patterns into language you can use.",
+    "tagline": "Personal, private reflections that turn your patterns into words you can actually understand and use.",
     "trustSignals": {
       "deeper": "Deeper than a quiz",
       "lighter": "Lighter than therapy",
@@ -41,20 +41,20 @@
     "tagline": "No labels. No diagnoses. Just clear recognition.",
     "discoveries": [
       {
-        "title": "Language for patterns you've always felt but never named",
-        "description": "\"I shut down when things get intense\" stops being a flaw - it becomes a pattern you can recognize and work with."
+        "title": "Understanding for why you feel the way you do",
+        "description": "\"I shut down when there's pressure for closeness\" stops being a flaw — it becomes a pattern you can notice, understand, and work with."
       },
       {
-        "title": "Clarity about how you connect and disconnect",
-        "description": "See how you show care, handle conflict, protect yourself, and what you need to feel safe."
+        "title": "Clarity on when and how to respond",
+        "description": "See how you show care, how you tend to pull back or protect yourself, and what helps you feel safer in connection."
       },
       {
-        "title": "A private reflection space just for you",
-        "description": "Explore real situations and notice your habits in daily life with guidance that feels human and safe."
+        "title": "A private space for your own reflections",
+        "description": "Explore real situations from your life with a reflection companion that feels human, warm, and on your side."
       },
       {
-        "title": "Understanding of how your patterns meet",
-        "description": "If you have a partner, discover where you align, where you miss, and how to meet in the middle."
+        "title": "Awareness of how your patterns affect others",
+        "description": "With a partner, notice how your rhythms meet, where you miss each other, and how to move toward a more balanced dynamic."
       }
     ]
   },
@@ -63,15 +63,15 @@
     "subheadline": "",
     "step1": {
       "title": "Reflect",
-      "description": "Answer a few thoughtful questions about how you connect with yourself and others. They reveal the patterns beneath your reactions."
+      "description": "Answer a few thoughtful questions about how you relate to yourself and others. They reveal the patterns underneath your reactions."
     },
     "step2": {
       "title": "Understand",
-      "description": "Your answers become a warm, personal reflection that explains your emotional patterns in clear, everyday language."
+      "description": "Your answers turn into a warm, personal reflection that explains your emotional patterns in clear, everyday language."
     },
     "step3": {
       "title": "Explore",
-      "description": "When something real comes up, ask your reflection companion what’s happening underneath. It responds like a wise friend who remembers your patterns."
+      "description": "When something real comes up, talk to your reflection companion about it. It remembers your patterns and helps you notice what's happening inside you."
     },
     "step4": {
       "title": "Connect",
@@ -83,19 +83,19 @@
     "items": [
       {
         "title": "Recognition, not labels",
-        "description": "Language you can feel and use, without boxes."
+        "description": "Language you can feel and use, without squeezing you into a box."
       },
       {
         "title": "Private by default",
-        "description": "Your reflections stay yours."
+        "description": "Your insights stay yours."
       },
       {
         "title": "Deeper than a quiz, lighter than therapy",
-        "description": "Insights you can actually use."
+        "description": "Reflections you can bring into real life, without pressure or judgment."
       },
       {
         "title": "Grows with you",
-        "description": "From your first reflection to deeper portraits — at your pace."
+        "description": "From your first gentle reflections to deeper portraits about conflict, trust, and communication — at your pace."
       }
     ],
     "tagline": "You don’t need fixing — you deserve understanding."
@@ -109,27 +109,27 @@
     "playSlider": "Play testimonial slider",
     "items": [
       {
-        "quote": "I’ve been in therapy for years. This gave me insights my therapist and I are exploring together.",
+        "quote": "I’ve been in therapy for years. This gave me language and insights my therapist and I now explore together.",
         "author": "Early member"
       },
       {
-        "quote": "The report on my relationship patterns made me cry — the good kind. I felt seen.",
+        "quote": "The reflection on my relationship patterns made me cry — in a good way. I felt deeply seen, not judged.",
         "author": "Beta tester"
       },
       {
-        "quote": "It’s like a wise friend who remembers every conversation and helps me see the threads.",
+        "quote": "It’s like a wise friend who remembers every conversation and helps me notice the same threads showing up again and again.",
         "author": "Premium member"
       }
     ]
   },
   "triedBefore": {
     "headline": "You've Tried to Understand Yourself Before",
-    "intro": "You've explored ideas like attachment styles, communication habits, and love languages. They made sense in theory — but it's harder to see how they show up in real moments.",
-    "insight": "What you've been missing is a reflection that speaks your language.",
-    "description": "Withinly turns psychological ideas into something familiar and specific — moments you'll recognize from your own patterns.",
+    "intro": "You’ve explored ideas like attachment styles, communication habits, and love languages. They made sense in theory — but it’s harder to see how they show up in real moments.",
+    "insight": "What’s been missing is a reflection that speaks your language.",
+    "description": "Withinly turns complex psychological ideas into clear, familiar examples and everyday language you can recognize from your own life.",
     "testimonials": [
       {
-        "quote": "For the first time, I could really name what I do when things get tense.",
+        "quote": "For the first time, I could clearly name what I do when things get tense.",
         "author": "Early access member"
       },
       {
@@ -164,22 +164,22 @@
         "Pay only for what you choose to unlock"
       ]
     },
-    "tagline": "Pricing launches later. No commitment required — explore freely, with complete control over what you pay for."
+    "tagline": "Pricing launches later. No commitment required — explore freely and decide for yourself what feels worth paying for."
   },
   "earlyAccess": {
     "headline": "Be among the first to see your patterns clearly",
-    "description": "We're opening Withinly to a small early group. Join our closed beta and be among the first to explore.",
+    "description": "We’re opening Withinly to a small early group. Join the closed beta and be among the first to explore.",
     "cta": "Join the list",
     "urgency": "No commitment. No pressure. Just gentle recognition of who you already are."
   },
   "signup": {
     "headline": "Ready to understand your patterns?",
-    "description": "Join the waitlist and be first to know when we open.",
+    "description": "Join the waitlist and be the first to know when we open.",
     "emailPlaceholder": "Enter your email address",
     "submitButton": "Get Early Access",
     "loadingButton": "Joining...",
     "privacy": "We’ll send a personal note when doors open. No spam — ever.",
-    "successMessage": "Welcome! We’ll be in touch soon with your early access.",
+    "successMessage": "Welcome. We’ll be in touch soon with your early access.",
     "errorMessage": "Something went wrong. Please try again or email us directly."
   },
   "footer": {
@@ -216,11 +216,11 @@
     "items": [
       {
         "question": "Is this therapy?",
-        "answer": "No. Withinly helps you see your patterns — therapy helps you heal. Many therapists love when clients bring this kind of clarity."
+        "answer": "No. Withinly helps you see your patterns — therapy helps you heal. Many therapists appreciate when clients bring this kind of clarity into sessions."
       },
       {
         "question": "What if I'm single?",
-        "answer": "Perfect. Understanding your patterns now changes how you show up later."
+        "answer": "Perfect. Understanding your patterns now changes how you show up later, whether with a future partner, friends, or family."
       },
       {
         "question": "How private is this?",
@@ -228,7 +228,7 @@
       },
       {
         "question": "How much will Withinly cost?",
-        "answer": "You can start exploring for free. During early access, you'll receive a generous amount of insights to try the full experience. When we launch, deeper reflections and advanced features will be available as small, optional one-time purchases. No subscriptions. No hidden fees. You only pay for what feels meaningful to you."
+        "answer": "You can start exploring for free. During early access, you’ll receive a generous amount of insights to try the full experience. When we launch, deeper reflections and advanced features will be available as small, optional one-time purchases. No subscriptions. No hidden fees. You only pay for what truly feels meaningful to you."
       }
     ]
   }
