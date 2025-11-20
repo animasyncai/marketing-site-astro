@@ -25,8 +25,8 @@
     "closeMenu": "Uždaryti meniu"
   },
   "hero": {
-    "headline": "Tu nesi problema. Tiesiog savyje nešiesi išmoktus modelius.",
-    "subheadline": "Pagaliau suprask, kodėl atsitrauki, kai santykis tampa artimas, kodėl mažos kibirkštys virsta dideliais konfliktais, ir kodėl kartais taip sunku pasakyti, ko iš tikrųjų reikia.",
+    "headline": "Tu nesi brokuotas. Tave veikia įgyti elgesio modeliai.",
+    "subheadline": "Atpažink kodėl jautiesi nepilnavertiškai santykyje, kodėl negali jame atsiskleisti ar jaustis saugiai. Asmeninės refleksijos, padedančios tavo modelius paversti suprantama kalba.",
     "ctaPrimary": "Gauti ankstyvą prieigą",
     "ctaSecondary": "Kaip tai veikia",
     "tagline": "Asmeninės refleksijos, padedančios tavo modelius paversti suprantama kalba.",
@@ -38,44 +38,44 @@
   },
   "hook": {
     "headline": "Ką čia atrasi",
-    "tagline": "Be etikečių. Be diagnozių. Tik aiškus atpažinimas.",
+    "tagline": "Be etikečių. Be diagnozių. Tik aiški pagalba atpažinti.",
     "discoveries": [
       {
-        "title": "Kalba tavo modeliams, kuriuos visada jautei, bet niekada neįvardijai",
-        "description": "\"Atsitraukiu, kai tampa intensyvu\" nustoja būti trūkumas – tai tampa atpažįstamu modeliu, su kuriuo gali dirbti."
+        "title": "Supratimą kodėl jautiesi taip kaip jautiesi.",
+        "description": "\"Atsitraukiu kuomet jaučiu spaudimą artumui\", tai atpažįstamas modelis, kuris gali tau tarnauti, o ne varginti."
       },
       {
-        "title": "Aiškumas apie tai, kaip įsitrauki ir kaip atsitrauki",
-        "description": "Pamatyk, kaip rodai rūpestį, reaguoji į konfliktą, saugai save ir ko tau reikia, kad jaustumeisi saugiai."
+        "title": "Aiškumas kada ir kaip reaguoti",
+        "description": "Pastebėk kaip išreiški jausmus ir kaip tau patogiausia juos priimti."
       },
       {
-        "title": "Privati refleksijos erdvė tik tau",
-        "description": "Tyrinėk tikras situacijas ir pastebėk savo įpročius kasdienybėje – su žmogišku, saugiu palydėjimu."
+        "title": "Individualizuota privati erdvė refleksijoms",
+        "description": "Nagrinėk savo realias situacijas su žmogišku ir supratingu palydovu."
       },
       {
-        "title": "Supratimas, kaip tavo modeliai susitinka su kitais",
-        "description": "Jei turi partnerį, atrask, kur jūsų modeliai sutampa, kur prasilenkia ir kaip rasti bendrą ritmą."
+        "title": "Supratimas, kaip tavo elgesio modeliai veikia kitus ir atvirkščiai",
+        "description": "Partnerystėje atrask kaip geriausia pasiekti pilnavertišką santykių dinamiką."
       }
     ]
   },
   "howItWorks": {
-    "headline": "Kaip veikia Withinly",
+    "headline": "Kaip veikia Withinly?",
     "subheadline": "",
     "step1": {
       "title": "Reflektuok",
-      "description": "Atsakyk į kelis apgalvotus klausimus apie tai, kaip kuri ryšį su savimi ir kitais. Jie padeda pamatyti modelius, slypinčius po tavo reakcijomis."
+      "description": "Atsakyk į kelis klausimus apie tai, kaip kuri ryšį su savimi ir kitais. Jie padeda pamatyti elgesio modelius, slypinčius tavo reakcijose."
     },
     "step2": {
       "title": "Suprask",
-      "description": "Tavo atsakymai virsta šilta, asmeniška refleksija, kuri aiškiai ir žmogiškai paaiškina tavo emocinius modelius."
+      "description": "Tavo atsakymai virsta asmeniška refleksija, kuri žmogiškai paaiškina tavo elgesio modelius."
     },
     "step3": {
       "title": "Tyrinėk",
-      "description": "Kai iškyla tikra situacija, gali paklausti refleksijos palydovo, kas vyksta tavo viduje. Jis atsako tarsi išmintingas draugas, kuris prisimena tavo modelius."
+      "description": "Iškilus situacijai, kalbėk su palydovu ir atpažink kas vyksta tavo viduje. Jis vis geriau pažindamas tave kas kart geriau supras ir suteiks įžvalgų."
     },
     "step4": {
       "title": "Prisijunk",
-      "description": "Kai būsi pasiruošęs (-usi), pakviesk ir partnerį. Tavo refleksijos lieka privačios — bendrinami tik įžvalgų taškai, kurie padeda pamatyti, kur sutampate, kur prasilenkiate ir kaip rasti bendrą ritmą."
+      "description": "Kai būsi pasiruošęs (-usi), pakviesk ir antrą pusę. Tavo refleksijos lieka privačios — bendrinami tik elgesio modeliai, kurie padeda pamatyti, kur suderate, o kur prasilenkiate ir kaip rasti bendrą kalbą."
     }
   },
   "whyWithinly": {
@@ -123,17 +123,17 @@
     ]
   },
   "triedBefore": {
-    "headline": "Jau bandei suprasti save",
-    "intro": "Teko nagrinėti tokius dalykus kaip prisirišimo stiliai, bendravimo įpročiai ar meilės kalbos. Teoriškai viskas aišku — bet daug sunkiau pamatyti, kaip tai iš tiesų pasireiškia realiose situacijose.",
+    "headline": "Jau mėginai suprasti save?",
+    "intro": "eko nagrinėti tokius dalykus kaip prisirišimo tipai, bendravimo įpročiai ar meilės kalbos. Teoriškai viskas aišku — bet daug sunkiau pamatyti, kaip tai iš tiesų pasireiškia realiose situacijose.",
     "insight": "Ko trūko — tai refleksijos, kalbančios tavo kalba.",
-    "description": "Withinly psichologines idėjas paverčia kažkuo pažįstamu ir konkrečiu — momentais, kuriuose atpažinsi savo pačių modelius.",
+    "description": "Withinly sudėtingas psichologines idėjas paverčia lengvai suprantama kasdienine kalba.",
     "testimonials": [
       {
-        "quote": "Pirmą kartą galėjau tiksliai įvardyti, ką darau, kai situacija tampa įtempta.",
+        "quote": "Pirmą kartą galėjau tiksliai įvardyti, ką darau ne taip, kai situacija tampa įtempta.",
         "author": "Ankstyvos prieigos dalyvis"
       },
       {
-        "quote": "Pamatę mūsų bendrą ritmą, į pokalbius ėmėme žiūrėti daug ramiau ir supratingiau.",
+        "quote": "Atpažinę mūsų santykių dinamiką, į pokalbius ėmėme žiūrėti daug ramiau ir supratingiau.",
         "author": "Maya ir Luis"
       }
     ]
