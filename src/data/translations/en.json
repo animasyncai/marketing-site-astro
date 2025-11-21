@@ -129,12 +129,12 @@
     "description": "Withinly turns complex psychological ideas into clear, familiar examples and everyday language you can recognize from your own life.",
     "testimonials": [
       {
-        "quote": "For the first time, I could clearly name what I do when things get tense.",
-        "author": "Early access member"
+        "quote": "For the first time, I could clearly name what I do wrong when things get tense. It helped me see my reactions more clearly and understand what I can shift to stay calmer.",
+        "author": "Sara"
       },
       {
-        "quote": "Seeing our shared rhythm made everything feel less personal and more understandable.",
-        "author": "Maya & Luis"
+        "quote": "Withinly helped me see myself from the outside and understand my patterns and behaviour much more clearly. I especially loved the option to sync with my partner — it gave us both more clarity and helped us see how we can improve the way we communicate with each other..",
+        "author": "Monika"
       }
     ]
   },
@@ -157,14 +157,13 @@
       "price": "",
       "period": "",
       "features": [
-        "Early access includes a generous amount of free insights",
         "Go deeper only if and when something feels meaningful",
-        "No subscriptions",
-        "No hidden fees",
-        "Pay only for what you choose to unlock"
+        "No subscriptions or hidden fees",
+        "Pay only for what you choose to unlock",
+        "Early access includes a generous amount of free insights"
       ]
     },
-    "tagline": "Pricing launches later. No commitment required — explore freely and decide for yourself what feels worth paying for."
+    "tagline": "Pricing launches later."
   },
   "earlyAccess": {
     "headline": "Be among the first to see your patterns clearly",
@@ -179,7 +178,7 @@
     "submitButton": "Get Early Access",
     "loadingButton": "Joining...",
     "privacy": "We’ll send a personal note when doors open. No spam — ever.",
-    "successMessage": "Welcome. We’ll be in touch soon with your early access.",
+    "successMessage": "You have beensigned. You should receive an email with your early access soon. Please check your spam folder if you don't see it.",
     "errorMessage": "Something went wrong. Please try again or email us directly."
   },
   "footer": {

@@ -41,7 +41,7 @@
     "tagline": "Be etikečių. Be diagnozių. Tik aiški pagalba atpažinti.",
     "discoveries": [
       {
-        "title": "Supratimą kodėl jautiesi taip kaip jautiesi.",
+        "title": "Supratimą kodėl jautiesi taip kaip jautiesi",
         "description": "\"Atsitraukiu kuomet jaučiu spaudimą artumui\", tai atpažįstamas modelis, kuris gali tau tarnauti, o ne varginti."
       },
       {
@@ -129,42 +129,40 @@
     "description": "Withinly sudėtingas psichologines idėjas paverčia lengvai suprantama kasdienine kalba.",
     "testimonials": [
       {
-        "quote": "Pirmą kartą galėjau tiksliai įvardyti, ką darau ne taip, kai situacija tampa įtempta.",
-        "author": "Ankstyvos prieigos dalyvis"
+        "quote": "Pirmą kartą galėjau tiksliai įvardyti, ką darau ne taip, kai situacija tampa įtempta. Tai padėjo aiškiau pamatyti savo reakcijas ir suprasti, ką galiu keisti, kad išlikčiau ramesnė.",
+        "author": "Sara"
       },
       {
-        "quote": "Atpažinę mūsų santykių dinamiką, į pokalbius ėmėme žiūrėti daug ramiau ir supratingiau.",
-        "author": "Maya ir Luis"
+        "quote": "Withinly padėjo pamatyti save iš šono ir geriau suprasti savo modelius bei elgesį. Labai patiko galimybė susijungti su partneriu, tai suteikė daugiau aiškumo ir padėjo pamatyti, kaip galime pagerinti tarpusavio bendravimą.",
+        "author": "Monika"
       }
     ]
   },
   "pricing": {
-    "headline": "Sąžininga kaina už prasmingas įžvalgas",
+    "headline": "Moki tiek, kiek naudoji",
     "subheadline": "",
     "free": {
       "title": "Pradžia – nemokama",
       "period": "visada",
       "features": [
-        "Atrask savo modelius",
-        "Gauk pirmąją asmeninę refleksiją",
+        "Gauk asmeninę 500 žodžių refleksiją",
         "Išbandyk pokalbius su refleksijos palydovu",
         "Pirmasis „poros žvilgsnis“ – nemokamas",
         "Tyrinėk Withinly savo tempu"
       ]
     },
     "premium": {
-      "title": "Paprasta kainodara vėliau",
+      "title": "Vėliau - pagal poreikį",
       "price": "",
       "period": "",
       "features": [
-        "Ankstyva prieiga suteikia dosnų kiekį nemokamų įžvalgų",
         "Giliniesi tik tada, kai kažkas iš tiesų turi prasmę",
         "Jokių prenumeratų",
-        "Jokių paslėptų mokesčių",
-        "Moki tik už tai, ką pats nusprendi atrakinti"
+        "Moki tik už tai, ką pats nusprendi tyrinėti",
+        "Ankstyva prieiga suteikia dosnų kiekį nemokamų įžvalgų"
       ]
     },
-    "tagline": "Kainodara bus pristatyta vėliau. Jokio įsipareigojimo — tyrinėk laisvai ir pats spręsk, už ką verta mokėti."
+    "tagline": "Kainodara bus pristatyta vėliau."
   },
   "earlyAccess": {
     "headline": "Būk tarp pirmųjų, kurie aiškiai pamatys savo modelius",
