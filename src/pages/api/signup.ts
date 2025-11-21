@@ -50,6 +50,56 @@ function checkRateLimit(ip: string): { allowed: boolean; resetTime?: number } {
   return { allowed: true }
 }
 
+// Call waitlist confirmation webhook
+async function callWaitlistConfirmationWebhook(email: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    const webhookToken = import.meta.env.WAITLIST_WEBHOOK_TOKEN
+    const webhookUrl =
+      import.meta.env.WAITLIST_WEBHOOK_URL || 'https://api.withinly.app/api/webhook/waitlist-confirmation-email'
+
+    if (!webhookToken) {
+      console.warn('WAITLIST_WEBHOOK_TOKEN not configured, skipping webhook call')
+      return { success: false, error: 'Webhook token not configured' }
+    }
+
+    console.log('Calling waitlist confirmation webhook for:', email)
+
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${webhookToken}`,
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    })
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error('Webhook call failed:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: errorText,
+      })
+      return {
+        success: false,
+        error: `Webhook returned ${response.status}`,
+      }
+    }
+
+    console.log('Waitlist confirmation webhook called successfully')
+    return { success: true }
+  } catch (error) {
+    console.error('Error calling waitlist confirmation webhook:', error)
+    // Don't fail the signup if webhook fails
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    }
+  }
+}
+
 // Fixed Mailjet integration
 async function addToMailjetList(
   email: string,
@@ -424,6 +474,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           },
         },
       )
+    }
+
+    // Call waitlist confirmation webhook only for new signups (not existing users)
+    if (!result.isExisting) {
+      console.log('New signup detected, calling waitlist confirmation webhook')
+      const webhookResult = await callWaitlistConfirmationWebhook(trimmedEmail)
+      if (!webhookResult.success) {
+        // Log but don't fail the signup if webhook fails
+        console.warn('Waitlist confirmation webhook failed, but signup succeeded:', webhookResult.error)
+      }
+    } else {
+      console.log('Existing user signup, skipping webhook call')
     }
 
     // Success response

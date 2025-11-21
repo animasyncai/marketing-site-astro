@@ -125,6 +125,16 @@ Perfect. Understanding your patterns now changes how you show up later.
 Your reflections stay yours. Even with partner sync, only shared insights are visible —  
 never your individual answers or conversations.
 
+**How much will Withinly cost?**  
+You can start exploring for free.  
+During early access, you’ll receive a generous amount of insights to try the full experience.
+
+When we launch, deeper reflections and advanced features will be available as small, optional one-time purchases.
+
+No subscriptions.  
+No hidden fees.  
+You only pay for what feels meaningful to you.
+
 ---
 
 **hello@withinly.app**  

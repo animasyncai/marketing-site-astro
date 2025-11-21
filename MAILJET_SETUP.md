@@ -30,9 +30,15 @@ Create a `.env` file in your project root with the following variables:
 MAILJET_API_KEY=your_mailjet_api_key_here
 MAILJET_API_SECRET=your_mailjet_api_secret_here
 MAILJET_CONTACT_LIST_ID=your_contact_list_id_here
+
+# Waitlist Confirmation Webhook (optional)
+WAITLIST_WEBHOOK_TOKEN=your_webhook_token_here
+WAITLIST_WEBHOOK_URL=https://api.withinly.app/api/webhook/waitlist-confirmation-email
 ```
 
 Replace the placeholder values with your actual Mailjet credentials.
+
+**Note:** The `WAITLIST_WEBHOOK_URL` is optional and defaults to `https://api.withinly.app/api/webhook/waitlist-confirmation-email` if not provided. The webhook will only be called for new signups (not existing users).
 
 ## 5. Test the Integration
 
@@ -71,4 +77,4 @@ curl -X POST http://localhost:4321/api/signup \
 - Never commit your `.env` file to version control
 - The `.env` file is already in `.gitignore`
 - Use different API keys for development and production
-- Consider using Mailjet's sandbox mode for testing 
+- Consider using Mailjet's sandbox mode for testing
