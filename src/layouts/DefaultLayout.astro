@@ -55,7 +55,7 @@ const { dir } = SUPPORTED_LANGUAGES[lang]
   </head>
   <body class="bg-white text-gray-900 antialiased">
     <Header />
-    <main id="main-content" class="min-h-screen">
+    <main id="main-content" class="min-h-screen" tabindex="-1">
       <slot />
     </main>
     <Footer />
@@ -63,9 +63,23 @@ const { dir } = SUPPORTED_LANGUAGES[lang]
 </html>
 
 <style>
-  /* Remove any conflicting SCSS that might interfere with Tailwind */
-  html {
-    scroll-behavior: smooth;
+  /* Smooth in-page scrolling only for people who have not asked for reduced motion (E-067) */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Fragment targets (the skip link, the header links and CTAs) land just below the sticky header: its height (h-16
+     plus a 1px border) and 24px. The browser's own fragment navigation does the scrolling, updates the hash and moves
+     the keyboard focus start point; <main> takes focus itself (tabindex="-1") so the skip link lands inside it. */
+  main,
+  :global(section[id]) {
+    scroll-margin-top: calc(4rem + 1px + 24px);
+  }
+
+  main:focus {
+    outline: none;
   }
 
   /* Ensure proper focus management */
