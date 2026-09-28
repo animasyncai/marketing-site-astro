@@ -308,8 +308,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       return mailjetFailureResponse(error)
     }
 
-    // The confirmation e-mail goes to an address this request put on the list.
-    if (outcome === 'added') {
+    // Every address that is on the list after this request reaches the api, the already-listed too: the api mails
+    // each address once, so a retry re-sends a confirmation lost to a failed or timed-out webhook call. Someone who
+    // unsubscribed gets nothing. Deploy only once the api release that mails each address once is live.
+    if (outcome !== 'unsubscribed') {
       await callWaitlistConfirmationWebhook(trimmedEmail)
     }
 
