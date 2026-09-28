@@ -18,6 +18,40 @@ const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000 // 15 minutes
 const RATE_LIMIT_MAX_REQUESTS = 5 // Max 5 signups per IP per window
 
+// Only the site's own pages may sign someone up. SIGNUP_ALLOWED_ORIGINS is a required, comma-separated list of exact
+// origins (e.g. `https://withinly.app,https://www.withinly.app`). The request's own URL cannot stand in for it: without
+// `security.allowedDomains`, Astro builds `request.url` on localhost behind Vercel. Unset or empty fails closed.
+function parseAllowedOrigins(raw: string | undefined): Set<string> {
+  return new Set(
+    (raw ?? '')
+      .split(',')
+      .map((origin) => origin.trim().replace(/\/+$/, ''))
+      .filter(Boolean),
+  )
+}
+
+const ALLOWED_ORIGINS = parseAllowedOrigins(import.meta.env.SIGNUP_ALLOWED_ORIGINS)
+if (ALLOWED_ORIGINS.size === 0) {
+  console.error('[signup] SIGNUP_ALLOWED_ORIGINS is not set: every sign-up is refused with 403')
+}
+
+function isAllowedOrigin(request: Request): boolean {
+  const origin = request.headers.get('origin')
+  return origin !== null && ALLOWED_ORIGINS.has(origin)
+}
+
+function isJsonRequest(request: Request): boolean {
+  const mediaType = request.headers.get('content-type')?.split(';')[0]?.trim().toLowerCase()
+  return mediaType === 'application/json'
+}
+
+function jsonResponse(status: number, body: Record<string, unknown>, headers: Record<string, string> = {}): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json', ...headers },
+  })
+}
+
 // Email validation
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -316,6 +350,15 @@ async function addToMailjetList(
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   const startTime = Date.now()
 
+  // Same-origin JSON only, checked before anything else (no rate-limit budget, no Mailjet call, no webhook).
+  // There is deliberately no CORS: no OPTIONS handler and no Access-Control-Allow-* header on any response.
+  if (!isAllowedOrigin(request)) {
+    return jsonResponse(403, { success: false, error: 'FORBIDDEN_ORIGIN' })
+  }
+  if (!isJsonRequest(request)) {
+    return jsonResponse(415, { success: false, error: 'UNSUPPORTED_MEDIA_TYPE' })
+  }
+
   try {
     // Get client IP for rate limiting
     const clientIP =
@@ -333,23 +376,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
       const retryAfter = Math.ceil((rateCheck.resetTime! - Date.now()) / 1000)
 
-      return new Response(
-        JSON.stringify({
+      return jsonResponse(
+        429,
+        {
           success: false,
           error: 'RATE_LIMIT_EXCEEDED',
           message: 'Too many signup attempts. Please try again later.',
           resetTime: rateCheck.resetTime,
-        }),
-        {
-          status: 429,
-          headers: {
-            'Content-Type': 'application/json',
-            'Retry-After': retryAfter.toString(),
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST',
-            'Access-Control-Allow-Headers': 'Content-Type',
-          },
         },
+        { 'Retry-After': retryAfter.toString() },
       )
     }
 
@@ -365,60 +400,33 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       body = JSON.parse(rawBody)
     } catch (parseError) {
       console.error('JSON parse error:', parseError)
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'INVALID_JSON',
-          message: 'Invalid request format',
-        }),
-        {
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        },
-      )
+      return jsonResponse(400, {
+        success: false,
+        error: 'INVALID_JSON',
+        message: 'Invalid request format',
+      })
     }
 
     // Validate required fields
     const { email, source = 'website', timestamp } = body
 
     if (!email || typeof email !== 'string') {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'MISSING_EMAIL',
-          message: 'Email address is required',
-        }),
-        {
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        },
-      )
+      return jsonResponse(400, {
+        success: false,
+        error: 'MISSING_EMAIL',
+        message: 'Email address is required',
+      })
     }
 
     const trimmedEmail = email.trim().toLowerCase()
 
     // Validate email format
     if (!isValidEmail(trimmedEmail)) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'INVALID_EMAIL',
-          message: 'Please enter a valid email address',
-        }),
-        {
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        },
-      )
+      return jsonResponse(400, {
+        success: false,
+        error: 'INVALID_EMAIL',
+        message: 'Please enter a valid email address',
+      })
     }
 
     // Check for common disposable email domains
@@ -437,20 +445,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     const emailDomain = trimmedEmail.split('@')[1]?.toLowerCase()
     if (disposableDomains.includes(emailDomain)) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'DISPOSABLE_EMAIL',
-          message: 'Please use a permanent email address',
-        }),
-        {
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        },
-      )
+      return jsonResponse(400, {
+        success: false,
+        error: 'DISPOSABLE_EMAIL',
+        message: 'Please use a permanent email address',
+      })
     }
 
     console.log(`Processing signup for: ${trimmedEmail}`)
@@ -463,21 +462,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     if (!result.success) {
       // Return error response
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'EMAIL_SERVICE_ERROR',
-          message: result.message || 'Unable to process signup at this time.',
-          isExisting: result.isExisting || false,
-        }),
-        {
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        },
-      )
+      return jsonResponse(400, {
+        success: false,
+        error: 'EMAIL_SERVICE_ERROR',
+        message: result.message || 'Unable to process signup at this time.',
+        isExisting: result.isExisting || false,
+      })
     }
 
     // Call waitlist confirmation webhook only for new signups (not existing users)
@@ -493,72 +483,32 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }
 
     // Success response
-    return new Response(
-      JSON.stringify({
-        success: true,
-        message: result.message || "Welcome! We'll be in touch soon with your early access.",
-        data: {
-          email: trimmedEmail,
-          timestamp: Date.now(),
-          isExisting: result.isExisting || false,
-        },
-      }),
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
+    return jsonResponse(200, {
+      success: true,
+      message: result.message || "Welcome! We'll be in touch soon with your early access.",
+      data: {
+        email: trimmedEmail,
+        timestamp: Date.now(),
+        isExisting: result.isExisting || false,
       },
-    )
+    })
   } catch (error) {
     const processingTime = Date.now() - startTime
     console.error(`Signup API error after ${processingTime}ms:`, error)
 
-    return new Response(
-      JSON.stringify({
-        success: false,
-        error: 'INTERNAL_ERROR',
-        message: 'An unexpected error occurred. Please try again.',
-      }),
-      {
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      },
-    )
+    return jsonResponse(500, {
+      success: false,
+      error: 'INTERNAL_ERROR',
+      message: 'An unexpected error occurred. Please try again.',
+    })
   }
-}
-
-// Handle preflight requests
-export const OPTIONS: APIRoute = async () => {
-  return new Response(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Max-Age': '86400',
-    },
-  })
 }
 
 // Handle other HTTP methods
 export const GET: APIRoute = async () => {
-  return new Response(
-    JSON.stringify({
-      success: false,
-      error: 'METHOD_NOT_ALLOWED',
-      message: 'Only POST requests are allowed',
-    }),
-    {
-      status: 405,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-    },
-  )
+  return jsonResponse(405, {
+    success: false,
+    error: 'METHOD_NOT_ALLOWED',
+    message: 'Only POST requests are allowed',
+  })
 }
