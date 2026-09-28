@@ -66,8 +66,6 @@ export default defineConfig({
         '@public': fileURLToPath(new URL('./public', import.meta.url)),
         '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
         '@data': fileURLToPath(new URL('./src/data', import.meta.url)),
-        '@post-images': fileURLToPath(new URL('./public/posts', import.meta.url)),
-        '@project-images': fileURLToPath(new URL('./public/projects', import.meta.url)),
       },
     },
   },
