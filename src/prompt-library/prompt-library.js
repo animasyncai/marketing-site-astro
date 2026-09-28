@@ -514,7 +514,7 @@ export function filterAndSortPrompts(prompts, traitData) {
     }
   })
 
-  // Sort by priority: Primary > Secondary > Basic (universal) > Priority score
+  // Sort by priority: Primary > Secondary > other matching (incl. universal) > non-matching, then by score
   return enrichedPrompts.sort((a, b) => {
     // Primary matches first
     if (a.isPrimaryMatch && !b.isPrimaryMatch) return -1
@@ -523,6 +523,10 @@ export function filterAndSortPrompts(prompts, traitData) {
     // Secondary matches second
     if (a.isSecondaryMatch && !b.isSecondaryMatch) return -1
     if (!a.isSecondaryMatch && b.isSecondaryMatch) return 1
+
+    // Every matching prompt (universal prompts match with 0 traits) above every non-matching one, so a
+    // high-priority prompt written for another trait profile never outranks one that fits this person
+    if (a.matches !== b.matches) return a.matches ? -1 : 1
 
     // Then by relevance score (highest first)
     return b.relevanceScore - a.relevanceScore
@@ -573,8 +577,8 @@ export function getTopRelevantPrompts(traitData, context, locale, promptLibrary,
   // Filter and sort by trait matching
   const filtered = filterAndSortPrompts(relevant, traitData)
 
-  // Return top N prompts
-  return filtered.slice(0, limit)
+  // Return the top N prompts that fit the person; a non-matching prompt is never recommended
+  return filtered.filter((prompt) => prompt.matches).slice(0, limit)
 }
 
 // ============================================================================
