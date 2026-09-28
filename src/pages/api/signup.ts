@@ -244,19 +244,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   try {
-    // Get client IP for rate limiting
+    // Get client IP for rate limiting. It is used only in memory: the log lines below carry outcome codes and
+    // timings, never the visitor's IP or address (the privacy notice says so).
     const clientIP =
       clientAddress ||
       request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
       request.headers.get('x-real-ip') ||
       'unknown'
 
-    console.log(`Signup request from IP: ${clientIP}`)
-
     // Check rate limit
     const rateCheck = checkRateLimit(clientIP)
     if (!rateCheck.allowed) {
-      console.log(`Rate limit exceeded for IP: ${clientIP}`)
+      console.log('[signup] outcome=rate_limited')
 
       const retryAfter = Math.ceil((rateCheck.resetTime! - Date.now()) / 1000)
 
@@ -295,8 +294,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     if (DISPOSABLE_DOMAINS.includes(emailDomain)) {
       return jsonResponse(400, { success: false, error: 'DISPOSABLE_EMAIL' })
     }
-
-    console.log(`Processing signup for: ${trimmedEmail}`)
 
     let outcome: ListOutcome
     try {
