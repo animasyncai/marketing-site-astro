@@ -245,12 +245,16 @@ async function addToMailjetList(
         }
       }
     } catch (mailjetError: any) {
+      // Log only the status, Mailjet's message and its identifier. The raw node-mailjet error carries the axios
+      // request (the API key and secret, the Authorization header and the body), and Mailjet's messages quote the
+      // address, so e-mail-shaped text is redacted.
       console.error('Mailjet API error:', {
-        status: mailjetError.statusCode,
-        message: mailjetError.message,
-        errorInfo: mailjetError.ErrorInfo,
-        errorMessage: mailjetError.ErrorMessage,
-        fullError: mailjetError,
+        status: mailjetError?.statusCode ?? mailjetError?.code ?? null,
+        errorMessage: String(mailjetError?.ErrorMessage ?? mailjetError?.originalMessage ?? '').replace(
+          /[^\s"'<>@]+@[^\s"'<>@]+/g,
+          '<email>',
+        ),
+        errorIdentifier: mailjetError?.ErrorIdentifier,
       })
 
       // Handle specific Mailjet errors
