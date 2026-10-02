@@ -74,6 +74,11 @@ export default defineConfig({
   ],
 
   vite: {
+    // Every processed <script> is emitted as a /_astro file, never inlined, so the CSP needs no hashes or nonces
+    // (ViewTransitions soft navigations keep the first page's CSP, which rules out per-page values).
+    build: {
+      assetsInlineLimit: 0,
+    },
     css: {
       preprocessorOptions: {
         scss: {
