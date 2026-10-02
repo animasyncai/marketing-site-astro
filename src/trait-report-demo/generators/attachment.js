@@ -45,11 +45,15 @@ export function generateAttachmentReflection(traitData, locale = 'en') {
   const detectedPatterns = subscores ? detectPatterns(primary, subscores) : []
 
   // Add notable pattern to user report (if patterns detected)
+  const missingCopy = []
   if (detectedPatterns.length > 0 && t.notablePatterns) {
     const notablePatternKey = identifyMostSignificantPattern(detectedPatterns)
     if (notablePatternKey && t.notablePatterns[notablePatternKey]) {
       const prefix = locale === 'lt' ? '\n\nVienas dalykas, kurį verta pastebėti: ' : '\n\nOne thing to notice: '
       userReport += prefix + t.notablePatterns[notablePatternKey]
+    } else if (notablePatternKey) {
+      missingCopy.push(notablePatternKey)
+      console.warn('[demo-report] no notablePatterns copy', { trait: 'attachment', locale, key: notablePatternKey })
     }
   }
 
@@ -68,6 +72,7 @@ export function generateAttachmentReflection(traitData, locale = 'en') {
     userReport,
     behavioralProfile,
     detectedPatterns, // Return as array
+    missingCopy,
   }
 }
 

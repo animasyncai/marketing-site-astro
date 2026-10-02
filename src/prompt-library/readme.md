@@ -56,7 +56,8 @@ import promptData from './prompt-library/data/prompt-library.json'
 
 // Get top 3 most relevant prompts (regardless of category):
 const topPrompts = getTopRelevantPrompts(userTraits, context, locale, promptData.prompts, 3)
-// Returns top 3 prompts sorted by: Primary > Secondary > Basic > Priority
+// Returns top 3 prompts sorted by: Primary > Secondary > other matching (incl. universal) > Priority;
+// a prompt whose criteria do not match the person is never returned
 // Use .isPrimaryMatch for 🌟 badge, .isSecondaryMatch for ⭐ badge
 ```
 
@@ -154,8 +155,9 @@ Prompts are sorted by the following priority order:
 
 1. **Primary trait matches** (🌟 glowing star) - Matches user's primary traits
 2. **Secondary trait matches** (⭐ regular star) - Matches user's secondary traits
-3. **Universal prompts** - No trait requirements
-4. **Priority score** - Within each group, sorted by `priority + matchedTraits * 2`
+3. **Other matching prompts** - Including universal prompts (no trait requirements)
+4. **Non-matching prompts** - Criteria that do not fit the person; last in the full list, never in `getTopRelevantPrompts()`
+5. **Priority score** - Within each group, sorted by `priority + matchedTraits * 2`
 
 ```javascript
 relevanceScore = priority + matchedTraits * 2
@@ -181,7 +183,7 @@ Returns all prompts matching the context, with localized text. Optionally filter
 
 ### `filterAndSortPrompts(prompts, traitData)`
 
-Adds display metadata and sorts by relevance. Prioritization: Primary > Secondary > Basic > Priority score.
+Adds display metadata and sorts by relevance. Prioritization: Primary > Secondary > other matching (incl. universal) > non-matching > Priority score.
 
 - **prompts**: Output from `getRelevantPrompts()`
 - **traitData**: Withinly trait object

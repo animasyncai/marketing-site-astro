@@ -2,8 +2,11 @@
 import { Icon } from 'astro-icon/components'
 import { 
   SUPPORTED_LANGUAGES, 
+  DEFAULT_LANGUAGE,
   getLanguageFromUrl, 
-  getLocalizedPath
+  getLocalizedPath,
+  getCleanPath,
+  hasLocalizedPage
 } from '../utils/i18n.js'
 
 interface Props {
@@ -18,12 +21,16 @@ const currentLanguage = getLanguageFromUrl(Astro.url.pathname) as keyof typeof S
 const currentLangData = SUPPORTED_LANGUAGES[currentLanguage]
 
 // Get the clean path for language switching
-const cleanPath = Astro.url.pathname.replace(/^\/(en|lt)(?=\/|$)/, '') || '/'
+const cleanPath = getCleanPath(Astro.url.pathname)
 
-// Generate language options
+// Generate language options. A switcher leads to this page in the other language only where that page exists
+// (English always does); otherwise to that language's landing page, never to a 404 (E-058).
 const languageOptions = Object.values(SUPPORTED_LANGUAGES).map(lang => ({
   ...lang,
-  url: getLocalizedPath(cleanPath, lang.code),
+  url:
+    lang.code === DEFAULT_LANGUAGE || hasLocalizedPage(cleanPath)
+      ? getLocalizedPath(cleanPath, lang.code)
+      : getLocalizedPath('/', lang.code),
   isCurrent: lang.code === currentLanguage,
 }))
 ---

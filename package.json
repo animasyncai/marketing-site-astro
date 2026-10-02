@@ -1,16 +1,20 @@
 {
-  "name": "accessible-astro-starter",
-  "description": "An Accessible Starter Theme for Astro including several accessibility features and tools to help you build faster.",
+  "name": "withinly-marketing-site",
+  "description": "Withinly's public marketing site and early-access waitlist (Astro, served on Vercel).",
   "version": "4.1.0",
-  "author": "Incluud",
+  "author": "Withinly",
   "license": "MIT",
   "type": "module",
-  "homepage": "https://accessible-astro.netlify.app/",
+  "engines": {
+    "node": "22.x"
+  },
+  "homepage": "https://withinly.app",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:secrets": "node scripts/check-secrets.mjs"
   },
   "keywords": [
     "astro",
@@ -28,10 +32,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/incluud/accessible-astro-starter.git"
+    "url": "git+https://github.com/animasyncai/marketing-site-astro.git"
   },
   "bugs": {
-    "url": "https://github.com/incluud/accessible-astro-starter/issues"
+    "url": "https://github.com/animasyncai/marketing-site-astro/issues"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.3.0",

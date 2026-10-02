@@ -186,7 +186,7 @@
     "submitButton": "Gauti ankstyvą prieigą",
     "loadingButton": "Jungiama...",
     "privacy": "Atsiųsime asmeninį pranešimą, kai atversime prieigą. Jokio šlamšto — niekada.",
-    "successMessage": "Džiaugiamės, kad prisijungei! Netrukus susisieksime dėl ankstyvos prieigos.",
+    "successMessage": "Beveik baigta – atsiuntėme tau laišką. Atidaryk jame esančią nuorodą, kad patvirtintum adresą ir prisijungtum prie laukiančiųjų sąrašo. Jei laiško nematai, pažiūrėk į šlamšto aplanką.",
     "errorMessage": "Įvyko klaida. Pamėgink dar kartą arba parašyk mums tiesiogiai."
   },
   "footer": {
@@ -194,7 +194,8 @@
     "copyright": "© 2025 Withinly. Visos teisės saugomos.",
     "privacy": "Privatumo politika",
     "terms": "Naudojimo sąlygos",
-    "contact": "Kontaktai"
+    "contact": "Kontaktai",
+    "leaveWaitlist": "Išeiti iš laukiančiųjų sąrašo"
   },
   "validation": {
     "required": "privalomas",
@@ -238,5 +239,55 @@
         "answer": "Pradėti gali nemokamai. Ankstyvos prieigos metu gausi dosnų kiekį įžvalgų, kad galėtum laisvai išbandyti patirtį. Paleidimo metu gilesnės refleksijos ir papildomos funkcijos bus prieinamos kaip paprasti, pasirenkami vienkartiniai pirkimai. Jokių prenumeratų. Jokių paslėptų mokesčių. Moki tik už tai, kas tau iš tiesų svarbu."
       }
     ]
+  },
+  "waitlistEmail": {
+    "confirmSubject": "Patvirtink savo vietą Withinly laukiančiųjų sąraše",
+    "confirmIntro": "Kažkas – tikimės, kad tu – šiuo adresu paprašė įtraukti į Withinly ankstyvos prieigos laukiančiųjų sąrašą.",
+    "confirmAction": "Patvirtinti adresą",
+    "confirmExpiry": "Nuoroda galioja 48 valandas.",
+    "confirmIgnore": "Jei tai buvai ne tu, tiesiog ignoruok šį laišką: į sąrašą neįtrauksime ir daugiau nerašysime.",
+    "leaveLine": "Persigalvojai? Iš sąrašo gali išeiti bet kada:",
+    "privacyLine": "Kaip tvarkome tavo adresą:",
+    "signature": "Withinly komanda",
+    "leaveSubject": "Nuoroda išeiti iš Withinly laukiančiųjų sąrašo",
+    "leaveIntro": "Kažkas paprašė nuorodos, kuria šis adresas išbraukiamas iš Withinly ankstyvos prieigos laukiančiųjų sąrašo.",
+    "leaveAction": "Išeiti iš sąrašo",
+    "leaveIgnore": "Jei tai buvai ne tu, tiesiog ignoruok šį laišką: niekas nepasikeis."
+  },
+  "waitlistConfirm": {
+    "title": "Patvirtink savo adresą",
+    "readyText": "Paspausk „Patvirtinti“, kad prisijungtum prie Withinly ankstyvos prieigos laukiančiųjų sąrašo. Tavo adresą naudosime tik pranešti apie ankstyvą prieigą, o išeiti gali bet kada.",
+    "button": "Patvirtinti",
+    "privacyNote": "Kaip tvarkome tavo adresą, aprašyta mūsų",
+    "doneTitle": "Esi sąraše",
+    "doneText": "Ačiū – adresas patvirtintas. Susisieksime, kai atversime ankstyvą prieigą.",
+    "invalidTitle": "Ši nuoroda neveikia",
+    "invalidText": "Nuoroda neišsami arba nebegalioja (nuorodos galioja 48 valandas). Užsiregistruok dar kartą ir atsiųsime naują.",
+    "leftAfterTitle": "Ši nuoroda tavęs nebeprideda",
+    "leftAfterText": "Iš sąrašo išėjai po to, kai išsiuntėme šią nuorodą. Norėdamas (-a) grįžti, užsiregistruok dar kartą; jei nepavyks, parašyk hello@withinly.app.",
+    "errorTitle": "Pabandyk dar kartą",
+    "errorText": "Šiuo metu nepavyko patvirtinti adreso. Pabandyk dar kartą po minutės.",
+    "retryButton": "Bandyti dar kartą",
+    "backHome": "Grįžti į Withinly"
+  },
+  "waitlistLeave": {
+    "title": "Išeiti iš laukiančiųjų sąrašo",
+    "formText": "Įvesk adresą, kuriuo registravaisi. Atsiųsime į jį nuorodą, kuria adresas išbraukiamas iš sąrašo.",
+    "emailLabel": "El. pašto adresas",
+    "sendButton": "Atsiųsti nuorodą",
+    "sentTitle": "Patikrink savo el. paštą",
+    "sentText": "Jei šis adresas yra sąraše, atsiuntėme į jį nuorodą išeiti.",
+    "readyText": "Paspausk „Išeiti“, kad tavo adresas būtų išbrauktas iš Withinly laukiančiųjų sąrašo. Daugiau nerašysime apie ankstyvą prieigą.",
+    "leaveButton": "Išeiti",
+    "doneTitle": "Tavęs sąraše nebėra",
+    "doneText": "Tavo adresas išbrauktas iš sąrašo ir daugiau apie ankstyvą prieigą nerašysime. Jį laikome tik pažymėtą „nesiųsti laiškų“, kad per klaidą nebūtų vėl įtrauktas. Jei nori, kad jį visiškai ištrintume, parašyk hello@withinly.app.",
+    "invalidTitle": "Ši nuoroda neveikia",
+    "invalidText": "Nuoroda neišsami arba nebegalioja. Įvesk savo adresą žemiau ir atsiųsime naują.",
+    "emailInvalid": "Įvesk galiojantį el. pašto adresą.",
+    "limitedText": "Per daug užklausų. Pabandyk vėliau.",
+    "errorTitle": "Pabandyk dar kartą",
+    "errorText": "Kažkas nepavyko. Pabandyk dar kartą po minutės.",
+    "retryButton": "Bandyti dar kartą",
+    "backHome": "Grįžti į Withinly"
   }
 }

@@ -1,6 +1,12 @@
 ---
+import { guard } from '../lib/internal-gate'
+
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import defaultPromptLibrary from '../prompt-library/data/prompt-library.json'
+import { safeJsonForScript } from '../utils/safe-json.js'
+
+const denied = await guard(Astro, '/prompt-library-editor')
+if (denied) return denied
 
 const pageTitle = 'Prompt Library Editor'
 const pageDescription = 'Edit, add, and manage reflection prompts'
@@ -125,14 +131,14 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
                 <label class="mb-2 block text-sm font-medium text-gray-700">
                   English Text <span class="text-red-500">*</span>
                 </label>
-                <textarea id="textEn" rows="2" class="w-full rounded-md border p-2" required></textarea>
+                <textarea id="textEn" maxlength="2000" rows="2" class="w-full rounded-md border p-2" required></textarea>
               </div>
 
               <div>
                 <label class="mb-2 block text-sm font-medium text-gray-700">
                   Lithuanian Text <span class="text-red-500">*</span>
                 </label>
-                <textarea id="textLt" rows="2" class="w-full rounded-md border p-2" required></textarea>
+                <textarea id="textLt" maxlength="2000" rows="2" class="w-full rounded-md border p-2" required></textarea>
               </div>
 
               <!-- Contexts -->
@@ -227,8 +233,10 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
   <input type="file" id="fileInput" accept=".json" class="hidden" />
 
   <!-- Scripts -->
-  <script type="application/json" id="prompt-library-data" set:html={JSON.stringify(defaultPromptLibrary)} />
+  <script type="application/json" id="prompt-library-data" set:html={safeJsonForScript(defaultPromptLibrary)} />
   <script>
+    import { escapeHtml } from '../utils/escape-html.js'
+
     // ==========================================
     // IMPORT MODULES
     // ==========================================
@@ -329,7 +337,9 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           const loaded = demoUtils.loadPromptLibrary(defaultPromptLibrary.prompts) as {
             prompts: any[]
             isEdited: boolean
+            discarded?: boolean
           }
+          if (loaded.discarded) showNotification('Saved prompts were not valid and were discarded; the defaults are loaded.')
           prompts = loaded.prompts
           originalPrompts = JSON.parse(JSON.stringify(prompts))
           checkUnsavedChanges()
@@ -386,16 +396,16 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
             return traits
               .map((trait: any) => {
                 const parts: string[] = []
-                parts.push(`<span class="font-medium">${trait.type}</span>`)
+                parts.push(`<span class="font-medium">${escapeHtml(trait.type)}</span>`)
 
                 if (trait.labels && trait.labels.length > 0) {
                   const labelText = trait.labels.join(', ')
-                  parts.push(`<span class="text-gray-600">${labelText}</span>`)
+                  parts.push(`<span class="text-gray-600">${escapeHtml(labelText)}</span>`)
                 }
 
                 if (trait.intensities && trait.intensities.length > 0) {
                   const intensityText = trait.intensities.join(', ')
-                  parts.push(`<span class="text-gray-500 text-xs">(${intensityText})</span>`)
+                  parts.push(`<span class="text-gray-500 text-xs">(${escapeHtml(intensityText)})</span>`)
                 }
 
                 return `<div class="text-xs">${parts.join(' • ')}</div>`
@@ -403,6 +413,7 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
               .join('')
           }
 
+          // innerHTML: every interpolated value below is escapeHtml()'d; the rest is fixed markup.
           container.innerHTML = `
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 ${filteredPrompts
@@ -417,13 +428,13 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
                             ? 'border-indigo-500 bg-indigo-50 shadow-md'
                             : 'border-gray-200 bg-white'
                         }"
-                        data-prompt-id="${prompt.id}"
+                        data-prompt-id="${escapeHtml(prompt.id)}"
                       >
                         <div class="space-y-2">
                           <div class="flex items-start justify-between gap-2">
                             <div class="flex-1 min-w-0">
                               <div class="font-medium text-gray-900 text-sm leading-snug mb-2">
-                                ${prompt.text.en || '(No English text)'}
+                                ${escapeHtml(prompt.text.en || '(No English text)')}
                               </div>
                             </div>
                             ${
@@ -438,22 +449,22 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
                           </div>
                           <div class="flex flex-wrap items-center gap-1.5 text-xs">
                             <span class="inline-flex items-center px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-mono text-xs">
-                              #${prompt.id}
+                              #${escapeHtml(prompt.id)}
                             </span>
                             <span class="inline-flex items-center px-2 py-0.5 rounded bg-blue-50 text-blue-700">
-                              ${prompt.contexts.join(', ')}
+                              ${escapeHtml(prompt.contexts.join(', '))}
                             </span>
                             ${
                               prompt.category
                                 ? `
                               <span class="inline-flex items-center px-2 py-0.5 rounded bg-purple-50 text-purple-700">
-                                ${promptLib.getCategoryLabel(prompt.category, 'en')}
+                                ${escapeHtml(promptLib.getCategoryLabel(prompt.category, 'en'))}
                               </span>
                             `
                                 : ''
                             }
                             <span class="inline-flex items-center px-2 py-0.5 rounded bg-green-50 text-green-700">
-                              P${prompt.priority || 5}
+                              P${escapeHtml(prompt.priority || 5)}
                             </span>
                           </div>
                           <div class="pt-2 border-t border-gray-100">
@@ -531,6 +542,7 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
             return
           }
 
+          // innerHTML: every interpolated value below is escapeHtml()'d; the rest is fixed markup.
           container.innerHTML = traits
             .map(
               (trait: any, index: number) => `
@@ -549,7 +561,7 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
               <label class="block text-xs font-medium text-gray-600 mb-1">Type</label>
               <select class="trait-type w-full p-2 border rounded text-sm">
                 ${demoUtils.EDITOR_OPTIONS.traitTypes
-                  .map((type) => `<option value="${type}" ${trait.type === type ? 'selected' : ''}>${type}</option>`)
+                  .map((type) => `<option value="${escapeHtml(type)}" ${trait.type === type ? 'selected' : ''}>${escapeHtml(type)}</option>`)
                   .join('')}
               </select>
             </div>
@@ -561,10 +573,10 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
                   .map(
                     (label) =>
                       `<label class="flex items-center space-x-1 cursor-pointer">
-                        <input type="checkbox" value="${label}" class="trait-label-checkbox rounded text-indigo-600" ${
+                        <input type="checkbox" value="${escapeHtml(label)}" class="trait-label-checkbox rounded text-indigo-600" ${
                           trait.labels?.includes(label) ? 'checked' : ''
                         } />
-                        <span class="text-xs text-gray-700">${label}</span>
+                        <span class="text-xs text-gray-700">${escapeHtml(label)}</span>
                       </label>`
                   )
                   .join('')}
@@ -578,10 +590,10 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
                   .map(
                     (intensity) =>
                       `<label class="flex items-center space-x-1 cursor-pointer">
-                        <input type="checkbox" value="${intensity}" class="trait-intensity-checkbox rounded text-indigo-600" ${
+                        <input type="checkbox" value="${escapeHtml(intensity)}" class="trait-intensity-checkbox rounded text-indigo-600" ${
                           trait.intensities?.includes(intensity) ? 'checked' : ''
                         } />
-                        <span class="text-xs text-gray-700">${intensity}</span>
+                        <span class="text-xs text-gray-700">${escapeHtml(intensity)}</span>
                       </label>`
                   )
                   .join('')}
@@ -603,11 +615,12 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
                 if (traitElement) {
                   const labelsContainer = traitElement.querySelector('.flex.flex-wrap')
                   if (labelsContainer) {
+                    // innerHTML: every interpolated value below is escapeHtml()'d; the rest is fixed markup.
                     labelsContainer.innerHTML = getLabelsForType(selectEl.value)
                       .map(
                         (label: string) => `<label class="flex items-center space-x-1 cursor-pointer">
-                        <input type="checkbox" value="${label}" class="trait-label-checkbox rounded text-indigo-600" />
-                        <span class="text-xs text-gray-700">${label}</span>
+                        <input type="checkbox" value="${escapeHtml(label)}" class="trait-label-checkbox rounded text-indigo-600" />
+                        <span class="text-xs text-gray-700">${escapeHtml(label)}</span>
                       </label>`
                       )
                       .join('')
@@ -842,6 +855,7 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
           }
 
           container.classList.remove('hidden')
+          // innerHTML: every interpolated value below is escapeHtml()'d; the rest is fixed markup.
           container.innerHTML = `
         <div class="bg-red-50 border border-red-200 rounded-lg p-4">
           <div class="flex items-start gap-3">
@@ -855,9 +869,9 @@ const pageDescription = 'Edit, add, and manage reflection prompts'
                   .map(
                     (err: any) => `
                   <div class="text-sm">
-                    <span class="font-medium">Prompt #${err.id}:</span>
+                    <span class="font-medium">Prompt #${escapeHtml(err.id)}:</span>
                     <ul class="ml-4 mt-1 list-disc">
-                      ${(err.errors || []).map((e: string) => `<li>${e}</li>`).join('')}
+                      ${(err.errors || []).map((e: string) => `<li>${escapeHtml(e)}</li>`).join('')}
                     </ul>
                   </div>
                 `

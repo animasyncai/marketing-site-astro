@@ -2,12 +2,22 @@
 import Logo from './Logo.astro'
 import LanguagePicker from './LanguagePicker.astro'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+import { DEFAULT_LANGUAGE, getLanguageFromUrl, getLocalizedPath, hasLocalizedPage } from '../utils/i18n.js'
 
 // Get translations for current language
 const translations = await getTranslationsFromUrl(Astro.url.pathname)
 const t = (key: string, variables = {}, fallback = '') => {
   return getTranslation(translations, key, variables, fallback)
 }
+
+// Legal pages in the page's language where they exist, else the English ones, marked hreflang="en" (E-058)
+const lang = getLanguageFromUrl(Astro.url.pathname)
+const legalLink = (path: string) =>
+  hasLocalizedPage(path)
+    ? { href: getLocalizedPath(path, lang), hreflang: undefined }
+    : { href: path, hreflang: lang === DEFAULT_LANGUAGE ? undefined : DEFAULT_LANGUAGE }
+const privacyLink = legalLink('/privacy')
+const termsLink = legalLink('/terms')
 ---
 
 <footer class="footer-bg border-t border-neutral-500/20">
@@ -26,8 +36,15 @@ const t = (key: string, variables = {}, fallback = '') => {
 
       <!-- Legal & Language -->
       <div class="flex flex-col items-center gap-6 text-sm sm:flex-row">
-        <a href="/privacy" class="transition-colors hover:opacity-80">{t('footer.privacy')}</a>
-        <a href="/terms" class="transition-colors hover:opacity-80">{t('footer.terms')}</a>
+        <a href={privacyLink.href} hreflang={privacyLink.hreflang} class="transition-colors hover:opacity-80"
+          >{t('footer.privacy')}</a
+        >
+        <a href={termsLink.href} hreflang={termsLink.hreflang} class="transition-colors hover:opacity-80"
+          >{t('footer.terms')}</a
+        >
+        <a href={getLocalizedPath('/waitlist/leave', lang)} class="transition-colors hover:opacity-80"
+          >{t('footer.leaveWaitlist')}</a
+        >
         <LanguagePicker variant="toggle" />
       </div>
     </div>

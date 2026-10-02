@@ -4,6 +4,7 @@ import '../assets/scss/index.scss'
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import { SUPPORTED_LANGUAGES, getLanguageFromUrl } from '../utils/i18n.js'
 
 const {
   title = 'Withinly',
@@ -11,10 +12,16 @@ const {
   url = Astro.site,
   image = 'social-preview-image.png',
   author = 'Withinly Team',
+  analytics = true,
+  robots,
 } = Astro.props
+
+// The page's language comes from its URL (/lt/… is Lithuanian), so assistive technology reads it in the right voice.
+const lang = getLanguageFromUrl(Astro.url.pathname) as keyof typeof SUPPORTED_LANGUAGES
+const { dir } = SUPPORTED_LANGUAGES[lang]
 ---
 
-<html lang="en" dir="ltr">
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,13 +51,15 @@ const {
     />
 
     <SiteMeta title={title} description={description.substring(0, 160)} url={url} image={image} author={author} />
-    <!-- Fathom - beautiful, simple website analytics -->
-    <script src="https://cdn.usefathom.com/script.js" data-site="BJECGCIG" defer></script>
-    <!-- / Fathom -->
+    {robots && <meta name="robots" content={robots} />}
+    {
+      /* Fathom site analytics; off on pages whose URL carries a personal token (/waitlist/*). */
+      analytics && <script is:inline src="https://cdn.usefathom.com/script.js" data-site="BJECGCIG" defer></script>
+    }
   </head>
   <body class="bg-white text-gray-900 antialiased">
     <Header />
-    <main id="main-content" class="min-h-screen">
+    <main id="main-content" class="min-h-screen" tabindex="-1">
       <slot />
     </main>
     <Footer />
@@ -58,9 +67,23 @@ const {
 </html>
 
 <style>
-  /* Remove any conflicting SCSS that might interfere with Tailwind */
-  html {
-    scroll-behavior: smooth;
+  /* Smooth in-page scrolling only for people who have not asked for reduced motion (E-067) */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Fragment targets (the skip link, the header links and CTAs) land just below the sticky header: its height (h-16
+     plus a 1px border) and 24px. The browser's own fragment navigation does the scrolling, updates the hash and moves
+     the keyboard focus start point; <main> takes focus itself (tabindex="-1") so the skip link lands inside it. */
+  main,
+  :global(section[id]) {
+    scroll-margin-top: calc(4rem + 1px + 24px);
+  }
+
+  main:focus {
+    outline: none;
   }
 
   /* Ensure proper focus management */

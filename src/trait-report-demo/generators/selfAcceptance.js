@@ -12,6 +12,7 @@ const translations = {
 }
 
 export function generateSelfAcceptanceReflection(traitData, locale = 'en') {
+  const missingCopy = []
   const t = translations[locale]
   const tEN = translations.en
   const { level, openness_to_change, subscores } = traitData
@@ -51,6 +52,10 @@ export function generateSelfAcceptanceReflection(traitData, locale = 'en') {
     }
 
     const notablePatternKey = identifyNotablePattern(subscores)
+    if (notablePatternKey && !t.notablePatterns?.[notablePatternKey]) {
+      missingCopy.push(notablePatternKey)
+      console.warn('[demo-report] no notablePatterns copy', { trait: 'selfAcceptance', locale, key: notablePatternKey })
+    }
     if (notablePatternKey && t.notablePatterns?.[notablePatternKey]) {
       const prefix =
         locale === 'lt' ? '\n\n**Vienas dalykas, kurį verta pastebėti:** ' : '\n\n**One thing to notice:** '
@@ -65,6 +70,7 @@ export function generateSelfAcceptanceReflection(traitData, locale = 'en') {
     userReport,
     behavioralProfile,
     detectedPatterns,
+    missingCopy,
   }
 }
 

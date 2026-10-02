@@ -1,6 +1,12 @@
 ---
+import { guard } from '../lib/internal-gate'
+
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import defaultPromptLibrary from '../prompt-library/data/prompt-library.json'
+import { safeJsonForScript } from '../utils/safe-json.js'
+
+const denied = await guard(Astro, '/prompt-library')
+if (denied) return denied
 
 const pageTitle = 'Prompt Library Testing'
 const pageDescription = 'Test how prompts are filtered based on traits and context'
@@ -13,6 +19,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
       <div>
         <h1 class="mb-2 text-3xl font-bold text-gray-900">{pageTitle}</h1>
         <p class="text-gray-600">Test how prompts are filtered based on traits and context</p>
+        <p id="promptLibraryError" role="alert" class="mt-2 text-sm text-red-700" hidden></p>
       </div>
       <a
         href="/prompt-library-editor"
@@ -168,7 +175,8 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                 <option value="">None</option>
                 <option value="LOW_MINDFULNESS">Low</option>
                 <option value="MODERATE_MINDFULNESS" selected>Moderate</option>
-                <option value="GOOD_MINDFULNESS">High</option>
+                <option value="GOOD_MINDFULNESS">Good</option>
+                <option value="HIGH_MINDFULNESS">High</option>
               </select>
             </div>
             <div>
@@ -177,7 +185,8 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                 <option value="" selected>None</option>
                 <option value="LOW_SELF_AWARENESS">Low</option>
                 <option value="MODERATE_SELF_AWARENESS">Moderate</option>
-                <option value="GOOD_SELF_AWARENESS">High</option>
+                <option value="GOOD_SELF_AWARENESS">Good</option>
+                <option value="HIGH_SELF_AWARENESS">High</option>
               </select>
             </div>
           </div>
@@ -192,7 +201,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                 <option value="BEGINNING_SELF_ACCEPTANCE">Beginning</option>
                 <option value="DEVELOPING_SELF_ACCEPTANCE" selected>Developing</option>
                 <option value="GROWING_SELF_ACCEPTANCE">Growing</option>
-                <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated (God Mode)</option>
+                <option value="INTEGRATED_SELF_ACCEPTANCE">Integrated</option>
               </select>
             </div>
             <div>
@@ -354,8 +363,10 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
   </div>
 
   <!-- Scripts -->
-  <script type="application/json" id="prompt-library-data" set:html={JSON.stringify(defaultPromptLibrary)} />
+  <script type="application/json" id="prompt-library-data" set:html={safeJsonForScript(defaultPromptLibrary)} />
   <script>
+    import { escapeHtml } from '../utils/escape-html.js'
+
     // ==========================================
     // IMPORT MODULES
     // ==========================================
@@ -426,7 +437,18 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
         let selectedCategories: string[] = []
 
         // Initialize: Check if localStorage has data and set toggle accordingly
-        const loadedCheck = demoUtils.loadPromptLibrary(defaultPromptLibrary) as { prompts: any[]; isEdited: boolean }
+        const loadedCheck = demoUtils.loadPromptLibrary(defaultPromptLibrary) as {
+          prompts: any[]
+          isEdited: boolean
+          discarded?: boolean
+        }
+        if (loadedCheck.discarded) {
+          const notice = document.createElement('p')
+          notice.setAttribute('role', 'status')
+          notice.className = 'mx-auto max-w-6xl px-4 pt-4 text-sm text-amber-800'
+          notice.textContent = 'Saved prompts were not valid and were discarded; the defaults are loaded.'
+          document.querySelector('main')?.prepend(notice)
+        }
         const hasLocalStorage = loadedCheck.isEdited
         if (useLocalStorageToggle) {
           useLocalStorageToggle.checked = hasLocalStorage
@@ -656,6 +678,20 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
         }
 
         function updatePrompts() {
+          const errorLine = document.getElementById('promptLibraryError')
+          try {
+            renderPrompts()
+            if (errorLine) errorLine.hidden = true
+          } catch (error) {
+            console.error('Prompt matching failed:', error)
+            if (errorLine) {
+              errorLine.textContent = error instanceof Error ? error.message : String(error)
+              errorLine.hidden = false
+            }
+          }
+        }
+
+        function renderPrompts() {
           // Get relevant prompts
           const relevantPrompts = promptLib.getRelevantPrompts(
             currentTraits,
@@ -716,6 +752,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
             return
           }
 
+          // innerHTML: every interpolated value below is escapeHtml()'d; the rest is fixed markup.
           container.innerHTML = topPrompts
             .map((prompt: any) => {
               const badge = prompt.isPrimaryMatch ? '🌟' : prompt.isSecondaryMatch ? '⭐' : ''
@@ -733,19 +770,19 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
               return `
             <button
               class="w-full text-left p-4 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${borderClass}"
-              data-prompt-id="${prompt.id}"
-              data-prompt-text="${prompt.text}"
+              data-prompt-id="${escapeHtml(prompt.id)}"
+              data-prompt-text="${escapeHtml(prompt.text)}"
             >
               <div class="flex items-start gap-3">
                 ${badge ? `<span class="text-2xl flex-shrink-0">${badge}</span>` : ''}
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center gap-2 mb-1">
-                    <p class="font-medium text-sm leading-snug">${prompt.text}</p>
+                    <p class="font-medium text-sm leading-snug">${escapeHtml(prompt.text)}</p>
                   </div>
                   <div class="flex items-center gap-3 text-xs text-gray-500">
                     ${badgeLabel ? `<span class="font-medium">${badgeLabel}</span>` : ''}
-                    ${prompt.matchedTraits > 0 ? `<span>Matches ${prompt.matchedTraits} trait${prompt.matchedTraits > 1 ? 's' : ''}</span>` : ''}
-                    <span>Priority ${prompt.priority}</span>
+                    ${prompt.matchedTraits > 0 ? `<span>Matches ${escapeHtml(prompt.matchedTraits)} trait${prompt.matchedTraits > 1 ? 's' : ''}</span>` : ''}
+                    <span>Priority ${escapeHtml(prompt.priority)}</span>
                   </div>
                 </div>
               </div>
@@ -784,11 +821,12 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           const grouped = promptLib.groupPromptsByCategory(prompts, currentLocale)
 
           // Render grouped prompts as grid
+          // innerHTML: every interpolated value below is escapeHtml()'d; the rest is fixed markup.
           container.innerHTML = Object.values(grouped)
             .map(
               (group: any) => `
         <div class="mb-6">
-          <h3 class="mb-3 text-sm font-semibold text-gray-700 border-b pb-2">${group.label}</h3>
+          <h3 class="mb-3 text-sm font-semibold text-gray-700 border-b pb-2">${escapeHtml(group.label)}</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             ${group.prompts
               .map((prompt: any) => {
@@ -803,18 +841,18 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                 return `
               <button
                 class="w-full text-left p-3 rounded-lg border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 ${borderClass}"
-                data-prompt-id="${prompt.id}"
-                data-prompt-text="${prompt.text}"
+                data-prompt-id="${escapeHtml(prompt.id)}"
+                data-prompt-text="${escapeHtml(prompt.text)}"
               >
                 <div class="flex items-start gap-2">
                   ${hasBadge ? `<span class="text-xl flex-shrink-0">${badge}</span>` : ''}
                   <div class="flex-1 min-w-0">
-                    <p class="${hasBadge ? 'font-medium' : ''} text-sm leading-snug">${prompt.text}</p>
+                    <p class="${hasBadge ? 'font-medium' : ''} text-sm leading-snug">${escapeHtml(prompt.text)}</p>
                     ${
                       prompt.matchedTraits > 0
                         ? `
                       <div class="mt-2 text-xs text-gray-500">
-                        Matches ${prompt.matchedTraits} trait${prompt.matchedTraits > 1 ? 's' : ''} • P${prompt.priority}
+                        Matches ${escapeHtml(prompt.matchedTraits)} trait${prompt.matchedTraits > 1 ? 's' : ''} • P${escapeHtml(prompt.priority)}
                       </div>
                     `
                         : ''
@@ -856,6 +894,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
           const container = document.getElementById('explanations')
           if (!container) return
 
+          // innerHTML: every interpolated value below is escapeHtml()'d; the rest is fixed markup.
           container.innerHTML = prompts
             .slice(0, 10)
             .map((prompt: any) => {
@@ -873,7 +912,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
               return `
           <div class="border rounded p-2 text-xs ${finalResult ? 'border-green-200 bg-green-50' : 'border-gray-200'}">
             <div class="flex items-center justify-between mb-1">
-              <h4 class="font-medium text-xs truncate flex-1 mr-2">${promptText}</h4>
+              <h4 class="font-medium text-xs truncate flex-1 mr-2">${escapeHtml(promptText)}</h4>
               <span class="text-xs px-1.5 py-0.5 rounded flex-shrink-0 ${
                 finalResult ? 'bg-green-200 text-green-800' : 'bg-gray-200 text-gray-700'
               }">
@@ -888,7 +927,7 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
             `
                 : `
               <div class="text-xs text-gray-600 mb-1">
-                Type: <span class="font-mono">${matchType}</span>
+                Type: <span class="font-mono">${escapeHtml(matchType)}</span>
               </div>
               <div class="space-y-1">
                 ${traitChecks
@@ -899,8 +938,8 @@ const pageDescription = 'Test how prompts are filtered based on traits and conte
                       ${check.matches ? '✓' : '✗'}
                     </span>
                     <div class="flex-1 min-w-0">
-                      <div class="font-medium truncate">${check.traitType || 'Unknown'}</div>
-                      <div class="text-xs text-gray-600 truncate">${check.reason || 'No reason'}</div>
+                      <div class="font-medium truncate">${escapeHtml(check.traitType || 'Unknown')}</div>
+                      <div class="text-xs text-gray-600 truncate">${escapeHtml(check.reason || 'No reason')}</div>
                     </div>
                   </div>
                 `

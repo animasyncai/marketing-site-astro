@@ -178,7 +178,7 @@
     "submitButton": "Get Early Access",
     "loadingButton": "Joining...",
     "privacy": "We’ll send a personal note when doors open. No spam - ever.",
-    "successMessage": "You have been signed. You should receive an email with your early access soon. Please check your spam folder if you don't see it.",
+    "successMessage": "Almost there — we've sent you an email. Open the link in it to confirm your address and join the waitlist. If you don't see it, check your spam folder.",
     "errorMessage": "Something went wrong. Please try again or email us directly."
   },
   "footer": {
@@ -186,7 +186,8 @@
     "copyright": "© 2025 Withinly • Private • Insightful • Yours",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "contact": "Contact"
+    "contact": "Contact",
+    "leaveWaitlist": "Leave the waitlist"
   },
   "validation": {
     "required": "required",
@@ -230,5 +231,55 @@
         "answer": "You can start exploring for free. During early access, you’ll receive a generous amount of insights to try the full experience. When we launch, deeper reflections and advanced features will be available as small, optional one-time purchases. No subscriptions. No hidden fees. You only pay for what truly feels meaningful to you."
       }
     ]
+  },
+  "waitlistEmail": {
+    "confirmSubject": "Confirm your place on the Withinly waitlist",
+    "confirmIntro": "Someone — hopefully you — asked to join the Withinly early-access waitlist with this address.",
+    "confirmAction": "Confirm my address",
+    "confirmExpiry": "The link works for 48 hours.",
+    "confirmIgnore": "If this wasn't you, ignore this email: you won't be added and we won't write again.",
+    "leaveLine": "Changed your mind? Leave the waitlist at any time:",
+    "privacyLine": "How we handle your address:",
+    "signature": "The Withinly team",
+    "leaveSubject": "Your link to leave the Withinly waitlist",
+    "leaveIntro": "Someone asked for a link to take this address off the Withinly early-access waitlist.",
+    "leaveAction": "Leave the waitlist",
+    "leaveIgnore": "If this wasn't you, ignore this email: nothing changes."
+  },
+  "waitlistConfirm": {
+    "title": "Confirm your address",
+    "readyText": "Press Confirm to join the Withinly early-access waitlist. We'll use your address only to tell you about early access, and you can leave at any time.",
+    "button": "Confirm",
+    "privacyNote": "How we handle your address is described in our",
+    "doneTitle": "You're on the list",
+    "doneText": "Thank you — your address is confirmed. We'll be in touch when early access opens.",
+    "invalidTitle": "This link doesn't work",
+    "invalidText": "The link is incomplete or has expired (links work for 48 hours). Sign up again and we'll send you a new one.",
+    "leftAfterTitle": "This link no longer adds you",
+    "leftAfterText": "You left the waitlist after this link was sent. To rejoin, sign up again; if that does not work, write to hello@withinly.app.",
+    "errorTitle": "Please try again",
+    "errorText": "We couldn't confirm your address just now. Please try again in a minute.",
+    "retryButton": "Try again",
+    "backHome": "Back to Withinly"
+  },
+  "waitlistLeave": {
+    "title": "Leave the waitlist",
+    "formText": "Enter the address you signed up with. We'll email it a link that takes it off the waitlist.",
+    "emailLabel": "Email address",
+    "sendButton": "Email me the link",
+    "sentTitle": "Check your inbox",
+    "sentText": "If that address is on the waitlist, we've sent it a link to leave.",
+    "readyText": "Press Leave to take your address off the Withinly waitlist. We won't email you about early access again.",
+    "leaveButton": "Leave",
+    "doneTitle": "You're off the list",
+    "doneText": "Your address is off the waitlist and we won't email you about early access again. We keep it only marked as do-not-email, so it is never added back by mistake. To have it deleted completely, write to hello@withinly.app.",
+    "invalidTitle": "This link doesn't work",
+    "invalidText": "The link is incomplete or has expired. Enter your address below and we will send a new one.",
+    "emailInvalid": "Please enter a valid email address.",
+    "limitedText": "Too many requests. Please try again later.",
+    "errorTitle": "Please try again",
+    "errorText": "Something went wrong just now. Please try again in a minute.",
+    "retryButton": "Try again",
+    "backHome": "Back to Withinly"
   }
 }

@@ -1,0 +1,80 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+import { getLanguageFromUrl, getLocalizedPath } from '../utils/i18n.js'
+import type { LeaveState } from '../lib/waitlist-leave'
+
+interface Props {
+  state: LeaveState
+  token?: string
+}
+const { state, token } = Astro.props
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string) => getTranslation(translations, `waitlistLeave.${key}`)
+const home = getLocalizedPath('/', getLanguageFromUrl(Astro.url.pathname))
+
+const view = {
+  form: { title: t('title'), text: t('formText') },
+  emailInvalid: { title: t('title'), text: t('emailInvalid') },
+  limited: { title: t('title'), text: t('limitedText') },
+  sent: { title: t('sentTitle'), text: t('sentText') },
+  ready: { title: t('title'), text: t('readyText') },
+  done: { title: t('doneTitle'), text: t('doneText') },
+  invalid: { title: t('invalidTitle'), text: t('invalidText') },
+  forbidden: { title: t('invalidTitle'), text: t('invalidText') },
+  error: { title: t('errorTitle'), text: t('errorText') },
+}[state]
+const showTokenForm = (state === 'ready' || state === 'error') && token
+const showEmailForm = ['form', 'emailInvalid', 'limited', 'invalid', 'forbidden'].includes(state) || (state === 'error' && !token)
+const buttonClass =
+  'rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2'
+---
+
+<DefaultLayout title={view.title} analytics={false} robots="noindex, nofollow">
+  <section class="mx-auto max-w-xl px-4 py-24" data-state={state}>
+    <h1 class="mb-4 text-3xl font-bold text-gray-900">{view.title}</h1>
+    <p class="mb-8 text-gray-700" role={state === 'form' || state === 'ready' ? undefined : 'status'}>{view.text}</p>
+    {
+      showTokenForm && (
+        <form method="post" action={Astro.url.pathname} class="mb-6">
+          <input type="hidden" name="t" value={token} />
+          <button type="submit" class={buttonClass}>
+            {state === 'error' ? t('retryButton') : t('leaveButton')}
+          </button>
+        </form>
+      )
+    }
+    {
+      showEmailForm && (
+        <form method="post" action={Astro.url.pathname} class="mb-6 space-y-4" novalidate>
+          <div aria-hidden="true" class="absolute -left-[9999px] h-px w-px overflow-hidden">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+          <div>
+            <label for="leave-email" class="mb-2 block text-sm font-medium text-gray-800">
+              {t('emailLabel')}
+            </label>
+            <input
+              id="leave-email"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              aria-invalid={state === 'emailInvalid' ? 'true' : undefined}
+              class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            />
+          </div>
+          <button type="submit" class={buttonClass}>{t('sendButton')}</button>
+        </form>
+      )
+    }
+    <a class="text-blue-700 underline" href={home}>{t('backHome')}</a>
+  </section>
+</DefaultLayout>
+
+<script>
+  // The token stays in the form; drop it from the address bar so it is not kept in history or shown on screen.
+  if (new URLSearchParams(window.location.search).has('t')) {
+    window.history.replaceState(null, '', window.location.pathname)
+  }
+</script>

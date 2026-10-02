@@ -4,6 +4,7 @@ import Button from './Button.astro'
 import LanguagePicker from './LanguagePicker.astro'
 import { Icon } from 'astro-icon/components'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+import { getLanguageFromUrl, getLocalizedPath } from '../utils/i18n.js'
 
 // Get translations for current language
 const translations = await getTranslationsFromUrl(Astro.url.pathname)
@@ -13,10 +14,15 @@ const t = (key: string, fallback = '') => {
 
 // Skip link for accessibility
 const skipLinkId = 'main-content'
+
+// The sections these links point at exist only on the landing page of the current language, so every link names that
+// page: a bare '#faq' would resolve against /privacy or /terms and lead nowhere (E-063).
+const home = getLocalizedPath('/', getLanguageFromUrl(Astro.url.pathname))
+const section = (id: string) => `${home}#${id}`
 ---
 
 <!-- Skip Links for Accessibility -->
-<a href={`#${skipLinkId}`} class="skip-link" tabindex="1">
+<a href={`#${skipLinkId}`} class="skip-link">
   {t('navigation.skipToMain')}
 </a>
 
@@ -36,7 +42,7 @@ const skipLinkId = 'main-content'
         <ul class="flex items-center space-x-8" role="menubar">
           <li role="none">
             <a
-              href="#how-it-works"
+              href={section('how-it-works')}
               class="nav-link focus:ring-primary-600 rounded-md px-2 py-1 text-base font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
               data-nav-item
               role="menuitem"
@@ -47,7 +53,7 @@ const skipLinkId = 'main-content'
           </li>
           <li role="none">
             <a
-              href="#pricing"
+              href={section('pricing')}
               class="nav-link focus:ring-primary-600 rounded-md px-2 py-1 text-base font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
               data-nav-item
               role="menuitem"
@@ -58,7 +64,7 @@ const skipLinkId = 'main-content'
           </li>
           <li role="none">
             <a
-              href="#faq"
+              href={section('faq')}
               class="nav-link focus:ring-primary-600 rounded-md px-2 py-1 text-base font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
               data-nav-item
               role="menuitem"
@@ -78,7 +84,13 @@ const skipLinkId = 'main-content'
         </div>
 
         <!-- Main CTA Button -->
-        <Button href="#early-access" size="sm" variant="primary" class="hidden sm:inline-flex" icon="lucide:rocket">
+        <Button
+          href={section('early-access')}
+          size="sm"
+          variant="primary"
+          class="hidden sm:inline-flex"
+          icon="lucide:rocket"
+        >
           {t('navigation.joinEarlyAccess')}
         </Button>
 
@@ -91,6 +103,8 @@ const skipLinkId = 'main-content'
           aria-label={t('navigation.openMenu')}
           aria-haspopup="true"
           data-mobile-menu-toggle
+          data-open-label={t('navigation.openMenu')}
+          data-close-label={t('navigation.closeMenu')}
         >
           <Icon name="lucide:menu" class="h-5 w-5" data-menu-icon aria-hidden="true" />
           <Icon name="lucide:x" class="hidden h-5 w-5" data-close-icon aria-hidden="true" />
@@ -115,33 +129,30 @@ const skipLinkId = 'main-content'
         <ul class="space-y-4" role="menubar">
           <li role="none">
             <a
-              href="#how-it-works"
+              href={section('how-it-works')}
               class="mobile-nav-link focus:ring-primary-600 block rounded-md px-2 py-2 font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
               data-mobile-nav-item
               role="menuitem"
-              tabindex="-1"
             >
               {t('navigation.howItWorks')}
             </a>
           </li>
           <li role="none">
             <a
-              href="#features"
+              href={section('pricing')}
               class="mobile-nav-link focus:ring-primary-600 block rounded-md px-2 py-2 font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
               data-mobile-nav-item
               role="menuitem"
-              tabindex="-1"
             >
-              {t('navigation.features')}
+              {t('navigation.pricing')}
             </a>
           </li>
           <li role="none">
             <a
-              href="#faq"
+              href={section('faq')}
               class="mobile-nav-link focus:ring-primary-600 block rounded-md px-2 py-2 font-medium text-gray-600 transition-colors hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:outline-none"
               data-mobile-nav-item
               role="menuitem"
-              tabindex="-1"
             >
               {t('navigation.faq')}
             </a>
@@ -158,7 +169,14 @@ const skipLinkId = 'main-content'
         </div>
 
         <!-- Mobile CTA -->
-        <Button href="#early-access" size="md" variant="primary" fullWidth icon="lucide:rocket" iconPosition="right">
+        <Button
+          href={section('early-access')}
+          size="md"
+          variant="primary"
+          fullWidth
+          icon="lucide:rocket"
+          iconPosition="right"
+        >
           {t('navigation.joinEarlyAccess')}
         </Button>
       </div>
@@ -178,9 +196,9 @@ const skipLinkId = 'main-content'
 
     if (!mobileMenuToggle || !mobileMenu || !menuIcon || !closeIcon) return
 
-    // Get translations for dynamic text
-    const openText = mobileMenuToggle.getAttribute('aria-label') || 'Open menu'
-    const closeText = openText.replace('Open', 'Close') || 'Close menu'
+    // Both labels come from the page language's catalogue (data-open-label / data-close-label)
+    const openText = mobileMenuToggle.dataset.openLabel || 'Open menu'
+    const closeText = mobileMenuToggle.dataset.closeLabel || 'Close menu'
 
     // Focus management
     let previousActiveElement: HTMLElement | null = null
@@ -206,10 +224,7 @@ const skipLinkId = 'main-content'
 
         // Focus the first menu item
         const firstMenuItem = mobileMenu.querySelector('[data-mobile-nav-item]') as HTMLElement
-        if (firstMenuItem) {
-          firstMenuItem.tabIndex = 0
-          firstMenuItem.focus()
-        }
+        if (firstMenuItem) firstMenuItem.focus()
 
         // Prevent body scroll when menu is open
         document.body.style.overflow = 'hidden'
@@ -228,12 +243,32 @@ const skipLinkId = 'main-content'
       }
     }
 
+    // While the menu is open it covers the page, so Tab and Shift+Tab cycle through the toggle and everything
+    // focusable inside the menu (links, language picker, CTA) and never reach the page behind it.
+    const trapFocus = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || mobileMenuToggle.getAttribute('aria-expanded') !== 'true') return
+      const focusables = [
+        mobileMenuToggle,
+        ...(Array.from(
+          mobileMenu.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select, [tabindex]:not([tabindex="-1"])'),
+        ) as HTMLElement[]).filter((el) => el.offsetParent !== null),
+      ]
+      const current = focusables.indexOf(document.activeElement as HTMLElement)
+      const next = e.shiftKey
+        ? focusables[current <= 0 ? focusables.length - 1 : current - 1]
+        : focusables[current === -1 || current === focusables.length - 1 ? 0 : current + 1]
+      e.preventDefault()
+      next.focus()
+    }
+
     // Event listeners
     mobileMenuToggle.addEventListener('click', toggleMobileMenu)
+    header?.addEventListener('keydown', trapFocus)
 
-    // Close mobile menu when clicking on navigation links
+    // Close mobile menu when any of its links is followed (the nav links and the CTA): an open menu would cover the
+    // section the link scrolls to and keep the page from scrolling
     const mobileNavLinks = mobileMenu.querySelectorAll('[data-mobile-nav-item]')
-    mobileNavLinks.forEach((link) => {
+    mobileMenu.querySelectorAll('a[href]').forEach((link) => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden')
         mobileMenuToggle.setAttribute('aria-expanded', 'false')
@@ -243,9 +278,7 @@ const skipLinkId = 'main-content'
         closeIcon.classList.add('hidden')
         if (menuText) menuText.textContent = openText
         document.body.style.overflow = ''
-
-        // Restore focus to toggle button
-        mobileMenuToggle.focus()
+        // Focus is not returned to the toggle: the link's own navigation moves the focus start point to its section.
       })
     })
 
@@ -293,33 +326,6 @@ const skipLinkId = 'main-content'
       }
     })
 
-    // Smooth scrolling for anchor links
-    const addSmoothScrolling = () => {
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault()
-          const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href')
-          const target = document.querySelector(href || '') as HTMLElement
-          if (target) {
-            // Get the current header height
-            const getHeaderHeight = () => {
-              const currentHeader = document.querySelector('header') as HTMLElement
-              return currentHeader?.offsetHeight || 64
-            }
-
-            const headerHeight = getHeaderHeight()
-            const targetPosition = target.offsetTop - headerHeight - 24 // Extra 24px spacing for better visual separation
-
-            // Scroll to the target position with smooth behavior
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth',
-            })
-          }
-        })
-      })
-    }
-
     // Active navigation highlighting
     const highlightActiveNavItem = () => {
       // Wait for the page to be fully loaded and then find all sections
@@ -344,8 +350,10 @@ const skipLinkId = 'main-content'
                   item.classList.remove('nav-active')
                 })
 
-                // Add active class to corresponding nav items
-                const activeItems = document.querySelectorAll(`[href="#${sectionId}"]`)
+                // Add active class to corresponding nav items (their hrefs name the landing page: '/#faq', '/lt#faq')
+                const activeItems = document.querySelectorAll(
+                  `[data-nav-item][href$="#${sectionId}"], [data-mobile-nav-item][href$="#${sectionId}"]`,
+                )
                 activeItems.forEach((item) => {
                   item.classList.add('nav-active')
                 })
@@ -422,8 +430,8 @@ const skipLinkId = 'main-content'
       window.addEventListener('scroll', onScroll)
     }
 
-    // Initialize all functionality
-    addSmoothScrolling()
+    // In-page links use the browser's own fragment navigation (smooth only without a reduced-motion preference, see
+    // DefaultLayout), which updates the hash and moves the keyboard focus start point to the target (E-067).
 
     // Initialize active navigation highlighting with proper timing
     // Use requestAnimationFrame to ensure DOM is fully ready
