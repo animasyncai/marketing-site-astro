@@ -36,7 +36,7 @@ const languageOptions = Object.values(SUPPORTED_LANGUAGES).map(lang => ({
 ---
 
 {variant === 'toggle' ? (
-  <!-- Simple clean toggle -->
+  /* Simple clean toggle */
   <div class:list={[className, "flex items-center"]}>
     {languageOptions
       .filter(lang => !lang.isCurrent)
@@ -54,7 +54,7 @@ const languageOptions = Object.values(SUPPORTED_LANGUAGES).map(lang => ({
     }
   </div>
 ) : (
-  <!-- Dropdown version -->
+  /* Dropdown version */
   <div class:list={[className, "relative"]} data-component="language-picker">
     <button 
       class="flex items-center gap-1.5 px-2 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
