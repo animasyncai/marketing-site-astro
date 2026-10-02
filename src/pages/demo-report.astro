@@ -57,6 +57,7 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
           >
             Generate Reflection
           </button>
+          <p id="demoError" role="alert" class="text-sm text-red-700" hidden></p>
         </form>
       </div>
 
@@ -100,17 +101,16 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
   </main>
 
   <script>
-    // ==========================================
-    // IMPORT ALL GENERATORS
-    // ==========================================
-    import('../trait-report-demo/index.js')
-      .then((module) => {
-        const {
-          generateAttachmentReflection,
-          generateLoveLanguageReflection,
-          generateMindfulnessReflection,
-          generateSelfAcceptanceReflection,
-        } = module
+    // The generators run on the server (POST /api/demo-report): importing them here would publish the report corpus
+    // as a static chunk outside the gate.
+    Promise.resolve()
+      .then(() => {
+        const errorLine = document.getElementById('demoError')
+        const showError = (message: string) => {
+          if (!errorLine) return
+          errorLine.textContent = message
+          errorLine.hidden = !message
+        }
 
         // ==========================================
         // CONSTANTS
@@ -503,55 +503,52 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
         // ==========================================
         // GENERATE HANDLER
         // ==========================================
-        function handleGenerate() {
+        async function handleGenerate() {
           if (!currentTrait) return
+          showError('')
 
           const localeElement = document.getElementById('locale') as HTMLSelectElement
           const locale = localeElement?.value || 'en'
           const traitData = collectTraitData(currentTrait)
 
           if (!traitData) {
-            alert('Please fill in all required fields')
+            showError('Please fill in all required fields')
             return
           }
 
-          let result: any = null
           try {
-            if (currentTrait === 'love_language') {
-              result = generateLoveLanguageReflection(traitData, locale)
-            } else if (currentTrait === 'attachment') {
-              result = generateAttachmentReflection(traitData, locale)
-            } else if (currentTrait === 'mindfulness') {
-              result = generateMindfulnessReflection(traitData, locale)
-            } else if (currentTrait === 'self_acceptance') {
-              result = generateSelfAcceptanceReflection(traitData, locale)
+            const response = await fetch('/api/demo-report', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ trait: currentTrait, locale, traitData }),
+            })
+            const result = await response.json().catch(() => ({}))
+            if (!response.ok) {
+              showError(
+                response.status === 401
+                  ? 'Your access has expired. Reload the page and enter the password again.'
+                  : `Error generating reflection: ${result.message || result.error || response.status}`,
+              )
+              return
             }
 
-            if (result) {
-              const userOutput = document.getElementById('userOutput')
-              const behavioralOutput = document.getElementById('behavioralOutput')
-              const patternsOutput = document.getElementById('patternsOutput')
+            const userOutput = document.getElementById('userOutput')
+            const behavioralOutput = document.getElementById('behavioralOutput')
+            const patternsOutput = document.getElementById('patternsOutput')
 
-              if (userOutput) userOutput.innerText = result.userReport || ''
+            if (userOutput) userOutput.innerText = result.userReport || ''
+            if (behavioralOutput) behavioralOutput.innerText = result.behavioralProfile || ''
 
-              if (behavioralOutput) {
-                behavioralOutput.innerText = result.behavioralProfile || ''
-              }
-
-              if (patternsOutput) {
-                // Ensure detectedPatterns exists and is an array
-                const patterns = result.detectedPatterns || []
-                if (Array.isArray(patterns) && patterns.length > 0) {
-                  patternsOutput.innerText = patterns.join(', ')
-                } else {
-                  patternsOutput.innerHTML = '<p class="text-gray-400 italic">No patterns detected</p>'
-                }
-              }
+            if (patternsOutput) {
+              const patterns = Array.isArray(result.detectedPatterns) ? result.detectedPatterns : []
+              const missing = Array.isArray(result.missingCopy) ? result.missingCopy : []
+              patternsOutput.innerText =
+                (patterns.length > 0 ? patterns.join(', ') : 'No patterns detected') +
+                (missing.length > 0 ? `\n\nNo "One thing to notice" copy for: ${missing.join(', ')}` : '')
             }
           } catch (error) {
             console.error('Generation error:', error)
-            const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-            alert('Error generating reflection: ' + errorMessage)
+            showError('Error generating reflection: the server could not be reached.')
           }
         }
         // ==========================================
@@ -741,8 +738,12 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
         }
       })
       .catch((error) => {
-        console.error('Failed to load generators:', error)
-        alert('Failed to load trait generators. Please check the console.')
+        console.error('Demo setup failed:', error)
+        const errorLine = document.getElementById('demoError')
+        if (errorLine) {
+          errorLine.textContent = 'The demo could not start. Reload the page.'
+          errorLine.hidden = false
+        }
       })
   </script>
 </DefaultLayout>

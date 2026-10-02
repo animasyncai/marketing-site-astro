@@ -12,6 +12,7 @@ const translations = {
 }
 
 export function generateMindfulnessReflection(traitData, locale = 'en') {
+  const missingCopy = []
   const t = translations[locale]
   const tEN = translations.en
   const { mindfulnessLevel, awarenessLevel, subscores } = traitData
@@ -50,6 +51,10 @@ export function generateMindfulnessReflection(traitData, locale = 'en') {
     }
 
     const notablePatternKey = identifyNotablePattern(subscores)
+    if (notablePatternKey && !t.notablePatterns?.[notablePatternKey]) {
+      missingCopy.push(notablePatternKey)
+      console.warn('[demo-report] no notablePatterns copy', { trait: 'mindfulness', locale, key: notablePatternKey })
+    }
     if (notablePatternKey && t.notablePatterns?.[notablePatternKey]) {
       const prefix = locale === 'lt' ? '\n\nVienas dalykas, kurį verta pastebėti: ' : '\n\nOne thing to notice: '
       userReport += prefix + t.notablePatterns[notablePatternKey]
@@ -63,6 +68,7 @@ export function generateMindfulnessReflection(traitData, locale = 'en') {
     userReport,
     behavioralProfile,
     detectedPatterns,
+    missingCopy,
   }
 }
 
