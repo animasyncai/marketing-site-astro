@@ -1,0 +1,14 @@
+---
+import WaitlistConfirm from '../../../components/WaitlistConfirm.astro'
+import { handleConfirm } from '../../../lib/waitlist-confirm'
+
+export const prerender = false
+
+// Every outcome answers 200: Astro's i18n fallback (lt → en) redirects any /lt/ response >= 300 to the English
+// page, which would drop a POST and switch language. The outcome is in the page (data-state), never in the status.
+const result = await handleConfirm(Astro.request, Astro.url)
+Astro.response.headers.set('Cache-Control', 'private, no-store')
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+---
+
+<WaitlistConfirm state={result.state} token={result.token} />

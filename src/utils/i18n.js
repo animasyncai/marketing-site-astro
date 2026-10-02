@@ -23,11 +23,11 @@ export const DEFAULT_LANGUAGE = 'en'
 
 /**
  * Paths (without a language prefix) that have a page in every supported language. English is the full site; only
- * the landing page is translated so far (src/pages/lt/ holds index.astro alone). When src/pages/lt/privacy.astro and
+ * the landing page and the waitlist pages are translated so far (src/pages/lt/). When src/pages/lt/privacy.astro and
  * src/pages/lt/terms.astro exist, add '/privacy' and '/terms' here (E-058). A link into another language must never
  * name a page that does not exist there: Vercel answers it with an empty 404.
  */
-export const LOCALIZED_PATHS = new Set(['/'])
+export const LOCALIZED_PATHS = new Set(['/', '/waitlist/confirm'])
 
 /**
  * A path without its language prefix or trailing slash: '/lt/privacy/' -> '/privacy', '/lt' -> '/'.

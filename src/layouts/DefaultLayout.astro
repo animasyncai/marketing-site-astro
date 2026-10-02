@@ -12,6 +12,8 @@ const {
   url = Astro.site,
   image = 'social-preview-image.png',
   author = 'Withinly Team',
+  analytics = true,
+  robots,
 } = Astro.props
 
 // The page's language comes from its URL (/lt/… is Lithuanian), so assistive technology reads it in the right voice.
@@ -49,9 +51,11 @@ const { dir } = SUPPORTED_LANGUAGES[lang]
     />
 
     <SiteMeta title={title} description={description.substring(0, 160)} url={url} image={image} author={author} />
-    <!-- Fathom - beautiful, simple website analytics -->
-    <script src="https://cdn.usefathom.com/script.js" data-site="BJECGCIG" defer></script>
-    <!-- / Fathom -->
+    {robots && <meta name="robots" content={robots} />}
+    {
+      /* Fathom site analytics; off on pages whose URL carries a personal token (/waitlist/*). */
+      analytics && <script is:inline src="https://cdn.usefathom.com/script.js" data-site="BJECGCIG" defer></script>
+    }
   </head>
   <body class="bg-white text-gray-900 antialiased">
     <Header />

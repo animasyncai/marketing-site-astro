@@ -1,0 +1,61 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+import { getLanguageFromUrl, getLocalizedPath } from '../utils/i18n.js'
+import type { ConfirmState } from '../lib/waitlist-confirm'
+
+interface Props {
+  state: ConfirmState
+  token?: string
+}
+const { state, token } = Astro.props
+const translations = await getTranslationsFromUrl(Astro.url.pathname)
+const t = (key: string) => getTranslation(translations, `waitlistConfirm.${key}`)
+const lang = getLanguageFromUrl(Astro.url.pathname)
+const home = getLocalizedPath('/', lang)
+
+const view = {
+  ready: { title: t('title'), text: t('readyText') },
+  done: { title: t('doneTitle'), text: t('doneText') },
+  invalid: { title: t('invalidTitle'), text: t('invalidText') },
+  forbidden: { title: t('invalidTitle'), text: t('invalidText') },
+  leftAfter: { title: t('leftAfterTitle'), text: t('leftAfterText') },
+  error: { title: t('errorTitle'), text: t('errorText') },
+}[state]
+const showForm = (state === 'ready' || state === 'error') && token
+---
+
+<DefaultLayout title={view.title} analytics={false} robots="noindex, nofollow">
+  <section class="mx-auto max-w-xl px-4 py-24" data-state={state}>
+    <h1 class="mb-4 text-3xl font-bold text-gray-900">{view.title}</h1>
+    <p class="mb-8 text-gray-700" role={state === 'ready' ? undefined : 'status'}>{view.text}</p>
+    {
+      showForm && (
+        <form method="post" action={Astro.url.pathname} class="mb-6">
+          <input type="hidden" name="t" value={token} />
+          <button
+            type="submit"
+            class="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+          >
+            {state === 'error' ? t('retryButton') : t('button')}
+          </button>
+        </form>
+      )
+    }
+    {
+      state === 'ready' && (
+        <p class="mb-8 text-sm text-gray-600">
+          {t('privacyNote')} <a class="underline" href="/privacy">{getTranslation(translations, 'footer.privacy')}</a>.
+        </p>
+      )
+    }
+    <a class="text-blue-700 underline" href={home}>{t('backHome')}</a>
+  </section>
+</DefaultLayout>
+
+<script>
+  // The token stays in the form; drop it from the address bar so it is not kept in history or shown on screen.
+  if (new URLSearchParams(window.location.search).has('t')) {
+    window.history.replaceState(null, '', window.location.pathname)
+  }
+</script>

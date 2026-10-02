@@ -27,7 +27,11 @@ The variables, and which are required, are listed in [`.env.example`](.env.examp
 `astro.config.mjs` (`env.schema`), which is the source of truth. Copy it to `.env` for local development and fill in
 the values. A missing required variable fails `npm run build`.
 
-The api's confirmation webhook is called once for each address that is newly added to the list.
+Sign-up is double opt-in: `POST /api/signup` only emails a confirmation link (from `accounts@withinly.app`, which
+must be a validated sender). The address joins the list when its owner presses **Confirm** on `/waitlist/confirm`;
+only then is the consent recorded (contact properties `waitlist_consent_at`, `waitlist_consent_source`,
+`waitlist_consent_notice` — create them once under **Contacts → Contact properties**) and the api's
+confirmation webhook called, once per address that joins.
 
 ## 5. Test the Integration
 
