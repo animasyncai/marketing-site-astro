@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components'
+import { safeJsonForScript } from '../utils/safe-json.js'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
 
 interface Props {
@@ -122,7 +123,7 @@ const successId = `${formId}-success`
     </p>
 
     <!-- Translation data for JavaScript -->
-    <script type="application/json" id={`${formId}-translations`} set:html={JSON.stringify({
+    <script type="application/json" id={`${formId}-translations`} set:html={safeJsonForScript({
       emailRequired: t('validation.emailRequired', 'Email address is required'),
       emailInvalid: t('validation.emailInvalid', 'Please enter a valid email address'),
       emailTooLong: t('validation.emailTooLong', 'Email address is too long'),

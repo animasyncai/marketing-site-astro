@@ -5,6 +5,40 @@
  * including localStorage management, sample data, and import/export.
  */
 
+import { z } from 'astro/zod'
+
+// ============================================================================
+// SCHEMA — everything read from an imported file or from localStorage passes this before it is used
+// ============================================================================
+
+const promptText = z.string().max(2000)
+const PromptSchema = z.object({
+  id: z.number().int().positive(),
+  text: z.object({ en: promptText, lt: promptText }),
+  contexts: z.array(z.enum(['You', 'Couple', 'Family'])),
+  category: z.string().max(64).nullable().optional(),
+  criteria: z.object({
+    matchType: z.enum(['AND', 'OR']),
+    traits: z
+      .array(
+        z.object({
+          type: z.enum(['attachment', 'loveLanguage', 'mindfulness', 'selfAcceptance']),
+          labels: z.array(z.string().max(64)).max(50).optional(),
+          intensities: z.array(z.string().max(32)).max(10).optional(),
+        }),
+      )
+      .max(20),
+  }),
+  priority: z.number().finite().optional(),
+})
+export const PromptLibrarySchema = z.array(PromptSchema).max(5000)
+
+// The first problem in human-readable form, e.g. `prompts[3].text.en: Expected string, received number`.
+function describeIssue(error) {
+  const issue = error.issues[0]
+  return issue ? `prompts${issue.path.map((key) => (typeof key === 'number' ? `[${key}]` : `.${key}`)).join('')}: ${issue.message}` : 'invalid data'
+}
+
 // ============================================================================
 // LOCALSTORAGE MANAGEMENT
 // ============================================================================
@@ -25,11 +59,19 @@ export function loadPromptLibrary(defaultLibrary) {
     const version = localStorage.getItem(STORAGE_VERSION_KEY)
 
     if (stored) {
-      return {
-        prompts: JSON.parse(stored),
-        isEdited: true,
-        version: version || '1.0.0',
+      const parsed = PromptLibrarySchema.safeParse(JSON.parse(stored))
+      if (parsed.success) {
+        return {
+          prompts: parsed.data,
+          isEdited: true,
+          version: version || '1.0.0',
+        }
       }
+      // Saved data that does not fit the schema is never rendered: it is dropped and the defaults load instead.
+      console.warn('Discarded saved prompt library:', describeIssue(parsed.error))
+      localStorage.removeItem(STORAGE_KEY)
+      localStorage.removeItem(STORAGE_VERSION_KEY)
+      return { prompts: defaultLibrary, isEdited: false, discarded: true, version: CURRENT_VERSION }
     }
   } catch (error) {
     console.error('Error loading from localStorage:', error)
@@ -118,27 +160,24 @@ export function importPromptLibrary(jsonString) {
   try {
     const data = JSON.parse(jsonString)
 
-    // Validate structure
-    if (!data.prompts || !Array.isArray(data.prompts)) {
+    if (!data || !Array.isArray(data.prompts)) {
       return {
         success: false,
         error: 'Invalid format: missing "prompts" array',
       }
     }
 
-    // Basic validation
-    const hasRequiredFields = data.prompts.every((p) => p.id && p.text && p.contexts && p.criteria)
-
-    if (!hasRequiredFields) {
+    const parsed = PromptLibrarySchema.safeParse(data.prompts)
+    if (!parsed.success) {
       return {
         success: false,
-        error: 'Invalid format: some prompts missing required fields (id, text, contexts, criteria)',
+        error: `Invalid format: ${describeIssue(parsed.error)}`,
       }
     }
 
     return {
       success: true,
-      prompts: data.prompts,
+      prompts: parsed.data,
     }
   } catch (error) {
     return {
@@ -340,7 +379,7 @@ export const EDITOR_OPTIONS = {
 
   awarenessLabels: ['low', 'moderate', 'high'],
 
-  selfAcceptanceLabels: ['low', 'moderate', 'high', 'god'],
+  selfAcceptanceLabels: ['low', 'moderate', 'high'],
 
   opennessLabels: ['resistant', 'mixed', 'open', 'eager'],
 

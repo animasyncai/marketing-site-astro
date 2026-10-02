@@ -6,6 +6,7 @@
  */
 
 import { Icon } from 'astro-icon/components'
+import { safeJsonForScript } from '../utils/safe-json.js'
 
 interface FAQItem {
   question: string
@@ -64,7 +65,7 @@ const faqSchema = {
   </div>
 
   <!-- FAQ Schema for SEO -->
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={safeJsonForScript(faqSchema)} />
 </section>
 
 <style lang="scss">

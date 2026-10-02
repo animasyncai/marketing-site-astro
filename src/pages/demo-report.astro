@@ -101,6 +101,8 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
   </main>
 
   <script>
+    import { escapeHtml } from '../utils/escape-html.js'
+
     // The generators run on the server (POST /api/demo-report): importing them here would publish the report corpus
     // as a static chunk outside the gate.
     Promise.resolve()
@@ -255,12 +257,12 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
 
           container.innerHTML = `
           <div>
-            <label class="block mb-1 text-xs text-gray-600">${labels.A}</label>
+            <label class="block mb-1 text-xs text-gray-600">${escapeHtml(labels.A)}</label>
             <input type="number" id="llPrimaryA" min="1" max="5" step="0.1" value="3.5" 
                    class="w-full rounded border p-2 text-sm">
           </div>
           <div>
-            <label class="block mb-1 text-xs text-gray-600">${labels.B}</label>
+            <label class="block mb-1 text-xs text-gray-600">${escapeHtml(labels.B)}</label>
             <input type="number" id="llPrimaryB" min="1" max="5" step="0.1" value="3.5" 
                    class="w-full rounded border p-2 text-sm">
           </div>
@@ -283,12 +285,12 @@ const pageDescription = 'Test reflection outputs using pluggable generators'
 
           container.innerHTML = `
           <div>
-            <label class="block mb-1 text-xs text-gray-600">${labels.A}</label>
+            <label class="block mb-1 text-xs text-gray-600">${escapeHtml(labels.A)}</label>
             <input type="number" id="llSecondaryA" min="1" max="5" step="0.1" value="3.0" 
                    class="w-full rounded border p-2 text-sm">
           </div>
           <div>
-            <label class="block mb-1 text-xs text-gray-600">${labels.B}</label>
+            <label class="block mb-1 text-xs text-gray-600">${escapeHtml(labels.B)}</label>
             <input type="number" id="llSecondaryB" min="1" max="5" step="0.1" value="3.0" 
                    class="w-full rounded border p-2 text-sm">
           </div>

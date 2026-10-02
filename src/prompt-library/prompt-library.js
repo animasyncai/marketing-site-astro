@@ -138,17 +138,19 @@ const TRAIT_MAPPING = {
     LOW_MINDFULNESS: 'low',
     MODERATE_MINDFULNESS: 'moderate',
     GOOD_MINDFULNESS: 'high',
+    HIGH_MINDFULNESS: 'high',
   },
   awarenessLevel: {
     LOW_SELF_AWARENESS: 'low',
     MODERATE_SELF_AWARENESS: 'moderate',
     GOOD_SELF_AWARENESS: 'high',
+    HIGH_SELF_AWARENESS: 'high',
   },
   selfAcceptanceLevel: {
     BEGINNING_SELF_ACCEPTANCE: 'low',
     DEVELOPING_SELF_ACCEPTANCE: 'moderate',
     GROWING_SELF_ACCEPTANCE: 'high',
-    INTEGRATED_SELF_ACCEPTANCE: 'god',
+    INTEGRATED_SELF_ACCEPTANCE: 'high',
   },
   opennessToChange: {
     RESISTANT: 'resistant',
@@ -210,6 +212,21 @@ const TRAIT_MAPPING = {
  *   }
  * }
  */
+
+export class UnmappedTraitLevelError extends Error {
+  constructor(scale, value) {
+    super(`Unmapped ${scale} level: ${value}`)
+    this.name = 'UnmappedTraitLevelError'
+  }
+}
+
+// A level the table does not know must never become `undefined` (it would silently match no prompt).
+function lookup(scale, value) {
+  const label = TRAIT_MAPPING[scale][value]
+  if (label === undefined) throw new UnmappedTraitLevelError(scale, value)
+  return label
+}
+
 export function mapTraitData(traitData) {
   const mapped = {}
 
@@ -217,9 +234,9 @@ export function mapTraitData(traitData) {
   if (traitData.attachmentType?.primary) {
     mapped.attachment = {
       primary: {
-        label: TRAIT_MAPPING.attachment[traitData.attachmentType.primary],
+        label: lookup('attachment', traitData.attachmentType.primary),
         intensity: traitData.attachmentType.primaryIntensity
-          ? TRAIT_MAPPING.intensity[traitData.attachmentType.primaryIntensity]
+          ? lookup('intensity', traitData.attachmentType.primaryIntensity)
           : undefined,
       },
     }
@@ -227,9 +244,9 @@ export function mapTraitData(traitData) {
     // Add secondary if present
     if (traitData.attachmentType.secondary) {
       mapped.attachment.secondary = {
-        label: TRAIT_MAPPING.attachment[traitData.attachmentType.secondary],
+        label: lookup('attachment', traitData.attachmentType.secondary),
         intensity: traitData.attachmentType.secondaryIntensity
-          ? TRAIT_MAPPING.intensity[traitData.attachmentType.secondaryIntensity]
+          ? lookup('intensity', traitData.attachmentType.secondaryIntensity)
           : undefined,
       }
     }
@@ -239,14 +256,14 @@ export function mapTraitData(traitData) {
   if (traitData.loveLanguage?.primary) {
     mapped.loveLanguage = {
       primary: {
-        label: TRAIT_MAPPING.loveLanguage[traitData.loveLanguage.primary],
+        label: lookup('loveLanguage', traitData.loveLanguage.primary),
       },
     }
 
     // Add secondary if present
     if (traitData.loveLanguage.secondary) {
       mapped.loveLanguage.secondary = {
-        label: TRAIT_MAPPING.loveLanguage[traitData.loveLanguage.secondary],
+        label: lookup('loveLanguage', traitData.loveLanguage.secondary),
       }
     }
   }
@@ -257,13 +274,13 @@ export function mapTraitData(traitData) {
 
     if (traitData.mindfulness.mindfulnessLevel) {
       mapped.mindfulness.mindfulness = {
-        label: TRAIT_MAPPING.mindfulnessLevel[traitData.mindfulness.mindfulnessLevel],
+        label: lookup('mindfulnessLevel', traitData.mindfulness.mindfulnessLevel),
       }
     }
 
     if (traitData.mindfulness.awarenessLevel) {
       mapped.mindfulness.awareness = {
-        label: TRAIT_MAPPING.awarenessLevel[traitData.mindfulness.awarenessLevel],
+        label: lookup('awarenessLevel', traitData.mindfulness.awarenessLevel),
       }
     }
   }
@@ -274,13 +291,13 @@ export function mapTraitData(traitData) {
 
     if (traitData.selfAcceptance.level) {
       mapped.selfAcceptance.level = {
-        label: TRAIT_MAPPING.selfAcceptanceLevel[traitData.selfAcceptance.level],
+        label: lookup('selfAcceptanceLevel', traitData.selfAcceptance.level),
       }
     }
 
     if (traitData.selfAcceptance.opennessToChange) {
       mapped.selfAcceptance.openness = {
-        label: TRAIT_MAPPING.opennessToChange[traitData.selfAcceptance.opennessToChange],
+        label: lookup('opennessToChange', traitData.selfAcceptance.opennessToChange),
       }
     }
   }
