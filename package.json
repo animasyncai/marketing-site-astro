@@ -38,7 +38,7 @@
     "url": "https://github.com/animasyncai/marketing-site-astro/issues"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/mdx": "^8.0.2",
     "@astrojs/partytown": "^2.1.4",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.27.0",
@@ -46,8 +46,8 @@
     "@types/sanitize-html": "^2.16.0",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
-    "astro": "^5.8.0",
-    "astro-compress": "^2.3.8",
+    "astro": "^7.3.5",
+    "astro-compress": "^2.4.3",
     "astro-eslint-parser": "^1.2.2",
     "astro-icon": "^1.1.5",
     "eslint": "^9.27.0",
@@ -64,9 +64,24 @@
     "tailwindcss": "^4.1.7"
   },
   "dependencies": {
-    "@astrojs/vercel": "^8.2.5",
+    "@astrojs/vercel": "^11.0.11",
     "@tailwindcss/vite": "^4.1.7",
     "accessible-astro-components": "^4.1.1",
     "node-mailjet": "^6.0.9"
+  },
+  "overrides": {
+    "astro-compress": {
+      "svgo": "^4.1.0",
+      "sharp": "^0.35.5",
+      "deepmerge-ts": "^8.0.2",
+      "@playform/pipe": {
+        "deepmerge-ts": "^8.0.2"
+      }
+    },
+    "@astrojs/vercel": {
+      "@vercel/routing-utils": {
+        "path-to-regexp": "^6.3.0"
+      }
+    }
   }
 }
