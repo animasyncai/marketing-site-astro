@@ -1,6 +1,11 @@
 ---
+import { guard } from '../lib/internal-gate'
+
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import defaultPromptLibrary from '../prompt-library/data/prompt-library.json'
+
+const denied = await guard(Astro, '/prompt-library-editor')
+if (denied) return denied
 
 const pageTitle = 'Prompt Library Editor'
 const pageDescription = 'Edit, add, and manage reflection prompts'

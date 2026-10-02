@@ -1,10 +1,15 @@
 ---
+import { guard } from '../lib/internal-gate'
+
 /**
  * Withinly Trait Reflection Prototype
  * Uses independent generators from src/trait-report-demo/
  */
 
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+const denied = await guard(Astro, '/demo-report')
+if (denied) return denied
 
 const pageTitle = 'Trait Reflection + Behavioral Profile Prototype'
 const pageDescription = 'Test reflection outputs using pluggable generators'

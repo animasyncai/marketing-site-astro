@@ -26,6 +26,8 @@ export default defineConfig({
         default: 'https://api.withinly.app/api/webhook/waitlist-confirmation-email',
       }),
       SIGNUP_ALLOWED_ORIGINS: envField.string({ context: 'server', access: 'secret' }),
+      GATE_PASSWORD: envField.string({ context: 'server', access: 'secret', min: 16 }),
+      GATE_COOKIE_SECRET: envField.string({ context: 'server', access: 'secret', min: 32 }),
     },
     validateSecrets: true,
   },
