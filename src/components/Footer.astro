@@ -42,6 +42,9 @@ const termsLink = legalLink('/terms')
         <a href={termsLink.href} hreflang={termsLink.hreflang} class="transition-colors hover:opacity-80"
           >{t('footer.terms')}</a
         >
+        <a href={getLocalizedPath('/waitlist/leave', lang)} class="transition-colors hover:opacity-80"
+          >{t('footer.leaveWaitlist')}</a
+        >
         <LanguagePicker variant="toggle" />
       </div>
     </div>

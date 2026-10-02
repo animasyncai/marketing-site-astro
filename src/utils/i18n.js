@@ -27,7 +27,7 @@ export const DEFAULT_LANGUAGE = 'en'
  * src/pages/lt/terms.astro exist, add '/privacy' and '/terms' here (E-058). A link into another language must never
  * name a page that does not exist there: Vercel answers it with an empty 404.
  */
-export const LOCALIZED_PATHS = new Set(['/', '/waitlist/confirm'])
+export const LOCALIZED_PATHS = new Set(['/', '/waitlist/confirm', '/waitlist/leave'])
 
 /**
  * A path without its language prefix or trailing slash: '/lt/privacy/' -> '/privacy', '/lt' -> '/'.

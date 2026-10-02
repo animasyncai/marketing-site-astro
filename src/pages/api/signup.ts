@@ -10,37 +10,16 @@
  */
 export const prerender = false
 
-import crypto from 'node:crypto'
 import type { APIRoute } from 'astro'
-import { SIGNUP_TOKEN_SECRET } from 'astro:env/server'
 import { normalizeEmail } from '../../lib/email-address'
 import { confirmationEmail } from '../../lib/emails'
 import { classifyMailjetFailure, redactEmails, sendEmail } from '../../lib/mailjet'
 import { allowedOriginOf } from '../../lib/origin'
-import { createLimiter } from '../../lib/rate-limit'
+import { allowMailTo, isDisposable, isHoneypotFilled, perIp } from '../../lib/waitlist-guards'
 import { mintToken, type Locale } from '../../lib/waitlist-token'
-
-const perIp = createLimiter({ windowMs: 15 * 60 * 1000, max: 5 })
-// Bounds mail to one inbox; keyed by an HMAC so the address itself is not held as a key.
-const perAddress = createLimiter({ windowMs: 60 * 60 * 1000, max: 3 })
-const addressKey = (email: string): string =>
-  crypto.createHmac('sha256', SIGNUP_TOKEN_SECRET).update(`limit:${email}`).digest('hex')
 
 const MAX_BODY_BYTES = 4 * 1024
 const RETRY_AFTER_SECONDS = '30'
-
-const DISPOSABLE_DOMAINS = new Set([
-  '10minutemail.com',
-  'tempmail.org',
-  'guerrillamail.com',
-  'mailinator.com',
-  'temp-mail.org',
-  'throwaway.email',
-  'getnada.com',
-  'maildrop.cc',
-  'yopmail.com',
-  'trashmail.com',
-])
 
 function jsonResponse(status: number, body: Record<string, unknown>, headers: Record<string, string> = {}): Response {
   return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json', ...headers } })
@@ -82,16 +61,16 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     if (!rawEmail || typeof rawEmail !== 'string') return jsonResponse(400, { success: false, error: 'MISSING_EMAIL' })
     const email = normalizeEmail(rawEmail)
     if (!email) return jsonResponse(400, { success: false, error: 'INVALID_EMAIL' })
-    if (DISPOSABLE_DOMAINS.has(email.slice(email.indexOf('@') + 1))) {
+    if (isDisposable(email)) {
       return jsonResponse(400, { success: false, error: 'DISPOSABLE_EMAIL' })
     }
 
     // Only a bot fills the hidden field: it gets the normal answer and nothing is sent.
-    if (typeof website === 'string' && website.trim() !== '') {
+    if (isHoneypotFilled(website)) {
       console.log('[signup] outcome=honeypot')
       return accepted()
     }
-    if (!perAddress(addressKey(email)).allowed) {
+    if (!allowMailTo(email)) {
       console.log('[signup] outcome=address_limited')
       return accepted()
     }

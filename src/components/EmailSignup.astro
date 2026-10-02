@@ -139,10 +139,8 @@ const successId = `${formId}-success`
 </div>
 
 <script>
-  // Declare gtag function for TypeScript
   declare global {
     interface Window {
-      gtag?: (command: string, action: string, params: Record<string, any>) => void;
       emailSignupHandlers?: WeakMap<HTMLFormElement, () => void>;
     }
   }
@@ -344,13 +342,6 @@ const successId = `${formId}-success`
             showMessage(successMessage, translations.successMessage || "Welcome! We'll be in touch soon.");
             emailInput.value = '';
 
-            // Track conversion
-            if (typeof window !== 'undefined' && window.gtag) {
-              window.gtag('event', 'signup', {
-                event_category: 'engagement',
-                event_label: 'email_signup',
-              });
-            }
           } else {
             showMessage(errorMessage, errorMessageFor(result?.error));
           }

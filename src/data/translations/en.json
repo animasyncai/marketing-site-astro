@@ -186,7 +186,8 @@
     "copyright": "© 2025 Withinly • Private • Insightful • Yours",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "contact": "Contact"
+    "contact": "Contact",
+    "leaveWaitlist": "Leave the waitlist"
   },
   "validation": {
     "required": "required",
@@ -239,7 +240,11 @@
     "confirmIgnore": "If this wasn't you, ignore this email: you won't be added and we won't write again.",
     "leaveLine": "Changed your mind? Leave the waitlist at any time:",
     "privacyLine": "How we handle your address:",
-    "signature": "The Withinly team"
+    "signature": "The Withinly team",
+    "leaveSubject": "Your link to leave the Withinly waitlist",
+    "leaveIntro": "Someone asked for a link to take this address off the Withinly early-access waitlist.",
+    "leaveAction": "Leave the waitlist",
+    "leaveIgnore": "If this wasn't you, ignore this email: nothing changes."
   },
   "waitlistConfirm": {
     "title": "Confirm your address",
@@ -254,6 +259,26 @@
     "leftAfterText": "You left the waitlist after this link was sent. To rejoin, sign up again; if that does not work, write to hello@withinly.app.",
     "errorTitle": "Please try again",
     "errorText": "We couldn't confirm your address just now. Please try again in a minute.",
+    "retryButton": "Try again",
+    "backHome": "Back to Withinly"
+  },
+  "waitlistLeave": {
+    "title": "Leave the waitlist",
+    "formText": "Enter the address you signed up with. We'll email it a link that takes it off the waitlist.",
+    "emailLabel": "Email address",
+    "sendButton": "Email me the link",
+    "sentTitle": "Check your inbox",
+    "sentText": "If that address is on the waitlist, we've sent it a link to leave.",
+    "readyText": "Press Leave to take your address off the Withinly waitlist. We won't email you about early access again.",
+    "leaveButton": "Leave",
+    "doneTitle": "You're off the list",
+    "doneText": "Your address is off the waitlist and we won't email you about early access again. We keep it only marked as do-not-email, so it is never added back by mistake. To have it deleted completely, write to hello@withinly.app.",
+    "invalidTitle": "This link doesn't work",
+    "invalidText": "The link is incomplete or has expired. Enter your address below and we will send a new one.",
+    "emailInvalid": "Please enter a valid email address.",
+    "limitedText": "Too many requests. Please try again later.",
+    "errorTitle": "Please try again",
+    "errorText": "Something went wrong just now. Please try again in a minute.",
     "retryButton": "Try again",
     "backHome": "Back to Withinly"
   }

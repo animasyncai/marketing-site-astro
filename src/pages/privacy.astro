@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import { getTranslationsFromUrl, getTranslation } from '../utils/useTranslation.js'
+import { PRIVACY_NOTICE_UPDATED, PRIVACY_NOTICE_VERSION } from '../lib/privacy-notice'
 
 // Get translations for current language
 const translations = await getTranslationsFromUrl(Astro.url.pathname)
@@ -20,8 +21,8 @@ const pageDescription =
     <div class="mb-12 text-center">
       <h1 class="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">Privacy Policy</h1>
       <div class="text-sm text-gray-600">
-        <p><strong>Last updated:</strong> January 15, 2025</p>
-        <p><strong>Version:</strong> 2.0</p>
+        <p><strong>Last updated:</strong> {PRIVACY_NOTICE_UPDATED}</p>
+        <p><strong>Version:</strong> {PRIVACY_NOTICE_VERSION}</p>
       </div>
     </div>
 
@@ -133,6 +134,16 @@ const pageDescription =
           <li><strong>What they get:</strong> Anonymous usage patterns (features clicked, time spent)</li>
           <li><strong>What they don't get:</strong> Your actual reflections, messages, or personal insights</li>
           <li><strong>Privacy:</strong> We anonymize identifiers before sending to Mixpanel</li>
+        </ul>
+      </div>
+      <div class="mt-4 rounded-lg bg-gray-50 p-4">
+        <p>
+          <strong>Fathom Analytics</strong> — cookieless visit statistics for this website (withinly.app): which pages
+          are viewed, the referring site, browser and device type, and country.
+        </p>
+        <ul class="mt-2">
+          <li><strong>What they don't get:</strong> Cookies, anything you type into the site, or a stored IP address</li>
+          <li><strong>Where it runs:</strong> Not on the waitlist confirm and leave pages, whose links are personal</li>
         </ul>
       </div>
 
@@ -250,6 +261,23 @@ const pageDescription =
         <li><strong>Backups purged within 90 days</strong></li>
       </ul>
 
+      <h3>Early-access waitlist</h3>
+      <ul>
+        <li>
+          <strong>What we keep:</strong> your email address on a Mailjet contact list, to tell you when early access opens
+        </li>
+        <li>
+          <strong>How you join:</strong> you confirm by a link we email you; we record when you confirmed, that it was
+          through this website, and which version of this notice was in force
+        </li>
+        <li>
+          <strong>How you leave:</strong> the link in our emails, or <a href="/waitlist/leave">withinly.app/waitlist/leave</a>
+          — after you leave we keep your address only marked as do-not-email, so we never email you again; to have it
+          deleted completely, write to hello@withinly.app
+        </li>
+        <li><strong>How long:</strong> until you leave; we delete the whole waitlist 12 months after Withinly opens to everyone</li>
+      </ul>
+
       <h3>Partner Sync</h3>
       <ul>
         <li>When either partner unlinks, couple reports are deleted immediately</li>
@@ -345,7 +373,8 @@ const pageDescription =
           <li><strong>We collect:</strong> Email, your reflections, chat history, usage data, payment info</li>
           <li><strong>We use it for:</strong> Providing insights, improving the service, processing payments</li>
           <li>
-            <strong>We share with:</strong> OpenAI (AI), Stripe (payments), Mixpanel (analytics), Mailjet (emails)
+            <strong>We share with:</strong> OpenAI (AI), Stripe (payments), Mixpanel (app analytics), Fathom (website
+            analytics), Mailjet (emails)
           </li>
           <li><strong>We don't:</strong> Sell data, train AI on your reflections, track you elsewhere</li>
           <li><strong>You can:</strong> Delete your account, clear history, request your data anytime</li>
