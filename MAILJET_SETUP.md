@@ -23,22 +23,11 @@ This project uses Mailjet for email signup functionality. Follow these steps to 
 
 ## 4. Set Environment Variables
 
-Create a `.env` file in your project root with the following variables:
+The variables, and which are required, are listed in [`.env.example`](.env.example) — that file mirrors the schema in
+`astro.config.mjs` (`env.schema`), which is the source of truth. Copy it to `.env` for local development and fill in
+the values. A missing required variable fails `npm run build`.
 
-```env
-# Mailjet API Configuration
-MAILJET_API_KEY=your_mailjet_api_key_here
-MAILJET_API_SECRET=your_mailjet_api_secret_here
-MAILJET_CONTACT_LIST_ID=your_contact_list_id_here
-
-# Waitlist Confirmation Webhook (optional)
-WAITLIST_WEBHOOK_TOKEN=your_webhook_token_here
-WAITLIST_WEBHOOK_URL=https://api.withinly.app/api/webhook/waitlist-confirmation-email
-```
-
-Replace the placeholder values with your actual Mailjet credentials.
-
-**Note:** The `WAITLIST_WEBHOOK_URL` is optional and defaults to `https://api.withinly.app/api/webhook/waitlist-confirmation-email` if not provided. The webhook will only be called for new signups (not existing users).
+The api's confirmation webhook is called once for each address that is newly added to the list.
 
 ## 5. Test the Integration
 
@@ -60,7 +49,9 @@ When deploying to production, make sure to set these environment variables in yo
 
 1. **"Email service configuration error"**: Check that all environment variables are set correctly
 2. **"Failed to add to email list"**: Verify your API credentials and contact list ID
-3. **Rate limiting**: The API limits signups to 5 per IP per 15 minutes
+3. **Rate limiting**: best-effort only — at most 5 sign-ups per IP per 15 minutes *per server instance*. The
+   counter lives in memory: it is empty after a cold start and is not shared between Vercel instances, so it is not a
+   hard cap.
 
 ### Testing
 
@@ -68,13 +59,14 @@ You can test the API endpoint directly:
 
 ```bash
 curl -X POST http://localhost:4321/api/signup \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","source":"test"}'
+  -H "Content-Type: application/json" -H "Origin: http://localhost:4321" \
+  -d '{"email":"test@example.com"}'
 ```
 
 ## Security Notes
 
-- Never commit your `.env` file to version control
+- Never commit your `.env` file to version control, and never put a real value in `.env.example`
+  (`npm run check:secrets` runs on every push and pull request)
 - The `.env` file is already in `.gitignore`
 - Use different API keys for development and production
 - Consider using Mailjet's sandbox mode for testing

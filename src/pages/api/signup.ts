@@ -12,35 +12,21 @@ export const prerender = false
 
 import type { APIRoute } from 'astro'
 import Mailjet from 'node-mailjet'
+import {
+  MAILJET_API_KEY,
+  MAILJET_API_SECRET,
+  MAILJET_LIST_ID,
+  WAITLIST_WEBHOOK_TOKEN,
+  WAITLIST_WEBHOOK_URL,
+} from 'astro:env/server'
+import { allowedOriginOf } from '../../lib/origin'
 
-// Simple in-memory rate limiting (replace with Redis in production)
+// Best-effort rate limit: in-memory, per server instance (empty after a cold start, not shared between instances).
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000 // 15 minutes
 const RATE_LIMIT_MAX_REQUESTS = 5 // Max 5 signups per IP per window
-
-// Only the site's own pages may sign someone up. SIGNUP_ALLOWED_ORIGINS is a required, comma-separated list of exact
-// origins (e.g. `https://withinly.app,https://www.withinly.app`). The request's own URL cannot stand in for it: without
-// `security.allowedDomains`, Astro builds `request.url` on localhost behind Vercel. Unset or empty fails closed.
-function parseAllowedOrigins(raw: string | undefined): Set<string> {
-  return new Set(
-    (raw ?? '')
-      .split(',')
-      .map((origin) => origin.trim().replace(/\/+$/, ''))
-      .filter(Boolean),
-  )
-}
-
-const ALLOWED_ORIGINS = parseAllowedOrigins(import.meta.env.SIGNUP_ALLOWED_ORIGINS)
-if (ALLOWED_ORIGINS.size === 0) {
-  console.error('[signup] SIGNUP_ALLOWED_ORIGINS is not set: every sign-up is refused with 403')
-}
-
-function isAllowedOrigin(request: Request): boolean {
-  const origin = request.headers.get('origin')
-  return origin !== null && ALLOWED_ORIGINS.has(origin)
-}
 
 function isJsonRequest(request: Request): boolean {
   const mediaType = request.headers.get('content-type')?.split(';')[0]?.trim().toLowerCase()
@@ -99,21 +85,12 @@ function redactEmails(text: string): string {
 // responded, but bounded. A failure never fails the sign-up (the person is listed); it is logged with a stable marker
 // and without the address.
 async function callWaitlistConfirmationWebhook(email: string): Promise<void> {
-  const webhookToken = import.meta.env.WAITLIST_WEBHOOK_TOKEN
-  const webhookUrl =
-    import.meta.env.WAITLIST_WEBHOOK_URL || 'https://api.withinly.app/api/webhook/waitlist-confirmation-email'
-
-  if (!webhookToken) {
-    console.warn('[waitlist-webhook] skipped reason=no-token')
-    return
-  }
-
   try {
-    const response = await fetch(webhookUrl, {
+    const response = await fetch(WAITLIST_WEBHOOK_URL!, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${webhookToken}`,
+        Authorization: `Bearer ${WAITLIST_WEBHOOK_TOKEN}`,
       },
       body: JSON.stringify({ email }),
       signal: AbortSignal.timeout(WEBHOOK_TIMEOUT_MS),
@@ -131,8 +108,6 @@ async function callWaitlistConfirmationWebhook(email: string): Promise<void> {
 }
 
 type ListOutcome = 'added' | 'already_listed' | 'unsubscribed'
-
-class MailjetNotConfiguredError extends Error {}
 
 type MailjetFailure = {
   statusCode?: unknown
@@ -156,20 +131,12 @@ const contactPathId = (email: string): string => encodeURIComponent(email).repla
 // Put the address on the waitlist. Membership is read from the list itself, never inferred from the contact existing
 // in the account: that contact store is shared with the api's transactional contacts.
 async function ensureOnList(email: string): Promise<ListOutcome> {
-  const apiKey = import.meta.env.MAILJET_API_KEY
-  const apiSecret = import.meta.env.MAILJET_SECRET_KEY || import.meta.env.MAILJET_API_SECRET
-  const listId = import.meta.env.MAILJET_LIST_ID
-
-  if (!apiKey || !apiSecret || !listId) {
-    console.error('[mailjet] not configured', {
-      MAILJET_API_KEY: !!apiKey,
-      MAILJET_SECRET_KEY: !!apiSecret,
-      MAILJET_LIST_ID: !!listId,
-    })
-    throw new MailjetNotConfiguredError('Mailjet is not configured')
-  }
-
-  const mailjet = new Mailjet({ apiKey, apiSecret, options: { timeout: MAILJET_TIMEOUT_MS } })
+  const listId = MAILJET_LIST_ID
+  const mailjet = new Mailjet({
+    apiKey: MAILJET_API_KEY,
+    apiSecret: MAILJET_API_SECRET,
+    options: { timeout: MAILJET_TIMEOUT_MS },
+  })
 
   // 1. Is the address on the list? 404 = Mailjet does not know the contact, so it is not listed.
   let lists: Array<{ ListID?: unknown; IsUnsub?: unknown }> = []
@@ -236,7 +203,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   // Same-origin JSON only, checked before anything else (no rate-limit budget, no Mailjet call, no webhook).
   // There is deliberately no CORS: no OPTIONS handler and no Access-Control-Allow-* header on any response.
-  if (!isAllowedOrigin(request)) {
+  if (allowedOriginOf(request) === null) {
     return jsonResponse(403, { success: false, error: 'FORBIDDEN_ORIGIN' })
   }
   if (!isJsonRequest(request)) {
@@ -299,9 +266,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     try {
       outcome = await ensureOnList(trimmedEmail)
     } catch (error) {
-      if (error instanceof MailjetNotConfiguredError) {
-        return jsonResponse(500, { success: false, error: 'EMAIL_SERVICE_ERROR' })
-      }
       return mailjetFailureResponse(error)
     }
 

@@ -13,7 +13,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:secrets": "node scripts/check-secrets.mjs"
   },
   "keywords": [
     "astro",
