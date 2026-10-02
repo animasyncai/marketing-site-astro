@@ -67,7 +67,7 @@ export async function handleLeave(request: Request, url: URL, clientAddress: str
       leaveEmail(locale, { leave: `${origin}${prefix}/waitlist/leave?t=${mintToken('leave', email, locale)}`, privacy: `${origin}/privacy` }),
     )
   } catch (error) {
-    classifyMailjetFailure(error, 'send leave link')
+    classifyMailjetFailure(error, 'send leave link', { badRequestMeansInvalidEmail: false })
     return { state: 'error' }
   }
   console.log('[leave] outcome=link_sent')

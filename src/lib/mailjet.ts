@@ -74,8 +74,21 @@ export async function sendEmail(to: string, message: { subject: string; text: st
 // Mailjet's messages quote the address (e.g. MJ18); logs get e-mail-shaped text replaced.
 export const redactEmails = (text: string): string => text.replace(/[^\s"'<>@]+@[^\s"'<>@]+/g, '<email>')
 
+// Send v3.1 reports per-message errors (e.g. send-0003 unauthorised sender) in the response body; codes only.
+function sendErrorCodesOf(error: unknown): string[] | undefined {
+  const data = (error as { response?: { data?: unknown } } | null)?.response?.data as
+    | { Messages?: Array<{ Errors?: Array<{ ErrorCode?: unknown }> }> }
+    | undefined
+  const codes = (data?.Messages ?? []).flatMap((m) => (m.Errors ?? []).map((e) => String(e.ErrorCode ?? '')))
+  return codes.length > 0 ? codes : undefined
+}
+
 // A failed call as an outcome code, logged on its status / transport code only.
-export function classifyMailjetFailure(error: unknown, operation: string): { status: number; code: string } {
+export function classifyMailjetFailure(
+  error: unknown,
+  operation: string,
+  { badRequestMeansInvalidEmail = true } = {},
+): { status: number; code: string } {
   const failure = (error ?? {}) as MailjetFailure
   const statusCode = statusCodeOf(error)
   const code = typeof failure.code === 'string' ? failure.code : null
@@ -83,8 +96,9 @@ export function classifyMailjetFailure(error: unknown, operation: string): { sta
     status: statusCode ?? code ?? 'unknown',
     errorIdentifier: typeof failure.ErrorIdentifier === 'string' ? failure.ErrorIdentifier : undefined,
     errorMessage: redactEmails(String(failure.ErrorMessage ?? failure.originalMessage ?? '')),
+    sendErrorCodes: sendErrorCodesOf(error),
   })
   if (code === 'ECONNABORTED' || code === 'ETIMEDOUT') return { status: 503, code: 'EMAIL_SERVICE_TIMEOUT' }
-  if (statusCode === 400) return { status: 400, code: 'INVALID_EMAIL' }
+  if (statusCode === 400 && badRequestMeansInvalidEmail) return { status: 400, code: 'INVALID_EMAIL' }
   return { status: 502, code: 'EMAIL_SERVICE_ERROR' }
 }

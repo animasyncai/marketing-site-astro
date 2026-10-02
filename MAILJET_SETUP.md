@@ -36,8 +36,9 @@ confirmation webhook called, once per address that joins.
 ## 5. Test the Integration
 
 1. Start your development server: `npm run dev`
-2. Go to your website and try signing up with an email
-3. Check your Mailjet dashboard to see if the contact was added to your list
+2. Sign up with an address you can read; you get a confirmation email (nothing is on the list yet)
+3. Open its link and press **Confirm**; the contact now appears on the list with the three consent properties
+4. Use the email's leave link (or `/waitlist/leave`) and press **Leave**; the contact is unsubscribed
 
 ## 6. Production Deployment
 
@@ -51,11 +52,13 @@ When deploying to production, make sure to set these environment variables in yo
 
 ### Common Issues
 
-1. **"Email service configuration error"**: Check that all environment variables are set correctly
-2. **"Failed to add to email list"**: Verify your API credentials and contact list ID
-3. **Rate limiting**: best-effort only — at most 5 sign-ups per IP per 15 minutes *per server instance*. The
-   counter lives in memory: it is empty after a cold start and is not shared between Vercel instances, so it is not a
-   hard cap.
+1. **`npm run build` fails with `EnvInvalidVariables`**: a required variable from `.env.example` is missing or empty
+2. **The form says "Something went wrong"**: the confirmation email could not be sent — check the function log for
+   `[mailjet] send confirmation failed` (status and Mailjet's per-message error codes, e.g. an unvalidated sender)
+3. **Every sign-up answers 403 `FORBIDDEN_ORIGIN`**: the page's origin is not in `SIGNUP_ALLOWED_ORIGINS`
+4. **Limits** (best-effort, in memory, per server instance — empty after a cold start, not shared between Vercel
+   instances, so not hard caps): 5 sign-up or leave requests per IP per 15 minutes, shared by both forms; at most 3
+   waitlist emails per address per hour (further requests get the normal answer and no email)
 
 ### Testing
 

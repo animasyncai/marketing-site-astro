@@ -24,7 +24,7 @@ export function hasValidGateCookie(cookies: AstroCookies): boolean {
   if (!match) return false
   const expiry = Number(match[1])
   const remaining = expiry - nowSeconds()
-  if (remaining <= 0 || remaining > TTL_SECONDS) return false
+  if (remaining <= 0 || remaining > TTL_SECONDS + 60) return false // 60 s: clock skew between instances
   return crypto.timingSafeEqual(Buffer.from(signature(expiry), 'hex'), Buffer.from(match[2], 'hex'))
 }
 

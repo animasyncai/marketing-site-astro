@@ -46,7 +46,7 @@ const successId = `${formId}-success`
     )
   }
 
-  <form id={formId} class="space-y-4" novalidate data-form="email-signup">
+  <form id={formId} method="post" class="space-y-4" novalidate data-form="email-signup">
     <!-- Enhanced Honeypot -->
     <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
       <input type="text" name="website" tabindex="-1" autocomplete="off" />

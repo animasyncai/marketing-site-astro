@@ -167,6 +167,10 @@ export function importPromptLibrary(jsonString) {
       }
     }
 
+    if (data.prompts.length === 0) {
+      return { success: false, error: 'Invalid format: the file has no prompts' }
+    }
+
     const parsed = PromptLibrarySchema.safeParse(data.prompts)
     if (!parsed.success) {
       return {

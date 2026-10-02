@@ -85,7 +85,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     try {
       await sendEmail(email, message)
     } catch (error) {
-      const failure = classifyMailjetFailure(error, 'send confirmation')
+      const failure = classifyMailjetFailure(error, 'send confirmation', { badRequestMeansInvalidEmail: false })
       return jsonResponse(
         failure.status,
         { success: false, error: failure.code },
